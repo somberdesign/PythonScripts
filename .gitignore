@@ -1,3 +1,11 @@
+NwAuctionDvdCheck/NwOutput.txt
+
+ReadSalesCsv/Data/
+ReadSalesCsv/*.html
+ReadSalesCsv/*.txt
+ReadSalesCsv/SalesData.py
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

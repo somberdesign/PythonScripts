@@ -5,7 +5,7 @@ import datetime
 INPUT_FILENAME = r'.\Movie List.txt'
 OUTPUT_FILENAME = r'.\MoveList.html'
 OUTPUT_FILENAME_UNMATCHED = r'.\MovieList_Unmatched.txt'
-FIRST_TITLE_LINE = 4
+FIRST_DATA_LINE = 4
 SALESDATA_FILENAME = r'.\SalesData.py'
 OUTPUT_COLUMN_COUNT = 1
 
@@ -45,11 +45,11 @@ for line in lines:
 	lineCounter += 1
 	line = line.strip()
 
-	if lineCounter <= FIRST_TITLE_LINE:
+	if lineCounter <= FIRST_DATA_LINE:
 		output += (f'\t<tr><td colspan="2" class="description">{line}</td></tr>\n')
 		continue
 
-	if lineCounter == FIRST_TITLE_LINE + 1:
+	if lineCounter == FIRST_DATA_LINE + 1:
 		output += '\t<tr><td colspan="2">&nbsp;</td></tr>\n'
 		output += '</table>\n'
 		output += '<table cellpadding="0" cellspacing="0">\n\t<tr>\n'
@@ -57,7 +57,7 @@ for line in lines:
 
 	output += f'\t{MakeEntry(SalesData.sales, line, matchedKeys)}\n'
 	
-	if (lineCounter + FIRST_TITLE_LINE) % OUTPUT_COLUMN_COUNT == 0:
+	if (lineCounter + FIRST_DATA_LINE) % OUTPUT_COLUMN_COUNT == 0:
 		output += '\t</tr><tr>\n'
 
 output += '</tr></table></html>'

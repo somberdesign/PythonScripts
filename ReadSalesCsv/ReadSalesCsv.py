@@ -7,7 +7,7 @@ import math
 import os
 import re
 
-DATA_FOLDER = r'.\Data'
+DATA_FOLDER = r'.\Csv_Sales'
 OUTPUT_FILE = r'.\SalesData.py'
 
 COL_DATE = 0
@@ -38,10 +38,11 @@ for file in files:
 		csv_reader = csv.reader(csv_file, delimiter=',')
 		line_count = 0
 		for row in csv_reader:
-			
+			line_count += 1
+
+		
 			# data starts on line 4
 			if line_count < 4:
-				line_count += 1
 				continue
 
 			if len(row[COL_PAYMENTRECEIVED]) > 0:
@@ -52,7 +53,7 @@ for file in files:
 				
 				# can't convert payment received to float
 				if amount is None:
-					errorList.append(f'Bad amount: {row[COL_DATE]}\t{row[COL_PAYMENTRECEIVED]}')
+					errorList.append(f'["Bad amount", "{file}", "{row[COL_DATE]}", "{row[COL_PAYMENTRECEIVED]}"')
 					continue
 
 				if description in sales:
@@ -70,7 +71,7 @@ with open(OUTPUT_FILE, "w") as file:
 		dates = ', '.join(sales[key][2])
 		file.write(f'sales["{key}"] = ["{sales[key][0]}", "{math.floor(sales[key][1]):03}", "{dates}"]\n')
 
-	file.write('\nerrors=[]')
+	file.write('\nerrors=[]\n')
 	for e in errorList:
 		file.write(f'errors.append({e})\n')
 

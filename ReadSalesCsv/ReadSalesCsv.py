@@ -53,7 +53,7 @@ for file in files:
 				
 				# can't convert payment received to float
 				if amount is None:
-					errorList.append(f'["Bad amount", "{file}", "{row[COL_DATE]}", "{row[COL_PAYMENTRECEIVED]}"')
+					errorList.append(f'["Bad amount", "{file}", "{row[COL_DATE]}", "{row[COL_PAYMENTRECEIVED]}"]')
 					continue
 
 				if description in sales:

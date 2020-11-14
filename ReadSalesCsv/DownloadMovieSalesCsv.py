@@ -7,7 +7,7 @@ import shutil
 
 CREDENTIALS_PATH = r'..\Manage Sheets-b5896c4ab53e.json'
 FIRST_DATA_LINE = 4
-SCOPE = ['https://spreadsheets.google.com/feeds']
+WORKBOOK_SCOPE = ['https://spreadsheets.google.com/feeds']
 SPREADSHEET_IDS = [
 	['Sales', '1PD2jKdjtYYgkEeNGvagdpj651ZxpuRjaXYs52cZlrXw']
 ]
@@ -23,7 +23,7 @@ WORKSHEET_POSITIONS = [ # position of sheets within workbook Sales. eBay Sales s
 
 if __name__ == "__main__":
 
-	credentials = ServiceAccountCredentials.from_json_keyfile_name(CREDENTIALS_PATH, SCOPE)
+	credentials = ServiceAccountCredentials.from_json_keyfile_name(CREDENTIALS_PATH, WORKBOOK_SCOPE)
 
 	for spreadsheet_id in SPREADSHEET_IDS:
 
@@ -95,11 +95,7 @@ if __name__ == "__main__":
 							continue
 						
 						modified.write(l)
-						
+
 			except Exception as ex:
 				print(f'Error writing {fullpath}. {ex}')
 				continue
-
-
-
-		#

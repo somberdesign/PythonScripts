@@ -26,15 +26,15 @@ def MakeEntry(sales, line, matchedKeys):
 	
 	return f'\t<td class="count">{prefix}</td><td class="description">{line}</td>'
 
-def RemovePuncFromKeys(inDict):
+def CleanKeys(inDict):
 	returnVal = {}
 	translator = str.maketrans('', '', string.punctuation)
 
 	for k in inDict.keys():
 		if '/' in k: # don't strip multi-title items
-			returnVal[k] = inDict[k]
+			returnVal[k.lower()] = inDict[k]
 		else:
-			returnVal[k.translate(translator)] = inDict[k]
+			returnVal[k.translate(translator).lower()] = inDict[k]
 
 	return returnVal
 
@@ -79,9 +79,15 @@ def CreateOutputTable(lines, salesDict, matchedKeys):
 	return output
 
 def ReadMovieList():
+	returnVal = []
+
 	with open(INPUT_FILENAME, 'r') as infile:
 		lines = infile.readlines()
-	return lines
+
+	for l in lines:
+		returnVal.append(l.lower())
+
+	return returnVal
 
 def WriteOutputFile(output):
 	try:
@@ -100,13 +106,18 @@ def WriteUnmatchedFile(salesDict, matchedKeys):
 
 
 	outputItems = []
-	count_multiLine = 0
+	count_ignore = 0
 	count_unmatched = 0
+	count_season = 0
 	for k in salesDict.keys():
 
-		if '/' in k: # ignore multi-title items
-			count_multiLine += 1
+		if any(s in k.lower() for s in ['/', 'replacement disc']): # ignore multi-title items
+			count_ignore += 1
 			continue 
+
+		if ' season ' in k.lower():
+			count_season += 1
+			continue
 
 		if k not in matchedKeys: 
 			count_unmatched += 1
@@ -116,7 +127,8 @@ def WriteUnmatchedFile(salesDict, matchedKeys):
 		with open(OUTPUT_FILENAME_UNMATCHED, 'w') as outputFile:
 			outputFile.write(f'# generated {datetime.date.today()}\n\n')
 			outputFile.write(f'# found {count_unmatched} unmatched items\n')
-			outputFile.write(f'# ignored {count_multiLine} multi-title items\n')
+			outputFile.write(f'# {count_ignore} items contain ignore strings\n')
+			outputFile.write(f'# ignored {count_season} "Season" items\n')
 			outputFile.write('\n')
 			outputFile.writelines(outputItems)
 
@@ -125,15 +137,13 @@ def WriteUnmatchedFile(salesDict, matchedKeys):
 
 if __name__ == "__main__":
 
-	salesDict = RemovePuncFromKeys(SalesData.sales)
+	salesDict = CleanKeys(SalesData.sales)
+
+
 	movieListLines = ReadMovieList()
 	matchedKeys = []
 
 	output = CreateOutputTable(movieListLines, salesDict, matchedKeys)
 	WriteOutputFile(output)
 	WriteUnmatchedFile(salesDict, matchedKeys)
-
-	# write a file that contains unmatched titles
-
-
 

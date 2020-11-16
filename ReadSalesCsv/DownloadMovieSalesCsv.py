@@ -55,11 +55,11 @@ if __name__ == "__main__":
 				continue
 
 			sheetCount[0] += 1
-			print(f'Worksheet {i}: {WORKSHEET_POSITIONS[i][1]}')
+			print(f'Worksheet {i}: {WORKSHEET_POSITIONS[i][1]}', end='')
 
-			filename = spreadsheet_id[0] + '-worksheet-' + WORKSHEET_POSITIONS[i][1].replace(' ', '') + '.csv'
+			filename = spreadsheet_id[0] + '-worksheet-' + str(WORKSHEET_POSITIONS[i][1]).replace(' ', '') + '.csv'
 			with open(os.path.join(csvDirectory, filename), 'w') as f:
-				print(f'Writing file: {filename}')
+				print(f', writing file {filename}')
 				writer = csv.writer(f)
 				writer.writerows(worksheet.get_all_values())
 

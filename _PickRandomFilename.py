@@ -2,8 +2,7 @@ import os
 import random
 import pyperclip
 
-goodFileExtension = ['.jpg', '.png']
-
+goodFileExtension = ['.jpg', '.png', '.jpeg']
 dir = os.path.dirname(os.path.realpath(__file__))
 filename = __file__
 

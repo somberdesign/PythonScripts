@@ -4,9 +4,8 @@ NwAuctionDvdCheck/NwOutput.txt
 
 ReadSalesCsv/Csv_Sales/
 ReadSalesCsv/Data/
-ReadSalesCsv/*.html
-ReadSalesCsv/*.txt
-ReadSalesCsv/SalesData.py
+ReadSalesCsv/Output/
+ReadSalesCsv/Input/
 
 
 # Byte-compiled / optimized / DLL files

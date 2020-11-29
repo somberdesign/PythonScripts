@@ -54,6 +54,7 @@ def CheckSeries():
 	for directory in seriesDirectories:
 		print(f'Checking {directory}')
 
+		# step through each series
 		for seriesDirectory in os.listdir(directory):
 			seriesFullPath = os.path.join(directory, seriesDirectory)
 			
@@ -61,6 +62,7 @@ def CheckSeries():
 				returnVal.append(('File found in top level directory', seriesFullPath))
 				continue
 
+			# step through each season of a series
 			for seasonDirectory in os.listdir(seriesFullPath):
 				seasonFullPath = os.path.join(seriesFullPath, seasonDirectory)
 				
@@ -82,6 +84,10 @@ def CheckSeries():
 					
 					if os.path.isdir(episodeFullPath):
 						returnVal.append(('Directory found in Season directory', episodeFullPath))
+						continue
+
+					if os.path.splitext(episode)[1] != '.mp4':
+						returnVal.append(('Unexpected filetype', episodeFullPath))
 						continue
 
 					seasonEpisode = GetSeasonAndEpisode(episode)

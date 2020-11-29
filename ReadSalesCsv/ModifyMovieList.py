@@ -1,5 +1,11 @@
 # writes file MovieList.html
-# Unmatched file list ignores any title with a / in it - don't flag multi-title items
+
+# Unmatched file list ignores the following:
+# .. any title with a / in it - don't flag multi-title items
+# .. any item with 'doNotMatch' as a flag
+
+# COL_FLAGS must be one of the following:
+# ..doNotMatch - don't look for a match in Movielist.txt and don't report as an error
 
 
 import os
@@ -9,7 +15,7 @@ import string
 from typing import List
 
 INPUT_FILENAME = r'.\Input\Movie List.txt'
-OUTPUT_FILENAME = r'.\Output\MovieList.html'
+OUTPUT_FILENAME = r'.\Output\MovieList_Sales.html'
 OUTPUT_FILENAME_UNMATCHED = r'.\Output\MovieList_Unmatched.txt'
 FIRST_DATA_LINE = 4
 SALESDATA_FILENAME = r'.\SalesData.py'
@@ -116,12 +122,15 @@ def WriteUnmatchedFile(salesDict, matchedKeys):
 	COL_COUNT = 0
 	COL_AMOUNT = 1
 	COL_DATES = 2
+	COL_MOVIELISTKEY = 3
+	COL_FLAGS = 4
 
 
 	outputItems = []
 	count_ignore = 0
 	count_unmatched = 0
 	count_season = 0
+	count_ignoreError = 0
 	for k in salesDict.keys():
 
 		if any(s in k.lower() for s in ['/', 'replacement disc']): # ignore multi-title items
@@ -130,6 +139,12 @@ def WriteUnmatchedFile(salesDict, matchedKeys):
 
 		if ' season ' in k.lower():
 			count_season += 1
+			continue
+
+		# 2020-11-28 can't get lowercase to work
+		# if 'donotmatch' in (flagName.lower() for flagName in salesDict[k][COL_FLAGS]):
+		if 'doNotMatch' in salesDict[k][COL_FLAGS]:
+			count_ignoreError += 1
 			continue
 
 		if k not in matchedKeys: 
@@ -142,6 +157,7 @@ def WriteUnmatchedFile(salesDict, matchedKeys):
 			outputFile.write(f'# found {count_unmatched} unmatched items\n')
 			outputFile.write(f'# {count_ignore} items contain ignore strings\n')
 			outputFile.write(f'# ignored {count_season} "Season" items\n')
+			outputFile.write(f'# ignored {count_ignoreError} "doNotMatch" items\n')
 			outputFile.write('\n')
 			outputFile.writelines(outputItems)
 

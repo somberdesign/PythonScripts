@@ -1,0 +1,13 @@
+{
+	"movie_directories": [
+		"\\\\whitley-202007\\H\\Movies\\0-9\\",
+		"\\\\whitley-202007\\H\\Movies\\a-b\\",
+		"\\\\whitley-202007\\H\\Movies\\c-e\\",
+		"\\\\whitley-202007\\H\\Movies\\f-i\\",
+		"\\\\whitley-202007\\H\\Movies\\j-m\\"
+	],
+	"output_pathname": ".\\Output\\Mp4Validator.txt",
+	"series_directories": [
+		"\\\\whitley-202007\\G\\Series\\"
+	]
+}

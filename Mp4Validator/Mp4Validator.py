@@ -6,6 +6,9 @@ import sys
 from typing import List, Tuple
 import json
 
+IGNORE_FILENAMES = [
+	'.directory.json'
+]
 JSON_PATH = 'Mp4Validator.json'
 NOW = datetime.datetime.now()
 WRITE_TO_SCREEN = True
@@ -15,6 +18,7 @@ outputPathname: str = ''
 seriesDirectories: List[str] = []
 
 def CheckMovies():
+	global IGNORE_FILENAMES
 	global movieDirectories
 	global NOW
 	returnVal = []
@@ -24,12 +28,16 @@ def CheckMovies():
 
 		for file in [f for f in os.listdir(directory) if os.path.isfile(os.path.join(directory, f))]:
 			fullPath = os.path.join(directory, file)
+			
+			if file in IGNORE_FILENAMES:
+				continue
+			
 			if os.path.splitext(file)[1] == '.mp4':
 				if (
 					len(file) < 10
 					or file[-9:-8] != '_'
 					or not RepresentsInt(file[-8:-4])
-					or int(file[-8:-4]) < 1930
+					or int(file[-8:-4]) < 1928
 					or int(file[-8:-4]) > NOW.year
 				):
 					returnVal.append(('Invalid year', fullPath))
@@ -107,7 +115,7 @@ def CheckSeries():
 	return returnVal
 
 
-def ReadJson(path):
+def ReadConfiguration(path):
 	global movieDirectories
 	global outputPathname
 	global seriesDirectories
@@ -120,7 +128,12 @@ def ReadJson(path):
 		with open(path) as json_file:
 			data = json.load(json_file)
 	except Exception as ex:
+		print(f'Exception opening {path}: {ex}')
+		return False
+
+	if data is None:
 		print(f'Unable to open {path}: {ex}')
+		return False
 
 	validData = True
 	for f in REQUIRED_FIELDS:
@@ -168,8 +181,8 @@ def WriteOutput(movieMessages, seriesMessages):
 
 if __name__ == "__main__":
 
-	data = ReadJson(JSON_PATH)
-	if not data:
+	result = ReadConfiguration(JSON_PATH)
+	if not result:
 		print(f'Error reading json. Exiting')
 		sys.exit(1)
 

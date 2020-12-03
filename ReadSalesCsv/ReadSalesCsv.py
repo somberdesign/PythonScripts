@@ -80,6 +80,8 @@ for file in files:
 					description in sales
 					or (len(movieListKey) > 0 and movieListKey in sales)
 				):
+					# trouble here if the key doesn't exist
+					if description not in sales.keys(): sales[description] = [0, 0, '01/01/1970', '', []]
 					sales[description][0] += 1
 					sales[description][1] += amount
 					sales[description][2].append(date)

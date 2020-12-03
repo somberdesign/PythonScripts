@@ -38,6 +38,7 @@ def MakeEntry(sales, line, matchedKeys):
 	else:
 		searchkey = line
 
+
 	if searchkey in sales.keys():
 		matchedKeys.append(searchkey)
 		match = sales[searchkey]
@@ -130,7 +131,7 @@ def WriteUnmatchedFile(salesDict, matchedKeys):
 	count_ignore = 0
 	count_unmatched = 0
 	count_season = 0
-	count_ignoreError = 0
+	count_doNotMatch = 0
 	for k in salesDict.keys():
 
 		if any(s in k.lower() for s in ['/', 'replacement disc']): # ignore multi-title items
@@ -144,7 +145,7 @@ def WriteUnmatchedFile(salesDict, matchedKeys):
 		# 2020-11-28 can't get lowercase to work
 		# if 'donotmatch' in (flagName.lower() for flagName in salesDict[k][COL_FLAGS]):
 		if 'doNotMatch' in salesDict[k][COL_FLAGS]:
-			count_ignoreError += 1
+			count_doNotMatch += 1
 			continue
 
 		if k not in matchedKeys: 
@@ -157,7 +158,7 @@ def WriteUnmatchedFile(salesDict, matchedKeys):
 			outputFile.write(f'# found {count_unmatched} unmatched items\n')
 			outputFile.write(f'# {count_ignore} items contain ignore strings\n')
 			outputFile.write(f'# ignored {count_season} "Season" items\n')
-			outputFile.write(f'# ignored {count_ignoreError} "doNotMatch" items\n')
+			outputFile.write(f'# ignored {count_doNotMatch} "doNotMatch" items\n')
 			outputFile.write('\n')
 			outputFile.writelines(outputItems)
 

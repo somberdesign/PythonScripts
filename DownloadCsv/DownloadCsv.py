@@ -12,7 +12,7 @@ WORKBOOK_SCOPE = ['https://spreadsheets.google.com/feeds']
 CsvDirectory = ''
 FirstDataLine = 1
 SpreadsheetId = ()
-WorksheetPositions = []
+WorksheetPositions: list = []
 
 class DownloadGoogleCsv:
 	
@@ -60,17 +60,18 @@ class DownloadGoogleCsv:
 		spreadsheet = client.open_by_key(docid)
 		
 		# save each worksheet as a csv
-		sheetCount = [0, 0]
+		sheetCount = [0, 0]  # processed, skipped
 		for i, worksheet in enumerate(spreadsheet.worksheets()):
 
-			if i >= len(self.WorksheetPositions):
+			sheetName = worksheet.title
+			if self.WorksheetPositions is not None and i >= len(self.WorksheetPositions):
 				sheetCount[1] += 1
 				continue
 
 			sheetCount[0] += 1
-			print(f'Worksheet {i}: {self.WorksheetPositions[i][1]}', end='')
+			print(f'Worksheet {i}: {sheetName}', end='')
 
-			filename = self.SpreadsheetId[0] + '-worksheet-' + str(self.WorksheetPositions[i][1]).replace(' ', '') + '.csv'
+			filename = self.SpreadsheetId[0].replace(' ', '') + '-' + str(sheetName).replace(' ', '') + '.csv'
 			filenameFullPath = os.path.join(self.CsvDirectory, filename)
 			
 			with open(filenameFullPath, 'w') as f:

@@ -24,7 +24,6 @@ WORKSHEET_POSITIONS = [ # position of sheets within workbook Sales. eBay Sales s
 
 if __name__ == "__main__":
 
-
 	for spreadsheet_id in SPREADSHEET_IDS:
 
 		params = DownloadCsv.DownloadGoogleCsv.NewInstanceParameters(spreadsheet_id, WORKSHEET_POSITIONS)

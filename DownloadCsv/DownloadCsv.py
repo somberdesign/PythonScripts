@@ -33,7 +33,7 @@ class DownloadGoogleCsv:
 
 	def __init__(self, newInstanceParameters):
 
-		self.CsvDirectory = f'Csv_{newInstanceParameters.SpreadsheetId[1]}'
+		self.CsvDirectory = f'CsvFiles_{newInstanceParameters.SpreadsheetId[1]}'
 		self.FirstDataLine = newInstanceParameters.FirstDataLine
 		self.SpreadsheetId = newInstanceParameters.SpreadsheetId
 		self.WorksheetPositions = newInstanceParameters.WorksheetPositions

@@ -76,8 +76,13 @@ class DownloadGoogleCsv:
 			
 			with open(filenameFullPath, 'w') as f:
 				print(f', writing file {filename}')
-				writer = csv.writer(f)
-				writer.writerows(worksheet.get_all_values())
+				for line in worksheet.get_all_values():
+					stringToWrite = ''
+					for item in line:
+						stringToWrite += '"' + item.replace('"', '\'') + '",'
+					stringToWrite = stringToWrite[:-1]
+					f.write(f'{stringToWrite}\n')
+
 
 		print(f'Read the first {sheetCount[0]} sheets and skipped the last {sheetCount[1]}')
 
@@ -91,7 +96,6 @@ class DownloadGoogleCsv:
 			lines = []
 			fullpath = os.path.join(self.CsvDirectory, f)
 			csvPaths.append(os.path.abspath(fullpath))
-			print(f'  {fullpath}')
 			
 			try:
 				with open(fullpath, 'r') as original:

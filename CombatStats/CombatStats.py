@@ -8,6 +8,7 @@ import os
 import shutil
 from dateutil.parser import parse as dateParse
 import datetime
+import typing
 
 sys.path.insert(1, r'../DownloadCsv')
 import DownloadCsv
@@ -29,7 +30,8 @@ SECRETS_PATH = '../Secrets.json'
 SECRETS_KEY = 'robiii_mysql_password'
 
 dbPassword = ''
-campaignsInDb = {str: int}
+campaignsInDb: typing.Dict[str, int] = {}
+encountersInDb: typing.Dict[str, int]
 
 SPREADSHEET_IDS = [
 	('Toxic Tribulations', '1DC3uQdeKlIJMbGvJijwTA6AbDN7QjYu5B-ooawjaITc'),
@@ -37,21 +39,36 @@ SPREADSHEET_IDS = [
 ]
 WORKSHEET_POSITIONS = None
 
-class Actions:
-	def __init__(self, round: int, primary: str):
-		self.round: int = 0
-		self.primary: str = ''
-		self.target: str = ''
+class Action:
+	def __init__(self):
 		self.action: str = ''
-		self.result: str = ''
 		self.hp: int = 0
+		self.id: int = 0
+		self.primary: str = ''
+		self.result: str = ''
+		self.round: int = 0
+		self.target: str = ''
 		self.notes: str = ''
+		self.orderInRound: int = 0
+	
+	def ReadLine(self, line: list, orderInRound: int):
+		self.round = line[0]
+		self.primary = line[1]
+		self.target = line[2]
+		self.action = line[3]
+		self.result = line[4]
+		self.hp = line[5]
+		if len(line) > 6: self.notes = line[6]
+		self.orderInRound = orderInRound
+
+
 
 class Encounter:
 	def __init__(self, campaignId: int, encounterName: str):
-		self.actions = []
-		self.campaignId = campaignId
-		self.encounterName = encounterName
+		self.actions: list = [Action]
+		self.campaignId: int = campaignId
+		self.encounterName: str = encounterName
+		self.id: int
 
 
 def DbGetCampaigns():
@@ -60,8 +77,16 @@ def DbGetCampaigns():
 
 	return interface.GetResultSetFromProc('campaigns_get')
 
+def DbGetEncounters(campaignId: int):
+	dbParameters = db.DatabaseInterface.DbParameters(DB_HOST, DB_DATABASE_NAME, DB_USER, dbPassword)
+	interface = db.DatabaseInterface(dbParameters)
+
+	result = interface.GetResultSetFromProc('encounters_get_bycampaignid', [campaignId])
+	return result
+
 
 def GetCampaignId(campaignName: str):
+	global campaignsInDb
 
 	IDX_CAMPAIGN_ID = 0
 	IDX_CAMPAIGN_NAME = 1
@@ -90,6 +115,43 @@ def GetCampaignId(campaignName: str):
 
 	return campaignsInDb[campaignName]
 
+def GetEncounterId(campaignId: int, encounterDate: datetime.datetime, encounterName: str):
+
+	IDX_CAMPAIGN_ID = 1
+	IDX_ENCOUNTER_ID = 0
+	IDX_ENCOUNTER_DATE = 2
+	IDX_ENCOUNTER_NAME = 3
+
+	# if encounterName in encountersInDb:
+	# 	return encountersInDb[encounterName]
+
+	# one dataset in this result set
+	getEncounterResults = DbGetEncounters(campaignId)
+	if getEncounterResults is None or len(getEncounterResults) == 0:
+		Logger.AddError(f'Can\'t get encounter names when encounterName = {encounterName}')
+		return None
+
+#  START HERE
+
+	encounterDataset = getEncounterResults[0]
+	for dbEncounter in encounterDataset:
+		for campaignEncounter in encountersInDb:
+			pass
+	
+	# encounterDataset = getEncounterResults[0]
+	# for e in encounterDataset:
+
+
+	# if encounterName not in encountersInDb:
+	# 	# add to the db
+	# 	dbParameters = db.DatabaseInterface.DbParameters(DB_HOST, DB_DATABASE_NAME, DB_USER, dbPassword)
+	# 	interface = db.DatabaseInterface(dbParameters)
+	# 	interface.GetResultSetFromProc('encounter_insert', [encounterName])
+
+	# 	encountersInDb[encounterName] = interface[0][0]
+
+	# return encountersInDb[encounterName]
+	return 1
 
 def GetSpreadsheets():
 	
@@ -157,40 +219,71 @@ def WriteSheetToDb(campaignName: str, csvPath: str):
 	
 	IDX_ACTION_DATE = 0
 	IDX_ENCOUNTER_NAME = 0
-
-
+	IDX_ROUND = 0
+	
 	LINENUMBER_ENCOUNTER_DATE = 1
+	LINENUMBER_COLUMN_HEADERS = 2
 
-	actionDate = datetime.datetime.min
-	campaignId = GetCampaignId(campaignName)
-	csvLines = ReadCsv.Read(csvPath)
-	encounter = None
+	actionDate: datetime.datetime = datetime.datetime.min
+	campaignId: int = GetCampaignId(campaignName)
+	csvLines: list = ReadCsv.Read(csvPath)
+	encounter: Encounter
+	orderInRound: int = 0
+	roundNumber: int = 0
+
+	def GetEncounterDate(line: list):
+		actionDate = datetime.datetime.min
+		if len(line[IDX_ACTION_DATE]) > 0:
+			tryDate = ToDateTime(line[IDX_ACTION_DATE])
+			if tryDate is None:
+				Logger.AddError(f'Invalid date: {line[IDX_ACTION_DATE]}. ({csvPath})')
+			else:
+				actionDate = tryDate
+
+		else:
+			Logger.AddWarning(f'Can\'t find date in cell A1. ({campaignName}, {csvPath})')
+
+		return actionDate
 	
 	lineCounter = 0
 	for line in csvLines:
 		lineCounter += 1
 
-		if lineCounter == LINENUMBER_ENCOUNTER_DATE:
-			if len(line[IDX_ACTION_DATE]) > 0:
-				tryDate = ToDateTime(line[IDX_ACTION_DATE])
-				if tryDate is None:
-					Logger.AddError(f'Invalid date: {line[IDX_ACTION_DATE]}. ({csvPath})')
-					return
-				else:
-					actionDate = tryDate
-					continue
-			else:
-				Logger.AddWarning(f'Can\'t find date in cell A1. ({campaignName}, {csvPath})')
-				return False
+		# skip blank lines and header row
+		if len(''.join(line)) == 0 or lineCounter == LINENUMBER_COLUMN_HEADERS:
+			continue
 
-		# line is an action
-		if len(line[1]) > 0 and RepresentsInt(line[1]):
-			pass
+		if lineCounter == LINENUMBER_ENCOUNTER_DATE:
+			actionDate = GetEncounterDate(line)
+			if actionDate == datetime.datetime.min:
+				return False
+			continue
 
 		# line is an encounter name
-		if len(line[1]) > 0 and not RepresentsInt(line[1]):
+		if len(line[0]) > 0 and len(''.join(line[1:])) == 0:
 			encounter = Encounter(campaignId, line[IDX_ENCOUNTER_NAME])
+			encounter.id = GetEncounterId(campaignId, actionDate, line[IDX_ENCOUNTER_NAME])
 			continue
+
+		# ----- otherwise, line is an action -----
+
+		if len(line[IDX_ROUND]) > 0 and RepresentsInt(line[IDX_ROUND]):
+			roundNumber = int(line[IDX_ROUND])
+			orderInRound = 0
+
+		if roundNumber == 0:
+			Logger.AddWarning(f'Round Number Not Set: Line {lineCounter} ({csvPath})')
+
+		orderInRound += 1
+
+		action = Action()
+		action.ReadLine(line, orderInRound)
+
+		if len(line[IDX_ROUND]) > 0 and RepresentsInt(line[IDX_ROUND]): action.round = int(line[IDX_ROUND])
+		else: action.round = roundNumber
+		
+		a = 1
+		
 
 
 		

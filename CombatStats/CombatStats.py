@@ -42,6 +42,14 @@ SPREADSHEET_IDS = [
 WORKSHEET_POSITIONS = None
 
 class Action:
+	IDX_ROUND = 0
+	IDX_PRIMARYNAME = 1
+	IDX_TARGETNAME = 2
+	IDX_ACTION = 3
+	IDX_RESULT = 4
+	IDX_HITPOINTS = 5
+	IDX_NOTES = 6
+
 	def __init__(self):
 		self.action: str = ''
 		self.hp: int = 0
@@ -53,16 +61,20 @@ class Action:
 		self.notes: str = ''
 		self.orderInRound: int = 0
 	
-	def ReadLine(self, line: list, orderInRound: int):
-		self.round = line[0]
-		self.primary = line[1]
-		self.target = line[2]
-		self.action = line[3]
-		self.result = line[4]
-		self.hp = line[5]
-		if len(line) > 6: self.notes = line[6]
-		self.orderInRound = orderInRound
 
+	def Dump(self):
+		print(f'action={self.action}\nhp={self.hp}\nnotes={self.notes}\norderInRound={self.orderInRound}\nprimary={self.primary}\nresult={self.result}\nround={self.round}\ntarget={self.target}\n')
+
+
+	def ReadLine(self, line: list, roundNumber:int, orderInRound: int):
+		self.action = line[self.IDX_ACTION]
+		self.hp = line[self.IDX_HITPOINTS]
+		if len(line) > 6: self.notes = line[self.IDX_NOTES]
+		self.orderInRound = orderInRound
+		self.primary = line[self.IDX_PRIMARYNAME]
+		self.result = line[self.IDX_RESULT]
+		self.round = roundNumber
+		self.target = line[self.IDX_TARGETNAME]
 
 
 class Encounter:
@@ -106,6 +118,13 @@ def DbGetEncounters(campaignId: int, encounterDate: datetime.datetime=None, enco
 
 	return None
 
+def DbWriteAction(encounterId: int, action: Action):
+	dbParameters = db.DatabaseInterface.DbParameters(DB_HOST, DB_DATABASE_NAME, DB_USER, dbPassword)
+	interface = db.DatabaseInterface(dbParameters)
+
+	parameters = [action.action, encounterId, action.hp, action.notes, action.orderInRound, action.primary, action.result, action.round, action.target]
+	result = interface.GetResultSetFromProc('action_insert', parameters)
+	
 
 def GetCampaignId(campaignName: str):
 	global campaignsInDb
@@ -174,7 +193,17 @@ def GetEncounterId(campaignId: int, encounterDate: datetime.datetime, encounterN
 		interface = db.DatabaseInterface(dbParameters)
 		result = interface.GetResultSetFromProc('encounter_insert', [campaignId, encounterName, encounterDate.strftime('%Y-%m-%d')])
 
-	return result
+	print(result)
+
+	if type(result[0][0]) is int:
+		return result[0][0]
+	elif type(result[0][0][0]) is int:
+		return result[0][0][0]
+	else:
+		Logger.AddError(f'Unable to find an int for EncounterId when encounter = {encountername}')
+		return None
+
+	return result[0][0][0]
 
 def GetSpreadsheets():
 	
@@ -323,7 +352,7 @@ def WriteSheetToDb(campaignName: str, csvPath: str):
 		if len(line[IDX_ROUND]) > 0 and RepresentsInt(line[IDX_ROUND]):
 			roundNumber = int(line[IDX_ROUND])
 			orderInRound = 0
-			print(f'Found round number {roundNumber}')
+			print(f'Round {roundNumber}')
 
 		if roundNumber == 0:
 			Logger.AddWarning(f'Round Number Not Set: Line {lineCounter} ({csvPath})')
@@ -331,7 +360,8 @@ def WriteSheetToDb(campaignName: str, csvPath: str):
 		orderInRound += 1
 
 		action = Action()
-		action.ReadLine(line, orderInRound)
+		action.ReadLine(line, roundNumber, orderInRound)
+		DbWriteAction(encounter.id, action)
 
 		if len(line[IDX_ROUND]) > 0 and RepresentsInt(line[IDX_ROUND]): action.round = int(line[IDX_ROUND])
 		else: action.round = roundNumber

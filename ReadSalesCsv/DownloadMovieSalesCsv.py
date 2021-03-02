@@ -30,7 +30,7 @@ if __name__ == "__main__":
 		params.FirstDataLine = 4
 
 		downloadGoogleCsv = DownloadCsv.DownloadGoogleCsv(params)
-		csvs = downloadGoogleCsv.DownloadCsvs()
+		csvs = downloadGoogleCsv.DownloadCsvs('CsvFiles')
 
 		for c in csvs:
 			print(c)

@@ -39,18 +39,19 @@ class DownloadGoogleCsv:
 		self.WorksheetPositions = newInstanceParameters.WorksheetPositions
 
 
-	def DownloadCsvs(self):
-		# delete old CSVs
-		if os.path.isdir(self.CsvDirectory):
-			print(f'Deleting directory: {self.CsvDirectory}')
-			
-			try:
-				shutil.rmtree(self.CsvDirectory)
-			except Exception as ex:
-				print(f'Unable to delete directory {self.CsvDirectory}. Exiting. {ex}')
-				return
+	def DownloadCsvs(self, targetDir: str):
+		if len(targetDir) == 0:
+			print('DownloadCsvs(): targetDir must have a value')
+			return None
 
-		os.mkdir(self.CsvDirectory)
+		if targetDir == '.':
+			print('DownloadCsvs(): targetDir cannot be current directory')
+			return None
+
+		self.CsvDirectory = targetDir
+
+		if not os.path.isdir(self.CsvDirectory):
+			os.mkdir(self.CsvDirectory)
 
 		credentials = ServiceAccountCredentials.from_json_keyfile_name(CREDENTIALS_PATH, WORKBOOK_SCOPE)
 		docid = self.SpreadsheetId[1]
@@ -95,7 +96,9 @@ class DownloadGoogleCsv:
 
 			lines = []
 			fullpath = os.path.join(self.CsvDirectory, f)
-			csvPaths.append(os.path.abspath(fullpath))
+			absPath = os.path.abspath(fullpath)
+			# print(f'absPath={absPath}')
+			csvPaths.append(absPath)
 			
 			try:
 				with open(fullpath, 'r') as original:

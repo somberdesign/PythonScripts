@@ -6,6 +6,8 @@ NwAuctionDvdCheck/NwOutput.txt
 
 # DownloadCsv creates files in these dirs
 **/CsvFiles_*/
+**/CsvFiles/
+**/InputSheets/
 
 Secrets.json
 ReadSalesCsv/Csv_Sales/

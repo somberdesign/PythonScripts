@@ -66,12 +66,12 @@ class DatabaseInterface:
 
 		return connection
 
-	def GetResultSetFromProc(self, procName: str, parameters: list = None):
+	def GetResultSetFromProc(self, procName: str, parameters: list=None):
 		returnVal = None
 
 		connection = None
 		try:
-			connection = self.GetDbConnection()
+			connectiqon = self.GetDbConnection()
 			if connection is None:
 				print('No database connection. Exiting.')
 				return None
@@ -88,10 +88,11 @@ class DatabaseInterface:
 				returnVal.append(result.fetchall())
 		
 		except Exception as ex:
-			print(f'ERROR: Error executing procedure. {ex}')
+			print(f'ERROR: Error executing procedure {procName}. {ex}\nParameters: {parameters}')
 
 		finally:
 			if connection is not None and connection.is_connected():
+				connection.commit()
 				connection.close()
 
 		return returnVal

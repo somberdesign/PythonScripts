@@ -26,6 +26,8 @@ DB_DATABASE_NAME = 'combatstats'
 DB_HOST = 'mysql.robiii.dreamhosters.com'
 DB_USER = 'marytm'
 
+INPUT_SPREADSHEET_PATH = 'InputSheets'
+
 SECRETS_PATH = '../Secrets.json'
 SECRETS_KEY = 'robiii_mysql_password'
 
@@ -77,12 +79,32 @@ def DbGetCampaigns():
 
 	return interface.GetResultSetFromProc('campaigns_get')
 
-def DbGetEncounters(campaignId: int):
+def DbGetEncounters(campaignId: int, encounterDate: datetime.datetime=None, encounterName: str=None):
+	IDX_ENCOUNTER_DATE: int = 2
+	IDX_ENCOUNTER_NAME: str = 3
+
 	dbParameters = db.DatabaseInterface.DbParameters(DB_HOST, DB_DATABASE_NAME, DB_USER, dbPassword)
 	interface = db.DatabaseInterface(dbParameters)
-
 	result = interface.GetResultSetFromProc('encounters_get_bycampaignid', [campaignId])
-	return result
+	
+	if encounterDate is None and encounterName is None:
+		return result
+
+	if encounterDate is not None and encounterName is None:
+		filteredResult = []
+		for r in result:
+			if r[IDX_ENCOUNTER_DATE].date() == encounterDate.date():
+				filteredResult.append(r)
+		return filteredResult
+
+	if encounterDate is not None and encounterName is not None:
+		filteredResult = []
+		for r in result:
+			if r[IDX_ENCOUNTER_DATE].date() == encounterDate.date() and r[IDX_ENCOUNTER_NAME].lower() == encounterName.lower():
+				filteredResult.append(r)
+		return filteredResult
+
+	return None
 
 
 def GetCampaignId(campaignName: str):
@@ -100,30 +122,37 @@ def GetCampaignId(campaignName: str):
 		Logger.AddError(f'Can\'t get campaign names when campaignName = {campaignName}')
 		return None
 	
+	# populate campaignsInDb
 	campaignDataset = getCampaignResults[0]
 	for c in campaignDataset:
 		if c[IDX_CAMPAIGN_NAME] not in campaignsInDb:
 			campaignsInDb[c[IDX_CAMPAIGN_NAME]] = c[IDX_CAMPAIGN_ID]
 
 	if campaignName not in campaignsInDb:
+		
 		# add to the db
 		dbParameters = db.DatabaseInterface.DbParameters(DB_HOST, DB_DATABASE_NAME, DB_USER, dbPassword)
 		interface = db.DatabaseInterface(dbParameters)
-		interface.GetResultSetFromProc('campaign_insert', [campaignName])
+		result = interface.GetResultSetFromProc('campaign_insert', [campaignName])
 
-		campaignsInDb[campaignName] = interface[0][0]
+		campaignsInDb[campaignName] = result[0][0]
 
 	return campaignsInDb[campaignName]
 
 def GetEncounterId(campaignId: int, encounterDate: datetime.datetime, encounterName: str):
+	global encountersInDb
 
-	IDX_CAMPAIGN_ID = 1
 	IDX_ENCOUNTER_ID = 0
+	IDX_CAMPAIGN_ID = 1
 	IDX_ENCOUNTER_DATE = 2
 	IDX_ENCOUNTER_NAME = 3
+	IDX_ENCOUNTER_ISINACTIVE = 4
 
 	# if encounterName in encountersInDb:
 	# 	return encountersInDb[encounterName]
+
+	if encounterName.lower() == '(encountername)':
+		return None
 
 	# one dataset in this result set
 	getEncounterResults = DbGetEncounters(campaignId)
@@ -131,31 +160,35 @@ def GetEncounterId(campaignId: int, encounterDate: datetime.datetime, encounterN
 		Logger.AddError(f'Can\'t get encounter names when encounterName = {encounterName}')
 		return None
 
-#  START HERE
-
-	encounterDataset = getEncounterResults[0]
+	encountersInDb = {}
+	encounterDataset = getEncounterResults[0] # first dataset returned
 	for dbEncounter in encounterDataset:
-		for campaignEncounter in encountersInDb:
-			pass
-	
-	# encounterDataset = getEncounterResults[0]
-	# for e in encounterDataset:
+		encountersInDb[dbEncounter[IDX_ENCOUNTER_NAME]] = dbEncounter[IDX_ENCOUNTER_ID]
 
+	result = None
+	if encounterName in encountersInDb:
+		return encountersInDb[encounterName]
+	else:
+		# add to the db
+		dbParameters = db.DatabaseInterface.DbParameters(DB_HOST, DB_DATABASE_NAME, DB_USER, dbPassword)
+		interface = db.DatabaseInterface(dbParameters)
+		result = interface.GetResultSetFromProc('encounter_insert', [campaignId, encounterName, encounterDate.strftime('%Y-%m-%d')])
 
-	# if encounterName not in encountersInDb:
-	# 	# add to the db
-	# 	dbParameters = db.DatabaseInterface.DbParameters(DB_HOST, DB_DATABASE_NAME, DB_USER, dbPassword)
-	# 	interface = db.DatabaseInterface(dbParameters)
-	# 	interface.GetResultSetFromProc('encounter_insert', [encounterName])
-
-	# 	encountersInDb[encounterName] = interface[0][0]
-
-	# return encountersInDb[encounterName]
-	return 1
+	return result
 
 def GetSpreadsheets():
 	
 	spreadsheetPaths = {}
+
+	# delete old CSVs
+	print(f'Deleting CSV directory: {INPUT_SPREADSHEET_PATH}')
+	try:
+		shutil.rmtree(INPUT_SPREADSHEET_PATH)
+	except Exception as ex:
+		print(f'Unable to delete directory {INPUT_SPREADSHEET_PATH}. Exiting. {ex}')
+		return
+
+
 	for spreadsheet_id in SPREADSHEET_IDS:
 
 		print(f'\nReading {spreadsheet_id[0]}')
@@ -164,7 +197,7 @@ def GetSpreadsheets():
 		params.FirstDataLine = 4
 
 		downloadGoogleCsv = DownloadCsv.DownloadGoogleCsv(params)
-		csvs = downloadGoogleCsv.DownloadCsvs()
+		csvs = downloadGoogleCsv.DownloadCsvs(INPUT_SPREADSHEET_PATH)
 
 		for c in csvs:
 			
@@ -225,7 +258,14 @@ def WriteSheetToDb(campaignName: str, csvPath: str):
 	LINENUMBER_COLUMN_HEADERS = 2
 
 	actionDate: datetime.datetime = datetime.datetime.min
-	campaignId: int = GetCampaignId(campaignName)
+	
+	cid = GetCampaignId(campaignName)
+	if cid is None:
+		Logger.AddError(f'Can\'t find Campaign ID when campaignName is {campaignName}. Skipping sheet.')
+		return False
+
+	campaignId: int = cid
+
 	csvLines: list = ReadCsv.Read(csvPath)
 	encounter: Encounter
 	orderInRound: int = 0
@@ -233,8 +273,11 @@ def WriteSheetToDb(campaignName: str, csvPath: str):
 
 	def GetEncounterDate(line: list):
 		actionDate = datetime.datetime.min
+
 		if len(line[IDX_ACTION_DATE]) > 0:
+			
 			tryDate = ToDateTime(line[IDX_ACTION_DATE])
+			
 			if tryDate is None:
 				Logger.AddError(f'Invalid date: {line[IDX_ACTION_DATE]}. ({csvPath})')
 			else:
@@ -245,12 +288,18 @@ def WriteSheetToDb(campaignName: str, csvPath: str):
 
 		return actionDate
 	
+
 	lineCounter = 0
+	Logger.AddInfo(f'Reading {csvPath}', prependNewline=True)
 	for line in csvLines:
+
+		if line is None:
+			print('WARNING: line is none')
+
 		lineCounter += 1
 
 		# skip blank lines and header row
-		if len(''.join(line)) == 0 or lineCounter == LINENUMBER_COLUMN_HEADERS:
+		if line is None or len(''.join(line)) == 0 or lineCounter == LINENUMBER_COLUMN_HEADERS:
 			continue
 
 		if lineCounter == LINENUMBER_ENCOUNTER_DATE:
@@ -267,9 +316,14 @@ def WriteSheetToDb(campaignName: str, csvPath: str):
 
 		# ----- otherwise, line is an action -----
 
+		if encounter.id is None:
+			Logger.AddWarning(f'Encounter ID is undefined. (Line {lineCounter}, {csvPath}')
+			continue
+
 		if len(line[IDX_ROUND]) > 0 and RepresentsInt(line[IDX_ROUND]):
 			roundNumber = int(line[IDX_ROUND])
 			orderInRound = 0
+			print(f'Found round number {roundNumber}')
 
 		if roundNumber == 0:
 			Logger.AddWarning(f'Round Number Not Set: Line {lineCounter} ({csvPath})')
@@ -284,8 +338,6 @@ def WriteSheetToDb(campaignName: str, csvPath: str):
 		
 		a = 1
 		
-
-
 		
 
 

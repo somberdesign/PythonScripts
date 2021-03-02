@@ -4,17 +4,17 @@ import datetime
 
 LOGFILE_PATH = r'CombatStats.log'
 
-def AddError(message: str, displayToConsole:bool=True):
-	__WriteEntry__('e', message, displayToConsole)
+def AddError(message: str, displayToConsole:bool=True, prependNewline:bool=False, appendNewline:bool=False):
+	__WriteEntry__('e', message, displayToConsole, prependNewline=prependNewline, appendNewline=appendNewline)
 
-def AddInfo(message: str, displayToConsole:bool=True):
-	__WriteEntry__('i', message, displayToConsole)
+def AddInfo(message: str, displayToConsole:bool=True, prependNewline:bool=False, appendNewline:bool=False):
+	__WriteEntry__('i', message, displayToConsole, prependNewline=prependNewline, appendNewline=appendNewline)
 
-def AddWarning(message: str, displayToConsole:bool=True):
-	__WriteEntry__('w', message, displayToConsole)
+def AddWarning(message: str, displayToConsole:bool=True, prependNewline:bool=False, appendNewline:bool=False):
+	__WriteEntry__('w', message, displayToConsole, prependNewline=prependNewline, appendNewline=appendNewline)
 
 
-def __WriteEntry__(messageType: str, message: str, displayToConsole: bool):
+def __WriteEntry__(messageType: str, message: str, displayToConsole: bool, prependNewline:bool=False, appendNewline:bool=False):
 
 	now = datetime.datetime.now()
 
@@ -23,7 +23,10 @@ def __WriteEntry__(messageType: str, message: str, displayToConsole: bool):
 	elif messageType == 'i': prefix = 'INFO   '
 	elif messageType == 'w': prefix = 'WARNING'
 
-	if displayToConsole: print(f'{prefix} - {message}\n')
+	if displayToConsole: 
+		if prependNewline: print('\n')
+		print(f'{prefix} - {message}')
+		if appendNewline: print('\n')
 
 	log = None
 	try:

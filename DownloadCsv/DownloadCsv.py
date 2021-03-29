@@ -3,7 +3,9 @@ import glob
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import os
+import re
 import shutil
+import unicodedata
 
 CREDENTIALS_PATH = r'..\Manage Sheets-b5896c4ab53e.json'
 FIRST_DATA_LINE = 4
@@ -14,6 +16,22 @@ FirstDataLine = 1
 SpreadsheetId = ()
 WorksheetPositions: list = []
 
+def slugify(value, allow_unicode=False):
+    """
+    Taken from https://github.com/django/django/blob/master/django/utils/text.py
+    Convert to ASCII if 'allow_unicode' is False. Convert spaces or repeated
+    dashes to single dashes. Remove characters that aren't alphanumerics,
+    underscores, or hyphens. Convert to lowercase. Also strip leading and
+    trailing whitespace, dashes, and underscores.
+    """
+    value = str(value)
+    if allow_unicode:
+        value = unicodedata.normalize('NFKC', value)
+    else:
+        value = unicodedata.normalize('NFKD', value).encode('ascii', 'ignore').decode('ascii')
+    value = re.sub(r'[^\w\s-]', '', value.lower())
+    return re.sub(r'[-\s]+', '-', value).strip('-_')
+	
 class DownloadGoogleCsv:
 	
 	CsvDirectory: str = ''
@@ -72,7 +90,8 @@ class DownloadGoogleCsv:
 			sheetCount[0] += 1
 			print(f'Worksheet {i}: {sheetName}', end='')
 
-			filename = str(i) + '_' + self.SpreadsheetId[0].replace(' ', '') + '-' + str(sheetName).replace(' ', '') + '.csv'
+			# filename has three parts: <int>_<title>_<sheetname>.csv
+			filename = str(i) + '_' + slugify(spreadsheet.title) + '_' + str(sheetName).replace(' ', '') + '.csv'
 			filenameFullPath = os.path.join(self.CsvDirectory, filename)
 			
 			with open(filenameFullPath, 'w') as f:
@@ -128,25 +147,3 @@ class DownloadGoogleCsv:
 		return csvPaths
 
 
-# if __name__ == '__main__':
-
-# 	SPREADSHEET_ID = ('Sales', '1PD2jKdjtYYgkEeNGvagdpj651ZxpuRjaXYs52cZlrXw')
-
-# 	WORKSHEET_POSITIONS = [ # position of sheets within workbook Sales. eBay Sales sheets must be first
-# 		(0, "DVD Sales 2020"),
-# 		(1, "DVD Sales 2019"),
-# 		(2, "DVD Sales 2018"),
-# 		(3, "DVD Sales 2017"),
-# 		(4, "DVD Sales 2016"),
-# 		(5, "DVD Sales 2015"),
-# 		(6, "DVD Sales 2014"),
-# 	]
-
-# 	params = DownloadGoogleCsv.NewInstanceParameters(SPREADSHEET_ID, WORKSHEET_POSITIONS)
-# 	params.FirstDataLine = 4
-
-# 	downloadGoogleCsv = DownloadGoogleCsv(params)
-# 	csvs = downloadGoogleCsv.DownloadCsvs()
-
-# 	for c in csvs:
-# 		print(c)

@@ -37,7 +37,8 @@ encountersInDb: typing.Dict[str, int]
 
 SPREADSHEET_IDS = [
 	('Toxic Tribulations', '1DC3uQdeKlIJMbGvJijwTA6AbDN7QjYu5B-ooawjaITc'),
-	('Tomb of the Science Wizard', '18W1Kz9ch-Xy729ap6OHkRTHGStJ8pKwiDpLJSRoC6KU')
+	('Tomb of the Science Wizard', '18W1Kz9ch-Xy729ap6OHkRTHGStJ8pKwiDpLJSRoC6KU'),
+	('Curse of Strahd', '1xKzZOoDwtMADCfCjta-XmLCv79ZBth8ojhJWC8AKK_w')
 ]
 WORKSHEET_POSITIONS = None
 
@@ -193,14 +194,12 @@ def GetEncounterId(campaignId: int, encounterDate: datetime.datetime, encounterN
 		interface = db.DatabaseInterface(dbParameters)
 		result = interface.GetResultSetFromProc('encounter_insert', [campaignId, encounterName, encounterDate.strftime('%Y-%m-%d')])
 
-	print(result)
-
 	if type(result[0][0]) is int:
 		return result[0][0]
 	elif type(result[0][0][0]) is int:
 		return result[0][0][0]
 	else:
-		Logger.AddError(f'Unable to find an int for EncounterId when encounter = {encountername}')
+		Logger.AddError(f'Unable to find an int for EncounterId when encounter = {encounterName}')
 		return None
 
 	return result[0][0][0]
@@ -282,6 +281,7 @@ def WriteSheetToDb(campaignName: str, csvPath: str):
 	IDX_ACTION_DATE = 0
 	IDX_ENCOUNTER_NAME = 0
 	IDX_ROUND = 0
+	IDX_PRIMARY_NAME = 1
 	
 	LINENUMBER_ENCOUNTER_DATE = 1
 	LINENUMBER_COLUMN_HEADERS = 2
@@ -296,27 +296,9 @@ def WriteSheetToDb(campaignName: str, csvPath: str):
 	campaignId: int = cid
 
 	csvLines: list = ReadCsv.Read(csvPath)
-	encounter: Encounter
+	encounter: Encounter = None
 	orderInRound: int = 0
 	roundNumber: int = 0
-
-	def GetEncounterDate(line: list):
-		actionDate = datetime.datetime.min
-
-		if len(line[IDX_ACTION_DATE]) > 0:
-			
-			tryDate = ToDateTime(line[IDX_ACTION_DATE])
-			
-			if tryDate is None:
-				Logger.AddError(f'Invalid date: {line[IDX_ACTION_DATE]}. ({csvPath})')
-			else:
-				actionDate = tryDate
-
-		else:
-			Logger.AddWarning(f'Can\'t find date in cell A1. ({campaignName}, {csvPath})')
-
-		return actionDate
-	
 
 	lineCounter = 0
 	Logger.AddInfo(f'Reading {csvPath}', prependNewline=True)
@@ -331,28 +313,40 @@ def WriteSheetToDb(campaignName: str, csvPath: str):
 		if line is None or len(''.join(line)) == 0 or lineCounter == LINENUMBER_COLUMN_HEADERS:
 			continue
 
-		if lineCounter == LINENUMBER_ENCOUNTER_DATE:
-			actionDate = GetEncounterDate(line)
-			if actionDate == datetime.datetime.min:
-				return False
-			continue
+		# check for date, round number or encounter name
+		if len(line[0]) > 0:
+			trydate = ToDateTime(line[IDX_ACTION_DATE])
 
-		# line is an encounter name
-		if len(line[0]) > 0 and len(''.join(line[1:])) == 0:
-			encounter = Encounter(campaignId, line[IDX_ENCOUNTER_NAME])
-			encounter.id = GetEncounterId(campaignId, actionDate, line[IDX_ENCOUNTER_NAME])
-			continue
+			# line contains round number
+			if RepresentsInt(line[IDX_ROUND]):
+				roundNumber = int(line[IDX_ROUND])
+				orderInRound = 0
+				print(f'Round: {roundNumber}')
+
+			# change action date
+			elif not RepresentsInt(line[IDX_ACTION_DATE]) and trydate is not None:
+				actionDate = trydate
+				print(f'Action Date: {actionDate}')
+
+			# line contains encounter name
+			else:
+				encounter = Encounter(campaignId, line[IDX_ENCOUNTER_NAME])
+				encounter.id = GetEncounterId(campaignId, actionDate, line[IDX_ENCOUNTER_NAME])
+				print(f'Encounter Name: {line[IDX_ENCOUNTER_NAME]}')
 
 		# ----- otherwise, line is an action -----
+		if encounter is None:
+			print('Haven\'t found encounter name yet')
+			continue
 
 		if encounter.id is None:
 			Logger.AddWarning(f'Encounter ID is undefined. (Line {lineCounter}, {csvPath}')
 			continue
 
-		if len(line[IDX_ROUND]) > 0 and RepresentsInt(line[IDX_ROUND]):
-			roundNumber = int(line[IDX_ROUND])
-			orderInRound = 0
-			print(f'Round {roundNumber}')
+		# skip line if it doesn't contain a primary name
+		if len(line[IDX_PRIMARY_NAME]) == 0:
+			continue
+
 
 		if roundNumber == 0:
 			Logger.AddWarning(f'Round Number Not Set: Line {lineCounter} ({csvPath})')
@@ -360,12 +354,10 @@ def WriteSheetToDb(campaignName: str, csvPath: str):
 		orderInRound += 1
 
 		action = Action()
+		action.round = roundNumber
 		action.ReadLine(line, roundNumber, orderInRound)
 		DbWriteAction(encounter.id, action)
 
-		if len(line[IDX_ROUND]) > 0 and RepresentsInt(line[IDX_ROUND]): action.round = int(line[IDX_ROUND])
-		else: action.round = roundNumber
-		
 		a = 1
 		
 		
@@ -376,14 +368,15 @@ if __name__ == "__main__":
 	if not ReadConfiguration():
 		print(f'ERROR: can\'t read configuration file {SECRETS_PATH}')
 
-	campaignSheetInfo = GetSpreadsheets()
-
-	for campaignName in campaignSheetInfo:
-		for csvPath in campaignSheetInfo[campaignName]:
-
-			filenameparts = os.path.basename(csvPath).split('_')
-			if len(filenameparts) == 1 or not RepresentsInt(filenameparts[0]):
-				Logger.AddError(f'Invalid Sheet Name: Format <sheetindex>_<filename>.csv is required. ({csvPath})')
+	for root, dirs, files in os.walk(r'..\DownloadCsv\csvs'):
+		for filename in files:
+			csvPath = os.path.join(root, filename)
+			print(f'{csvPath}')
+			
+			
+			filenameparts = filename.split('_') # filename has three parts: <sheetIndex(int)>_<title>_<sheetname>.csv
+			if len(filenameparts) != 3 or not RepresentsInt(filenameparts[0]):
+				Logger.AddError(f'Invalid Sheet Name: Format <sheetindex>_<spreadsheetName>_<worksheetName>.csv is required. ({csvPath})')
 				continue
 
 			# first sheet is the template - skip it
@@ -391,4 +384,4 @@ if __name__ == "__main__":
 			if sheetIndex == 0:
 				continue
 
-			WriteSheetToDb(campaignName, csvPath)
+			WriteSheetToDb(filenameparts[1], csvPath)

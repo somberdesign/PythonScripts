@@ -11,7 +11,8 @@
 			"program": "${file}",
 			"console": "integratedTerminal",
 			"cwd": "${fileDirname}",
-			"args_commented": ["4072565747", "Long is the road and weary is the traveller"]
+			"argsX": ["1xKzZOoDwtMADCfCjta-XmLCv79ZBth8ojhJWC8AKK_w", "csvs"],
+			"args": ["36"]
 		}
 	]
 }

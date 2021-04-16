@@ -19,6 +19,7 @@ import math
 INPUT_FILENAME = r'.\Input\Movie List.txt'
 OUTPUT_FILENAME = r'.\Output\MovieList_Sales.html'
 OUTPUT_FILENAME_UNMATCHED = r'.\Output\MovieList_Unmatched.txt'
+TEXT_OUTPUT_FILENAME = r'.\Output\MovieList_Sales.txt'
 FIRST_DATA_LINE = 4
 SALESDATA_FILENAME = r'.\SalesData.py'
 OUTPUT_COLUMN_COUNT = 1
@@ -46,7 +47,9 @@ def MakeEntry(sales, line, matchedKeys):
 		match = sales[searchkey]
 		prefix = f'{match[0]}-{match[1]}'
 	
-	return f'\t<td class="count">{prefix}</td><td class="description">{line}</td>'
+	return (f'\t<td class="count">{prefix}</td><td class="description">{line}</td>',
+		f'{prefix + " " if len(prefix) > 0 else str()}{line}'
+	)
 
 def CleanKeys(inDict):
 	returnVal = {}
@@ -64,6 +67,8 @@ def CleanKeys(inDict):
 def CreateOutputTable(lines, salesDict, matchedKeys):
 
 	lineCounter = 0
+
+	textOutput = ''
 
 	# html header
 	output = '<html>\n'
@@ -84,21 +89,25 @@ def CreateOutputTable(lines, salesDict, matchedKeys):
 
 		if lineCounter <= FIRST_DATA_LINE:
 			output += (f'\t<tr><td colspan="2" class="description">{line}</td></tr>\n')
+			textOutput += line
 			continue
 
 		if lineCounter == FIRST_DATA_LINE + 1:
 			output += '\t<tr><td colspan="2">&nbsp;</td></tr>\n'
 			output += '</table>\n'
 			output += '<table cellpadding="0" cellspacing="0">\n\t<tr>\n'
+			textOutput += '\n'
 			continue
 
-		output += f'\t{MakeEntry(salesDict, line, matchedKeys)}\n'
+		entry = MakeEntry(salesDict, line, matchedKeys)
+		output += f'\t{entry[0]}\n'
+		textOutput += f'{entry[1]}\n'
 		
 		if (lineCounter + FIRST_DATA_LINE) % OUTPUT_COLUMN_COUNT == 0:
 			output += '\t</tr><tr>\n'
 
 	output += '</tr></table></html>'
-	return output, lineCounter
+	return output, lineCounter, textOutput
 
 def ReadMovieList():
 	returnVal = []
@@ -122,17 +131,28 @@ def ReadMovieList():
 
 	return returnVal
 
-def WriteOutputFile(output, outputLineCount):
+def WriteOutputFile(output, outputLineCount, textOutput):
+	returnVal = True
+
+	print(f'Found {outputLineCount} lines')
+
 	try:
 		print(f'Writing file {OUTPUT_FILENAME}')
-		print(f'Found {outputLineCount} lines')
 		with open(OUTPUT_FILENAME, 'w') as outputFile:
 			outputFile.write(output)
 	except Exception as ex:
 		print(f'Error writing output file {OUTPUT_FILENAME}. {ex}')
-		return False
+		returnVal = False
 
-	return True
+	try:
+		print(f'Writing file {TEXT_OUTPUT_FILENAME}')
+		with open(TEXT_OUTPUT_FILENAME, 'w') as outputFile:
+			outputFile.write(textOutput)
+	except Exception as ex:
+		print(f'Error writing output file {TEXT_OUTPUT_FILENAME}. {ex}')
+		returnVal = False
+
+	return returnVal
 
 def WriteUnmatchedFile(salesDict, matchedKeys):
 	COL_COUNT = 0
@@ -167,9 +187,9 @@ def WriteUnmatchedFile(salesDict, matchedKeys):
 			count_unmatched += 1
 			outputItems.append(f'{salesDict[k][COL_DATES]}\t{k}\n')
 			
+	print(f'Found {len(outputItems)} items')
 	try:
 		print(f'Writing file {OUTPUT_FILENAME_UNMATCHED}')
-		print(f'Found {len(outputItems)} items')
 		with open(OUTPUT_FILENAME_UNMATCHED, 'w') as outputFile:
 			outputFile.write(f'# generated {datetime.date.today()}\n\n')
 			outputFile.write(f'# found {count_unmatched} unmatched items\n')
@@ -192,7 +212,8 @@ if __name__ == "__main__":
 
 	outputTableResult = CreateOutputTable(movieListLines, salesDict, matchedKeys)
 	output = outputTableResult[0]
+	textOutput = outputTableResult[2]
 	outputLineCount = outputTableResult[1]
-	WriteOutputFile(output, outputLineCount)
+	WriteOutputFile(output, outputLineCount, textOutput)
 	WriteUnmatchedFile(salesDict, matchedKeys)
 

@@ -15,6 +15,7 @@ import string
 from typing import List
 import re
 import math
+import collections
 
 INPUT_FILENAME = r'.\Input\Movie List.txt'
 OUTPUT_FILENAME = r'.\Output\MovieList_Sales.html'
@@ -63,7 +64,6 @@ def CleanKeys(inDict):
 
 	return returnVal
 
-
 def CreateOutputTable(lines, salesDict, matchedKeys):
 
 	lineCounter = 0
@@ -89,7 +89,7 @@ def CreateOutputTable(lines, salesDict, matchedKeys):
 
 		if lineCounter <= FIRST_DATA_LINE:
 			output += (f'\t<tr><td colspan="2" class="description">{line}</td></tr>\n')
-			textOutput += line
+			textOutput += f'{line}\n'
 			continue
 
 		if lineCounter == FIRST_DATA_LINE + 1:
@@ -108,6 +108,19 @@ def CreateOutputTable(lines, salesDict, matchedKeys):
 
 	output += '</tr></table></html>'
 	return output, lineCounter, textOutput
+
+def CreateSeasonText(salesDict):
+	returnVal = ''
+	
+	sortedDict = collections.OrderedDict(sorted(salesDict.items()))
+	for key in sortedDict.keys():
+		if ' season ' not in key.lower(): continue
+		returnVal += f'{sortedDict[key][0]}-{sortedDict[key][1]} {key}\n'
+
+	return returnVal
+
+
+
 
 def ReadMovieList():
 	returnVal = []
@@ -205,6 +218,12 @@ def WriteUnmatchedFile(salesDict, matchedKeys):
 if __name__ == "__main__":
 
 	salesDict = CleanKeys(SalesData.sales)
+	seasonText = CreateSeasonText(SalesData.sales)
+
+	seasonCounter = 0
+	for k in salesDict.keys():
+		if ' season ' in k.lower(): seasonCounter += 1
+	print(f'Found {seasonCounter} series sold')
 
 
 	movieListLines = ReadMovieList()
@@ -213,7 +232,9 @@ if __name__ == "__main__":
 	outputTableResult = CreateOutputTable(movieListLines, salesDict, matchedKeys)
 	output = outputTableResult[0]
 	textOutput = outputTableResult[2]
+	textOutput += f'\n\n=== SERIES ===\n\n{seasonText}'
 	outputLineCount = outputTableResult[1]
+	
 	WriteOutputFile(output, outputLineCount, textOutput)
 	WriteUnmatchedFile(salesDict, matchedKeys)
 

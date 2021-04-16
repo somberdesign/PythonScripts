@@ -91,7 +91,7 @@ class DownloadGoogleCsv:
 			print(f'Worksheet {i}: {sheetName}', end='')
 
 			# filename has three parts: <int>_<title>_<sheetname>.csv
-			filename = str(i) + '_' + slugify(spreadsheet.title) + '_' + str(sheetName).replace(' ', '') + '.csv'
+			filename = f'{i:03d}' + '_' + slugify(spreadsheet.title) + '_' + str(sheetName).replace(' ', '') + '.csv'
 			filenameFullPath = os.path.join(self.CsvDirectory, filename)
 			
 			with open(filenameFullPath, 'w') as f:

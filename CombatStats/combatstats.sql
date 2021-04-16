@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql.robiii.dreamhosters.com
--- Generation Time: Jan 21, 2021 at 01:16 PM
+-- Generation Time: Apr 16, 2021 at 09:53 AM
 -- Server version: 5.7.28-log
 -- PHP Version: 7.1.22
 
@@ -43,6 +43,126 @@ CREATE DEFINER=`marytm`@`208.113.128.0/255.255.128.0` PROCEDURE `actions_get_bye
     
 END$$
 
+CREATE DEFINER=`marytm`@`208.113.128.0/255.255.128.0` PROCEDURE `action_insert` (IN `p_action_text` TEXT, IN `p_encounter_id` INT, IN `p_hit_points` INT, IN `p_notes` TEXT, IN `p_order_in_round` INT, IN `p_primary_name` TEXT, IN `p_result` TEXT, IN `p_round` INT, IN `p_target_name` TEXT)  NO SQL
+BEGIN
+
+	INSERT INTO Actions(action_text, encounter_id, hit_points, notes, order_in_round, primary_name, result, round, target_name, created_date)
+    VALUES (p_action_text, p_encounter_id, p_hit_points, p_notes, p_order_in_round, p_primary_name, p_result, p_round, p_target_name, NOW());
+
+	COMMIT;
+
+    SELECT LAST_INSERT_ID();
+
+END$$
+
+CREATE DEFINER=`marytm`@`208.113.128.0/255.255.128.0` PROCEDURE `action_stats_byCampaignId` (IN `p_campaignId` INT)  NO SQL
+BEGIN
+
+SELECT campaign_name
+FROM Campaigns
+WHERE id = p_campaignId
+;
+
+SELECT e.encounter_date, e.encounter_name, a.primary_name, SUM(a.hit_points) "Damage Inflicted"
+FROM 
+	Actions a
+    INNER JOIN Encounters e ON a.encounter_id = e.id
+WHERE e.campaign_id = p_campaignId
+GROUP BY e.encounter_date, e.encounter_name, a.primary_name
+ORDER BY e.encounter_date, e.encounter_name, SUM(a.hit_points) DESC, a.primary_name
+;
+
+SELECT e.encounter_date, e.encounter_name, a.target_name, SUM(a.hit_points) "Damage Taken"
+FROM 
+	Actions a
+    INNER JOIN Encounters e ON a.encounter_id = e.id
+WHERE e.campaign_id = p_campaignId
+GROUP BY e.encounter_date, e.encounter_name, a.target_name
+ORDER BY e.encounter_date, e.encounter_name, SUM(a.hit_points) DESC, a.target_name
+;
+
+SELECT e.encounter_date, e.encounter_name, a.action_text, SUM(a.hit_points) "hit_points"
+FROM 
+	Actions a
+    INNER JOIN Encounters e ON a.encounter_id = e.id
+WHERE e.campaign_id = p_campaignId
+GROUP BY e.encounter_date, e.encounter_name, a.action_text
+ORDER BY e.encounter_date, e.encounter_name, SUM(a.hit_points) DESC, a.action_text
+;
+
+END$$
+
+CREATE DEFINER=`marytm`@`208.113.128.0/255.255.128.0` PROCEDURE `action_stats_byCampaignId_EncounterGroup` (IN `p_campaignId` INT)  NO SQL
+BEGIN
+
+SELECT campaign_name
+FROM Campaigns
+WHERE id = p_campaignId
+;
+
+SELECT e.encounter_date, e.encounter_name, a.primary_name, SUM(a.hit_points) "Damage Inflicted"
+FROM 
+	Actions a
+    INNER JOIN Encounters e ON a.encounter_id = e.id
+WHERE e.campaign_id = p_campaignId
+GROUP BY e.encounter_date, e.encounter_name, a.primary_name
+ORDER BY e.encounter_date, e.encounter_name, SUM(a.hit_points) DESC, a.primary_name
+;
+
+/*
+SELECT e.encounter_date, e.encounter_name, a.target_name, SUM(a.hit_points) "Damage Taken"
+FROM 
+	Actions a
+    INNER JOIN Encounters e ON a.encounter_id = e.id
+WHERE e.campaign_id = p_campaignId
+GROUP BY e.encounter_date, e.encounter_name, a.target_name
+ORDER BY e.encounter_date, e.encounter_name, SUM(a.hit_points) DESC, a.target_name
+;
+
+SELECT e.encounter_date, e.encounter_name, a.action_text, SUM(a.hit_points) "hit_points"
+FROM 
+	Actions a
+    INNER JOIN Encounters e ON a.encounter_id = e.id
+WHERE e.campaign_id = p_campaignId
+GROUP BY e.encounter_date, e.encounter_name, a.action_text
+ORDER BY e.encounter_date, e.encounter_name, SUM(a.hit_points) DESC, a.action_text
+;
+*/
+
+END$$
+
+CREATE DEFINER=`marytm`@`208.113.128.0/255.255.128.0` PROCEDURE `action_stats_by_date` (IN `p_encounter_date` DATE)  NO SQL
+BEGIN
+
+SELECT e.encounter_date, e.encounter_name, a.primary_name, SUM(a.hit_points) "Damage Inflicted"
+FROM 
+	Actions a
+    INNER JOIN Encounters e ON a.encounter_id = e.id
+WHERE e.encounter_date = STR_TO_DATE(p_encounter_date, '%Y-%m-%d')
+GROUP BY e.encounter_date, e.encounter_name, a.primary_name
+ORDER BY e.encounter_date, e.encounter_name, SUM(a.hit_points) DESC, a.primary_name
+;
+
+SELECT e.encounter_date, e.encounter_name, a.target_name, SUM(a.hit_points) "Damage Taken"
+FROM 
+	Actions a
+    INNER JOIN Encounters e ON a.encounter_id = e.id
+WHERE e.encounter_date = STR_TO_DATE(p_encounter_date, '%Y-%m-%d')
+GROUP BY e.encounter_date, e.encounter_name, a.target_name
+ORDER BY e.encounter_date, e.encounter_name, SUM(a.hit_points) DESC, a.target_name
+;
+
+SELECT e.encounter_date, e.encounter_name, a.action_text, SUM(a.hit_points) "hit_points"
+FROM 
+	Actions a
+    INNER JOIN Encounters e ON a.encounter_id = e.id
+WHERE e.encounter_date = STR_TO_DATE(p_encounter_date, '%Y-%m-%d')
+GROUP BY e.encounter_date, e.encounter_name, a.action_text
+ORDER BY e.encounter_date, e.encounter_name, SUM(a.hit_points) DESC, a.action_text
+;
+
+END$$
+
 CREATE DEFINER=`marytm`@`208.113.128.0/255.255.128.0` PROCEDURE `campaigns_get` ()  BEGIN
 
 	SELECT id, campaign_name, created_date
@@ -59,7 +179,7 @@ CREATE DEFINER=`marytm`@`208.113.128.0/255.255.128.0` PROCEDURE `campaign_get_by
         
 END$$
 
-CREATE DEFINER=`marytm`@`208.113.128.0/255.255.128.0` PROCEDURE `campaign_insert` (IN `p_campaign_name` VARCHAR(255), OUT `p_campaign_id` INT)  BEGIN
+CREATE DEFINER=`marytm`@`208.113.128.0/255.255.128.0` PROCEDURE `campaign_insert` (IN `p_campaign_name` VARCHAR(255))  BEGIN
 	
 	INSERT INTO Campaigns (campaign_name, created_date)
     VALUES (p_campaign_name, NOW());
@@ -68,6 +188,27 @@ CREATE DEFINER=`marytm`@`208.113.128.0/255.255.128.0` PROCEDURE `campaign_insert
     
     COMMIT;
         
+END$$
+
+CREATE DEFINER=`marytm`@`208.113.128.0/255.255.128.0` PROCEDURE `delete_actionsEncountersCampaigns` ()  NO SQL
+BEGIN
+	DELETE FROM Actions;
+    DELETE FROM Encounters;
+	DELETE FROM Campaigns;
+
+	COMMIT;
+END$$
+
+CREATE DEFINER=`marytm`@`208.113.128.0/255.255.128.0` PROCEDURE `delete_actionsEncountersCampaigns_byCampaignId` (IN `p_campaignId` INT)  NO SQL
+BEGIN
+
+DELETE FROM Actions
+WHERE encounter_id IN (SELECT id FROM Encounters WHERE campaign_id = p_campaignId);
+
+DELETE FROM Encounters WHERE campaign_id = p_campaignId;
+
+DELETE FROM Campaigns WHERE id = p_campaignId;
+
 END$$
 
 CREATE DEFINER=`marytm`@`208.113.128.0/255.255.128.0` PROCEDURE `encounters_get_bycampaignid` (IN `p_campaign_id` INT)  BEGIN
@@ -81,11 +222,53 @@ CREATE DEFINER=`marytm`@`208.113.128.0/255.255.128.0` PROCEDURE `encounters_get_
 
 END$$
 
-CREATE DEFINER=`marytm`@`208.113.128.0/255.255.128.0` PROCEDURE `encounter_insert` (IN `p_campaign_id` INT, IN `p_encounter_name` VARCHAR(1000))  BEGIN
-	INSERT INTO Encounters (campaign_id, encounter_name, created_date)
-    VALUES (p_campaign_id, p_encounter_name, NOW());
+CREATE DEFINER=`marytm`@`208.113.128.0/255.255.128.0` PROCEDURE `encounter_insert` (IN `p_campaign_id` INT, IN `p_encounter_name` VARCHAR(1000), IN `p_encounter_date` DATE)  BEGIN
+	INSERT INTO Encounters (campaign_id, encounter_name, encounter_date, created_date)
+    VALUES (p_campaign_id, p_encounter_name, str_to_date(p_encounter_date, '%Y-%m-%d'), NOW());
     
     COMMIT;
+    
+    SELECT LAST_INSERT_ID();
+    
+END$$
+
+CREATE DEFINER=`marytm`@`208.113.128.0/255.255.128.0` PROCEDURE `player_stats_byCampaignId` (IN `p_campaignId` INT)  NO SQL
+BEGIN
+
+SELECT campaign_name, source_location
+FROM Campaigns
+WHERE id = p_campaignID
+;
+
+SELECT 
+	e.encounter_date, 
+    e.encounter_name, 
+    a.primary_name,
+    IFNULL((SELECT COUNT(*) FROM Actions a0 INNER JOIN Encounters e0 ON a0.encounter_id = e0.id WHERE a0.primary_name = a.primary_name AND a0.encounter_id = e.id AND a0.result IN ('Hit', 'Miss', 'Failed save', 'Successful save')), 0) "attacks_made",
+    ( SELECT
+        (SELECT COUNT(*) FROM Actions a0 INNER JOIN Encounters e0 ON a0.encounter_id = e0.id WHERE a0.primary_name = a.primary_name AND a0.encounter_id = e.id AND a0.result IN ('Hit', 'Failed save', 'Successful save'))
+        / (SELECT COUNT(*) FROM Actions a0 INNER JOIN Encounters e0 ON a0.encounter_id = e0.id WHERE a0.primary_name = a.primary_name AND a0.encounter_id = e.id AND a0.result IN ('Hit', 'Miss', 'Failed save', 'Successful save'))
+    ) "hit_ratio", 
+    IFNULL((SELECT SUM(hit_points) FROM Actions a0 WHERE a0.primary_name = a.primary_name AND a0.encounter_id = e.id AND a0.result IN ('Hit', 'Failed save', 'Successful save')), 0) "damage_inflicted",
+    IFNULL((SELECT COUNT(*) FROM Actions a0 INNER JOIN Encounters e0 ON a0.encounter_id = e0.id WHERE a0.target_name = a.primary_name AND a0.encounter_id = e.id), 0) "attacks_defended",
+    ( SELECT
+        (SELECT COUNT(*) FROM Actions a0 INNER JOIN Encounters e0 ON a0.encounter_id = e0.id WHERE a0.target_name = a.primary_name AND a0.encounter_id = e.id AND a0.result = 'Miss')
+        / (SELECT COUNT(*) FROM Actions a0 INNER JOIN Encounters e0 ON a0.encounter_id = e0.id WHERE a0.target_name = a.primary_name AND a0.encounter_id = e.id AND a0.result IN ('Hit', 'Miss'))
+    ) "defense_ratio",
+    IFNULL((SELECT SUM(hit_points) FROM Actions a0 WHERE a0.target_name = a.primary_name AND a0.encounter_id = e.id AND a0.result IN ('Hit', 'Failed save', 'Successful save')), 0) "damage_received",
+    IFNULL((SELECT SUM(hit_points) FROM Actions a0 WHERE a0.primary_name = a.primary_name AND a0.encounter_id = e.id AND a0.result = 'Heal'), 0) "healing_provided",
+    IFNULL((SELECT SUM(hit_points) FROM Actions a0 WHERE a0.target_name = a.primary_name AND a0.encounter_id = e.id AND a0.result = 'Heal'), 0) "healing_received",
+    IFNULL((SELECT COUNT(*) FROM Actions a0 WHERE a0.primary_name = a.primary_name AND a0.encounter_id = e.id AND a0.result = 'Buff'), 0) "buffs_provided",
+    IFNULL((SELECT COUNT(*) FROM Actions a0 WHERE a0.target_name = a.primary_name AND a0.encounter_id = e.id AND a0.result = 'Buff'), 0) "buffs_received"
+
+FROM 
+	Actions a
+    INNER JOIN Encounters e ON a.encounter_id = e.id
+WHERE e.campaign_id = p_campaignId
+GROUP BY e.encounter_date, e.encounter_name, a.primary_name
+ORDER BY e.encounter_date, e.encounter_name, SUM(a.hit_points) DESC, a.primary_name
+;
+
 END$$
 
 DELIMITER ;
@@ -107,8 +290,23 @@ CREATE TABLE `Actions` (
   `result` text,
   `hit_points` smallint(6) DEFAULT NULL,
   `notes` text,
-  `is_inactive` tinyint(1) DEFAULT NULL
+  `is_inactive` tinyint(1) DEFAULT NULL,
+  `created_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `all_encounters`
+-- (See below for the actual view)
+--
+CREATE TABLE `all_encounters` (
+`campaign_id` int(11)
+,`campaign_name` text
+,`encounter_id` int(11)
+,`encounter_name` varchar(100)
+,`encounter_date` date
+);
 
 -- --------------------------------------------------------
 
@@ -120,19 +318,9 @@ CREATE TABLE `Campaigns` (
   `id` int(11) NOT NULL,
   `campaign_name` text NOT NULL,
   `created_date` datetime NOT NULL,
+  `source_location` text,
   `is_inactive` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `Campaigns`
---
-
-INSERT INTO `Campaigns` (`id`, `campaign_name`, `created_date`, `is_inactive`) VALUES
-(1, 'Tom and Jerry whistle', '2021-01-16 05:31:00', NULL),
-(6, 'Family vacation', '0000-00-00 00:00:00', NULL),
-(7, 'health alert', '2021-01-17 03:07:25', NULL),
-(8, 'Toxic Tribulations', '2021-01-17 09:20:27', NULL),
-(9, 'Tomb of the Science Wizard', '2021-01-17 09:20:28', NULL);
 
 -- --------------------------------------------------------
 
@@ -149,14 +337,14 @@ CREATE TABLE `Encounters` (
   `is_inactive` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `Encounters`
---
+-- --------------------------------------------------------
 
-INSERT INTO `Encounters` (`id`, `campaign_id`, `encounter_name`, `encounter_date`, `created_date`, `is_inactive`) VALUES
-(1, 1, 'Will and Grace', '0000-00-00', '2021-01-17 04:32:49', NULL),
-(2, 8, 'Rob Petrie', '0000-00-00', '2021-01-21 12:29:49', NULL),
-(3, 8, 'Laura Petrie', '0000-00-00', '2021-01-21 12:30:15', NULL);
+--
+-- Structure for view `all_encounters`
+--
+DROP TABLE IF EXISTS `all_encounters`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`marytm`@`208.113.128.0/255.255.128.0` SQL SECURITY DEFINER VIEW `all_encounters`  AS  select `c`.`id` AS `campaign_id`,`c`.`campaign_name` AS `campaign_name`,`e`.`id` AS `encounter_id`,`e`.`encounter_name` AS `encounter_name`,`e`.`encounter_date` AS `encounter_date` from (`Campaigns` `c` join `Encounters` `e` on((`c`.`id` = `e`.`campaign_id`))) order by `c`.`created_date` desc,`e`.`created_date` desc ;
 
 --
 -- Indexes for dumped tables
@@ -180,7 +368,7 @@ ALTER TABLE `Campaigns`
 --
 ALTER TABLE `Encounters`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `encounter_name` (`encounter_name`,`encounter_date`),
+  ADD UNIQUE KEY `encounter_name` (`encounter_name`,`encounter_date`,`campaign_id`) USING BTREE,
   ADD KEY `fk_campaign_id` (`campaign_id`);
 
 --
@@ -197,13 +385,13 @@ ALTER TABLE `Actions`
 -- AUTO_INCREMENT for table `Campaigns`
 --
 ALTER TABLE `Campaigns`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `Encounters`
 --
 ALTER TABLE `Encounters`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables

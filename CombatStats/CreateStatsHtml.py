@@ -1,3 +1,4 @@
+import datetime
 import json
 import os
 import sys
@@ -112,6 +113,8 @@ def GetStatsHtml(dataset):
 	IDX_DAMAGE_RECEIVED: int = 8
 	IDX_HEALING_PROVIDED: int = 9
 	IDX_HEALING_RECEIVED: int = 10
+	IDX_BUFFS_PROVIDED: int = 11
+	IDX_BUFFS_RECEIVED: int = 12
 
 	def FormatDecimal(value):
 		if value is None:
@@ -137,7 +140,7 @@ def GetStatsHtml(dataset):
 			# if len(currentEncounterName) > 0: insertHtml += '</tr>' # don't terminate row first time though
 			topEncounterRow = True
 			insertHtml += f'''
-				<tr class="trHeader"><td class="td-header" colspan="9">{row[IDX_ENCOUNTER_DATE]} &mdash; {row[IDX_ENCOUNTER_NAME]}</td></tr>
+				<tr class="trHeader"><td class="td-header" colspan="11">{row[IDX_ENCOUNTER_DATE]} &mdash; {row[IDX_ENCOUNTER_NAME]}</td></tr>
 				<tr>
 					<td class="td-header-2 data-cell-primary_name">&nbsp;</td>
 					<td class="td-header-2 data-cell-attacks_made">Attacks<br />Made</td>
@@ -148,6 +151,8 @@ def GetStatsHtml(dataset):
 					<td class="td-header-2 data-cell-damage_received">Damage<br />Received</td>
 					<td class="td-header-2 data-cell-healing_provided">Healing<br />Provided</td>
 					<td class="td-header-2 data-cell-healing_received">Healing<br />Received</td>
+					<td class="td-header-2 data-cell-buffs_provided">Buffs<br />Provided</td>
+					<td class="td-header-2 data-cell-buffs_received">Buffs<br />Received</td>
 				</tr>
 			'''
 			currentEncounterName = row[IDX_ENCOUNTER_NAME]
@@ -169,9 +174,11 @@ def GetStatsHtml(dataset):
 		insertHtml += f'<td class="data-cell data-cell-{evenOdd} data-cell-defense-ratio{topRowClass}">{FormatDecimal(row[IDX_DEFENSE_RATIO])}</td>'
 		insertHtml += f'<td class="data-cell data-cell-{evenOdd} data-cell-damage-received group-border-right{topRowClass}">{row[IDX_DAMAGE_RECEIVED]}</td>'
 
-		# healing
+		# healing and buffs
 		insertHtml += f'<td class="data-cell data-cell-{evenOdd} data-cell-healing-provided group-border-left{topRowClass}">{row[IDX_HEALING_PROVIDED]}</td>'
-		insertHtml += f'<td class="data-cell data-cell-{evenOdd} data-cell-healing-received group-border-right{topRowClass}">{row[IDX_HEALING_RECEIVED]}</td>'
+		insertHtml += f'<td class="data-cell data-cell-{evenOdd} data-cell-healing-received{topRowClass}">{row[IDX_HEALING_RECEIVED]}</td>'
+		insertHtml += f'<td class="data-cell data-cell-{evenOdd} data-cell-healing-provided{topRowClass}">{row[IDX_BUFFS_PROVIDED]}</td>'
+		insertHtml += f'<td class="data-cell data-cell-{evenOdd} data-cell-healing-received group-border-right{topRowClass}">{row[IDX_BUFFS_RECEIVED]}</td>'
 		
 		insertHtml += '</tr>'
 		topEncounterRow = False
@@ -235,6 +242,10 @@ if __name__ == "__main__":
 	datasets = GetStats(campaignId)
 	campaignName = datasets[0][0][0]
 
+	reportInfo = f'<div class="div-report-info">Report Date: {datetime.datetime.now():%m/%d/%Y}'
+	if len(datasets[0][0][1]) > 0: reportInfo += f'<br /><a href="{datasets[0][0][1]}" target="_new">Source Data</a>'
+	reportInfo += '</div>'
+	
 	report = None
 	try:
 		with open(HTML_TEMPLATE_PATH, 'r') as file:
@@ -245,6 +256,7 @@ if __name__ == "__main__":
 
 	statsHtml = GetStatsHtml(datasets[1])
 	report = report.replace('$_CAMPAIGN_NAME', campaignName)
+	report = report.replace('$_REPORT_INFO', reportInfo)
 	report = report.replace('$_PLAYER_STATS', statsHtml)
 
 

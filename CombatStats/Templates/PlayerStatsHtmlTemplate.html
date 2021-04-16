@@ -3,14 +3,12 @@
 		<link rel="preconnect" href="https://fonts.gstatic.com">
 		<link href="https://fonts.googleapis.com/css2?family=Fresca&family=Fugaz+One&display=swap" rel="stylesheet">
 		<style type="text/css">
-			H1 {
-				font-family: 'Fugaz One', cursive;
+			body {
+				background-color: #E5E8E8;
 			}
-
 			.data-cell {
 				font-family: 'Fresca', sans-serif;
 			}
-
 			.data-cell-attacks-made,
 			.data-cell-hit-ratio,
 			.data-cell-damage-inflicted {
@@ -40,6 +38,14 @@
 				font-weight: bold;
 				text-align: center;
 			}
+			.div-report-info {
+				font-family: 'Fugaz One', cursive;
+				font-size: 10px;
+			}
+			.div-report-title {
+				font-family: 'Fugaz One', cursive;
+				font-size: 32px;
+			}
 			.group-border-left {
 				border-left: 2px solid #000;
 				padding: 0px, 0px, 0px, 15px;
@@ -59,7 +65,7 @@
 			.td-header {
 				font-family: 'Fugaz One', cursive;
 				font-size: 18px;
-				padding-top: 25px;
+				padding-top: 45px;
 			}
 			.td-header-2 {
 				font-family: 'Fresca', sans-serif;
@@ -75,8 +81,8 @@
 		</style>
 	</head>
 	<body>
-		<h1>$_CAMPAIGN_NAME</h1>
-		<br />
+		<div class="div-report-title">$_CAMPAIGN_NAME</div>
+		$_REPORT_INFO
 		$_PLAYER_STATS
 	</body>
 </table>

@@ -155,7 +155,7 @@ def GetCampaignId(campaignName: str):
 		interface = db.DatabaseInterface(dbParameters)
 		result = interface.GetResultSetFromProc('campaign_insert', [campaignName])
 
-		campaignsInDb[campaignName] = result[0][0]
+		return result[0][0][0]
 
 	return campaignsInDb[campaignName]
 
@@ -269,6 +269,8 @@ def RepresentsInt(inString: str):
 		return False
 
 def ToDateTime(string, fuzzy=False):
+	if RepresentsInt(string): return None
+
 	try:
 		return dateParse(string, fuzzy=fuzzy)
 

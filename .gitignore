@@ -8,6 +8,8 @@ NwAuctionDvdCheck/NwOutput.txt
 **/CsvFiles_*/
 **/CsvFiles/
 **/InputSheets/
+/DownloadCsv/csvs/
+/CombatStats/HtmlOutput/
 
 Secrets.json
 ReadSalesCsv/Csv_Sales/

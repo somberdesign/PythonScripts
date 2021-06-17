@@ -1,10 +1,11 @@
-import pymediainfo
+from pymediainfo import MediaInfo
 import datetime
 import os
 import re
 import sys
 from typing import List, Tuple
 import json
+from datetime import date
 
 IGNORE_FILENAMES = [
 	'.directory.json'
@@ -17,7 +18,42 @@ movieDirectories: List[str] = []
 outputPathname: str = ''
 seriesDirectories: List[str] = []
 
+class SeriesEpisode:
+	def __init__(self):
+		self.Actors = ''
+		self.Artwork = None
+		self.Comment = ''
+		self.Date = date.min
+		self.Director = ''
+		self.Episode = -1
+		self.Genre = ''
+		self.ParentalRating = ''
+		self.Rating = -1
+		self.Season = -1
+		self.SeriesName = ''
+		self.Title = ''
+
+	def ReadEpisode(self, fullpath:str):
+		
+		info = None
+		try:
+			info = MediaInfo.parse(fullpath)
+		except Exception as ex:
+			print(f'Error reading {fullPath}')
+			return False
+		
+		print(f'Looking at {fullpath}')
+		print(f'found {len(info.tracks)} tracks')
+
+		for track in info.tracks:
+			print(f'Track duration = {track.duration}')
+			a = 1
+
+
+		return True
+
 def CheckMovies():
+
 	global IGNORE_FILENAMES
 	global movieDirectories
 	global NOW
@@ -37,7 +73,7 @@ def CheckMovies():
 					len(file) < 10
 					or file[-9:-8] != '_'
 					or not RepresentsInt(file[-8:-4])
-					or int(file[-8:-4]) < 1928
+					or int(file[-8:-4]) < 1915
 					or int(file[-8:-4]) > NOW.year
 				):
 					returnVal.append(('Invalid year', fullPath))
@@ -98,6 +134,13 @@ def CheckSeries():
 						returnVal.append(('Unexpected filetype', episodeFullPath))
 						continue
 
+					seriesEpisode = SeriesEpisode()
+					readSeriesEpisode = seriesEpisode.ReadEpisode(episodeFullPath)
+					if not readSeriesEpisode:
+						print(f'Error reading {episodeFullPath}')
+						continue
+					
+
 					seasonEpisode = GetSeasonAndEpisode(episode)
 
 					if seasonEpisode is not None:
@@ -122,6 +165,8 @@ def ReadConfiguration(path):
 
 	REQUIRED_FIELDS = ('movie_directories', 'output_pathname', 'series_directories')
 	
+	print(f'Reading configuration file {os.path.join(os.path.dirname(os.path.realpath(__file__)), path)}')
+
 	# read file
 	data = None
 	try:
@@ -136,19 +181,19 @@ def ReadConfiguration(path):
 		return False
 
 	validData = True
-	for f in REQUIRED_FIELDS:
-		if f not in data:
-			print(f'Required field {f} missing from json')
-			validData = False
 
 	# set variables
 	outputPathname = data['output_pathname']
 
-	for d in data['movie_directories']:
-		movieDirectories.append(d)
+	if 'movie_directories' in data.keys():
+		for d in data['movie_directories']:
+			movieDirectories.append(d)
+	else:
+		print(f'No movie directories found')
 
-	for d in data['series_directories']:
-		seriesDirectories.append(d)
+	if 'series_directories' in data.keys():
+		for d in data['series_directories']:
+			seriesDirectories.append(d)
 
 	return True if validData else False
 	

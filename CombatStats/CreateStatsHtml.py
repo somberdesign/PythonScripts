@@ -1,4 +1,5 @@
 import datetime
+import ftplib
 import json
 import os
 import sys
@@ -14,6 +15,10 @@ DB_DATABASE_NAME = 'combatstats'
 DB_HOST = 'mysql.robiii.dreamhosters.com'
 DB_USER = 'marytm'
 dbPassword = None
+
+FTP_SECRETS_KEYS = ['ftp_address', 'ftp_login', 'ftp_password', 'ftp_upload_directory', 'http_upload_directory']
+FTP_SECRETS_PATH = '../CreateStatsHtml_Secrets.json'
+ftpInfo = {}
 
 HTML_TEMPLATE_PATH = 'Templates/PlayerStatsHtmlTemplate.html'
 OUTPUT_DIR = 'HtmlOutput'
@@ -219,13 +224,66 @@ def ReadConfiguration():
 
 	return True 
 
-
 def RepresentsInt(inString: str):
 	try:
 		int(inString)
 		return True
 	except Exception:
 		return False
+
+def UploadFile(filepath: str):
+
+	def ReadFtpConfiguration():
+		global ftpInfo
+
+		# read file
+		data = None
+		try:
+			with open(FTP_SECRETS_PATH) as json_file:
+				data = json.load(json_file)
+		except Exception as ex:
+			print(f'Exception opening {FTP_SECRETS_PATH}: {ex}')
+			return False
+
+		if data is None:
+			print(f'Failed to read {FTP_SECRETS_PATH}')
+			return False
+
+		# loop over secret file keys
+		foundAllKeys = True
+		for key in FTP_SECRETS_KEYS:
+			if key in data:
+				ftpInfo[key] = data[key]
+			else:
+				print(f'Can\'t find key {key} in config file {FTP_SECRETS_PATH}')
+				foundAllKeys = False
+		if not foundAllKeys: return False
+
+		return True 
+	
+	if not ReadFtpConfiguration():
+		Logger.AddError('Error reading FTP config file')
+		return False
+
+	uploadFilename = os.path.basename(filepath).replace(' ', '_')
+
+	try:
+		ftp = ftplib.FTP(ftpInfo['ftp_address'], ftpInfo['ftp_login'], ftpInfo['ftp_password'])
+		ftp.encoding = 'utf-8'
+		ftp.cwd(ftpInfo['ftp_upload_directory'])
+		
+		with open(filepath, 'rb') as file:
+			ftp.storbinary(f'STOR {uploadFilename}', file)
+
+		print(f'Uploaded file at {ftpInfo["http_upload_directory"]}/{uploadFilename}')
+	except Exception as ex:
+		print(f'Error uploading file. ({ex})')
+		return False
+
+	finally:
+		ftp.quit()
+	
+	return True
 
 
 if __name__ == "__main__":
@@ -242,7 +300,7 @@ if __name__ == "__main__":
 	datasets = GetStats(campaignId)
 	campaignName = datasets[0][0][0]
 
-	reportInfo = f'<div class="div-report-info">Report Date: {datetime.datetime.now():%m/%d/%Y}'
+	reportInfo = f'<div class="div-report-info"><span title="{datetime.datetime.now():%Y%d%m %HH%MM}">Report Date: {datetime.datetime.now():%m/%d/%Y}</span>'
 	if len(datasets[0][0][1]) > 0: reportInfo += f'<br /><a href="{datasets[0][0][1]}" target="_new">Source Data</a>'
 	reportInfo += '</div>'
 	
@@ -268,4 +326,7 @@ if __name__ == "__main__":
 			file.write(report)
 	except Exception as ex:
 		Logger.AddError(f'Unable to write report: {ex}. ({outputPath})')
+		exit(1)
+
+	UploadFile(outputPath)
 		

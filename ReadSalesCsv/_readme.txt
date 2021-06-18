@@ -2,7 +2,7 @@
 
 === Create a Movie Sales List ===
 
-1. Download as CSV any Sales sheets that have changed. Save them in dir Csv_Sales. Change the filename to match the format of the others.
+1. Download as CSV any Sales sheets that have changed. Save them in dir Csv_Sales. Change the filename to match the following format: 0_Sales-DVDSales2021.csv.
 
 2. Put a current copy of 'Movie List.txt' in dir Input.
 

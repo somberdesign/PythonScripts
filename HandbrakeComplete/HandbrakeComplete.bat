@@ -8,42 +8,72 @@ REM Create dtStamp - "2021-01-14 23:10"
 SET HOUR=%time:~0,2%
 SET dtStamp9=%date:~-4%-%date:~4,2%-%date:~7,2% 0%time:~1,1%:%time:~3,2% 
 SET dtStamp24=%date:~-4%-%date:~4,2%-%date:~7,2% %time:~0,2%:%time:~3,2%
-IF "%HOUR:~0,1%" == " " (SET dtStamp=%dtStamp9% -) else (SET dtStamp=%dtStamp24% -)
+IF "%HOUR:~0,1%" == " " (SET dtStamp=%dtStamp9% -) ELSE (SET dtStamp=%dtStamp24% -)
 
-IF "%1"=="" (
-	ECHO %dtStamp% Received no command line arguments >> %LOGFILE%
-	echo Usage %0 ^<filename^>
-	GOTO Done
-)
+SET MESSAGE=%dtStamp24% Handbrake completed file. 
 
-REM get file info
+REM IF "%1"=="" (
+	REM SET MESSAGE=%MESSAGE% Received no command line arguments.
+	REM ECHO Usage %0 ^<filename^>
+	REM GOTO Done
+REM )
+
+REM echo 0.5
+REM pause  
+
+REM ::get file info
 SET filepath=%1
-For %%A in ("%filepath%") do (
-    SET drive=%%~dA
+SET filepath=%filepath: =_%
+For %%A in (%filepath%) do (
+    REM SET drive=%%~dA
     SET derivedpath=%%~pA
     SET filestem=%%~nA
-    SET extension=%%~xA
-    SET datetime=%%~tA
-    SET size=%%~zA
-    SET driveandpath=%%~dpA
+    REM SET extension=%%~xA
+    REM SET datetime=%%~tA
+    REM SET size=%%~zA
+    REM SET driveandpath=%%~dpA
     SET filename=%%~nxA
 )
 
-ECHO %dtStamp24% Handbrake completed file. ^(%driveandpath%%filename%^) >> %LOGFILE%
+SET extension=%~x1
+SET size=%~z1
 
-REM mp4 files only
+
+echo 1 = %1
+echo derivedpath= %derivedpath%
+echo extension = %extension%
+echo filename = %filename%
+echo filepath = %filepath%
+echo filestem = %filestem%
+ECHO size = %size%
+
+REM ::mp4 files only
 IF NOT "%extension%" == ".mp4" (
-	ECHO %dtStamp% Invalid file type. ^(%driveandpath%%filename%^) >> %LOGFILE%
+	SET MESSAGE=%MESSAGE% Invalid file type, expected mp4.
 	ECHO MP4 files only
 	GOTO Done
 )
 
-REM execute ffmpeg if file is too large
+
+REM ::execute ffmpeg if file is too large
+REM ::WARNING: this takes a long time to complete
 IF %size% GTR %FILE_SIZE_LIMIT% (
-	ECHO Found file size %size%, executing ffmpeg. ^(%driveandpath%%filename%^) >> %LOGFILE%
-	start cmd.exe /c "%FFMPEG_PATH%" -i "%driveandpath%%filename%" -vcodec libx265 -crf 28 "%filestem%_265.mp4"
+	SET MESSAGE=%MESSAGE% Found file size %size%, executing ffmpeg.
+	echo "%FFMPEG_PATH%" -i "%filepath%" -vcodec libx265 -crf 28 "%derivedpath%%filestem%_265.mp4"
+	"%FFMPEG_PATH%" -i "%filepath%" -vcodec libx265 -crf 28 "%derivedpath%%filestem%_265.mp4"
+
+	SET HOUR=%time:~0,2%
+	SET ffmpegtStamp9=0%time:~1,1%:%time:~3,2% 
+	SET ffmpegtStamp24=%time:~0,2%:%time:~3,2%
+	IF "%HOUR:~0,1%" == " " (SET ffmpegtStamp=%tStamp9% -) ELSE (SET ffmpegtStamp=%tStamp24% -)
+
+	SET MESSAGE=%MESSAGE% ffmpeg complete %ffmpegtStamp%.
+	pause
 	GOTO Done
 )
 
 
 :Done
+
+ECHO %MESSAGE% ^(%filepath%^) >> %LOGFILE%
+REM pause

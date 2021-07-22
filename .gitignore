@@ -11,6 +11,7 @@ NwAuctionDvdCheck/NwOutput.txt
 /DownloadCsv/csvs/
 /CombatStats/HtmlOutput/
 
+CreateStatsHtml_Secrets.json
 Secrets.json
 ReadSalesCsv/Csv_Sales/
 ReadSalesCsv/Data/

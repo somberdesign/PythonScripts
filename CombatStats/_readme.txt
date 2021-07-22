@@ -10,9 +10,10 @@
 
 5. Name files <index>_<CampaignName>_<SheetName>.csv
 
-6. Execute CombatStats.py
+6. Execute CombatStats.py <CampaignId>
 
 === Generate Report ===
 
 1. Execute CreateStatsHtml.py <CampaignId>
+
 

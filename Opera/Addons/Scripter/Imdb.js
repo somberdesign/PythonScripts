@@ -7,6 +7,17 @@
  ***/
  
  
+ function removeA(arr) {
+    var what, a = arguments, L = a.length, ax;
+    while (L > 1 && arr.length) {
+        what = a[--L];
+        while ((ax= arr.indexOf(what)) !== -1) {
+            arr.splice(ax, 1);
+        }
+    }
+    return arr;
+}
+ 
 // append new div to this one 
 titleDiv = $('[class^=TitleBlock__Container]').first(); 
   
@@ -18,11 +29,40 @@ return $(this).text() === "Stars";
 }).parent(); 
   
 // make list of genre 
-genres = ''; 
+genreArr = []; 
 genreChips = $('[class^=GenresAndPlot__GenreChip]').each(function(i, obj) { 
-genres += $(this).text() + '; '; 
+	genreArr.push($(this).text());
 }); 
-genres = genres.substr(0, genres.length-2); 
+
+// create comedy genre names, if needed
+if (genreArr.includes('Comedy')) {
+	
+	if (genreArr.includes('Drama')) {
+		genreArr.push('Dramedy');
+		removeA(genreArr, 'Comedy', 'Drama');
+	}
+	
+	else if (genreArr.includes('Romance')) {
+		genreArr.push('Romantic Comedy');
+		removeA(genreArr, 'Comedy', 'Romance');
+	}
+	
+	else {
+		targetGenre = ['Action', 'Adult', 'Adventure', 'Animation', 'Biography', 'Comedy', 'Crime', 'Documentary', 'Drama', 'Family', 'Fantasy', 'Horror', 'Musical', 'Mystery', 'Sci-Fi', 'Sport', 'War', 'Western'];
+		targetGenre.forEach(function(item, index) {
+			if genreArr.includes(item) {
+				genreArr.push(item + ' Comedy');
+				removeA(genreArr, 'Comedy', item);
+				continue;
+			}
+		});
+	}
+	
+}
+
+genres = genreArr.join('; ');
+
+
   
 // make list of names 
 var names = ''; 

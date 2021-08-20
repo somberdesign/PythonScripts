@@ -34,7 +34,7 @@ genreChips = $('[class^=GenresAndPlot__GenreChip]').each(function(i, obj) {
 	genreArr.push($(this).text());
 }); 
 
-// create comedy genre names, if needed
+//create comedy genre names, if needed
 if (genreArr.includes('Comedy')) {
 	
 	if (genreArr.includes('Drama')) {
@@ -49,15 +49,20 @@ if (genreArr.includes('Comedy')) {
 	
 	else {
 		targetGenre = ['Action', 'Adult', 'Adventure', 'Animation', 'Biography', 'Comedy', 'Crime', 'Documentary', 'Drama', 'Family', 'Fantasy', 'Horror', 'Musical', 'Mystery', 'Sci-Fi', 'Sport', 'War', 'Western'];
-		targetGenre.forEach(function(item, index) {
-			if genreArr.includes(item) {
-				genreArr.push(item + ' Comedy');
-				removeA(genreArr, 'Comedy', item);
-				continue;
-			}
-		});
-	}
-	
+        
+		// NOTE: break is not valid in a forEach - must use an exception to exit loop
+        try {
+			targetGenre.forEach(function(item, index) {
+				if (genreArr.includes(item)) {
+					genreArr.push(item + ' Comedy');
+					removeA(genreArr, 'Comedy', item);
+					throw BreakException;
+				}
+            });
+        } catch (e) {
+        	if ( e !== BreakException) throw e; 
+        }
+    }
 }
 
 genres = genreArr.join('; ');

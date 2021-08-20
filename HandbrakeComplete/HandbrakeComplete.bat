@@ -1,7 +1,8 @@
 @echo off
+SETLOCAL
 
 SET FFMPEG_PATH=D:\Video\ffmpeg.exe
-SET FILE_SIZE_LIMIT=1000000000
+SET FILE_SIZE_LIMIT=800000000
 SET LOGFILE=D:\Video\HandBrakeComplete.log
 
 REM Create dtStamp - "2021-01-14 23:10"
@@ -58,17 +59,26 @@ IF NOT "%extension%" == ".mp4" (
 REM ::execute ffmpeg if file is too large
 REM ::WARNING: this takes a long time to complete
 IF %size% GTR %FILE_SIZE_LIMIT% (
-	SET MESSAGE=%MESSAGE% Found file size %size%, executing ffmpeg.
-	echo "%FFMPEG_PATH%" -i "%filepath%" -vcodec libx265 -crf 28 "%derivedpath%%filestem%_265.mp4"
+	
+	REM losing contents of %MESSAGE% after ffmpeg runs. so write to the log now.
+	ECHO %MESSAGE% Found file size %size%, executing ffmpeg. ^(%filepath%^) >> %LOGFILE%
+	
 	"%FFMPEG_PATH%" -i "%filepath%" -vcodec libx265 -crf 28 "%derivedpath%%filestem%_265.mp4"
 
 	SET HOUR=%time:~0,2%
-	SET ffmpegtStamp9=0%time:~1,1%:%time:~3,2% 
-	SET ffmpegtStamp24=%time:~0,2%:%time:~3,2%
-	IF "%HOUR:~0,1%" == " " (SET ffmpegtStamp=%tStamp9% -) ELSE (SET ffmpegtStamp=%tStamp24% -)
+	SET ffmpegtStamp9=%date:~-4%-%date:~4,2%-%date:~7,2% 0%time:~1,1%:%time:~3,2% 
+	SET ffmpegtStamp24=%date:~-4%-%date:~4,2%-%date:~7,2% %time:~0,2%:%time:~3,2%
 
-	SET MESSAGE=%MESSAGE% ffmpeg complete %ffmpegtStamp%.
-	pause
+	ECHO time = %time% >> %LOGFILE%
+	ECHO date = %date% >> %LOGFILE%
+	ECHO HOUR = %HOUR% >> %LOGFILE%
+	ECHO ffmpegtStamp9 = (%ffmpegtStamp9%) >> %LOGFILE%
+	ECHO ffmpegtStamp24 = (%ffmpegtStamp24%) >> %LOGFILE%
+
+	IF "%HOUR:~0,1%" == " " (SET ffmpegtStamp=%ffmpegtStamp9% -) ELSE (SET ffmpegtStamp=%ffmpegtStamp24% -)
+
+	SET filepath=%derivedpath%%filestem%_265.mp4
+	SET MESSAGE=%ffmpegtStamp% ffmpeg complete 
 	GOTO Done
 )
 

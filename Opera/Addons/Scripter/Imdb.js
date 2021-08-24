@@ -48,9 +48,9 @@ if (genreArr.includes('Comedy')) {
 	}
 	
 	else {
-		targetGenre = ['Action', 'Adult', 'Adventure', 'Animation', 'Biography', 'Comedy', 'Crime', 'Documentary', 'Drama', 'Family', 'Fantasy', 'Horror', 'Musical', 'Mystery', 'Sci-Fi', 'Sport', 'War', 'Western'];
-        
-		// NOTE: break is not valid in a forEach - must use an exception to exit loop
+	  var BreakException = {};	
+      targetGenre = ['Crime', 'Action', 'Adult', 'Adventure', 'Animation', 'Biography', 'Documentary', 'Drama', 'Family', 'Fantasy', 'Horror', 'Musical', 'Mystery', 'Sci-Fi', 'Sport', 'War', 'Western'];
+        // NOTE: break is not valid in a forEach - must use an exception to exit loop
         try {
 			targetGenre.forEach(function(item, index) {
 				if (genreArr.includes(item)) {
@@ -60,7 +60,10 @@ if (genreArr.includes('Comedy')) {
 				}
             });
         } catch (e) {
-        	if ( e !== BreakException) throw e; 
+        	if (e !== BreakException) throw e;
+          else {
+            console.log('Exception: ' + e.toString());
+          }
         }
     }
 }

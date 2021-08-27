@@ -1,9 +1,6 @@
-<!DOCTYPE html>
+on ('chat:message', function(msg) {
 
-<html>
-	<head>
-		<script type='text/javascript'>
-			'use strict'
+    if (msg.type == 'api' && msg.content.toLowerCase().indexOf('!deliciouspastry') != -1) {
 			var buffs = [
 				{ description: '+2 to Dexterity-based skill checks', weight: 1 },
 				{ description: '+2 to Acrobatics skill checks', weight: 1 },
@@ -72,7 +69,7 @@
 				{ description: '+20% Thunder damage', weight: 1 },
 				{ description: '+20% Max Hit Points', weight: 1 },
 				{ description: '+2 Armor Class', weight: 1 },
-				{ description: 'You feel very full and satisfied', weight: 1 }
+				{ description: 'You feel very full and satisfied', weight: 10 }
 				
 			  ],
 			  sumOfWeights = buffs.reduce(function(memo, buff) {
@@ -89,35 +86,8 @@
 			  };
 			}
 
-				var buff = buffs.find(getRandom(sumOfWeights));
-				console.log(buff.description);
-		
-		</script>
-	</head>
-	
-	<body>
-	
-		<div>
-on("chat:message", function(msg) {
-    var cmdName = "!broll ";
-	var msgTxt = msg.content;
-	var msgWho = msg.who;
-	var msgFormula = msgTxt.slice(cmdName.length);
-
-	if(msg.type == "api" && msgTxt.indexOf(cmdName) !== -1) {
-		sendChat(msgWho, "/gmroll " + msgFormula);
-		sendChat(msgWho, "/w " + msgWho + " secret roll sent to GM (" + msgFormula + ")");
-  	};
-});		
-		</div>
-	
-	</body>
-
-
-</html>
-
-
-
-
-
-
+			var buff = buffs.find(getRandom(sumOfWeights));
+			var returnVal = 'Delicous Breakfast Pastry: ' + buff.description;
+			sendChat(msg.who, returnVal);
+    }
+});

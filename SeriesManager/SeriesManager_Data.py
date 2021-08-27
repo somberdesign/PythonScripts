@@ -1,9 +1,9 @@
-import sqlite3, easygui, contextlib, datetime
+import sqlite3, easygui, contextlib, datetime, os
 
 class SeriesManager_Data(object):
     """Interaction with datasource"""
     
-    FILENAME_DB = "..\\titles.db"
+    FILENAME_DB = os.path.join(os.path.dirname(__file__), "titles.db")
     SQL_GETINACTIVETITLES = """
         SELECT 
 	        t.title
@@ -36,6 +36,7 @@ class SeriesManager_Data(object):
     SQL_UPDATETITLE_SETISACTIVE = "UPDATE Titles SET is_active = {1} WHERE LOWER(title) = '{0}'"
 
     def __enter__(self):
+        print(f'Using database {SeriesManager_Data.FILENAME_DB}')
         self.conn = sqlite3.connect(SeriesManager_Data.FILENAME_DB)
         return self
 

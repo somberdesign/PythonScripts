@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql.robiii.dreamhosters.com
--- Generation Time: Aug 30, 2021 at 07:09 AM
+-- Generation Time: Aug 30, 2021 at 07:44 AM
 -- Server version: 5.7.28-log
 -- PHP Version: 7.1.22
 
@@ -241,7 +241,7 @@ SELECT
         / (SELECT COUNT(*) FROM Actions a0 INNER JOIN Encounters e0 ON a0.encounter_id = e0.id WHERE a0.primary_name = a.primary_name AND a0.encounter_id = e.id AND a0.result IN ('Hit', 'Miss', 'Failed save', 'Successful save'))
     ) "hit_ratio", 
     IFNULL((SELECT SUM(hit_points) FROM Actions a0 WHERE a0.primary_name = a.primary_name AND a0.encounter_id = e.id AND a0.result IN ('Hit', 'Failed save', 'Successful save')), 0) "damage_inflicted",
-    IFNULL((SELECT COUNT(*) FROM Actions a0 INNER JOIN Encounters e0 ON a0.encounter_id = e0.id WHERE a0.target_name = a.primary_name AND a0.encounter_id = e.id AND a0.result IN ('Hit', 'Miss')), 0) "attacks_defended",
+    IFNULL((SELECT COUNT(*) FROM Actions a0 INNER JOIN Encounters e0 ON a0.encounter_id = e0.id WHERE a0.target_name = a.primary_name AND a0.encounter_id = e.id AND ( a0.result IN ('Hit', 'Miss') OR a0.result LIKE '% save') ), 0) "attacks_defended", /* this is "Attacks Received" */
     ( SELECT
         (SELECT COUNT(*) FROM Actions a0 INNER JOIN Encounters e0 ON a0.encounter_id = e0.id WHERE a0.target_name = a.primary_name AND a0.encounter_id = e.id AND a0.result = 'Miss')
         / (SELECT COUNT(*) FROM Actions a0 INNER JOIN Encounters e0 ON a0.encounter_id = e0.id WHERE a0.target_name = a.primary_name AND a0.encounter_id = e.id AND a0.result IN ('Hit', 'Miss'))

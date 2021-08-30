@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql.robiii.dreamhosters.com
--- Generation Time: Apr 16, 2021 at 09:53 AM
+-- Generation Time: Aug 30, 2021 at 07:09 AM
 -- Server version: 5.7.28-log
 -- PHP Version: 7.1.22
 
@@ -190,15 +190,6 @@ CREATE DEFINER=`marytm`@`208.113.128.0/255.255.128.0` PROCEDURE `campaign_insert
         
 END$$
 
-CREATE DEFINER=`marytm`@`208.113.128.0/255.255.128.0` PROCEDURE `delete_actionsEncountersCampaigns` ()  NO SQL
-BEGIN
-	DELETE FROM Actions;
-    DELETE FROM Encounters;
-	DELETE FROM Campaigns;
-
-	COMMIT;
-END$$
-
 CREATE DEFINER=`marytm`@`208.113.128.0/255.255.128.0` PROCEDURE `delete_actionsEncountersCampaigns_byCampaignId` (IN `p_campaignId` INT)  NO SQL
 BEGIN
 
@@ -232,7 +223,46 @@ CREATE DEFINER=`marytm`@`208.113.128.0/255.255.128.0` PROCEDURE `encounter_inser
     
 END$$
 
-CREATE DEFINER=`marytm`@`208.113.128.0/255.255.128.0` PROCEDURE `player_stats_byCampaignId` (IN `p_campaignId` INT)  NO SQL
+CREATE DEFINER=`marytm`@`208.113.128.0/255.255.128.0` PROCEDURE `player_stats_byCampaignId` (IN `p_campaignID` INT)  NO SQL
+BEGIN
+
+SELECT campaign_name, source_location
+FROM Campaigns
+WHERE id = p_campaignID
+;
+
+SELECT 
+	e.encounter_date, 
+    e.encounter_name, 
+    a.primary_name,
+    IFNULL((SELECT COUNT(*) FROM Actions a0 INNER JOIN Encounters e0 ON a0.encounter_id = e0.id WHERE a0.primary_name = a.primary_name AND a0.encounter_id = e.id AND a0.result IN ('Hit', 'Miss', 'Failed save', 'Successful save')), 0) "attacks_made",
+    ( SELECT
+        (SELECT COUNT(*) FROM Actions a0 INNER JOIN Encounters e0 ON a0.encounter_id = e0.id WHERE a0.primary_name = a.primary_name AND a0.encounter_id = e.id AND a0.result IN ('Hit', 'Failed save', 'Successful save'))
+        / (SELECT COUNT(*) FROM Actions a0 INNER JOIN Encounters e0 ON a0.encounter_id = e0.id WHERE a0.primary_name = a.primary_name AND a0.encounter_id = e.id AND a0.result IN ('Hit', 'Miss', 'Failed save', 'Successful save'))
+    ) "hit_ratio", 
+    IFNULL((SELECT SUM(hit_points) FROM Actions a0 WHERE a0.primary_name = a.primary_name AND a0.encounter_id = e.id AND a0.result IN ('Hit', 'Failed save', 'Successful save')), 0) "damage_inflicted",
+    IFNULL((SELECT COUNT(*) FROM Actions a0 INNER JOIN Encounters e0 ON a0.encounter_id = e0.id WHERE a0.target_name = a.primary_name AND a0.encounter_id = e.id AND a0.result IN ('Hit', 'Miss')), 0) "attacks_defended",
+    ( SELECT
+        (SELECT COUNT(*) FROM Actions a0 INNER JOIN Encounters e0 ON a0.encounter_id = e0.id WHERE a0.target_name = a.primary_name AND a0.encounter_id = e.id AND a0.result = 'Miss')
+        / (SELECT COUNT(*) FROM Actions a0 INNER JOIN Encounters e0 ON a0.encounter_id = e0.id WHERE a0.target_name = a.primary_name AND a0.encounter_id = e.id AND a0.result IN ('Hit', 'Miss'))
+    ) "defense_ratio",
+    IFNULL((SELECT SUM(hit_points) FROM Actions a0 WHERE a0.target_name = a.primary_name AND a0.encounter_id = e.id AND a0.result IN ('Hit', 'Failed save', 'Successful save')), 0) "damage_received",
+    IFNULL((SELECT SUM(hit_points) FROM Actions a0 WHERE a0.primary_name = a.primary_name AND a0.encounter_id = e.id AND a0.result = 'Heal'), 0) "healing_provided",
+    IFNULL((SELECT SUM(hit_points) FROM Actions a0 WHERE a0.target_name = a.primary_name AND a0.encounter_id = e.id AND a0.result = 'Heal'), 0) "healing_received",
+    IFNULL((SELECT COUNT(*) FROM Actions a0 WHERE a0.primary_name = a.primary_name AND a0.encounter_id = e.id AND a0.result = 'Buff'), 0) "buffs_provided",
+    IFNULL((SELECT COUNT(*) FROM Actions a0 WHERE a0.target_name = a.primary_name AND a0.encounter_id = e.id AND a0.result = 'Buff'), 0) "buffs_received"
+
+FROM 
+	Actions a
+    INNER JOIN Encounters e ON a.encounter_id = e.id
+WHERE e.campaign_id = p_campaignId
+GROUP BY e.encounter_date, e.encounter_name, a.primary_name
+ORDER BY e.encounter_date DESC, e.encounter_name, SUM(a.hit_points) DESC, a.primary_name
+;
+
+END$$
+
+CREATE DEFINER=`marytm`@`208.113.128.0/255.255.128.0` PROCEDURE `player_stats_byCampaignId_20210705` (IN `p_campaignId` INT)  NO SQL
 BEGIN
 
 SELECT campaign_name, source_location
@@ -266,7 +296,59 @@ FROM
     INNER JOIN Encounters e ON a.encounter_id = e.id
 WHERE e.campaign_id = p_campaignId
 GROUP BY e.encounter_date, e.encounter_name, a.primary_name
-ORDER BY e.encounter_date, e.encounter_name, SUM(a.hit_points) DESC, a.primary_name
+ORDER BY e.encounter_date DESC, e.encounter_name, SUM(a.hit_points) DESC, a.primary_name
+;
+
+END$$
+
+CREATE DEFINER=`marytm`@`208.113.128.0/255.255.128.0` PROCEDURE `player_stats_cumulative_byCampaignId` (IN `p_campaignId` INT)  NO SQL
+BEGIN
+
+SELECT campaign_name, source_location
+FROM Campaigns
+WHERE id = p_campaignID
+;
+
+SELECT 
+    a.primary_name,
+    IFNULL((SELECT COUNT(*) FROM Actions a0 INNER JOIN Encounters e0 ON a0.encounter_id = e0.id WHERE a0.primary_name = a.primary_name AND a0.encounter_id = e.id AND a0.result IN ('Hit', 'Miss', 'Failed save', 'Successful save')), 0) "attacks_made",
+    ( SELECT
+        (SELECT COUNT(*) FROM Actions a0 INNER JOIN Encounters e0 ON a0.encounter_id = e0.id WHERE a0.primary_name = a.primary_name AND a0.encounter_id = e.id AND a0.result IN ('Hit', 'Failed save', 'Successful save'))
+        / (SELECT COUNT(*) FROM Actions a0 INNER JOIN Encounters e0 ON a0.encounter_id = e0.id WHERE a0.primary_name = a.primary_name AND a0.encounter_id = e.id AND a0.result IN ('Hit', 'Miss', 'Failed save', 'Successful save'))
+    ) "hit_ratio", 
+    IFNULL((SELECT SUM(hit_points) FROM Actions a0 WHERE a0.primary_name = a.primary_name AND a0.encounter_id = e.id AND a0.result IN ('Hit', 'Failed save', 'Successful save')), 0) "damage_inflicted",
+    IFNULL((SELECT COUNT(*) FROM Actions a0 INNER JOIN Encounters e0 ON a0.encounter_id = e0.id WHERE a0.target_name = a.primary_name AND a0.encounter_id = e.id), 0) "attacks_defended",
+    ( SELECT
+        (SELECT COUNT(*) FROM Actions a0 INNER JOIN Encounters e0 ON a0.encounter_id = e0.id WHERE a0.target_name = a.primary_name AND a0.encounter_id = e.id AND a0.result = 'Miss')
+        / (SELECT COUNT(*) FROM Actions a0 INNER JOIN Encounters e0 ON a0.encounter_id = e0.id WHERE a0.target_name = a.primary_name AND a0.encounter_id = e.id AND a0.result IN ('Hit', 'Miss'))
+    ) "defense_ratio",
+    IFNULL((SELECT SUM(hit_points) FROM Actions a0 WHERE a0.target_name = a.primary_name AND a0.encounter_id = e.id AND a0.result IN ('Hit', 'Failed save', 'Successful save')), 0) "damage_received",
+    IFNULL((SELECT SUM(hit_points) FROM Actions a0 WHERE a0.primary_name = a.primary_name AND a0.encounter_id = e.id AND a0.result = 'Heal'), 0) "healing_provided",
+    IFNULL((SELECT SUM(hit_points) FROM Actions a0 WHERE a0.target_name = a.primary_name AND a0.encounter_id = e.id AND a0.result = 'Heal'), 0) "healing_received",
+    IFNULL((SELECT COUNT(*) FROM Actions a0 WHERE a0.primary_name = a.primary_name AND a0.encounter_id = e.id AND a0.result = 'Buff'), 0) "buffs_provided",
+    IFNULL((SELECT COUNT(*) FROM Actions a0 WHERE a0.target_name = a.primary_name AND a0.encounter_id = e.id AND a0.result = 'Buff'), 0) "buffs_received"
+
+FROM 
+	Actions a
+    INNER JOIN Encounters e ON a.encounter_id = e.id
+WHERE 
+	e.campaign_id = p_campaignId
+    /*AND a.primary_name IN (
+        SELECT ec.primary_name
+        FROM 
+            ( -- include primary_names that appear in more than 50% of encounters - the player characters
+                SELECT COUNT(DISTINCT a.encounter_id) encounter_count, a.primary_name 
+                FROM Actions a
+                    INNER JOIN Encounters e ON a.encounter_id = e.id
+                    INNER JOIN Campaigns c ON e.campaign_id = c.id
+                WHERE 
+                    c.id = 50
+                GROUP BY a.primary_name
+            ) ec
+        WHERE ec.encounter_count / (SELECT COUNT(DISTINCT id) FROM Encounters WHERE campaign_id = 50) > 0.5
+    )*/
+GROUP BY a.primary_name
+ORDER BY SUM(a.hit_points) DESC, a.primary_name
 ;
 
 END$$

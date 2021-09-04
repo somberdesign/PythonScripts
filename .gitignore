@@ -17,6 +17,8 @@ ReadSalesCsv/Csv_Sales/
 ReadSalesCsv/Data/
 ReadSalesCsv/Output/
 ReadSalesCsv/Input/
+SearchToBrowser/*SmartList.txt
+SearchToBrowser/SearchResults.txt
 Mp4Validator/Output/
 Mp4Validator/Mp4Validator.json
 

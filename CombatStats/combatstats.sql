@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql.robiii.dreamhosters.com
--- Generation Time: Aug 30, 2021 at 07:44 AM
+-- Generation Time: Sep 20, 2021 at 01:13 PM
 -- Server version: 5.7.28-log
 -- PHP Version: 7.1.22
 
@@ -250,7 +250,9 @@ SELECT
     IFNULL((SELECT SUM(hit_points) FROM Actions a0 WHERE a0.primary_name = a.primary_name AND a0.encounter_id = e.id AND a0.result = 'Heal'), 0) "healing_provided",
     IFNULL((SELECT SUM(hit_points) FROM Actions a0 WHERE a0.target_name = a.primary_name AND a0.encounter_id = e.id AND a0.result = 'Heal'), 0) "healing_received",
     IFNULL((SELECT COUNT(*) FROM Actions a0 WHERE a0.primary_name = a.primary_name AND a0.encounter_id = e.id AND a0.result = 'Buff'), 0) "buffs_provided",
-    IFNULL((SELECT COUNT(*) FROM Actions a0 WHERE a0.target_name = a.primary_name AND a0.encounter_id = e.id AND a0.result = 'Buff'), 0) "buffs_received"
+    IFNULL((SELECT COUNT(*) FROM Actions a0 WHERE a0.target_name = a.primary_name AND a0.encounter_id = e.id AND a0.result = 'Buff'), 0) "buffs_received",
+    IFNULL((SELECT COUNT(*) FROM Actions a0 WHERE a0.primary_name = a.primary_name AND a0.encounter_id = e.id AND a0.result = 'Curse'), 0) "curses_provided",
+    IFNULL((SELECT COUNT(*) FROM Actions a0 WHERE a0.target_name = a.primary_name AND a0.encounter_id = e.id AND a0.result = 'Curse'), 0) "curses_received"
 
 FROM 
 	Actions a
@@ -260,6 +262,41 @@ GROUP BY e.encounter_date, e.encounter_name, a.primary_name
 ORDER BY e.encounter_date DESC, e.encounter_name, SUM(a.hit_points) DESC, a.primary_name
 ;
 
+
+-- campaign-wide stats
+SELECT DISTINCT
+    a.primary_name,
+	IFNULL((SELECT COUNT(*) FROM Actions a0 INNER JOIN Encounters e0 ON a0.encounter_id = e0.id WHERE e0.campaign_id = p_campaignID AND a0.primary_name = a.primary_name AND a0.result IN ('Hit', 'Miss', 'Failed save', 'Successful save')), 0) "attacks_made",
+    ( SELECT
+          (SELECT COUNT(*) FROM Actions a0 INNER JOIN Encounters e0 ON a0.encounter_id = e0.id WHERE e0.campaign_id = p_campaignID AND a0.primary_name = a.primary_name AND a0.result IN ('Hit', 'Failed save', 'Successful save'))
+        / (SELECT COUNT(*) FROM Actions a0 INNER JOIN Encounters e0 ON a0.encounter_id = e0.id WHERE e0.campaign_id = p_campaignID AND a0.primary_name = a.primary_name AND a0.result IN ('Hit', 'Miss', 'Failed save', 'Successful save'))
+    ) "hit_ratio",
+    IFNULL((SELECT SUM(hit_points) FROM Actions a0 INNER JOIN Encounters e0 ON a0.encounter_id = e0.id WHERE e0.campaign_id = p_campaignID AND a0.primary_name = a.primary_name AND a0.result IN ('Hit', 'Failed save', 'Successful save')), 0) "damage_inflicted",
+    IFNULL((SELECT COUNT(*)        FROM Actions a0 INNER JOIN Encounters e0 ON a0.encounter_id = e0.id WHERE e0.campaign_id = p_campaignID AND a0.target_name  = a.primary_name AND ( a0.result IN ('Hit', 'Miss') OR a0.result LIKE '% save') ), 0) "attacks_defended", /* this is "Attacks Received" */
+    ( SELECT
+          (SELECT COUNT(*) FROM Actions a0 INNER JOIN Encounters e0 ON a0.encounter_id = e0.id WHERE e0.campaign_id = p_campaignID AND a0.target_name = a.primary_name AND a0.result = 'Miss')
+        / (SELECT COUNT(*) FROM Actions a0 INNER JOIN Encounters e0 ON a0.encounter_id = e0.id WHERE e0.campaign_id = p_campaignID AND a0.target_name = a.primary_name AND a0.result IN ('Hit', 'Miss'))
+    ) "defense_ratio",
+    IFNULL((SELECT SUM(hit_points) FROM Actions a0 INNER JOIN Encounters e0 on a0.encounter_id = e0.id WHERE a0.target_name  = a.primary_name AND e0.campaign_id = p_campaignID AND a0.result IN ('Hit', 'Failed save', 'Successful save')), 0) "damage_received",
+    IFNULL((SELECT SUM(hit_points) FROM Actions a0 INNER JOIN Encounters e0 on a0.encounter_id = e0.id WHERE a0.primary_name = a.primary_name AND e0.campaign_id = p_campaignID AND a0.result = 'Heal'), 0) "healing_provided",
+    IFNULL((SELECT SUM(hit_points) FROM Actions a0 INNER JOIN Encounters e0 on a0.encounter_id = e0.id WHERE a0.target_name  = a.primary_name AND e0.campaign_id = p_campaignID AND a0.result = 'Heal'), 0) "healing_received",
+    IFNULL((SELECT COUNT(*)        FROM Actions a0 INNER JOIN Encounters e0 on a0.encounter_id = e0.id WHERE a0.primary_name = a.primary_name AND e0.campaign_id = p_campaignID AND a0.result = 'Buff'), 0) "buffs_provided",
+    IFNULL((SELECT COUNT(*)        FROM Actions a0 INNER JOIN Encounters e0 on a0.encounter_id = e0.id WHERE a0.target_name  = a.primary_name AND e0.campaign_id = p_campaignID AND a0.result = 'Buff'), 0) "buffs_received",
+    IFNULL((SELECT COUNT(*)        FROM Actions a0 INNER JOIN Encounters e0 on a0.encounter_id = e0.id WHERE a0.primary_name = a.primary_name AND e0.campaign_id = p_campaignID AND a0.result = 'Curse'), 0) "curses_provided",
+    IFNULL((SELECT COUNT(*)        FROM Actions a0 INNER JOIN Encounters e0 on a0.encounter_id = e0.id WHERE a0.target_name  = a.primary_name AND e0.campaign_id = p_campaignID AND a0.result = 'Curse'), 0) "curses_received"
+FROM
+	Actions a
+    INNER JOIN Encounters e ON a.encounter_id = e.id
+    INNER JOIN Campaigns c ON e.campaign_id = c.id
+    INNER JOIN Players p ON a.primary_name = p.primary_name
+WHERE
+	c.id = p_campaignID
+ORDER BY p.primary_name
+;
+    
+    
+    
+    
 END$$
 
 CREATE DEFINER=`marytm`@`208.113.128.0/255.255.128.0` PROCEDURE `player_stats_byCampaignId_20210705` (IN `p_campaignId` INT)  NO SQL
@@ -422,6 +459,18 @@ CREATE TABLE `Encounters` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `Players`
+--
+
+CREATE TABLE `Players` (
+  `id` int(11) NOT NULL,
+  `primary_name` varchar(50) NOT NULL,
+  `campaign_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Structure for view `all_encounters`
 --
 DROP TABLE IF EXISTS `all_encounters`;
@@ -454,6 +503,14 @@ ALTER TABLE `Encounters`
   ADD KEY `fk_campaign_id` (`campaign_id`);
 
 --
+-- Indexes for table `Players`
+--
+ALTER TABLE `Players`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `UNIQUE_NAME_PER_CAMPAIGN` (`primary_name`,`campaign_id`),
+  ADD KEY `fk_campaignId` (`campaign_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -476,6 +533,12 @@ ALTER TABLE `Encounters`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `Players`
+--
+ALTER TABLE `Players`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- Constraints for dumped tables
 --
 
@@ -490,6 +553,12 @@ ALTER TABLE `Actions`
 --
 ALTER TABLE `Encounters`
   ADD CONSTRAINT `fk_campaign_id` FOREIGN KEY (`campaign_id`) REFERENCES `Campaigns` (`id`);
+
+--
+-- Constraints for table `Players`
+--
+ALTER TABLE `Players`
+  ADD CONSTRAINT `fk_campaignId` FOREIGN KEY (`campaign_id`) REFERENCES `Campaigns` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

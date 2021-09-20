@@ -49,7 +49,7 @@ if (genreArr.includes('Comedy')) {
 	
 	else {
 	  var BreakException = {};	
-      targetGenre = ['Crime', 'Action', 'Adult', 'Adventure', 'Animation', 'Biography', 'Documentary', 'Drama', 'Family', 'Fantasy', 'Horror', 'Musical', 'Mystery', 'Sci-Fi', 'Sport', 'War', 'Western'];
+      targetGenre = ['Crime', 'Action', 'Adult', 'Adventure', 'Animation', 'Family', 'Horror', 'Musical', 'Sci-Fi', 'Sport', 'War', 'Western'];
         // NOTE: break is not valid in a forEach - must use an exception to exit loop
         try {
 			targetGenre.forEach(function(item, index) {

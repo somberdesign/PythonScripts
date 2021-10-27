@@ -120,6 +120,8 @@ def GetStatsHtml(dataset):
 	IDX_HEALING_RECEIVED: int = 10
 	IDX_BUFFS_PROVIDED: int = 11
 	IDX_BUFFS_RECEIVED: int = 12
+	IDX_CURSES_PROVIDED: int = 13
+	IDX_CURSES_RECEIVED: int = 14
 
 	def FormatDecimal(value):
 		if value is None:
@@ -154,10 +156,12 @@ def GetStatsHtml(dataset):
 					<td class="td-header-2 data-cell-attacks_defended">Attacks<br />Received</td>
 					<td class="td-header-2 data-cell-defense_ratio">Defense<br />Ratio</td>
 					<td class="td-header-2 data-cell-damage_received">Damage<br />Received</td>
-					<td class="td-header-2 data-cell-healing_provided">Healing<br />Provided</td>
+					<td class="td-header-2 data-cell-healing_provided">Healing<br />Granted</td>
 					<td class="td-header-2 data-cell-healing_received">Healing<br />Received</td>
-					<td class="td-header-2 data-cell-buffs_provided">Buffs<br />Provided</td>
+					<td class="td-header-2 data-cell-buffs_provided">Buffs<br />Granted</td>
 					<td class="td-header-2 data-cell-buffs_received">Buffs<br />Received</td>
+					<td class="td-header-2 data-cell-curses_provided">Curses<br />Dealt</td>
+					<td class="td-header-2 data-cell-curses_received">Curses<br />Received</td>
 				</tr>
 			'''
 			currentEncounterName = row[IDX_ENCOUNTER_NAME]
@@ -183,7 +187,9 @@ def GetStatsHtml(dataset):
 		insertHtml += f'<td class="data-cell data-cell-{evenOdd} data-cell-healing-provided group-border-left{topRowClass}">{row[IDX_HEALING_PROVIDED]}</td>'
 		insertHtml += f'<td class="data-cell data-cell-{evenOdd} data-cell-healing-received{topRowClass}">{row[IDX_HEALING_RECEIVED]}</td>'
 		insertHtml += f'<td class="data-cell data-cell-{evenOdd} data-cell-healing-provided{topRowClass}">{row[IDX_BUFFS_PROVIDED]}</td>'
-		insertHtml += f'<td class="data-cell data-cell-{evenOdd} data-cell-healing-received group-border-right{topRowClass}">{row[IDX_BUFFS_RECEIVED]}</td>'
+		insertHtml += f'<td class="data-cell data-cell-{evenOdd} data-cell-healing-received{topRowClass}">{row[IDX_BUFFS_RECEIVED]}</td>'
+		insertHtml += f'<td class="data-cell data-cell-{evenOdd} data-cell-healing-provided{topRowClass}">{row[IDX_CURSES_PROVIDED]}</td>'
+		insertHtml += f'<td class="data-cell data-cell-{evenOdd} data-cell-healing-received group-border-right{topRowClass}">{row[IDX_CURSES_RECEIVED]}</td>'
 		
 		insertHtml += '</tr>'
 		topEncounterRow = False

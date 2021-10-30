@@ -90,9 +90,16 @@ class SeriesManager_Data(object):
         return True if resultRow[0] == 1 else False
 
     def SetTitleIsActive(self, title, isActive):
+        title = self.ScrubString(title)
         with contextlib.closing(self.conn.cursor()) as cur:
-            cur.execute(SeriesManager_Data.SQL_UPDATETITLE_SETISACTIVE.format(title.lower(), isActive))
+            try:
+                cur.execute(SeriesManager_Data.SQL_UPDATETITLE_SETISACTIVE.format(title.lower(), isActive))
+            except Exception as ex:
+                print(f'Exception in SetTitleIsActive({title}, {isActive}): {ex}')
         return
+		
+    def ScrubString(self, instring):
+        return instring.replace("'", "''")
 
         
 

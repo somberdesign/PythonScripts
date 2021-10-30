@@ -162,9 +162,12 @@ def PerformDraw(oData):
 	highestTicketNumber = 0
 	for row in allRecordRows:
 		highestTicketNumber = row[idx_highTicketNumber] if row[idx_highTicketNumber] > highestTicketNumber else highestTicketNumber
+	highestTicketNumber = math.floor(highestTicketNumber + highestTicketNumber * 0.1)
 
 	goldenTicket = random.randrange(highestTicketNumber)
-	#sg.Popup("highestTicketNumber=" + str(highestTicketNumber) + "\ngoldenTicket=" + str(goldenTicket))
+	# m = "highestTicketNumber=" + str(highestTicketNumber) + "\ngoldenTicket=" + str(goldenTicket)
+	# sg.Popup(m)
+	# print(m)
 
 	selectedIdx = 0
 	outText = ""

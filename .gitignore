@@ -13,10 +13,7 @@ NwAuctionDvdCheck/NwOutput.txt
 
 CreateStatsHtml_Secrets.json
 Secrets.json
-ReadSalesCsv/Csv_Sales/
-ReadSalesCsv/Data/
 ReadSalesCsv/Output/
-ReadSalesCsv/Input/
 SearchToBrowser/*SmartList.txt
 SearchToBrowser/SearchResults.txt
 Mp4Validator/Output/

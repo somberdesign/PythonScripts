@@ -1,9 +1,36 @@
+from datetime import datetime as dt
 import os
 import sys
 
 # Counts the number of files with a specific filetype unsder the target dir
 
 TARGET_FILETYPE = 'url'
+
+def GetDirDate(dirstring):
+	returnVal = dt(1970, 1, 1)
+	parts = dirstring.split('-')
+	
+	if (
+		len(parts) != 4
+		or not RepresentsInt(parts[0])
+		or not RepresentsInt(parts[1])
+		or not RepresentsInt(parts[2])
+		):
+		return returnVal
+		
+	try:
+		returnVal = dt(int(parts[0]), int(parts[1]), int(parts[2]))
+	except Exception as ex:
+		return returnVal
+		
+	return returnVal
+
+def RepresentsInt(s):
+    try: 
+        int(s)
+        return True
+    except ValueError:
+        return False	
 
 if __name__ == '__main__':
 
@@ -23,6 +50,10 @@ if __name__ == '__main__':
 
 	results = {}
 	for dir in [d for d in os.listdir(targetDir) if os.path.isdir(os.path.join(targetDir, d))]:
+		
+		if GetDirDate(dir) < dt.now():
+			continue
+		
 		filecounter = 0
 		testDir = os.path.join(targetDir, dir)
 		for f in os.listdir(testDir):
@@ -37,4 +68,4 @@ if __name__ == '__main__':
 	for item in [v[0] for v in sorted(results.items(), key=lambda kv: (-kv[1], kv[0]))]:
 		print(f'{item}  {results[item]}')
 		
-	
+	input()

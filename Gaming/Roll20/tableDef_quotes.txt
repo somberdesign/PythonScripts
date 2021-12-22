@@ -1,0 +1,24 @@
+!import-table-item --quotes --Another industrial ugly morning --1
+!import-table-item --quotes --As sure as Kilimanjaro rises like Olympus above the Serengeti --1
+!import-table-item --quotes --Big wheels keep on turnin', Carry me home to see my kin --1
+!import-table-item --quotes --Check out Guitar George, he knows all the chords --1
+!import-table-item --quotes --Don't drink, don't smoke, what do you do? --1
+!import-table-item --quotes --English, motherfucker, do you speak it? --1
+!import-table-item --quotes --Got no human grace, you're eyes without a face --1
+!import-table-item --quotes --I feel summer creepin' in and I'm tired of this town again --1
+!import-table-item --quotes --I'll say anything you want to h noear --1
+!import-table-item --quotes --I'm gonna run this nothing town --1
+!import-table-item --quotes --I've got a little black book with my poems in --1
+!import-table-item --quotes --In the back room she was everybody's darling --1
+!import-table-item --quotes --Is Lump fast asleep or rocking out with the band? --1
+!import-table-item --quotes --It was long ago and it was far away and it was so much better that it is today --1
+!import-table-item --quotes --Mista Dobalina, Mista Bob Dobalina --1
+!import-table-item --quotes --Oh man, I shot Marvin in the face. --1
+!import-table-item --quotes --Sittin' here on the stairs 'cause I'd rather be alone --1
+!import-table-item --quotes --Slipping and a-sliding all along the waterfall with you --1
+!import-table-item --quotes --The only thing a gambler needs is a suitcase and a trunk --1
+!import-table-item --quotes --There are many here among us who feel life is but a joke --1
+!import-table-item --quotes --They call it a Royale with Cheese --1
+!import-table-item --quotes --We always hang in the Buffalo Stance --1
+!import-table-item --quotes --Well, feelin' good was easy, Lord, when he sang the blues --1
+!import-table-item --quotes --When she cries in the night, Tommy whispers "Baby, it's okay" --1

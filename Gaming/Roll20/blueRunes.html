@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+
+<head>
+	<script type='text/javascript'>
+		const colorArray = ['Blue', 'Red', 'Green', 'Yellow'];
+		runes = [0, 2, 0, 3, 1];
+		
+		function displayRunes() {
+			for (i=0; i<runes.length; i++)
+				document.getElementById('tblRunes').rows[0].cells[i].style.backgroundColor = colorArray[runes[i]];
+		}
+		
+		// test only
+		function showParameter(msg) {
+			tokens = msg.split(' ');
+			if (tokens.length > 1)
+				console.log('Parameter is ' + tokens[1])
+		}
+		
+		function touch(runeIdx) {
+			
+			switch(runeIdx) {
+				case 0:
+					// no action
+				break;
+				case 1:
+					runes[1] += 1;
+					runes[2] += 1;
+					runes[3] += 1;
+					runes[4] += 1;
+				break;
+				case 2:
+					runes[2] += 1;
+					runes[3] += 1;
+					runes[4] += 1;
+				break;
+				case 3:
+					runes[3] += 1;
+				break;
+				case 4:
+					runes[3] += 1;
+					runes[4] += 1;
+				break;
+			}
+			
+			for (i=0; i<runes.length; i++)
+				if (runes[i] > runes.length - 1) runes[i] = 0;
+				
+			for (i=0; i<runes.length; i++)
+				document.getElementById('tblRunes').rows[0].cells[i].style.backgroundColor = colorArray[runes[i]];
+		}
+	</script>
+	<style>
+		#tdRune {
+			height: 20px;
+			width: 20px;
+		}
+	</style>
+</head>
+
+<body>
+<div>
+	<table id='tblRunes'><tr>
+		<td class='tdRune' id='rune0' onclick='touch(0);'>A</td>
+		<td class='tdRune' id='rune1' onclick='touch(1);'>B</td>
+		<td class='tdRune' id='rune2' onclick='touch(2);'>C</td>
+		<td class='tdRune' id='rune3' onclick='touch(3);'>D</td>
+		<td class='tdRune' id='rune4' onclick='touch(4);'>E</td>
+	</tr></table>
+</div>
+</body>
+
+</html>

@@ -1,12 +1,21 @@
 Manage Sheets-b5896c4ab53e.json
 
+
+
 NwAuctionDvdCheck/NwOutput.txt
 
+# DownloadCsv creates files in these dirs
+**/CsvFiles_*/
+**/CsvFiles/
+**/InputSheets/
+/DownloadCsv/csvs/
+/CombatStats/HtmlOutput/
+
+CreateStatsHtml_Secrets.json
 Secrets.json
-ReadSalesCsv/Csv_Sales/
-ReadSalesCsv/Data/
 ReadSalesCsv/Output/
-ReadSalesCsv/Input/
+SearchToBrowser/*SmartList.txt
+SearchToBrowser/SearchResults.txt
 Mp4Validator/Output/
 Mp4Validator/Mp4Validator.json
 

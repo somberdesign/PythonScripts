@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Fresca&family=Fugaz+One&display=swap" rel="stylesheet">
+		<style type="text/css">
+			body {
+				background-color: #E5E8E8;
+			}
+			.data-cell {
+				font-family: 'Fresca', sans-serif;
+			}
+			.data-cell-attacks-made,
+			.data-cell-hit-ratio,
+			.data-cell-damage-inflicted {
+				background: rgb(255, 0, 0, 0.2);
+				padding: 2px 0px 2px 0px;
+			}
+			
+			.data-cell-attacks-defended,
+			.data-cell-defense-ratio,
+			.data-cell-damage-received {
+				background: rgb(127, 0, 255, 0.2);
+				padding: 2px 0px 2px 0px;
+			}
+
+			.data-cell-healing-provided,
+			.data-cell-healing-received {
+				background: rgb(0, 255, 0, 0.2);
+				padding: 2px 0px 2px 0px;
+			}
+			.data-cell-even,
+			.data-cell-odd {
+				text-align: center;
+			}
+			.data-cell-primary-name {
+				font-family: 'Fresca', sans-serif;
+				font-style: italic;
+				font-weight: bold;
+				text-align: center;
+			}
+			.div-report-info {
+				font-family: 'Fugaz One', cursive;
+				font-size: 10px;
+			}
+			.div-report-title {
+				font-family: 'Fugaz One', cursive;
+				font-size: 32px;
+			}
+			.group-border-left {
+				border-left: 2px solid #000;
+				padding: 0px, 0px, 0px, 15px;
+			}
+			.group-border-right {
+				border-right: 2px solid #000;
+				padding: 0px, 15px, 0px, 0px;
+			}
+			.group-border-top {
+				border-top: 2px solid #000;
+				padding: 0px, 0px, 0px, 15px;
+			}
+			.statTable {
+				border: 0px solid #000;
+				border-collapse: collapse;
+			}
+			.td-header {
+				font-family: 'Fugaz One', cursive;
+				font-size: 18px;
+				padding-top: 45px;
+			}
+			.td-header-2 {
+				font-family: 'Fresca', sans-serif;
+				font-style: italic;
+				font-weight: bold;
+				padding: 0px 15px 0px 15px;
+				text-align: center;
+			}
+			.tdLayout {
+				padding: 0px 25px 0px 0px;
+				vertical-align: top;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="div-report-title">$_CAMPAIGN_NAME</div>
+		$_REPORT_INFO
+		$_PLAYER_STATS
+	</body>
+</html>

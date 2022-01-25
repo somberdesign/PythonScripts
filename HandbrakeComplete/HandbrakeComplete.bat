@@ -73,6 +73,18 @@ IF %size% GTR %FILE_SIZE_LIMIT% (
 	SET HOUR=%time:~0,2%
 	SET ffmpegtStamp9=%date:~-4%-%date:~4,2%-%date:~7,2% 0%time:~1,1%:%time:~3,2% 
 	SET ffmpegtStamp24=%date:~-4%-%date:~4,2%-%date:~7,2% %time:~0,2%:%time:~3,2%
+
+	ECHO time = %time% >> %LOGFILE%
+	ECHO date = %date% >> %LOGFILE%
+	ECHO HOUR = %HOUR% >> %LOGFILE%
+	ECHO ffmpegtStamp9 = (%ffmpegtStamp9%) >> %LOGFILE%
+	ECHO ffmpegtStamp24 = (%ffmpegtStamp24%) >> %LOGFILE%
+
+	IF "%HOUR:~0,1%" == " " (SET ffmpegtStamp=%ffmpegtStamp9% -) ELSE (SET ffmpegtStamp=%ffmpegtStamp24% -)
+
+	SET filepath=%derivedpath%%filestem%_265.mp4
+	SET MESSAGE=%ffmpegtStamp% ffmpeg complete 
+	GOTO Done
 )
 
 SET filepath=%derivedpath%%filestem%_265.mp4
@@ -81,5 +93,5 @@ SET MESSAGE=%ffmpegtStamp% ffmpeg complete
 
 :Done
 
-ECHO %MESSAGE%
 ECHO %MESSAGE% ^(%filepath%^) >> %LOGFILE%
+REM pause

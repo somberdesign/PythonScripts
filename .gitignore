@@ -10,6 +10,7 @@ NwAuctionDvdCheck/NwOutput.txt
 **/InputSheets/
 /DownloadCsv/csvs/
 /CombatStats/HtmlOutput/
+/SeriesConversion/.seriesconversion
 
 CreateStatsHtml_Secrets.json
 Secrets.json

@@ -56,7 +56,7 @@ if __name__ == '__main__':
 		if GetDirDate(dir) < dt.now() or GetDirDate(dir) > dt.now() + timedelta(days=30):
 			continue
 		
-		items = []
+		items:list = []
 		testDir = os.path.join(targetDir, dir)
 		for f in os.listdir(testDir):
 

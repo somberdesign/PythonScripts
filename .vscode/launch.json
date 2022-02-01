@@ -12,7 +12,7 @@
 			"console": "integratedTerminal",
 			"cwd": "${fileDirname}",
 			"argsX": ["1xKzZOoDwtMADCfCjta-XmLCv79ZBth8ojhJWC8AKK_w", "csvs"],
-			"args": ["50"]
+			"args": ["D:\Video\The_Night_House_2020.mp4"]
 		}
 	]
 }

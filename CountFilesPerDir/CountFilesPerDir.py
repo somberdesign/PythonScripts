@@ -1,4 +1,6 @@
 from datetime import datetime as dt
+from datetime import timedelta
+import fuzzywuzzy
 import os
 import sys
 
@@ -51,19 +53,35 @@ if __name__ == '__main__':
 	results = {}
 	for dir in [d for d in os.listdir(targetDir) if os.path.isdir(os.path.join(targetDir, d))]:
 		
-		if GetDirDate(dir) < dt.now():
+		if GetDirDate(dir) < dt.now() or GetDirDate(dir) > dt.now() + timedelta(days=30):
 			continue
 		
-		filecounter = 0
+		items = []
 		testDir = os.path.join(targetDir, dir)
 		for f in os.listdir(testDir):
+
 			testItem = os.path.join(targetDir, dir, f)
-			if not os.path.isdir(testItem) and os.path.splitext(testItem)[1] == f'.{TARGET_FILETYPE}':
+			if not os.path.isdir(testItem):
+				continue
+
+			halfstring = f[:int(len(f) / 2)]
+			if len(items) == 0:
+				items.append(halfstring)
+				continue
+				
+			if halfstring in items:
+				continue
+				
+			items.append(halfstring)
+			
+		results[testDir] = len(items)
+
+			# if not os.path.isdir(testItem) and os.path.splitext(testItem)[1] == f'.{TARGET_FILETYPE}':
 				# print(f)
-				if testDir in results.keys():
-					results[testDir] += 1
-				else:
-					results[testDir] = 1
+				# if testDir in results.keys():
+					# results[testDir] += 1
+				# else:
+					# results[testDir] = 1
 					
 	for item in [v[0] for v in sorted(results.items(), key=lambda kv: (-kv[1], kv[0]))]:
 		print(f'{item}  {results[item]}')

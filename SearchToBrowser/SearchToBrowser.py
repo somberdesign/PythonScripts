@@ -38,7 +38,7 @@ if __name__ == '__main__':
 		ctypes.windll.user32.MessageBoxW(0, f'Invalid date on line 1:\n{stringdate}', 'Document Date Error')
 		
 	if filedate is not None and (datetime.datetime.now() - filedate).days > 30:
-		ctypes.windll.user32.MessageBoxW(0, f'Stale file list: {stringdate}', 'Stale File List')
+		ctypes.windll.user32.MessageBoxW(0, f'Stale file list: {stringdate}\nReplace SmartList.txt in {os.path.realpath(__file__)}', 'Stale File List')
 
 	foundLines = []
 	for line in searchLines:

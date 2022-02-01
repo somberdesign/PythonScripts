@@ -10,7 +10,7 @@ import subprocess
 import sys
 
 
-FILE_AGE_SECONDS = 60 * 60 * 6
+FILE_AGE_SECONDS = 60 * 60 * 3
 LOGFILE_PATH = r'e:\winTvVideos\ProcessOtaVideo.log'
 MP4_DESTINATION_ROOT = r'\\andromeda\d\Video'
 VIDEO_DIRECTORY = r'e:\WinTvVideos'
@@ -99,14 +99,19 @@ if __name__ == "__main__":
 
     # check destination dir
     fileRoot = GetSubdirName(os.path.basename(tsFile))
-    desiredDir = os.path.join(mp4DestinationDir, 'OTA_' + fileRoot)
-    try:
-        if len(fileRoot) > 0 and not os.path.isdir(desiredDir):
-            os.makedirs(desiredDir)
-            mp4DestinationDir = desiredDir
-    except Exception as ex:
-        log.AddWarning(f'Unable to create directory. {ex}. ({desiredDir})')
+    if len(fileRoot) == 0:
+        log.AddWarning(f'Unable to create fileRoot ({tsFile})')
 
+    # create destination dir, if needed
+    desiredDir = os.path.join(mp4DestinationDir, 'OTA_' + fileRoot)
+    if len(fileRoot) > 0 and not os.path.isdir(desiredDir):
+        try:
+            os.makedirs(desiredDir)
+        except Exception as ex:
+            log.AddWarning(f'Unable to create directory. {ex}. ({desiredDir})')
+
+    if os.path.isdir(desiredDir):
+        mp4DestinationDir = desiredDir
 
     # move file to destination
     mp4DestinationPath = os.path.join(mp4DestinationDir, os.path.basename(mp4Filename))

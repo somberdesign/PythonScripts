@@ -51,16 +51,22 @@ if __name__ == '__main__':
 		exit(1)
 
 	results = {}
+	# loop over date dirs
 	for dir in [d for d in os.listdir(targetDir) if os.path.isdir(os.path.join(targetDir, d))]:
 		
 		if GetDirDate(dir) < dt.now() or GetDirDate(dir) > dt.now() + timedelta(days=30):
 			continue
 		
 		items:list = []
+		seriesItems:list = []
 		testDir = os.path.join(targetDir, dir)
+		
+		# loop over items in date dir
 		for f in os.listdir(testDir):
 
 			testItem = os.path.join(targetDir, dir, f)
+			
+			# skip files
 			if not os.path.isdir(testItem):
 				continue
 
@@ -70,20 +76,15 @@ if __name__ == '__main__':
 				continue
 				
 			if halfstring in items:
+				if halfstring not in seriesItems: seriesItems.append(halfstring)
 				continue
 				
 			items.append(halfstring)
 			
-		results[testDir] = len(items)
+		results[testDir] = len(items), len(seriesItems)
 
-			# if not os.path.isdir(testItem) and os.path.splitext(testItem)[1] == f'.{TARGET_FILETYPE}':
-				# print(f)
-				# if testDir in results.keys():
-					# results[testDir] += 1
-				# else:
-					# results[testDir] = 1
 					
-	for item in [v[0] for v in sorted(results.items(), key=lambda kv: (-kv[1], kv[0]))]:
-		print(f'{item}  {results[item]}')
+	for item in [v[0] for v in sorted(results.items(), key=lambda kv: (-kv[1][0], kv[0]))]:
+		print(f'{item}  {results[item][1]} series  {results[item][0]} singles')
 		
 	input()

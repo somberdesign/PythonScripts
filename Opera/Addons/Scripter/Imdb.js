@@ -32,10 +32,8 @@ starParent = $("a").filter(function() {
    
 // make list of genre  
 genreArr = [];  
-var counter = 0;
-genreChips = $('.ipc-chip__text').each(function(i, obj) { 
+genreChips = $('[data-testid="genres"]').find('.ipc-chip__text').each(function(i, obj) { 
 	genreArr.push($(this).text()); 
-	if (counter++ >= 2) return false; // only take the first three
 });  
   
 //create comedy genre names, if needed 

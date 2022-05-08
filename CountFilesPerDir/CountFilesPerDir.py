@@ -1,12 +1,13 @@
 from datetime import datetime as dt
 from datetime import timedelta
-import fuzzywuzzy
+from math import floor
 import os
 import sys
 
 # Counts the number of files with a specific filetype unsder the target dir
 
 TARGET_FILETYPE = 'url'
+SPACES = ' ' * 15
 
 def GetDirDate(dirstring):
 	returnVal = dt(1970, 1, 1)
@@ -82,9 +83,11 @@ if __name__ == '__main__':
 			items.append(halfstring)
 			
 		results[testDir] = len(items), len(seriesItems)
-
-					
-	for item in [v[0] for v in sorted(results.items(), key=lambda kv: (-kv[1][0], kv[0]))]:
-		print(f'{item}  {results[item][1]} series  {results[item][0]} singles')
+	
+	dateSpaces = ' ' * (floor(len(list(results.items())[0][0]) / 2) - 2)
+	print(f'{dateSpaces}DATE             SINGLES  SERIES  ')
+	# for item in [v[0] for v in sorted(results.items(), key=lambda kv: (-kv[1][0], kv[0]))]:
+	for item in results.items():
+		print(f'{item[0]}    {item[1][0] if item[1][0] > 0 else str()}       {item[1][1] if item[1][1] > 0 else str()} ')
 		
 	input()

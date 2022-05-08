@@ -5,8 +5,8 @@ import sys
 import os
 import string
 
-DIR_TO_SEARCH = r'D:\Users\rgw3\PythonScripts\SearchToBrowser'
-OUTPUT_FILE = r'D:\Users\rgw3\PythonScripts\SearchToBrowser\SearchResults.txt'
+DIR_TO_SEARCH = r'D:\Users\Bob\PythonScripts\SearchToBrowser'
+OUTPUT_FILE = r'D:\Users\Bob\PythonScripts\SearchToBrowser\SearchResults.txt'
 
 if __name__ == '__main__':
 
@@ -15,14 +15,14 @@ if __name__ == '__main__':
 
 	# verify the correct number of params 
 	if argc < 2:
-		print('Missing search term')
+		ctypes.windll.user32.MessageBoxW(0, 'Missing search term')
 		exit(1)
 
 	searchFiles = glob.glob(os.path.join(DIR_TO_SEARCH, '*SmartList.txt'))
 	searchTerms = f' {sys.argv[1].lower()} '
 
 	if len(searchFiles) == 0:
-		print(f'Can\'t find a SmartList.txt in {DIR_TO_SEARCH}')
+		ctypes.windll.user32.MessageBoxW(0, f'Can\'t find a SmartList.txt in {DIR_TO_SEARCH}')
 		exit(1)
 
 	with open(searchFiles[0], 'r') as f:

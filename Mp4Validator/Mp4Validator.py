@@ -14,6 +14,7 @@ JSON_PATH = 'Mp4Validator.json'
 NOW = datetime.datetime.now()
 WRITE_TO_SCREEN = True
 
+errorMessages: List[str] = []
 movieDirectories: List[str] = []
 outputPathname: str = ''
 seriesDirectories: List[str] = []
@@ -39,15 +40,17 @@ class SeriesEpisode:
 		try:
 			info = MediaInfo.parse(fullpath)
 		except Exception as ex:
-			print(f'Error reading {fullPath}')
+			m = f'Error reading {fullpath}'
+			print(m)
+			errorMessages.append(m)
 			return False
 		
-		print(f'Looking at {fullpath}')
-		print(f'found {len(info.tracks)} tracks')
+		# print(f'Looking at {fullpath}')
+		# print(f'found {len(info.tracks)} tracks')
 
-		for track in info.tracks:
-			print(f'Track duration = {track.duration}')
-			a = 1
+		# for track in info.tracks:
+		# 	print(f'Track duration = {track.duration}')
+		# 	a = 1
 
 
 		return True
@@ -61,6 +64,12 @@ def CheckMovies():
 
 	for directory in movieDirectories:
 		print(f'Checking {directory}')
+
+		if not os.path.isdir(directory):
+			m = f'WARNING: Unable to find directory {directory}'
+			errorMessages.append(m)
+			print(m)
+			continue
 
 		for file in [f for f in os.listdir(directory) if os.path.isfile(os.path.join(directory, f))]:
 			fullPath = os.path.join(directory, file)
@@ -98,9 +107,16 @@ def CheckSeries():
 	for directory in seriesDirectories:
 		print(f'Checking {directory}')
 
+		if not os.path.isdir(directory):
+			m = f'WARNING: Unable to find directory {directory}'
+			errorMessages.append(m)
+			print(m)
+			continue
+
 		# step through each series
 		for seriesDirectory in os.listdir(directory):
 			seriesFullPath = os.path.join(directory, seriesDirectory)
+			print('.', end=str())
 			
 			if os.path.isfile(seriesFullPath):
 				returnVal.append(('File found in top level directory', seriesFullPath))
@@ -137,7 +153,9 @@ def CheckSeries():
 					seriesEpisode = SeriesEpisode()
 					readSeriesEpisode = seriesEpisode.ReadEpisode(episodeFullPath)
 					if not readSeriesEpisode:
-						print(f'Error reading {episodeFullPath}')
+						m = f'Error reading {episodeFullPath}'
+						print(m)
+						errorMessages.append(m)
 						continue
 					
 
@@ -207,8 +225,29 @@ def RepresentsInt(s):
 def WriteOutput(movieMessages, seriesMessages):
 	global WRITE_TO_SCREEN
 
-	with open(outputPathname, 'w') as file:
+	outputDirectory = os.path.dirname(os.path.realpath(outputPathname))
+	if not os.path.isdir(outputDirectory):
+		try:
+			os.makedirs(outputDirectory)
+		except Exception as ex:
+			print(f'Error creating output directory. {ex}. ({outputDirectory}')
+			exit(1)
+		print(f'Created output directory {outputDirectory}')
+
+	outputFile = None
+	try:
+		outputFile = open(outputPathname, 'w')
+	except Exception as ex:
+		print (f'Error opening output file. {ex}. ({outputPathname})')
+		exit(1)
+
+	with outputFile as file:
 		file.write(f'{str(NOW)[:19]}\n')
+
+		if len(errorMessages) > 0:
+			file.write('\n== ERRORS ==\n')
+			for m in errorMessages:
+				file.write(f'  {m}\n')
 
 		if WRITE_TO_SCREEN: print('\nMovie Messages:')
 		file.write(f'\nMovie Messages:\n')

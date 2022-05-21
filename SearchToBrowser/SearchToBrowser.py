@@ -1,12 +1,18 @@
 import ctypes
 import datetime
 import glob
-import sys
 import os
+import re
 import string
+import sys
 
 DIR_TO_SEARCH = r'D:\Users\Bob\PythonScripts\SearchToBrowser'
 OUTPUT_FILE = r'D:\Users\Bob\PythonScripts\SearchToBrowser\SearchResults.txt'
+
+def CleanText(line:str) -> str:
+	returnVal = re.sub('[^A-Za-z0-9 \n\-]', str(), line)
+	return returnVal
+	
 
 if __name__ == '__main__':
 
@@ -19,7 +25,7 @@ if __name__ == '__main__':
 		exit(1)
 
 	searchFiles = glob.glob(os.path.join(DIR_TO_SEARCH, '*SmartList.txt'))
-	searchTerms = f' {sys.argv[1].lower()} '
+	searchTerms = f' {CleanText(sys.argv[1].lower())} '
 
 	if len(searchFiles) == 0:
 		ctypes.windll.user32.MessageBoxW(0, f'Can\'t find a SmartList.txt in {DIR_TO_SEARCH}')
@@ -41,12 +47,13 @@ if __name__ == '__main__':
 		ctypes.windll.user32.MessageBoxW(0, f'Stale file list: {stringdate}\nReplace SmartList.txt in {os.path.realpath(__file__)}', 'Stale File List')
 
 	foundLines = []
-	for line in searchLines:
+	for readline in searchLines:
+		line = CleanText(readline)
 		if searchTerms in line.lower() or searchTerms.rstrip() in line.lower() or searchTerms.lstrip() in line.lower():
 			foundLines.append(line)
 
 	with open(OUTPUT_FILE, 'w') as outfile:
-		outfile.write(f'Searchingx: {searchFiles[0]}\n')
+		outfile.write(f'Searching: {searchFiles[0]}\n')
 		outfile.write(f'Search Terms: {searchTerms.strip()}\n')
 		outfile.write(f'Found {len(foundLines)} matches\n\n')
 		outfile.writelines(foundLines)

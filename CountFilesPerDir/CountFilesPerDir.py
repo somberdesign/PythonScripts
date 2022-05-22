@@ -55,6 +55,7 @@ if __name__ == '__main__':
 	# loop over date dirs
 	for dir in [d for d in os.listdir(targetDir) if os.path.isdir(os.path.join(targetDir, d))]:
 		
+		# limit number of dirs that are processed
 		if GetDirDate(dir) < dt.now() or GetDirDate(dir) > dt.now() + timedelta(days=30):
 			continue
 		
@@ -76,18 +77,27 @@ if __name__ == '__main__':
 				items.append(halfstring)
 				continue
 				
+			# assume it's part of a series if the first half of the string has been seen before
 			if halfstring in items:
 				if halfstring not in seriesItems: seriesItems.append(halfstring)
 				continue
-				
-			items.append(halfstring)
 			
+			# assume it's an individual title if you get here
+			items.append(halfstring)
+
+			if len(items) > 0:
+				a = 1
+		
+		# remove series titles from individual item list
+		for i in seriesItems:
+			if i in items: items.remove(i)
+
 		results[testDir] = len(items), len(seriesItems)
 	
 	dateSpaces = ' ' * (floor(len(list(results.items())[0][0]) / 2) - 2)
 	print(f'{dateSpaces}DATE             SINGLES  SERIES  ')
 	# for item in [v[0] for v in sorted(results.items(), key=lambda kv: (-kv[1][0], kv[0]))]:
 	for item in results.items():
-		print(f'{item[0]}    {item[1][0] if item[1][0] > 0 else str()}       {item[1][1] if item[1][1] > 0 else str()} ')
+		print(f'{item[0]}    {item[1][0] if item[1][0] > 0 else " "}       {item[1][1] if item[1][1] > 0 else " "} ')
 		
 	input()

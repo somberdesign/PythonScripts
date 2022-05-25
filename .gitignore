@@ -14,6 +14,8 @@ NwAuctionDvdCheck/NwOutput.txt
 
 .config.json
 CreateStatsHtml_Secrets.json
+FileList/FileListConfig.py
+FileList/Output/
 ProcessOtaVideo/.config.json
 ProcessOtaVideo/.ProcessOtaVideo
 ReadSalesCsv/Output/

@@ -1,0 +1,17 @@
+
+AllFilesFilenameStem = 'AllFiles'
+
+DirNames = ['e:\\collections', r'e:\movies\0-9', r'e:\movies\a-b', r'e:\movies\c-e', r'e:\movies\f-i', r'e:\movies\j-m', r'f:\movies\s', r'f:\movies\n-r', r'f:\movies\the_a-j', r'f:\movies\the_k-z', r'f:\movies\t-z', r'g:\series']
+
+#ignore files and directories that contain one of these strings
+IgnoreStrings = ['gsdata', '.directory.json', 'file_id.diz']
+
+InfoFilename = 'file_id.diz'
+
+JsonInfoFilename = '.directory.json'
+
+OldFileDir = r'e:\catalog\old'
+OutputDir = r'e:\catalog'
+
+SmartListFilenameStem = 'SmartList'
+

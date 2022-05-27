@@ -15,6 +15,7 @@ NwAuctionDvdCheck/NwOutput.txt
 .config.json
 CreateStatsHtml_Secrets.json
 Secrets.json
+ReadSalesCsv/Input/
 ReadSalesCsv/Output/
 SearchToBrowser/*SmartList.txt
 SearchToBrowser/SearchResults.txt

@@ -14,11 +14,15 @@ NwAuctionDvdCheck/NwOutput.txt
 
 .config.json
 CreateStatsHtml_Secrets.json
-Secrets.json
 ReadSalesCsv/Input/
+FileList/FileListConfig.py
+FileList/Output/
+ProcessOtaVideo/.config.json
+ProcessOtaVideo/.ProcessOtaVideo
 ReadSalesCsv/Output/
 SearchToBrowser/*SmartList.txt
 SearchToBrowser/SearchResults.txt
+Secrets.json
 Mp4Validator/Output/
 Mp4Validator/Mp4Validator.json
 

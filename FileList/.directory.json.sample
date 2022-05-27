@@ -1,0 +1,25 @@
+{
+	"aliases": [
+		{
+			"__comment": "an itemName of . indicates the item is the directory in which the file resides",
+			"itemName": ".",
+			"description": "How I Met Your Mother Season 4"
+		},
+		{
+			"itemName": "How_I_Met_Your_Mother_S04E00_Season_5_Sneak_Peek.mp4",
+			"description": "Season 5 Sneak Peek"
+		},
+		{
+			"__comment": "items may be either files or directories",
+			"itemName": "How_I_Met_Your_Mother_S04E00_Webisodes",
+			"description": "Season 4 Webisodes"
+		}
+	],
+	"items": [
+		"Adam 12 S02 Missing E10",
+		"Adam 12 S02 Missing E21",
+		"Nip Tuck S04 Missing E15",
+		"Rescue Me S02 Missing E09",
+		"Smallville S07 Missing E17"
+	]
+}

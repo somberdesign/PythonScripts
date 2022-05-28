@@ -53,14 +53,23 @@ def CountDirectories(targetDir:str):
 
 		results[testDir] = len(items), len(seriesItems)
 	
-	dateSpaces = ' ' * (floor(len(list(results.items())[0][0]) / 2) - 2)
-	print(f'{dateSpaces}DATE             SINGLES  SERIES  ')
-	# for item in [v[0] for v in sorted(results.items(), key=lambda kv: (-kv[1][0], kv[0]))]:
-	for item in results.items():
-		print(f'{item[0]}    {item[1][0] if item[1][0] > 0 else " "}       {item[1][1] if item[1][1] > 0 else " "} ')
+	if len(results) > 0:
+		dateSpaces = ' ' * (floor(len(list(results.items())[0][0]) / 2) - 2)
+		print(f'{dateSpaces}DATE             SINGLES  SERIES  ')
+		# for item in [v[0] for v in sorted(results.items(), key=lambda kv: (-kv[1][0], kv[0]))]:
+		for item in results.items():
+			print(f'{item[0]}    {item[1][0] if item[1][0] > 0 else " "}       {item[1][1] if item[1][1] > 0 else " "} ')
 
 def CountFiles(targetDir:str):
-	pass
+	results = []
+	# loop over date dirs
+	for dir in [d for d in os.listdir(targetDir) if os.path.isdir(os.path.join(targetDir, d))]:
+		filecount = len([f for f in os.listdir(os.path.join(targetDir, dir))])
+		results.append((filecount, f'{filecount:03}\t{dir}'))
+
+	results.sort(key=lambda tup:tup[0]) # sort by number of files in dir
+	for item in results:
+		print(item[1])
 
 def ProcessCommandLine():
 	returnVal = [str(), []]
@@ -82,9 +91,9 @@ def ProcessCommandLine():
 	returnVal[0] = targetDir
 
 	if argc > 2:
-		for i in range(2..argc):
+		for i in range(2, argc):
 			arg = sys.argv[i]
-			if len(arg) < 3 or arg != '--' or arg[2:].lower() not in validArguments:
+			if len(arg) < 3 or arg[:2] != '--' or arg[2:].lower() not in validArguments:
 				print(f'Invalid argument: {arg}')
 				continue
 			returnVal[1].append(arg)
@@ -124,7 +133,7 @@ if __name__ == '__main__':
 	arguments = ProcessCommandLine()
 	targetDir = arguments[0]
 
-	if 'countfiles' in arguments[1]:
+	if '--countfiles' in arguments[1]:
 		CountFiles(targetDir)
 
 	else:

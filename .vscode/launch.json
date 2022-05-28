@@ -12,7 +12,8 @@
 			"console": "integratedTerminal",
 			"cwd": "${fileDirname}",
 			"argsX": ["1xKzZOoDwtMADCfCjta-XmLCv79ZBth8ojhJWC8AKK_w", "csvs"],
-			"args": ["D:\\DvdImages"]
+			"argsY": ["D:\\DvdImages"],
+			"args": ["D:\\Video", "--countfiles"]
 		}
 	]
 }

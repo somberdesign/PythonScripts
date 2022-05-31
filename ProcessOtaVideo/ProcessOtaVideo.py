@@ -12,35 +12,47 @@ from subprocess import run, PIPE, call
 import sys
 
 SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
-CONFIG_FILE_PATH = os.path.join(SCRIPT_DIR, '.config.json')
-FILE_AGE_SECONDS = 60 * 60 * 4
-IS_RUNNING_PATH = os.path.join(SCRIPT_DIR, '.' + os.path.splitext(os.path.basename(__file__))[0])
-LOGFILE_PATH = r'd:\winTvVideos\ProcessOtaVideo.log'
-MP4_DESTINATION_ROOT = r'\\diplomat\d\Video'
-VIDEO_DIRECTORY = r'd:\WinTvVideos'
-VIDEO_INPROCESS_DIRECTORY = r'd:\WinTvVideos\InProcess'
-
-configValues:dict = {}
-
-log = Logger.Logger(LOGFILE_PATH)
+configValues:dict = {
+	"script_dir": SCRIPT_DIR,
+	"config_file_path": os.path.join(SCRIPT_DIR, '.config.json'),
+	"is_running_path": os.path.join(SCRIPT_DIR, '.' + os.path.splitext(os.path.basename(__file__))[0])
+}
 
 def AddFilenamePrefix(filepath:str, prefix:str = 'OTA_'):
 	if os.path.basename(filepath)[0:len(prefix)] == prefix: return filepath
 	return os.path.join(os.path.dirname(filepath), prefix + os.path.basename(filepath))
 
-def GetConfigValues(configValues, configFilePath):
+def SetConfigValues(configValues, configFilePath):
 	
+	# read config values
 	f = None
 	try:
 		f = open(configFilePath, 'r')
 	except Exception as ex:
-		log.AddWarning(f'Unable to open config file. {ex}. ({configFilePath})')
-		return None
+		log.AddError(f'Unable to open config file. {ex}. ({configFilePath})')
+		exit(1)
 
 	with f:
-		data = json.load(f)
+		data = None
+		try:
+			data = json.load(f)
+		except Exception as ex:
+			print(f'Error reading config file: {ex}. ({configFilePath})')
+			exit(1)
+
 		for i in data:
+			if 'comment' in i: continue # skip comments in json
 			configValues[i] = data[i]
+
+	# make sure all req'd config values are present
+	missingConfigValue = False
+	for k in ['file_age_seconds', 'logfile_path', 'mp4_destination_root', 'video_directory', 'video_inprocess_directory']:
+		if k not in configValues:
+			missingConfigValue = True
+			print(f'Missing configuration value: {k}. ({configFilePath})')
+
+	if missingConfigValue:			
+		exit(1)
 
 
 def GetSubdirName(filename:str) -> str:
@@ -59,11 +71,11 @@ def GetSubdirName(filename:str) -> str:
 	return returnVal
 
 def ExitScript(exitCode:int, deleteIsRunningFile:bool = True):
-	if deleteIsRunningFile and os.path.isfile(IS_RUNNING_PATH):
+	if deleteIsRunningFile and os.path.isfile(configValues['is_running_path']):
 		try:
-			os.remove(IS_RUNNING_PATH)
+			os.remove(configValues['is_running_path'])
 		except Exception as ex:
-			log.AddWarning(f'Error deleting file. {ex} ({IS_RUNNING_PATH})')
+			log.AddWarning(f'Error deleting file. {ex} ({configValues["is_running_path"]})')
 
 	sys.exit(exitCode)
 
@@ -73,8 +85,8 @@ def GetTargetFile():
 	
 	targetFile = str()
 	
-	for f in glob(os.path.join(VIDEO_DIRECTORY, '*.ts')):
-		if (dt.now() - dt.fromtimestamp(os.path.getctime(f))).total_seconds() < FILE_AGE_SECONDS:
+	for f in glob(os.path.join(configValues['video_directory'], '*.ts')):
+		if (dt.now() - dt.fromtimestamp(os.path.getctime(f))).total_seconds() < configValues['file_age_seconds']:
 			continue
 		else:
 			targetFile = f
@@ -85,29 +97,18 @@ def GetTargetFile():
 
 if __name__ == "__main__":
 
+	SetConfigValues(configValues, configValues['config_file_path'])
+	log = Logger.Logger(configValues['logfile_path'])
+
 	# exit if one of these is already running
-	if os.path.isfile(IS_RUNNING_PATH):
+	if os.path.isfile(configValues['is_running_path']):
 		ExitScript(0, deleteIsRunningFile=False)
 	else:
-		f = open(IS_RUNNING_PATH, 'w')
+		f = open(configValues['is_running_path'], 'w')
 		f.write('this file prevents multiple instances of the script from running')
 		f.close()
 
-
-	GetConfigValues(configValues, CONFIG_FILE_PATH)
-	
-	if 'ffmpeg_path' in configValues:
-		ffmpegPath = configValues['ffmpeg_path']
-	else:
-		log.AddError(f'ffmpeg_path not found in config file ({CONFIG_FILE_PATH})')
-		ExitScript(1)
-	
-	if 'ffprobe_path' in configValues:
-		ffprobePath = configValues['ffprobe_path']
-	else:
-		log.AddError(f'ffprobe_path not found in config file ({CONFIG_FILE_PATH})')
-		ExitScript(1)
-	
+		
 	targetFile = GetTargetFile()
 
 	#############
@@ -119,7 +120,7 @@ if __name__ == "__main__":
 	print(f'{dt.now():%Y-%m-%d %H:%M}')
 	log.AddInfo(f'Processing file {os.path.basename(targetFile)}')
 
-	ffprobe = FFProbe.FFProbe(ffprobePath, targetFile)
+	ffprobe = FFProbe.FFProbe(configValues['ffprobe_path'], targetFile)
 	streamData = ffprobe.ffprobe()[0][0]
 
 	#############
@@ -127,7 +128,7 @@ if __name__ == "__main__":
 	#############
 
 	# move file to work dir
-	newFilepath = os.path.join(VIDEO_INPROCESS_DIRECTORY, os.path.basename(targetFile).replace(' ', '_'))
+	newFilepath = os.path.join(configValues['video_inprocess_directory'], os.path.basename(targetFile).replace(' ', '_'))
 	newFilepath = AddFilenamePrefix(newFilepath)
 	
 	try:
@@ -186,7 +187,7 @@ if __name__ == "__main__":
 		log.AddError(f'Error deleting file. {ex}. ({tsFile})')
 
 
-	mp4DestinationDir = MP4_DESTINATION_ROOT
+	mp4DestinationDir = configValues['mp4_destination_root']
 
 	# check destination dir
 	fileRoot = GetSubdirName(os.path.basename(tsFile))
@@ -200,9 +201,6 @@ if __name__ == "__main__":
 			os.makedirs(desiredDir)
 		except Exception as ex:
 			log.AddWarning(f'Unable to create directory. {ex}. ({desiredDir})')
-
-	if os.path.isdir(desiredDir):
-		mp4DestinationDir = desiredDir
 
 	# move file to destination
 	mp4DestinationPath = os.path.join(mp4DestinationDir, os.path.basename(mp4Filename))

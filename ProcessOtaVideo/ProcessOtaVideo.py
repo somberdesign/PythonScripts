@@ -1,6 +1,7 @@
 
 # from curses.ascii import FF
 from datetime import datetime as dt
+from genericpath import isfile
 import FFProbe
 import json
 import Logger
@@ -79,6 +80,10 @@ def ExitScript(exitCode:int, deleteIsRunningFile:bool = True):
 
 	sys.exit(exitCode)
 
+def GetCopyFlagFilename(path:str) -> str:
+	targetDirectory = os.path.dirname(f)
+	copyflag = '.' + os.path.splitext(os.path.basename(f))[0]
+	return os.path.joing(targetDirectory, copyflag)
 
 def GetTargetFile():
 	# find a file that is x hours old
@@ -86,7 +91,10 @@ def GetTargetFile():
 	targetFile = str()
 	
 	for f in glob(os.path.join(configValues['video_directory'], '*.ts')):
-		if (dt.now() - dt.fromtimestamp(os.path.getctime(f))).total_seconds() < configValues['file_age_seconds']:
+		if (
+			(dt.now() - dt.fromtimestamp(os.path.getctime(f))).total_seconds() < configValues['file_age_seconds']
+			or os.path.isfile(GetCopyFlagFilename(f)) # ignore files that are already being copied
+			):
 			continue
 		else:
 			targetFile = f
@@ -131,12 +139,30 @@ if __name__ == "__main__":
 	newFilepath = os.path.join(configValues['video_inprocess_directory'], os.path.basename(targetFile).replace(' ', '_'))
 	newFilepath = AddFilenamePrefix(newFilepath)
 	
+	copyFlagFilename = GetCopyFlagFilename(targetFile) # mark this file as being copied - for slow network connections
+	if not os.path.isfile(copyFlagFilename):
+		try:
+			f = open(copyFlagFilename, 'w')
+			f.write('this file prevents multiple instances of the script from copying the same file at the same time')
+		except Exception as ex:
+			log.AddWarning(f'Error creating file. {ex} ({copyFlagFilename})')
+		finally:
+			f.close()
+
 	try:
 		shutil.move(targetFile, newFilepath)
 	except Exception as ex:
 		log.AddError(f'Error moving file. {ex}. ({targetFile})')
 		ExitScript(1)
 	
+	# file successfully moved, remove copy flag
+	if os.path.isfile(copyFlagFilename):
+		try:
+			os.remove(copyFlagFilename)
+		except Exception as ex:
+			log.AddWarning(f'Error deleting file. {ex} ({copyFlagFilename})')
+
+
 	tsFile = newFilepath
 
 	# convert from ts to mp4
@@ -150,13 +176,7 @@ if __name__ == "__main__":
 	commandLine.append('-crf')
 	commandLine.append('26')
 
-	# if 'perry_mason' in tsFile.lower():
-	# 	commandLine.append('26')
-	# else:
-	# 	commandLine.append('22')
-
 	# reduce video dimentions
-	# log.AddInfo(f'streamData[height] = {streamData["height"]}')
 	if int(streamData['height']) > 480:
 		log.AddInfo(f'Resizing video from {streamData["width"]}x{streamData["height"]}')
 		commandLine.append('-vf')

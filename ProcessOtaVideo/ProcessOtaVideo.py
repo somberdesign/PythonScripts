@@ -81,9 +81,9 @@ def ExitScript(exitCode:int, deleteIsRunningFile:bool = True):
 	sys.exit(exitCode)
 
 def GetCopyFlagFilename(path:str) -> str:
-	targetDirectory = os.path.dirname(f)
-	copyflag = '.' + os.path.splitext(os.path.basename(f))[0]
-	return os.path.joing(targetDirectory, copyflag)
+	targetDirectory = os.path.dirname(path)
+	copyflag = '.' + os.path.splitext(os.path.basename(path))[0]
+	return os.path.join(targetDirectory, copyflag)
 
 def GetTargetFile():
 	# find a file that is x hours old
@@ -129,7 +129,11 @@ if __name__ == "__main__":
 	log.AddInfo(f'Processing file {os.path.basename(targetFile)}')
 
 	ffprobe = FFProbe.FFProbe(configValues['ffprobe_path'], targetFile)
-	streamData = ffprobe.ffprobe()[0][0]
+	streamData = None
+	if ffprobe.ffprobe()[0]	is None:
+		log.AddInfo(f'ffprobe is unable to read file {targetFile}')
+	else:
+		streamData = ffprobe.ffprobe()[0][0]
 
 	#############
 	# ExitScript(0, deleteIsRunningFile=False)
@@ -177,7 +181,7 @@ if __name__ == "__main__":
 	commandLine.append('26')
 
 	# reduce video dimentions
-	if int(streamData['height']) > 480:
+	if streamData is not None and int(streamData['height']) > 480:
 		log.AddInfo(f'Resizing video from {streamData["width"]}x{streamData["height"]}')
 		commandLine.append('-vf')
 		commandLine.append('scale=480:-2')

@@ -128,13 +128,6 @@ if __name__ == "__main__":
 	print(f'{dt.now():%Y-%m-%d %H:%M}')
 	log.AddInfo(f'Processing file {os.path.basename(targetFile)}')
 
-	ffprobe = FFProbe.FFProbe(configValues['ffprobe_path'], targetFile)
-	streamData = None
-	if ffprobe.ffprobe()[0]	is None:
-		log.AddInfo(f'ffprobe is unable to read file {targetFile}')
-	else:
-		streamData = ffprobe.ffprobe()[0][0]
-
 	#############
 	# ExitScript(0, deleteIsRunningFile=False)
 	#############
@@ -158,7 +151,8 @@ if __name__ == "__main__":
 	except Exception as ex:
 		log.AddError(f'Error moving file. {ex}. ({targetFile})')
 		ExitScript(1)
-	
+
+
 	# file successfully moved, remove copy flag
 	if os.path.isfile(copyFlagFilename):
 		try:
@@ -168,6 +162,12 @@ if __name__ == "__main__":
 
 
 	tsFile = newFilepath
+	ffprobe = FFProbe.FFProbe(configValues['ffprobe_path'], tsFile)
+	streamData = None
+	if ffprobe.ffprobe()[0]	is None:
+		log.AddInfo(f'ffprobe is unable to read file {tsFile}')
+	else:
+		streamData = ffprobe.ffprobe()[0][0]
 
 	# convert from ts to mp4
 	mp4Filename =  os.path.splitext(tsFile)[0] + '.mp4'
@@ -180,7 +180,7 @@ if __name__ == "__main__":
 	commandLine.append('-crf')
 	commandLine.append('26')
 
-	# reduce video dimentions
+	# reduce video dimensions
 	if streamData is not None and int(streamData['height']) > 480:
 		log.AddInfo(f'Resizing video from {streamData["width"]}x{streamData["height"]}')
 		commandLine.append('-vf')

@@ -1,6 +1,6 @@
  /***
     1. Go to Manage Extension in Opera's Scripter addon and add 
-    https://www.imdb.com/* to Site Access / On Specific Sites. 
+    https://www.themoviedb.org/* to Site Access / On Specific Sites. 
     
     2. Open an imdb page, click the Scripter addon and include this script in the box.
     
@@ -10,21 +10,6 @@
  
  ***/
 
-$(document).on("change", "[data-testid=storyline-plot-summary]", function(e)  {
-    console.log('========  doc change fired');
-    // plot summary  
-    plotDiv = $('[data-testid=storyline-plot-summary]');  
-        
-    // remove —Name  at end of some plots 
-    plot = plotDiv.text();  
-    if (plot.lastIndexOf('—') >= 0) { 
-        plot = plot.substr(0, plot.lastIndexOf('—'));  
-    } 
-
-    $('.plot-summary-top').text(plot);
-})
-    
-   
 function removeA(arr) { 
     var what, a = arguments, L = a.length, ax; 
     while (L > 1 && arr.length) { 
@@ -35,21 +20,16 @@ function removeA(arr) {
     } 
     return arr; 
 } 
-  
-// append new div to this one  
-titleDiv = $('[class^=TitleBlock__Container]').first();  
+
+// prepend new div to this one  
+titleDiv = $('#main');  
    
 //titleParent = $('[class^=TitleBlock__Container]').parent();  
 titleParent = $('.ipc-page-wrapper'); 
   
-// location of actor names  
-starParent = $("a").filter(function() {  
-    return $(this).text() === "Stars";    
-}).parent();  
-   
 // make list of genre  
 genreArr = [];  
-genreChips = $('[data-testid="genres"]').find('.ipc-chip__text').each(function(i, obj) { 
+genreChips = $('span.genres').children('a').each(function(i, obj) { 
     genreArr.push($(this).text()); 
 });  
   
@@ -88,37 +68,52 @@ if (genreArr.includes('Comedy')) {
 } 
   
 genres = genreArr.join('; '); 
+
+// rating
+rating = '0.0';
+ratingClasses = $('.percent').find('span.icon').attr('class').split(/\s+/);
+for (i=0; i<ratingClasses.length; i++) {
+    if (/icon\-r\d\d/.test(ratingClasses[i])) {
+        rating = ratingClasses[i].substring(6,8);
+    }
+}
   
 // make list of names  
 var names = '';  
-starParent.find('a').each(function(i, obj) {  
-  if (i > 0 && i < 4) {  
-       names += $(this).text() + '; ';   
+$('ol.people.scroller').find('img.profile').each(function(i, obj) {  
+  if (i < 3) {  
+       names += $(this).attr('alt') + '; ';   
   }  
-   
 });  
-names = names.substr(0, names.length-2) + ' ';  
+names = names.substring(0, names.length-2) + ' ';  
 
 // plot summary  
-plotDiv = $('[data-testid=storyline-plot-summary]');  
+plot = $('.overview').text().trim();  
     
-// remove —Name  at end of some plots 
-plot = plotDiv.text();  
-if (plot.lastIndexOf('—') >= 0) { 
-    plot = plot.substr(0, plot.lastIndexOf('—'));  
-} 
-
+release = $('div.facts > span.release').text().trim().substring(0, 10);
 
 // director  
-directorDiv = $('[data-testid=title-pc-principal-credit]').find('a').first();  
-director = directorDiv.text();  
+$('li.profile').each(function(i, obj){
+    if ($(this).text().includes('Director')) {
+        director = $(this).text().substring(0, $(this).text().indexOf('Director')).trim();
+        return false; // break out of loop
+    }
+});
+if ($('li.profile').first().text() )
+// directorDiv = $('[data-testid=title-pc-principal-credit]').find('a').first();  
+// director = directorDiv.text();  
 
 // add new div  
-titleParent.prepend(  
-  '<div style="padding-right:10px; padding-left:10px">'  
-  + '<br /><p>' + director + '</p>'  
-  + '<br /><p>' + genres + '</p>'  
-  + '<br /><p>' + names + '</p>'  
+console.log('adding div')
+titleDiv.prepend(  
+  '<div style="padding-right:10px; padding-left:10px">'
+  + '<p>'
+  + '<br />' + rating
+  + '<br />' + release
+  + '<br />' + director   
+  + '<br />' + genres   
+  + '<br />' + names   
+  + '</p>'
   + '<br /><p class="plot-summary-top">' + plot + '</p>'  
   + '</div><br />&nbsp;<br />'  
 );  

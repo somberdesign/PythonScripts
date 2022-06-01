@@ -79,7 +79,7 @@ for (i=0; i<ratingClasses.length; i++) {
 }
   
 // make list of names  
-var names = '';  
+names = '';  
 $('ol.people.scroller').find('img.profile').each(function(i, obj) {  
   if (i < 3) {  
        names += $(this).attr('alt') + '; ';   
@@ -88,20 +88,23 @@ $('ol.people.scroller').find('img.profile').each(function(i, obj) {
 names = names.substring(0, names.length-2) + ' ';  
 
 // plot summary  
+plot = '';
 plot = $('.overview').text().trim();  
-    
-release = $('div.facts > span.release').text().trim().substring(0, 10);
 
-// director  
+release = '';
+release = $('span.tag.release_date').text().substring(1, $('span.tag.release_date').text().length - 1);
+if ($('div.facts > span.release').text().trim().length > 0)
+    release = $('div.facts > span.release').text().trim().substring(0, 10);
+
+// director
+director = '';
 $('li.profile').each(function(i, obj){
     if ($(this).text().includes('Director')) {
         director = $(this).text().substring(0, $(this).text().indexOf('Director')).trim();
         return false; // break out of loop
     }
 });
-if ($('li.profile').first().text() )
-// directorDiv = $('[data-testid=title-pc-principal-credit]').find('a').first();  
-// director = directorDiv.text();  
+
 
 // add new div  
 console.log('adding div')

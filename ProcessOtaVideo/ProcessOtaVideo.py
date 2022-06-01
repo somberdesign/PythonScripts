@@ -134,7 +134,6 @@ if __name__ == "__main__":
 
 	# move file to work dir
 	newFilepath = os.path.join(configValues['video_inprocess_directory'], os.path.basename(targetFile).replace(' ', '_'))
-	newFilepath = AddFilenamePrefix(newFilepath)
 	
 	copyFlagFilename = GetCopyFlagFilename(targetFile) # mark this file as being copied - for slow network connections
 	if not os.path.isfile(copyFlagFilename):
@@ -171,7 +170,6 @@ if __name__ == "__main__":
 
 	# convert from ts to mp4
 	mp4Filename =  os.path.splitext(tsFile)[0] + '.mp4'
-	mp4Filename = AddFilenamePrefix(mp4Filename)
 
 	# base command arguments
 	commandLine = ['ffmpeg', '-y', '-i', tsFile, '-c:v', 'libx265', '-preset', 'slow', '-c:a', 'copy']
@@ -216,7 +214,8 @@ if __name__ == "__main__":
 	# check destination dir
 	fileRoot = GetSubdirName(os.path.basename(tsFile))
 	if len(fileRoot) == 0:
-		log.AddWarning(f'Unable to create fileRoot ({tsFile})')
+		log.AddWarning(f'Unable to make fileRoot name ({tsFile})')
+	fileRoot = 'OTA_' + fileRoot
 
 	# create destination dir, if needed
 	desiredDir = os.path.join(mp4DestinationDir, fileRoot)

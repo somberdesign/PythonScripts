@@ -218,12 +218,12 @@ if __name__ == "__main__":
 	fileRoot = 'OTA_' + fileRoot
 
 	# create destination dir, if needed
-	desiredDir = os.path.join(mp4DestinationDir, fileRoot)
-	if len(fileRoot) > 0 and not os.path.isdir(desiredDir):
+	mp4DestinationDir = os.path.join(mp4DestinationDir, fileRoot)
+	if len(fileRoot) > 0 and not os.path.isdir(mp4DestinationDir):
 		try:
-			os.makedirs(desiredDir)
+			os.makedirs(mp4DestinationDir)
 		except Exception as ex:
-			log.AddWarning(f'Unable to create directory. {ex}. ({desiredDir})')
+			log.AddWarning(f'Unable to create directory. {ex}. ({mp4DestinationDir})')
 
 	# move file to destination
 	mp4DestinationPath = os.path.join(mp4DestinationDir, os.path.basename(mp4Filename))

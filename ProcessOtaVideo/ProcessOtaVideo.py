@@ -9,6 +9,7 @@ from glob import glob
 import os
 import re
 import shutil
+import socket
 from subprocess import run, PIPE, call
 import sys
 
@@ -113,7 +114,7 @@ if __name__ == "__main__":
 		ExitScript(0, deleteIsRunningFile=False)
 	else:
 		f = open(configValues['is_running_path'], 'w')
-		f.write('this file prevents multiple instances of the script from running')
+		f.write(f'({socket.gethostname()}) this file prevents multiple instances of the script from running')
 		f.close()
 
 		
@@ -139,7 +140,7 @@ if __name__ == "__main__":
 	if not os.path.isfile(copyFlagFilename):
 		try:
 			f = open(copyFlagFilename, 'w')
-			f.write('this file prevents multiple instances of the script from copying the same file at the same time')
+			f.write(f'({socket.gethostname()}) this file prevents multiple instances of the script from copying the same file at the same time')
 		except Exception as ex:
 			log.AddWarning(f'Error creating file. {ex} ({copyFlagFilename})')
 		finally:

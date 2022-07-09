@@ -5,6 +5,7 @@ from genericpath import isfile
 import FFProbe
 import json
 import Logger
+from math import floor
 from glob import glob
 import os
 import re
@@ -14,15 +15,55 @@ from subprocess import run, PIPE, call
 import sys
 
 SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
+
+# these values are overwritten if they exist in the config file 
 configValues:dict = {
 	"script_dir": SCRIPT_DIR,
 	"config_file_path": os.path.join(SCRIPT_DIR, '.config.json'),
-	"is_running_path": os.path.join(SCRIPT_DIR, '.' + os.path.splitext(os.path.basename(__file__))[0])
+	"is_running_path": os.path.join(SCRIPT_DIR, '.' + os.path.splitext(os.path.basename(__file__))[0]),
+	"bad_files_directory": os.path.join(SCRIPT_DIR, 'badfiles')
 }
 
 def AddFilenamePrefix(filepath:str, prefix:str = 'OTA_'):
 	if os.path.basename(filepath)[0:len(prefix)] == prefix: return filepath
 	return os.path.join(os.path.dirname(filepath), prefix + os.path.basename(filepath))
+
+def CreateDirectory(dirpath:str) -> bool:
+	if os.path.isdir(dirpath):
+		log.AddWarning(f'Attempted to create a directory that alread exists. ({dirpath})')
+		return False
+
+	result = None
+	try:
+		result = os.makedirs(dirpath)
+	except Exception as ex:
+		log.AddError(f'Error creating directory. {ex}. ({dirpath})')
+		return False
+
+	return True
+
+
+def CreateIgnoreDurationCheckFile(filepath:str):
+	if isfile(filepath):
+		log.AddWarning(f'CreateIgnoreDurationCheckFile() called but file already exists. ({filepath})')
+		return
+
+	f = None
+	try:
+		f = open(filepath, 'w')
+	except Exception as ex:
+		log.AddError(f'Unable to create IgnoreLengthCheckFile. {ex}. ({filepath})')
+		return
+
+	with f:
+		f.writeln(f'# {dt.now():%Y-%m-%d %H:%M} - This file created by ProcessOtaVideo')
+		f.writeln('# Filenames that appear in this list are not subject to duration validation')
+		f.writeln('# Add filenames manually, one per line')
+		f.writeln('# After a target file is successfully preocessed ProcessOtaVideo removes it from this file\n\n')
+
+	log.AddInfo(f'Created Ignore Duration Check file. ({filepath})')
+
+
 
 def SetConfigValues(configValues, configFilePath):
 	
@@ -103,6 +144,21 @@ def GetTargetFile():
 	
 	return targetFile
 
+def MoveFile(filePath:str, destinationPath:str, note:str = '') -> bool:
+
+	try:
+		os.rename(filePath, destinationPath)
+	except Exception as ex:
+		log.AddError(f'Failed to move file {filePath} to {destinationPath}. {ex}')
+		return False
+
+	message = str()
+	if len(note) > 0: message += f'{note}. '
+	log.AddInfo(f'{message}Moved file {filePath} to {destinationPath}.')
+
+	return True
+
+
 
 if __name__ == "__main__":
 
@@ -117,13 +173,16 @@ if __name__ == "__main__":
 		f.write(f'({socket.gethostname()}) this file prevents multiple instances of the script from running')
 		f.close()
 
+	# make duration check file
+	if not os.path.isfile(configValues['no_duration_check_filename']):
+		CreateIgnoreDurationCheckFile(configValues['no_duration_check_filename'])
+
+	# create badfiles directory
+	if not os.path.isdir(configValues['bad_files_directory']):
+		CreateDirectory(configValues['bad_files_directory'])
+
 		
 	targetFile = GetTargetFile()
-
-	#############
-	# targetFile = r"d:\WinTvVideos\Quincy_ME_20220203_1000.ts"
-	#############
-
 	if len(targetFile) == 0: ExitScript(0)  # no file found to be processed
 
 	print(f'{dt.now():%Y-%m-%d %H:%M}')
@@ -169,8 +228,6 @@ if __name__ == "__main__":
 	else:
 		streamData = ffprobe.ffprobe()[0][0]
 
-	# convert from ts to mp4
-	mp4Filename =  os.path.splitext(tsFile)[0] + '.mp4'
 
 	# base command arguments
 	commandLine = ['ffmpeg', '-y', '-i', tsFile, '-c:v', 'libx265', '-preset', 'slow', '-c:a', 'copy']
@@ -180,12 +237,23 @@ if __name__ == "__main__":
 	commandLine.append('26')
 
 	# reduce video dimensions
-	if streamData is not None and int(streamData['height']) > 480:
-		log.AddInfo(f'Resizing video from {streamData["width"]}x{streamData["height"]}')
-		commandLine.append('-vf')
-		commandLine.append('scale=480:-2')
+	if streamData is not None:
+		
+		# skip file if it's a funny size
+		if floor(float(streamData["duration"])/60) % 30 != 0:
+			newFilepath = os.path.join(configValues['bad_files_directory'], os.path.basename(tsFile))
+			note = f'File is {round(float(streamData["duration"])/60, 2)} minutes long. Moved to badfiles directory.'
+			MoveFile(tsFile, newFilepath, note)
+			ExitScript(0)
+			
+		# change size, if needed
+		if int(streamData['height']) > 480:
+			log.AddInfo(f'Resizing video from {streamData["width"]}x{streamData["height"]}')
+			commandLine.append('-vf')
+			commandLine.append('scale=480:-2')
 	
 	# add target filename
+	mp4Filename =  os.path.splitext(tsFile)[0] + '.mp4'
 	commandLine.append(mp4Filename)
 
 	log.AddInfo(f'Executing ffmpeg: {" ".join(commandLine)}')

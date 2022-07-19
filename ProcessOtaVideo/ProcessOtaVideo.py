@@ -14,6 +14,7 @@ import socket
 from subprocess import run, PIPE, call
 import sys
 
+ENABLE_PROCESS_FILES = True # True during normal runs, False when working on script
 SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
 
 # these values are overwritten if they exist in the config file 
@@ -56,46 +57,14 @@ def CreateIgnoreDurationCheckFile(filepath:str):
 		return
 
 	with f:
-		f.writeln(f'# {dt.now():%Y-%m-%d %H:%M} - This file created by ProcessOtaVideo')
-		f.writeln('# Filenames that appear in this list are not subject to duration validation')
-		f.writeln('# Add filenames manually, one per line')
-		f.writeln('# After a target file is successfully preocessed ProcessOtaVideo removes it from this file\n\n')
+		f.write(f'# {dt.now():%Y-%m-%d %H:%M} - This file created by ProcessOtaVideo\n')
+		f.write('# Filenames that contain strings that appear in this list are not subject to duration validation\n')
+		f.write('# Add case insensitive search strings manually, one per line\n')
+		f.write('#\n')
+		f.write('# After a file matched by a string is successfully processed, ProcessOtaVideo removes the string from this file.\n')
+		f.write('# Begin a string with the "+" symbol to disable this behavior and make it persist. Ex: "+Seinfeld" will not be deleted.\n')
 
 	log.AddInfo(f'Created Ignore Duration Check file. ({filepath})')
-
-
-
-def SetConfigValues(configValues, configFilePath):
-	
-	# read config values
-	f = None
-	try:
-		f = open(configFilePath, 'r')
-	except Exception as ex:
-		log.AddError(f'Unable to open config file. {ex}. ({configFilePath})')
-		exit(1)
-
-	with f:
-		data = None
-		try:
-			data = json.load(f)
-		except Exception as ex:
-			print(f'Error reading config file: {ex}. ({configFilePath})')
-			exit(1)
-
-		for i in data:
-			if 'comment' in i: continue # skip comments in json
-			configValues[i] = data[i]
-
-	# make sure all req'd config values are present
-	missingConfigValue = False
-	for k in ['file_age_seconds', 'logfile_path', 'mp4_destination_root', 'video_directory', 'video_inprocess_directory']:
-		if k not in configValues:
-			missingConfigValue = True
-			print(f'Missing configuration value: {k}. ({configFilePath})')
-
-	if missingConfigValue:			
-		exit(1)
 
 
 def GetSubdirName(filename:str) -> str:
@@ -158,6 +127,93 @@ def MoveFile(filePath:str, destinationPath:str, note:str = '') -> bool:
 
 	return True
 
+def ReadNoDurationCheckStrings(noDurationFilepath:str) -> list:
+	matchList = []
+	
+	f = None
+	try:
+		f = open(noDurationFilepath, 'r')
+	except Exception as ex:
+		log.AddError(f'Unable to open config file. {ex}. ({noDurationFilepath})')
+		return []
+
+	with f:
+		for line in f:
+			commentPos = line.find('#') 
+			if commentPos == -1: matchList.append((line.strip(), False)) # no comment on line
+			if commentPos > 0: matchList.append((line[:commentPos].strip(), False)) # ignore lines that begin with #, only read to first # in string
+
+	finalMatchList = []
+	for s in matchList:
+		if len(s[0]) == 0: continue # remove items with empty strings
+		
+		if s[0][0] == '+':
+			finalMatchList.append((s[0][1:].lower(), True)) # if + at start of line, remove it and set Persist to True
+		else:
+			finalMatchList.append((s[0].lower(), False))
+
+	return finalMatchList
+
+def RemoveDurationCheckItem(noDurationFilepath:str, itemName:str) -> bool:
+	f = None
+	try:
+		f = open(noDurationFilepath, 'r')
+	except Exception as ex:
+		log.AddError(f'RemoveDurationCheckItem(): Unable to open config file. {ex}. ({noDurationFilepath})')
+		return False
+
+	lines = None
+	with f:
+		lines = f.readlines()
+		lines = [line.rstrip().lower() for line in lines]
+	f.close()
+
+	try:
+		f = open(noDurationFilepath, 'w')
+	except Exception as ex:
+		log.AddError(f'RemoveDurationCheckItem(): Unable to open file to write. {ex}. ({noDurationFilepath})')
+		return False
+
+	with f:
+		for line in lines:
+			if line == itemName:
+				log.AddInfo(f'Removed item {line} from nodurationcheck file. ({noDurationFilepath})')
+			else:
+				f.write(f'{line}\n')
+
+	return True
+
+def SetConfigValues(configValues, configFilePath):
+	
+	# read config values
+	f = None
+	try:
+		f = open(configFilePath, 'r')
+	except Exception as ex:
+		log.AddError(f'Unable to open config file. {ex}. ({configFilePath})')
+		exit(1)
+
+	with f:
+		data = None
+		try:
+			data = json.load(f)
+		except Exception as ex:
+			print(f'Error reading config file: {ex}. ({configFilePath})')
+			exit(1)
+
+		for i in data:
+			if 'comment' in i: continue # skip comments in json
+			configValues[i] = data[i]
+
+	# make sure all req'd config values are present
+	missingConfigValue = False
+	for k in ['file_age_seconds', 'logfile_path', 'mp4_destination_root', 'video_directory', 'video_inprocess_directory']:
+		if k not in configValues:
+			missingConfigValue = True
+			print(f'Missing configuration value: {k}. ({configFilePath})')
+
+	if missingConfigValue:			
+		exit(1)
 
 
 if __name__ == "__main__":
@@ -166,16 +222,19 @@ if __name__ == "__main__":
 	log = Logger.Logger(configValues['logfile_path'])
 
 	# exit if one of these is already running
-	if os.path.isfile(configValues['is_running_path']):
-		ExitScript(0, deleteIsRunningFile=False)
-	else:
-		f = open(configValues['is_running_path'], 'w')
-		f.write(f'({socket.gethostname()}) this file prevents multiple instances of the script from running')
-		f.close()
+	if ENABLE_PROCESS_FILES:
+		if os.path.isfile(configValues['is_running_path']):
+			ExitScript(0, deleteIsRunningFile=False)
+		else:
+			f = open(configValues['is_running_path'], 'w')
+			f.write(f'({socket.gethostname()}) this file prevents multiple instances of the script from running')
+			f.close()
 
 	# make duration check file
 	if not os.path.isfile(configValues['no_duration_check_filename']):
 		CreateIgnoreDurationCheckFile(configValues['no_duration_check_filename'])
+
+	NoDurationCheckItems = ReadNoDurationCheckStrings(configValues['no_duration_check_filename'])
 
 	# create badfiles directory
 	if not os.path.isdir(configValues['bad_files_directory']):
@@ -186,7 +245,10 @@ if __name__ == "__main__":
 	if len(targetFile) == 0: ExitScript(0)  # no file found to be processed
 
 	print(f'{dt.now():%Y-%m-%d %H:%M}')
-	log.AddInfo(f'Processing file {os.path.basename(targetFile)}')
+	message = f'Processing file {os.path.basename(targetFile)}'
+	if not ENABLE_PROCESS_FILES: 
+		message = f'TEST TEST {message} TEST TEST'
+	log.AddInfo(message)
 
 	#############
 	# ExitScript(0, deleteIsRunningFile=False)
@@ -195,6 +257,10 @@ if __name__ == "__main__":
 	# move file to work dir
 	newFilepath = os.path.join(configValues['video_inprocess_directory'], os.path.basename(targetFile).replace(' ', '_'))
 	
+	if not ENABLE_PROCESS_FILES:
+		log.AddInfo('ENABLE_PROCESS_FILES is False. Exiting script.')
+		ExitScript(0, False)
+
 	copyFlagFilename = GetCopyFlagFilename(targetFile) # mark this file as being copied - for slow network connections
 	if not os.path.isfile(copyFlagFilename):
 		try:
@@ -236,17 +302,29 @@ if __name__ == "__main__":
 	commandLine.append('-crf')
 	commandLine.append('26')
 
-	# reduce video dimensions
 	if streamData is not None:
 		
+		# see if filename is in nodurationcheck file
+		performDurationCheck = True
+		for i in NoDurationCheckItems:
+			if i[0].lower() in os.path.basename(tsFile).lower():
+				performDurationCheck = False
+				log.AddInfo(f'Found {i[0]} in no duration check file. Disabled duration check. ({os.path.basename(tsFile)})')
+				
+				# remove item from nodurationcheck file if persist is not set
+				if not i[1]:
+					RemoveDurationCheckItem(configValues['no_duration_check_filename'], i[0])
+
+				break
+
 		# skip file if it's a funny size
-		if floor(float(streamData["duration"])/60) % 30 != 0:
+		if performDurationCheck and floor(float(streamData["duration"])/60) % 30 != 0:
 			newFilepath = os.path.join(configValues['bad_files_directory'], os.path.basename(tsFile))
 			note = f'File is {round(float(streamData["duration"])/60, 2)} minutes long. Moved to badfiles directory.'
 			MoveFile(tsFile, newFilepath, note)
 			ExitScript(0)
 			
-		# change size, if needed
+		# reduce vido dimensions, if needed
 		if int(streamData['height']) > 480:
 			log.AddInfo(f'Resizing video from {streamData["width"]}x{streamData["height"]}')
 			commandLine.append('-vf')
@@ -262,14 +340,6 @@ if __name__ == "__main__":
 	if returnCode != 0:
 		log.AddError(f'Error executing ffmpeg. returnCode={returnCode}. ({tsFile})')
 		ExitScript(1)
-
-	
-	# if process.returncode != 0:
-	# 	stderr = process.stderr
-	# 	if stderr is not None and len(stderr) > 200: stderr = stderr[:200] + '...'
-	# 	log.AddError(f'Error executing ffmpeg. {stderr}. ({tsFile})')
-	# 	ExitScript(1)
-
 
 	# delete ts file
 	try:

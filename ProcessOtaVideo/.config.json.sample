@@ -6,6 +6,7 @@
     "file_age_seconds_comment": "File must be older than this to be selected for conversion. Ensures the selected file is not still being recorded.",
     "logfile_path": "d:\\WinTvVideos\\ProcessOtaVideo.log",
     "mp4_destination_root": "\\\\diplomat\\d\\Video",
+    "no_duration_check_filename": ".nodurationcheck",
     "video_directory": "d:\\WinTvVideos",
     "video_directory_comment": "Directory in which ts files to be converted reside",
     "video_inprocess_directory": "d:\\WinTvVideos\\InProcess",

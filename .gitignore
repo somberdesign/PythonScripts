@@ -19,7 +19,6 @@ FileList/FileListConfig.py
 FileList/Output/
 ProcessOtaVideo/.config.json
 ProcessOtaVideo/.ProcessOtaVideo
-ProcessOtaVideo/.nodurationcheck
 ReadSalesCsv/Output/
 SearchToBrowser/*SmartList.txt
 SearchToBrowser/SearchResults.txt

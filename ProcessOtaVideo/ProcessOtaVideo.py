@@ -29,6 +29,7 @@ def SetConfigValues(configValues, configFilePath):
 	f = None
 	try:
 		f = open(configFilePath, 'r')
+		print(f'Using config file {configFilePath}')
 	except Exception as ex:
 		log.AddError(f'Unable to open config file. {ex}. ({configFilePath})')
 		exit(1)

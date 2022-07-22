@@ -15,9 +15,3 @@
 NOTE: Series sales stats are at the end of the file
 
 
-=== Create a list of all albums ===
-
-1. Map a drive to the location of the mp3s. I used "net use h: \\whitley-202007\h"
-
-2. Open Media Monkey and open the location of the mp3s in the nav panel on the left. I selected ~/Music/Albums/All and it took a long while to scan all the files.
-

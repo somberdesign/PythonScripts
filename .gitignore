@@ -13,6 +13,7 @@ NwAuctionDvdCheck/NwOutput.txt
 /SeriesConversion/.seriesconversion
 
 .config.json
+.vscode/launch.json
 CreateStatsHtml_Secrets.json
 ReadSalesCsv/Input/
 FileList/albumlist.txt
@@ -21,6 +22,7 @@ FileList/Output/
 ProcessOtaVideo/.config.json
 ProcessOtaVideo/.ProcessOtaVideo
 ReadSalesCsv/Output/
+SearchToBrowser/AlbumList.txt
 SearchToBrowser/*SmartList.txt
 SearchToBrowser/SearchResults.txt
 Secrets.json

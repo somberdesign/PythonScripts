@@ -11,9 +11,9 @@
 			"program": "${file}",
 			"console": "integratedTerminal",
 			"cwd": "${fileDirname}",
-			"argsX": ["1xKzZOoDwtMADCfCjta-XmLCv79ZBth8ojhJWC8AKK_w", "csvs"],
+			"args": ["D:\\Users\\Bob\\PythonScripts\\SearchToBrowser\\*SmartList.txt", "enya"],
 			"argsY": ["D:\\DvdImages"],
-			"args": ["D:\\Video", "--countfiles"]
+			"argsX": ["D:\\Video", "--countfiles"]
 		}
 	]
 }

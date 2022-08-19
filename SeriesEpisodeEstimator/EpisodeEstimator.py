@@ -7,7 +7,7 @@ import sys
 # when recording the Decades binge on weekends.
 
 BINGE_LENGTH_HOURS = 42
-BINGE_START_DATETIME = datetime(2022, 8, 14, 11, 0) # time first episode is broadcast when binge begins
+BINGE_START_DATETIME = datetime(2022, 8, 13, 11, 0) # time first episode is broadcast when binge begins
 EPISODE_LENGTH_MINUTES = 60 # number of minutes in each episode
 START_SEASON = 1 # season number of first broadcast
 START_EPISODE = 1 # episode number of first broadcast
@@ -58,7 +58,12 @@ def StartDateAndTime(filename:str) -> datetime:
 
 	returnVal = datetime.min
 	try:
-		returnVal = datetime(int(dateParts[0][0:4]), int(dateParts[0][5:6]), int(dateParts[0][7:8]), int(dateParts[1][0:2]), int(dateParts[1][3:4]))
+		yr = int(dateParts[0][0:4])
+		mo = int(dateParts[0][4:6])
+		dy = int(dateParts[0][6:8])
+		hr = int(dateParts[1][0:2])
+		mn = int(dateParts[1][2:4])
+		returnVal = datetime(yr, mo, dy, hr, mn)
 	except Exception:
 		return datetime.min
 
@@ -84,9 +89,6 @@ if __name__ == '__main__':
 	episodeLengthMinutes = EPISODE_LENGTH_MINUTES
 	timeslotTable = TimeSlotTable()
 
-	for s in timeslotTable:
-		print(f'{s}')
-
 	seasonRolloverMultiplier = 0 # used if number of broadcast slots exceed total number of episodes
 	for f in files:
 		episodeDt = StartDateAndTime(f)
@@ -95,9 +97,18 @@ if __name__ == '__main__':
 			continue
 
 		minutesFromBase = (episodeDt - baseDt).total_seconds() / 60
-		timeSlotsFromBase = int(minutesFromBase / episodeLengthMinutes)
-		print(timeSlotsFromBase)
-		print(f'{timeslotTable[timeSlotsFromBase]}\t{f}')
+		timeSlotsFromBase = int(minutesFromBase / episodeLengthMinutes) - (seasonRolloverMultiplier * totalEpisodeCount)
+		
+		# go back to season 1 if all the episodes have been shown
+		if timeSlotsFromBase >= totalEpisodeCount: 
+			timeSlotsFromBase = 1
+			seasonRolloverMultiplier += 1
+
+		
+		if timeSlotsFromBase >= 0 and timeSlotsFromBase < len(timeslotTable):
+			print(f'{timeslotTable[timeSlotsFromBase]}\t{f}')
+		else:
+			print(f'WARNNG: Invalid timeSlotsFromBase value of {timeSlotsFromBase} for {f}')
 		
 
 

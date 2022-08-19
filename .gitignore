@@ -21,10 +21,12 @@ FileList/FileListConfig.py
 FileList/Output/
 ProcessOtaVideo/.config.json
 ProcessOtaVideo/.ProcessOtaVideo
+ProcessOtaVideo/stderr
 ReadSalesCsv/Output/
 SearchToBrowser/AlbumList.txt
 SearchToBrowser/*SmartList.txt
 SearchToBrowser/SearchResults.txt
+SearchToBrowser/*.html
 Secrets.json
 Mp4Validator/Output/
 Mp4Validator/Mp4Validator.json

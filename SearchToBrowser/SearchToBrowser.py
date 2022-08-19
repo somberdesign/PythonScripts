@@ -8,7 +8,7 @@ import sys
 from typing import Tuple
 
 DIR_TO_SEARCH = r'D:\Users\Bob\PythonScripts\SearchToBrowser'
-OUTPUT_FILE = r'D:\Users\Bob\PythonScripts\SearchToBrowser\SearchResults.txt'
+OUTPUT_FILE = r'D:\Users\Bob\PythonScripts\SearchToBrowser\SearchResults.html'
 
 def CleanText(line:str) -> str:
 	returnVal = re.sub('[^A-Za-z0-9 \n\-]', str(), line)
@@ -80,10 +80,11 @@ if __name__ == '__main__':
 			foundLines.append(line)
 
 	with open(OUTPUT_FILE, 'w') as outfile:
-		outfile.write(f'Searching: {searchFile}\n')
-		outfile.write(f'Search Terms: {searchTerms.strip()}\n')
-		outfile.write(f'Found {len(foundLines)} matches\n\n')
-		outfile.writelines(foundLines)
+		outfile.write(f'Searching: <a href="file://{searchFile}" target="_new">{searchFile}</a><br />')
+		outfile.write(f'Search Terms: {searchTerms.strip()}<br />')
+		outfile.write(f'Found {len(foundLines)} matches<br />&nbsp;<br />')
+		for l in foundLines:
+			outfile.write(f'{l}<br />')
 	
 	
 

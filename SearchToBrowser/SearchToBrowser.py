@@ -82,9 +82,14 @@ if __name__ == '__main__':
 	with open(OUTPUT_FILE, 'w') as outfile:
 		outfile.write(f'Searching: <a href="file://{searchFile}" target="_new">{searchFile}</a><br />')
 		outfile.write(f'Search Terms: {searchTerms.strip()}<br />')
-		outfile.write(f'Found {len(foundLines)} matches<br />&nbsp;<br />')
-		for l in foundLines:
-			outfile.write(f'{l}<br />')
+		outfile.write(f'Found {len(foundLines)} matches in {len(searchLines)} records<br />&nbsp;<br />')
+		
+		# print a warning if the file searched has 0 records
+		if len(searchLines) == 0:
+			outfile.write('<p>INVALID</p>')
+		else:
+			for l in foundLines:
+				outfile.write(f'{l}<br />')
 	
 	
 

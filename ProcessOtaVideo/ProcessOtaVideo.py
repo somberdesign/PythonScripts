@@ -51,7 +51,8 @@ def CreateIgnoreDurationCheckFile(filepath:str):
 
 	f = None
 	try:
-		f = open(filepath, 'w')
+		f = open(filepath, 'r')
+		print(f'Using config file {filepath}')
 	except Exception as ex:
 		log.AddError(f'Unable to create IgnoreLengthCheckFile. {ex}. ({filepath})')
 		return
@@ -335,7 +336,12 @@ if __name__ == "__main__":
 	commandLine.append(mp4Filename)
 
 	log.AddInfo(f'Executing ffmpeg: {" ".join(commandLine)}')
-	returnCode = call(commandLine)
+	returnCode = None
+	try:
+		returnCode = call(commandLine)
+	except Exception as ex:
+		log.AddError(f'Error converting file. {Ex}. ({tsFile})')
+
 
 	if returnCode != 0:
 		log.AddError(f'Error executing ffmpeg. returnCode={returnCode}. ({tsFile})')
@@ -346,6 +352,10 @@ if __name__ == "__main__":
 		os.remove(tsFile)
 	except Exception as ex:
 		log.AddError(f'Error deleting file. {ex}. ({tsFile})')
+		newFilepath = os.path.join(configValues['bad_files_directory'], os.path.basename(tsFile))
+		note = f'Moved file to badfiles directory ({newFilepath})'
+		MoveFile(tsFile, newFilepath, note)
+		ExitScript(0)
 
 
 	mp4DestinationDir = configValues['mp4_destination_root']

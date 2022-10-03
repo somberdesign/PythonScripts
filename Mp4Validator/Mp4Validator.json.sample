@@ -1,4 +1,10 @@
 {
+	"ignore_directories": [
+		"__gsdata__"
+	],
+	"ignore_filenames": [
+		".directory.json"
+	],
 	"movie_directories": [
 		"\\\\whitley-202007\\H\\Movies\\0-9\\",
 		"\\\\whitley-202007\\H\\Movies\\a-b\\",

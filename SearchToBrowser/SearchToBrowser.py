@@ -5,33 +5,60 @@ import os
 import re
 import string
 import sys
+from typing import Tuple
 
 DIR_TO_SEARCH = r'D:\Users\Bob\PythonScripts\SearchToBrowser'
-OUTPUT_FILE = r'D:\Users\Bob\PythonScripts\SearchToBrowser\SearchResults.txt'
+OUTPUT_FILE = r'D:\Users\Bob\PythonScripts\SearchToBrowser\SearchResults.html'
 
 def CleanText(line:str) -> str:
 	returnVal = re.sub('[^A-Za-z0-9 \n\-]', str(), line)
 	return returnVal
 	
-
-if __name__ == '__main__':
+def GetArguments(configValues:dict) -> Tuple:
 
 	# get the number of parameters passed in 
 	argc = len(sys.argv)
 
 	# verify the correct number of params 
-	if argc < 2:
-		ctypes.windll.user32.MessageBoxW(0, 'Missing search term')
-		exit(1)
+	# arg[1] = file to search
+	# arg[2] = search term
+	if argc < 3:
+		return False, 'Usage: SearchToBrowser.py <searchfile> <searchterm>'
 
-	searchFiles = glob.glob(os.path.join(DIR_TO_SEARCH, '*SmartList.txt'))
-	searchTerms = f' {CleanText(sys.argv[1].lower())} '
+	searchFile = sys.argv[1]
+	if '*' in sys.argv[1]:
+		searchFile = str()
+		candidates = glob.glob(sys.argv[1])
+		if len(candidates) > 0:
+			searchFile = candidates[0]
 
-	if len(searchFiles) == 0:
-		ctypes.windll.user32.MessageBoxW(0, f'Can\'t find a SmartList.txt in {DIR_TO_SEARCH}')
-		exit(1)
 
-	with open(searchFiles[0], 'r') as f:
+	if not os.path.isfile(searchFile):
+		return False, f'{searchFile} is not a file' if len(searchFile) > 0 else f'Unable to find match at {searchFile}'
+
+	configValues['searchfilepath'] = searchFile
+	configValues['searchterm'] = sys.argv[2]
+
+	return True, str()
+
+
+if __name__ == '__main__':
+
+	configValues = {
+		'searchfilepath' : str(),
+		'searchterm' : str()
+	}
+	
+	result = GetArguments(configValues)
+	if not result[0]:
+		ctypes.windll.user32.MessageBoxW(0, result[1])
+		exit(0)
+
+
+	searchFile = configValues['searchfilepath']
+	searchTerms = CleanText(configValues['searchterm'].lower())
+
+	with open(searchFile, 'r') as f:
 		searchLines = f.readlines()
 
 	filedate = None
@@ -53,10 +80,16 @@ if __name__ == '__main__':
 			foundLines.append(line)
 
 	with open(OUTPUT_FILE, 'w') as outfile:
-		outfile.write(f'Searching: {searchFiles[0]}\n')
-		outfile.write(f'Search Terms: {searchTerms.strip()}\n')
-		outfile.write(f'Found {len(foundLines)} matches\n\n')
-		outfile.writelines(foundLines)
+		outfile.write(f'Searching: <a href="file://{searchFile}" target="_new">{searchFile}</a><br />')
+		outfile.write(f'Search Terms: {searchTerms.strip()}<br />')
+		outfile.write(f'Found {len(foundLines)} matches in {len(searchLines)} records<br />&nbsp;<br />')
+		
+		# print a warning if the file searched has 0 records
+		if len(searchLines) == 0:
+			outfile.write('<p>INVALID</p>')
+		else:
+			for l in foundLines:
+				outfile.write(f'{l}<br />')
 	
 	
 

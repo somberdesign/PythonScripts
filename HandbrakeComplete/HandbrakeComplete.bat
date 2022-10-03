@@ -3,7 +3,7 @@ SETLOCAL
 
 SET FFMPEG_PATH=D:\Video\ffmpeg.exe
 SET FILE_SIZE_LIMIT=750000000
-SET LOGFILE=D:\Video\HandBrakeComplete.log
+SET LOGFILE=D:\Video\_HandBrakeComplete.log
 
 REM Create dtStamp - "2021-01-14 23:10"
 SET HOUR=%time:~0,2%

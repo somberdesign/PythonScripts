@@ -9,7 +9,8 @@ OUTPUT_FILE = r'\Users\Bob\PythonScripts\SearchToBrowser\AlbumList.txt'
 
 albumlist = []
 for dir in glob(path.join(ALBUM_DIR, '*', '*')):
-    albumlist.append(dir.split(path.sep)[dir.count(path.sep)])
+	if not path.isdir(dir):	continue
+	albumlist.append(dir.split(path.sep)[dir.count(path.sep)])
 
 albumlist = sorted(albumlist, key=str.casefold)
 

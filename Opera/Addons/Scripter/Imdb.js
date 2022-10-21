@@ -10,21 +10,6 @@
  
  ***/
 
-$(document).on("change", "[data-testid=storyline-plot-summary]", function(e)  {
-    console.log('========  doc change fired');
-    // plot summary  
-    plotDiv = $('[data-testid=storyline-plot-summary]');  
-        
-    // remove —Name  at end of some plots 
-    plot = plotDiv.text();  
-    if (plot.lastIndexOf('—') >= 0) { 
-        plot = plot.substr(0, plot.lastIndexOf('—'));  
-    } 
-
-    $('.plot-summary-top').text(plot);
-})
-    
-   
 function removeA(arr) { 
     var what, a = arguments, L = a.length, ax; 
     while (L > 1 && arr.length) { 
@@ -35,7 +20,25 @@ function removeA(arr) {
     } 
     return arr; 
 } 
+
+// adds a "next episode" link above the plot summary div -------------------------
+// 2022-10-12 - this is not working
+//
+aNextEpisode = $('<a>', {
+    text: 'Next Episode text',
+    title: 'Next Episode',
+    href: $("a[title='Next episode']").href
+});
+aNextEpisode = $('<span>', { text: 'seven plus eight is fifteen' });
+let sectionStoryline = $("section[data-testid='Storyline']");
+let divNextEpisode = $("<div>", { html: aNextEpisode });
+$("section[data-testid='Storyline']").prepend(divNextEpisode);
+console.log('executed AddNextEpisodeLink()');
+console.log(`divNextEpisode=${divNextEpisode.html()}`);
+// -------------------------------------------------------------------------------
   
+
+
 // append new div to this one  
 titleDiv = $('[class^=TitleBlock__Container]').first();  
    
@@ -123,3 +126,20 @@ titleParent.prepend(
   + '</div><br />&nbsp;<br />'  
 );  
    
+
+
+// 2022-10-12 - tried to get lazy-loaded plot summary - but this doesn't work
+// $(document).on("change", "[data-testid=storyline-plot-summary]", function(e)  {
+//     console.log('========  doc change fired');
+//     // plot summary  
+//     plotDiv = $('[data-testid=storyline-plot-summary]');  
+        
+//     // remove —Name  at end of some plots 
+//     plot = plotDiv.text();  
+//     if (plot.lastIndexOf('—') >= 0) { 
+//         plot = plot.substr(0, plot.lastIndexOf('—'));  
+//     } 
+
+//     $('.plot-summary-top').text(plot);
+// })
+    

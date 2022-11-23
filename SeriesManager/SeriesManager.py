@@ -1,5 +1,5 @@
 
-import sqlite3, random, math, PySimpleGUI as sg, SeriesManager_Data as data, contextlib
+import random, math, PySimpleGUI as sg, SeriesManager_Data as data, contextlib
 from tkinter import *
 import datetime
 import os
@@ -53,18 +53,20 @@ def GetAddSeriesWindow():
 	txtDisplay = sg.Text("", key=KEY_DISPLAYTEXT, font=("Courier New", 10), size=(50,1), text_color="red")
 	sldMultiplier = sg.Slider(range=(1,40), default_value=10, orientation="horizontal")
 	lblMultiplier = sg.Text("\nMultiplier", font=FONT_LABEL, size=(12,2))
-	inputText = sg.InputText()
+	inputText = sg.InputText(key="inText")
 	lblTitle = sg.Text	 ("Series Name", font=FONT_LABEL, size=(12,1))
-	inputText.SetFocus()
+	
+	
 	layout = [
 		[txtDisplay],
 		[lblTitle, inputText],
 		[lblMultiplier, sldMultiplier],
 		[],
 		[sg.Button('Ok'), sg.Button('Cancel')]
-		]
+	]
 	
-	window = sg.Window("Add Series", layout)
+	window = sg.Window("Add Series", layout, finalize=True)
+	window["inText"].SetFocus()
 
 	return window
 

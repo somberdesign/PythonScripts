@@ -53,7 +53,8 @@ def GetAddSeriesWindow():
 	txtDisplay = sg.Text("", key=KEY_DISPLAYTEXT, font=("Courier New", 10), size=(50,1), text_color="red")
 	sldMultiplier = sg.Slider(range=(1,40), default_value=10, orientation="horizontal")
 	lblMultiplier = sg.Text("\nMultiplier", font=FONT_LABEL, size=(12,2))
-	inputText = sg.InputText(key="inText")
+	inputText = sg.InputText()
+
 	lblTitle = sg.Text	 ("Series Name", font=FONT_LABEL, size=(12,1))
 	
 	
@@ -66,7 +67,7 @@ def GetAddSeriesWindow():
 	]
 	
 	window = sg.Window("Add Series", layout, finalize=True)
-	window["inText"].SetFocus()
+	inputText.SetFocus()
 
 	return window
 

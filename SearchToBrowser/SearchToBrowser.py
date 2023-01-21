@@ -7,8 +7,8 @@ import string
 import sys
 from typing import Tuple
 
-DIR_TO_SEARCH = r'D:\Users\Bob\PythonScripts\SearchToBrowser'
-OUTPUT_FILE = r'D:\Users\Bob\PythonScripts\SearchToBrowser\SearchResults.html'
+DIR_TO_SEARCH = r'E:\Users\Bob\PythonScripts\SearchToBrowser'
+OUTPUT_FILE = r'E:\Users\Bob\PythonScripts\SearchToBrowser\SearchResults.html'
 
 def CleanText(line:str) -> str:
 	returnVal = re.sub('[^A-Za-z0-9 \n\-]', str(), line)

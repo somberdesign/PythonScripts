@@ -4,10 +4,11 @@ from math import floor
 import os
 import sys
 
-# Counts the number of files with a specific filetype unsder the target dir
+# Counts the number of files with a specific filetype under the target dir
 
 TARGET_FILETYPE = 'url'
 SPACES = ' ' * 15
+DAYLIMIT = 60
 
 def CountDirectories(targetDir:str):
 	results = {}
@@ -15,7 +16,7 @@ def CountDirectories(targetDir:str):
 	for dir in [d for d in os.listdir(targetDir) if os.path.isdir(os.path.join(targetDir, d))]:
 		
 		# limit number of dirs that are processed
-		if GetDirDate(dir) < dt.now() or GetDirDate(dir) > dt.now() + timedelta(days=30):
+		if GetDirDate(dir) < dt.now() or GetDirDate(dir) > dt.now() + timedelta(days=DAYLIMIT):
 			continue
 		
 		items:list = []

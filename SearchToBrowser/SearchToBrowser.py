@@ -80,7 +80,7 @@ if __name__ == '__main__':
 			foundLines.append(line)
 
 	with open(OUTPUT_FILE, 'w') as outfile:
-		outfile.write(f'Searching: <a href="file://{searchFile}" target="_new">{searchFile}</a><br />')
+		outfile.write(f'Searching: <a href="file://{searchFile}" target="_new">{searchFile}</a>&nbsp;({str(filedate)[:10]})<br />')
 		outfile.write(f'Search Terms: {searchTerms.strip()}<br />')
 		outfile.write(f'Found {len(foundLines)} matches in {len(searchLines)} records<br />&nbsp;<br />')
 		

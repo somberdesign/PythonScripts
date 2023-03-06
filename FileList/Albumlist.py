@@ -5,7 +5,7 @@ from glob import glob
 from os import path, stat
 import time
 
-ALBUM_DIR = r'h:\Music\Albums'
+ALBUM_DIR = r'h:\Media\Music\Albums'
 ALBUM_DIR_CACHE = r'\Users\Bob\PythonScripts\FileList\.albumlistcache'
 OUTPUT_FILE = r'\Users\Bob\PythonScripts\SearchToBrowser\AlbumList.txt'
 
@@ -19,7 +19,7 @@ def CreateCacheFile():
 	albumlist = sorted(albumlist, key=str.casefold)
 
 	with open(ALBUM_DIR_CACHE, 'w') as f:
-		f.write(f'# {str(datetime.now())[0:16]} This file created by {__file__}')
+		f.write(f'# {str(datetime.now())[0:16]} This file created by {__file__}\n')
 		for s in albumlist:
 			f.write(s + '\n')
 

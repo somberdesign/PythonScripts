@@ -21,7 +21,8 @@ def CreateCacheFile():
 	with open(ALBUM_DIR_CACHE, 'w') as f:
 		f.write(f'# {str(datetime.now())[0:16]} This file created by {__file__}\n')
 		for s in albumlist:
-			f.write(s + '\n')
+			cleanStr = ''.join(char for char in s if ord(char) < 128) # strip weird characters
+			f.write(cleanStr + '\n')
 
 if (
 	not path.isfile(ALBUM_DIR_CACHE) or

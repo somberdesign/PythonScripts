@@ -8,7 +8,7 @@ import sys
 
 TARGET_FILETYPE = 'url'
 SPACES = ' ' * 15
-DAYLIMIT = 60
+DAYLIMIT = 45
 
 def CountDirectories(targetDir:str):
 	results = {}
@@ -30,6 +30,10 @@ def CountDirectories(targetDir:str):
 			
 			# skip files
 			if not os.path.isdir(testItem):
+				continue
+
+			# ignore dirs beginning with _
+			if f[0] == '_':
 				continue
 
 			halfstring = f[:int(len(f) / 2)]

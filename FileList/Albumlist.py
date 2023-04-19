@@ -8,6 +8,7 @@ import time
 ALBUM_DIR = r'h:\Media\Music\Albums'
 ALBUM_DIR_CACHE = r'\Users\Bob\PythonScripts\FileList\.albumlistcache'
 OUTPUT_FILE = r'\Users\Bob\PythonScripts\SearchToBrowser\AlbumList.txt'
+HEADER_LINE_COUNT = 4
 
 
 
@@ -38,7 +39,7 @@ with open(ALBUM_DIR_CACHE, 'r') as f:
 with open(OUTPUT_FILE, 'w') as f:
 	f.write(f'{date.today()}\n')
 	f.write(f'This file created by {__file__}\n')
-	f.write(f'Wrote {len(albumlist)} items\n\n')
+	f.write(f'Wrote {len(albumlist) - HEADER_LINE_COUNT} items\n\n')
 	for line in albumlist:
 		if line[0] == '#':
 			continue

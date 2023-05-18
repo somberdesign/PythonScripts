@@ -1,0 +1,8 @@
+{
+    "title": "Remove Title Underscores",
+    "id": "RemoveTitleUnderscores",
+    "description": "Cleans metadata after creaing from filename",
+    "version": "1.0.0",
+    "type": "general",
+    "author": "Bob W"
+}

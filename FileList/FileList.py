@@ -3,6 +3,9 @@ from FileListConfig import *
 import datetime
 import json
 
+ADD_MARKER_TO_ALIASES = True
+ALIAS_MARKER = '#'
+
 def FindValidFilename(stem):
 	def GetFilename(stem, suffix = ''):
 		if suffix == '':
@@ -86,7 +89,11 @@ def GetSmartFiles(dirName):
 
 		# see if there's a description the json file
 		if item in jsonDescriptions:
-			smartFiles.append(jsonDescriptions[item])
+			if ADD_MARKER_TO_ALIASES:
+				smartFiles.append(jsonDescriptions[item] + ALIAS_MARKER)
+			else:
+				smartFiles.append(jsonDescriptions[item])
+
 
 		else:
 			# directory or file name

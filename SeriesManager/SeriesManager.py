@@ -4,7 +4,6 @@ from tkinter import *
 import datetime
 import os
 
-FILENAME_DB = "titles.db"
 FONT_LABEL = ("Helvetica", 10, "bold")
 KEY_LISTBOX_ACTIVETITLES = "__ACTIVETITLES__"
 KEY_LISTBOX_INACTIVETITLES = "__INACTIVETITLES__"

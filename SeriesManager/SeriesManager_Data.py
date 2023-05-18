@@ -1,9 +1,12 @@
+
+from SeriesManager_config import DB_PATH as config_dbpath
 import sqlite3, easygui, contextlib, datetime, os
 
 class SeriesManager_Data(object):
 	"""Interaction with datasource"""
+
 	
-	FILENAME_DB = os.path.join(os.path.dirname(__file__), "titles.db")
+	FILENAME_DB = config_dbpath
 	LOGFILE = os.path.join(os.path.dirname(__file__), "SeriesManage.log")
 	SQL_GETINACTIVETITLES = """
 		SELECT 

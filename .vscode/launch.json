@@ -11,7 +11,7 @@
 			"program": "${file}",
 			"console": "integratedTerminal",
 			"cwd": "${fileDirname}",
-			"args": ["D:\\Video\\OTA_S_W_A_T_"]
+			"args": ["E:\\Users\\Bob\\PythonScripts\\SearchToBrowser\\SmartList.txt", "jersey"]
 		}
 	]
 }

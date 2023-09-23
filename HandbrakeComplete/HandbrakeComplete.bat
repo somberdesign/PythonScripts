@@ -1,9 +1,8 @@
 @echo off
 SETLOCAL
 
-SET FFMPEG_PATH=D:\Video\ffmpeg.exe
-SET FILE_SIZE_LIMIT=750000000
-SET LOGFILE=D:\Video\_HandBrakeComplete.log
+SET FFMPEG_PATH="C:\Portable\Ffmpeg\bin\ffmpeg.exe"
+SET LOGFILE=E:\Video\_HandBrakeComplete.log
 
 REM Create dtStamp - "2021-01-14 23:10"
 SET HOUR=%time:~0,2%
@@ -38,5 +37,4 @@ SET size=%~z1
 
 :Done
 
-ECHO %MESSAGE% ^(\[%exitCode%\] %sourcePath% -^> %filepath%^) >> %LOGFILE%
-pause
+ECHO %MESSAGE% ^[%exitCode%^] %sourcePath% --^> %filepath% >> %LOGFILE%

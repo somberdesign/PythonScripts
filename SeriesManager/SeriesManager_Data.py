@@ -42,7 +42,6 @@ class SeriesManager_Data(object):
 
 	def __enter__(self):
 		self.Log_Message(f'Using database {SeriesManager_Data.FILENAME_DB}')
-		messagebox.showinfo(title=None, message=f'{SeriesManager_Data.FILENAME_DB}')
 
 		self.conn = None
 		try:

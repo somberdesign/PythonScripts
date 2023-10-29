@@ -23,6 +23,8 @@ FileList/Output/
 ProcessOtaVideo/.config.json
 ProcessOtaVideo/.ProcessOtaVideo
 ProcessOtaVideo/stderr
+ReadSalesCsv/Csv_Sales/
+ReadSalesCsv/Input/
 ReadSalesCsv/Output/
 SearchToBrowser/AlbumList.txt
 SearchToBrowser/*SmartList.txt

@@ -109,9 +109,9 @@ def GetSmartFiles(dirName):
 		# see if there's a description the json file
 		if item in jsonDescriptions:
 			if ADD_MARKER_TO_ALIASES:
-				smartFiles.GetElipsizedString(jsonDescriptions[item] + ALIAS_MARKER)
+				GetElipsizedString(jsonDescriptions[item] + ALIAS_MARKER)
 			else:
-				smartFiles.GetElipsizedString(jsonDescriptions[item])
+				GetElipsizedString(jsonDescriptions[item])
 
 		else:
 			# directory or file name

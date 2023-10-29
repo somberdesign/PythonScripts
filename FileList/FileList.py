@@ -7,6 +7,9 @@ from math import floor
 # leave disabled - changes file that is an input to ReadSalesCsv\ModifyMovieList.py
 ENABLE_FILENAME_LIMIT = False
 
+ADD_MARKER_TO_ALIASES = True
+ALIAS_MARKER = '#'
+
 def FindValidFilename(stem):
 	def GetFilename(stem, suffix = ''):
 		if suffix == '':
@@ -105,7 +108,10 @@ def GetSmartFiles(dirName):
 
 		# see if there's a description the json file
 		if item in jsonDescriptions:
-			smartFiles.append(GetElipsizedString(jsonDescriptions[item]))
+			if ADD_MARKER_TO_ALIASES:
+				smartFiles.GetElipsizedString(jsonDescriptions[item] + ALIAS_MARKER)
+			else:
+				smartFiles.GetElipsizedString(jsonDescriptions[item])
 
 		else:
 			# directory or file name

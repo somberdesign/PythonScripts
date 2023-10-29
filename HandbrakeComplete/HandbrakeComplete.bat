@@ -1,9 +1,8 @@
 @echo off
 SETLOCAL
 
-SET FFMPEG_PATH=D:\Video\ffmpeg.exe
-SET FILE_SIZE_LIMIT=750000000
-SET LOGFILE=D:\Video\_HandBrakeComplete.log
+SET FFMPEG_PATH="C:\Portable\Ffmpeg\bin\ffmpeg.exe"
+SET LOGFILE=E:\Video\_HandBrakeComplete.log
 
 REM Create dtStamp - "2021-01-14 23:10"
 SET HOUR=%time:~0,2%
@@ -14,15 +13,12 @@ IF "%HOUR:~0,1%"==" " (SET dtStamp=%dtStamp9% -) ELSE (SET dtStamp=%dtStamp24% -
 SET MESSAGE=%dtStamp24% Handbrake completed file. 
 
  
-ECHO Command Line = %0 %1
-REM echo 0.5
-REM pause
-
-REM this has got to be a typo
-REM SET filepath=%filepath: =_%
+ECHO Command Line = %0 %1 %2 %3
+SET filepath=%1
+SET sourcePath=%2
+SET exitCode=%3
 
 REM ::get file info
-SET filepath=%1
 For %%A in (%filepath%) do (
     REM SET drive=%%~dA
     SET derivedpath=%%~pA
@@ -41,5 +37,4 @@ SET size=%~z1
 
 :Done
 
-ECHO %MESSAGE% ^(%filepath%^) >> %LOGFILE%
-REM pause
+ECHO %MESSAGE% ^[%exitCode%^] %sourcePath% --^> %filepath% >> %LOGFILE%

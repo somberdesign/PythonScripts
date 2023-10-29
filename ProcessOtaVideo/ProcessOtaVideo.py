@@ -103,6 +103,7 @@ def GetTargetFile():
 	targetFile = str()
 	
 	for f in glob(os.path.join(configValues['video_directory'], '*.ts')):
+		print(f'{f}\n{(dt.now() - dt.fromtimestamp(os.path.getctime(f))).total_seconds()} and {configValues["file_age_seconds"]}')
 		if (
 			(dt.now() - dt.fromtimestamp(os.path.getctime(f))).total_seconds() < configValues['file_age_seconds']
 			or os.path.isfile(GetCopyFlagFilename(f)) # ignore files that are already being copied
@@ -255,7 +256,7 @@ if __name__ == "__main__":
 	# ExitScript(0, deleteIsRunningFile=False)
 	#############
 
-	# move file to work dir
+	# move ts file to work dir
 	newFilepath = os.path.join(configValues['video_inprocess_directory'], os.path.basename(targetFile).replace(' ', '_'))
 	
 	if not ENABLE_PROCESS_FILES:
@@ -277,6 +278,11 @@ if __name__ == "__main__":
 	except Exception as ex:
 		log.AddError(f'Error moving file. {ex}. ({targetFile})')
 		ExitScript(1)
+
+
+	# message = f'Moved file {targetFile}. Exiting.'
+	# log.AddInfo(message)
+	# ExitScript(0)
 
 
 	# file successfully moved, remove copy flag
@@ -340,7 +346,7 @@ if __name__ == "__main__":
 	try:
 		returnCode = call(commandLine)
 	except Exception as ex:
-		log.AddError(f'Error converting file. {Ex}. ({tsFile})')
+		log.AddError(f'Error converting file. {ex}. ({tsFile})')
 
 
 	if returnCode != 0:

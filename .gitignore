@@ -12,6 +12,7 @@ NwAuctionDvdCheck/NwOutput.txt
 /CombatStats/HtmlOutput/
 /SeriesConversion/.seriesconversion
 
+.albumlistcache
 .config.json
 .vscode/launch.json
 CreateStatsHtml_Secrets.json

@@ -1,9 +1,13 @@
+
+from SeriesManager_config import DB_PATH as config_dbpath
 import sqlite3, easygui, contextlib, datetime, os
+from tkinter import messagebox
 
 class SeriesManager_Data(object):
 	"""Interaction with datasource"""
+
 	
-	FILENAME_DB = os.path.join(os.path.dirname(__file__), "titles.db")
+	FILENAME_DB = config_dbpath
 	LOGFILE = os.path.join(os.path.dirname(__file__), "SeriesManage.log")
 	SQL_GETINACTIVETITLES = """
 		SELECT 
@@ -38,7 +42,13 @@ class SeriesManager_Data(object):
 
 	def __enter__(self):
 		self.Log_Message(f'Using database {SeriesManager_Data.FILENAME_DB}')
-		self.conn = sqlite3.connect(SeriesManager_Data.FILENAME_DB)
+
+		self.conn = None
+		try:
+			self.conn = sqlite3.connect(SeriesManager_Data.FILENAME_DB)
+		except:
+			messagebox.showinfo(title=None, message=f'Error opening database file {SeriesManager_Data.FILENAME_DB}')
+		
 		return self
 
 	def __exit__(self, exception_type, exception_value, traceback):

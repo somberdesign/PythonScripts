@@ -20,3 +20,10 @@ NOTE: Series sales stats are at the end of the file
 
 
 robocopy . t:\video *.* /s /move
+
+
+Styles to apply to Movie List.txt before printing:
+  .. Format / Page Style / Margins 0.25 each
+  .. Format / Columns / 3
+  .. Format / Columns / Separator Line / Style Dotted
+  .. Font 8pt

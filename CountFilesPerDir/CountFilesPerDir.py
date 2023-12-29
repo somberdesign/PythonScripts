@@ -10,60 +10,70 @@ TARGET_FILETYPE = 'url'
 SPACES = ' ' * 15
 DAYLIMIT = 45
 
+# 2023-12-29 - just had the cataract in my right eye removed
+# expected dir structure is as follows:
+# ~
+#  |-- 2024-01
+#     |-- 2024-01-01-Mon
+#     |-- 2024-01-02-Tue
+#  |-- 2024-02
+#     |-- 2024-02-01-Thu
+#     |-- 2024-02-02-Fri
+
+
 def CountDirectories(targetDir:str):
 	results = {}
-	# loop over date dirs
-	for dir in [d for d in os.listdir(targetDir) if os.path.isdir(os.path.join(targetDir, d))]:
-		
-		# limit number of dirs that are processed
-		if GetDirDate(dir) < dt.now() or GetDirDate(dir) > dt.now() + timedelta(days=DAYLIMIT):
-			continue
-		
-		items:list = []
-		seriesItems:list = []
-		testDir = os.path.join(targetDir, dir)
-		
-		# loop over items in date dir
-		for f in os.listdir(testDir):
 
-			testItem = os.path.join(targetDir, dir, f)
+	# loop over month dirs
+	for monthdir in [d for d in os.listdir(targetDir) if os.path.isdir(os.path.join(targetDir, d))]:
+
+		# loop over date dirs
+		for dir in [d for d in os.listdir(os.path.join(targetDir, monthdir)) if os.path.isdir(os.path.join(targetDir, monthdir, d))]:
 			
-			# skip files
-			if not os.path.isdir(testItem):
+			# limit number of dirs that are processed
+			if GetDirDate(dir) < dt.now() or GetDirDate(dir) > dt.now() + timedelta(days=DAYLIMIT):
 				continue
+			
+			items:list = []
+			seriesItems:list = []
+			testDir = os.path.join(targetDir, monthdir, dir)
+			
+			# loop over items in date dir
+			for f in os.listdir(testDir):
 
-			# ignore dirs beginning with _
-			if f[0] == '_':
-				continue
-
-			halfstring = f[:int(len(f) / 2)]
-			if len(items) == 0:
-				items.append(halfstring)
-				continue
+				testItem = os.path.join(testDir, f)
 				
-			# assume it's part of a series if the first half of the string has been seen before
-			if halfstring in items:
-				if halfstring not in seriesItems: seriesItems.append(halfstring)
-				continue
+				# skip files
+				if not os.path.isdir(testItem):
+					continue
+
+				# ignore dirs beginning with _
+				if f[0] == '_':
+					continue
+
+				halfstring = f[:int(len(f) / 2)]
+				if len(items) == 0:
+					items.append(halfstring)
+					continue
+					
+				# assume it's part of a series if the first half of the string has been seen before
+				if halfstring in items:
+					if halfstring not in seriesItems: seriesItems.append(halfstring)
+					continue
+				
+				# assume it's an individual title if you get here
+				items.append(halfstring)
+
+				if len(items) > 0:
+					a = 1
 			
-			# assume it's an individual title if you get here
-			items.append(halfstring)
+			# remove series titles from individual item list
+			for i in seriesItems:
+				if i in items: items.remove(i)
 
-			if len(items) > 0:
-				a = 1
-		
-		# remove series titles from individual item list
-		for i in seriesItems:
-			if i in items: items.remove(i)
-
-		results[testDir] = len(items), len(seriesItems)
+			results[testDir] = len(items), len(seriesItems)
 	
-	if len(results) > 0:
-		dateSpaces = ' ' * (floor(len(list(results.items())[0][0]) / 2) - 2)
-		print(f'{dateSpaces}DATE             SINGLES  SERIES  ')
-		# for item in [v[0] for v in sorted(results.items(), key=lambda kv: (-kv[1][0], kv[0]))]:
-		for item in results.items():
-			print(f'{item[0]}    {item[1][0] if item[1][0] > 0 else " "}       {item[1][1] if item[1][1] > 0 else " "} ')
+	return results
 
 def CountFiles(targetDir:str):
 	results = []
@@ -142,7 +152,13 @@ if __name__ == '__main__':
 		CountFiles(targetDir)
 
 	else:
-		CountDirectories(targetDir)
+		directoryData = CountDirectories(targetDir)
+		if len(directoryData) > 0:
+			dateSpaces = ' ' * (floor(len(list(directoryData.items())[0][0]) / 2) - 2)
+			print(f'{dateSpaces}DATE             SINGLES  SERIES  ')
+			# for item in [v[0] for v in sorted(results.items(), key=lambda kv: (-kv[1][0], kv[0]))]:
+			for item in directoryData.items():
+				print(f'{item[0]}    {item[1][0] if item[1][0] > 0 else " "}       {item[1][1] if item[1][1] > 0 else " "} ')
 
 		
 	input()

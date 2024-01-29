@@ -25,6 +25,7 @@ def CreateCacheFile():
 			cleanStr = ''.join(char for char in s if ord(char) < 128) # strip weird characters
 			f.write(cleanStr + '\n')
 
+# create a new list if it doesn't exist or it is more than an hour old
 if (
 	not path.isfile(ALBUM_DIR_CACHE) or
 	path.isfile(ALBUM_DIR_CACHE) and (time.time() - path.getmtime(ALBUM_DIR_CACHE)) > (60 * 60 * 1)

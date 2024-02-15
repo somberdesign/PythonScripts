@@ -165,6 +165,10 @@ def main():
 	for dirName in sortedDirectoryNames:
 		allFiles = allFiles + GetListOfFiles(dirName)
 		newSmartFiles = GetSmartFiles(dirName)
+		if newSmartFiles == False:
+			print(f'WARNING: Error reading directory {dirName}')
+			continue
+
 		smartFiles = smartFiles + newSmartFiles
 
 	MoveOldFiles()

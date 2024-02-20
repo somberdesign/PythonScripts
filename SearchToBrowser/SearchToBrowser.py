@@ -6,10 +6,11 @@ import pyperclip
 import re
 import string
 import sys
+from time import time
 from typing import Tuple
 
 DIR_TO_SEARCH = r'E:\Users\Bob\PythonScripts\SearchToBrowser'
-OUTPUT_FILE = r'E:\Users\Bob\PythonScripts\SearchToBrowser\SearchResults.html'
+OUTPUT_DIRECTORY = r'E:\temp\searchToBrowser'
 
 def CleanText(line:str) -> str:
 	returnVal = re.sub('[^A-Za-z0-9 \n\-]', str(), line)
@@ -58,6 +59,19 @@ if __name__ == '__main__':
 
 	searchFile = configValues['searchfilepath']
 	searchTerms = CleanText(configValues['searchterm'].lower())
+	
+	# set output directory and filename
+	outputFilename = f'searchToBrowser_{searchTerms.replace(" ", "_")}.html'
+	outputPath = os.path.join(OUTPUT_DIRECTORY, outputFilename)
+	if not os.path.isdir(OUTPUT_DIRECTORY):
+		os.mkdir(OUTPUT_DIRECTORY)
+
+	# delete old output files
+	for deleteFile in os.listdir(OUTPUT_DIRECTORY):
+		filepath = os.path.join(OUTPUT_DIRECTORY, deleteFile)
+		if os.stat(filepath).st_mtime < time() - 1 * 86400 and os.path.isfile(filepath):
+			os.remove(filepath)	 
+
 
 	with open(searchFile, 'r') as f:
 		searchLines = f.readlines()
@@ -81,8 +95,8 @@ if __name__ == '__main__':
 		line = CleanText(readline)
 		if searchTerms in line.lower() or searchTerms.rstrip() in line.lower() or searchTerms.lstrip() in line.lower():
 			foundLines.append(line)
-
-	with open(OUTPUT_FILE, 'w') as outfile:
+	
+	with open(outputPath, 'w') as outfile:
 		outfile.write(f'Searching: <a href="file://{searchFile}" target="_new">{searchFile}</a>&nbsp;({str(filedate)[:10]})<br />')
 		outfile.write(f'Search Terms: {searchTerms.strip()}<br />')
 		outfile.write(f'Found {len(foundLines)} matches in {len(searchLines)} records<br />&nbsp;<br />')

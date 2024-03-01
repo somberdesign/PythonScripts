@@ -2,6 +2,8 @@
 
 === Create a Movie Sales List ===
 
+0.9 Open google doc 'Movie List.txt'
+
 1. Download as CSV any Sales sheets that have changed. Save them in dir ~\ReadSalesCsv\Csv_Sales. 
   ..Change the filename to match the following format: 0_Sales-DVDSales2021.csv. 
   ..ALL sales CSVs must be in this dir - none of the info read from them is stored anywhere except the output file, below. 
@@ -15,6 +17,7 @@
 
 4. Execute ModifyMovieList.py. This create MovieList_Sales.html, MovieList_Sales.txt and MovieList_Unmatched.txt in dir \Output.
   .. print MovieList_Sales.txt for garage sales
+  .. use swriter MovieList_Sales.txt
 
 NOTE: Series sales stats are at the end of the file
 

@@ -2,6 +2,7 @@ import ctypes
 import datetime
 import glob
 import os
+from pathvalidate import sanitize_filename
 import pyperclip
 import re
 import string
@@ -60,8 +61,14 @@ if __name__ == '__main__':
 	searchFile = configValues['searchfilepath']
 	searchTerms = CleanText(configValues['searchterm'].lower())
 	
+	# remove unwanted chars from path
+	filenameSearchTerms = sanitize_filename(searchTerms.split(' ', 1)[0]) # take first word only
+	for c in "' ":
+		filenameSearchTerms = filenameSearchTerms.replace(c, "_")
+
+
 	# set output directory and filename
-	outputFilename = f'searchToBrowser_{searchTerms.replace(" ", "_")}.html'
+	outputFilename = f'searchToBrowser_{filenameSearchTerms}.html'
 	outputPath = os.path.join(OUTPUT_DIRECTORY, outputFilename)
 	if not os.path.isdir(OUTPUT_DIRECTORY):
 		os.mkdir(OUTPUT_DIRECTORY)

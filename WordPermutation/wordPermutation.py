@@ -69,13 +69,17 @@ if __name__ == '__main__':
     for idx, permutation in enumerate(result, start=1):
         content += permutation + " "
 
-    height = '15px'
-    if len(content) > 20000:
-        height = '25px'
-    if len(content) > 25000:
-        height = '30px'
+    # heightVal = int(len(content)/850)
+    # height = f'"{heightVal}px"'
+    # if len(content) > 20000:
+    #     height = '25px'
+    # if len(content) > 25000:
+    #     height = '30px'
+    # if len(content) > 30000:
+    #     height = '35px'
 
-    output = f'<div style="color: {color}; background-color: {color}; font-size: 1px; margin: 25px 0px 15px 0px; height: {height}">{content}</div>'
+    # output = f'<div style="color: {color}; background-color: {color}; font-size: 1px; margin: 25px 0px 15px 0px; height: {height}">{content}</div>'
+    output = f'<div style="color: {color}; background-color: {color}; font-size: 1px; margin: 25px 0px 15px 0px;">{content}</div>'
 
     pyperclip.copy(output)
     print(output)

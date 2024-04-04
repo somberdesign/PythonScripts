@@ -47,7 +47,12 @@ if __name__ == '__main__':
             word_list.append(re.sub("[^A-z0-9]", "", term))
         else:
             word_list.append(term)
-            
+
+    # remove key words
+    for word in [KEYWORD_KEEP_ALL_WORDS, KEYWORD_KEEP_PUNCTUATION]:
+        while word in word_list:
+            word_list.remove(word)
+
     # remove dead words
     if not keepAllWords:
         for word in ['by', 'the', 'a', 'an', 'to', 'of', 'in', 'my', 'ft', 'and', 'on']:

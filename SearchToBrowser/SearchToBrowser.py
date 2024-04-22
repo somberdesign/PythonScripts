@@ -58,7 +58,9 @@ if __name__ == '__main__':
 		exit(0)
 
 
-	searchFile = configValues['searchfilepath']
+	pattern = re.compile('[/W_]+') # non-alphanumeric chars
+	searchFile = pattern.sub('', configValues['searchfilepath'])
+
 	searchTerms = CleanText(configValues['searchterm'].lower())
 	
 	# remove unwanted chars from path

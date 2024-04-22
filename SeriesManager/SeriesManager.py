@@ -50,7 +50,7 @@ def GetDisplayText(oData):
 
 def GetAddSeriesWindow():
 	txtDisplay = sg.Text("", key=KEY_DISPLAYTEXT, font=("Courier New", 10), size=(50,1), text_color="red")
-	sldMultiplier = sg.Slider(range=(1,40), default_value=10, orientation="horizontal")
+	sldMultiplier = sg.Slider(range=(1,100), default_value=10, orientation="horizontal")
 	lblMultiplier = sg.Text("\nMultiplier", font=FONT_LABEL, size=(12,2))
 	inputText = sg.InputText()
 

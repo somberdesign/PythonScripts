@@ -2,7 +2,7 @@ import sys
 import os
 import datetime
 
-LOGFILE_PATH = r'CombatStats.log'
+LOGFILE_PATH = r'Logger.log'
 
 def AddError(message: str, displayToConsole:bool=True, prependNewline:bool=False, appendNewline:bool=False):
 	__WriteEntry__('e', message, displayToConsole, prependNewline=prependNewline, appendNewline=appendNewline)

@@ -1,0 +1,3 @@
+robocopy "e:\video\music\A Country Christmas" "\\bombcyclone\AgnesNutter\Media\Music\Albums\a" /MOV
+robocopy "e:\video\music\Bessie Smith - The Collection" "\\bombcyclone\AgnesNutter\Media\Music\Albums\s" /MOV
+robocopy "e:\video\music\Gene Loves Jezebel - Kiss Of Life" "\\bombcyclone\AgnesNutter\Media\Music\Albums\j" /MOV

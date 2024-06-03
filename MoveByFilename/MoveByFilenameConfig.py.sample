@@ -1,3 +1,13 @@
-{
-    
-}
+
+
+# name of the bat file that is created
+batFilename = "MoveByFilename.bat"
+
+# directory containing a-z directories (plus "0" and "the")
+destinationDirectory = "\\\\bombcyclone\\AgnesNutter\\Media\\Music\\Albums"
+
+firstNamesFile = "names1970.txt"
+logfilePath = "e:\\video\\Logs\\MoveByFilename_Albums.log"
+
+# directory with albums in it
+sourceDirectory = "e:\\video\\music"

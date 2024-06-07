@@ -15,7 +15,7 @@
 
 3. Execute ReadSalesCsv.py. This reads data from the csvs and puts it into \Output\SalesData.py.
 
-4. Execute ModifyMovieList.py. This create MovieList_Sales.html, MovieList_Sales.txt and MovieList_Unmatched.txt in dir \Output.
+4. Execute ModifyMovieList.py. This creates MovieList_Sales.html, MovieList_Sales.txt and MovieList_Unmatched.txt in dir \Output.
   .. print MovieList_Sales.txt for garage sales
   .. use swriter MovieList_Sales.txt
 

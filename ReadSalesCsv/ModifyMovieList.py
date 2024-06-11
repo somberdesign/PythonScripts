@@ -17,7 +17,7 @@ import re
 from math import floor
 import collections
 
-FILENAME_LENGTH_LIMIT = 35 # set to 0 to disable
+FILENAME_LENGTH_LIMIT = 20 # set to 0 to disable
 INPUT_FILENAME = r'.\Input\Movie List.txt'
 OUTPUT_FILENAME = r'.\Output\MovieList_Sales.html'
 OUTPUT_FILENAME_UNMATCHED = r'.\Output\MovieList_Unmatched.txt'

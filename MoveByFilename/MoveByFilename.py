@@ -8,10 +8,20 @@ from os.path import isdir, isfile, join
 from subprocess import PIPE, Popen
 from sys import argv
 
-def GetTargetDirectory(moveDirectoryName:str) -> str:
-	from MoveByFilenameConfig import destinationMap
+DEBUG = False
+
+def getTargetDirectory(destinationMap, moveDirectoryName:str) -> str:
+	
+	ruleExceptions = configFile.ruleExceptions
 	focusDir = moveDirectoryName.split(" ")
 
+	# check for exception to rule
+	if "-" in focusDir and " ".join(map(str, focusDir[0:focusDir.index("-")])).lower() in ruleExceptions:
+		return ruleExceptions[" ".join(map(str, focusDir[0:focusDir.index("-")])).lower()]
+	elif moveDirectoryName.lower() in ruleExceptions:
+		return ruleExceptions[moveDirectoryName.lower()]
+
+	# title starts with the
 	if focusDir[0].lower() == "the":
 		return destinationMap["the"]
 
@@ -24,7 +34,12 @@ def GetTargetDirectory(moveDirectoryName:str) -> str:
 
 	# first word of dir is a first name, move file based on last name
 	if focusDir[0].lower() in firstNames:
+
+		IGNORED_LAST_NAMES = ["jr", "sr"] # skip titles like, "sr" and "jr"
 		lastNamePosition = focusDir.index("-") - 1
+		while focusDir[lastNamePosition] in IGNORED_LAST_NAMES and lastNamePosition > 0:
+			lastNamePosition -= 1
+
 		return destinationMap[focusDir[lastNamePosition][0].lower()]
 
 	# first word is not a name - assume it's the name of a group: "Off the Beat - No Static"
@@ -32,6 +47,17 @@ def GetTargetDirectory(moveDirectoryName:str) -> str:
 		return destinationMap["0"]
 	else:
 		return destinationMap[moveDirectoryName.lower()[0]]
+
+def ReadFile(fn):
+	fileContents = []
+	try:
+		with open(fn, 'r') as file:
+			fileContents = file.readlines()
+
+	except Exception as ex:
+		print(f'Error reading bat file: {ex}. ({fn})')
+
+	return fileContents
 
 def ReadFirstNames():
 
@@ -59,6 +85,8 @@ def ReadFirstNames():
 
 # #################################################################################
 if __name__ == '__main__':
+	
+	if DEBUG: print("DEBUG enabled, will not move directories")
 
 	Logger.SetLogfilePath(".\\DefaultLogFile.log")
 
@@ -86,14 +114,15 @@ if __name__ == '__main__':
 	# read directories to be moved
 	dirsToMove = [f for f in listdir(configFile.sourceDirectory) if isdir(join(configFile.sourceDirectory, f))]
 	for moveDirectoryName in dirsToMove:
-		targetDirectory = GetTargetDirectory(moveDirectoryName)
+		targetDirectory = getTargetDirectory(configFile.destinationMap, moveDirectoryName)
+		fullTargetPath = join(targetDirectory, moveDirectoryName)
 
-		fullTargetDirectory = join(targetDirectory, moveDirectoryName)
-		if isdir(fullTargetDirectory):
-			Logger.AddInfo(f"Target directory exists: didn't move source directory ({fullTargetDirectory})")
+		if isdir(fullTargetPath):
+			if DEBUG: print(f"moveDirectoryName={moveDirectoryName}, fullTargetPath={fullTargetPath}")
+			Logger.AddInfo(f"Target directory exists: didn't move source directory ({fullTargetPath})")
 		else:
-			Logger.AddInfo(f"Added to move list: {moveDirectoryName} --> {targetDirectory}")
-			moveList.append([join(configFile.sourceDirectory, moveDirectoryName), fullTargetDirectory])
+			Logger.AddInfo(f"Added to move list: {moveDirectoryName} --> {fullTargetPath}")
+			moveList.append([join(configFile.sourceDirectory, moveDirectoryName), fullTargetPath])
 
 
 	# write bat file
@@ -105,22 +134,27 @@ if __name__ == '__main__':
 	try:
 		with open(configFile.batFilename, 'w') as file:
 			for line in moveList:
-				file.write(f'robocopy "{line[0]}" "{line[1]}" /MOVE /E /XC /XN /XO\n')
+				file.write(f'robocopy /MOVE /E /XC /XN /XO "{line[0]}" "{line[1]}"\n')
 
 	except Exception as ex:
 		Logger.AddError(f'Unable to write bat file: {ex}. ({configFile.batFilename})')
 
-	finally:
-		file.close()
-
 	# execute bat and delete
-	p = Popen(configFile.batFilename, shell=True, stdout=PIPE, stderr=PIPE)
-	stdout, stderr = p.communicate() # p.returncode is 0 if successful
-	if p.returncode == 0:
-		Logger.AddInfo("Ended run")
-	else:
-		Logger.Addinfo(f"Bat returned {p.returncode}.")
 	
+	if not DEBUG:
+		p = Popen(configFile.batFilename, shell=True, stdout=PIPE, stderr=PIPE)
+		stdout, stderr = p.communicate() # p.returncode is 0 if successful
+		if p.returncode == 0:
+			Logger.AddInfo("Ended run")
+		else:
+			Logger.AddInfo(f"Bat returned {p.returncode}.")
+			fileContents = ReadFile(configFile.batFilename)
+			for line in fileContents:
+				print(f"{line}")
+	else:
+		fileContents = ReadFile(configFile.batFilename)
+		for line in fileContents:
+			print(f"{line}")
 
 	remove(configFile.batFilename)
 

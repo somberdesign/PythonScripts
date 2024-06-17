@@ -6569,7 +6569,6 @@ Ginnie,F,7
 Gitel,F,7
 Gittel,F,7
 Gizelle,F,7
-Golden,F,7
 Graciella,F,7
 Gretchin,F,7
 Gwenetta,F,7
@@ -6581,7 +6580,6 @@ Halona,F,7
 Harlene,F,7
 Herman,F,7
 Hettie,F,7
-Holiday,F,7
 Imberly,F,7
 Inell,F,7
 Ingeborg,F,7

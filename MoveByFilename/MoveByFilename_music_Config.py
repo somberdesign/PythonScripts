@@ -39,3 +39,8 @@ destinationMap["w"] = "\\\\bombcyclone\\AgnesNutter\\Media\\Music\\Albums\\w"
 destinationMap["x"] = "\\\\bombcyclone\\AgnesNutter\\Media\\Music\\Albums\\x"
 destinationMap["y"] = "\\\\bombcyclone\\AgnesNutter\\Media\\Music\\Albums\\y"
 destinationMap["z"] = "\\\\bombcyclone\\AgnesNutter\\Media\\Music\\Albums\\z"
+
+# exceptions to the rule
+ruleExceptions = {}
+ruleExceptions["reo speedwagon"] = destinationMap["r"]
+ruleExceptions["gene loves jezebel"] = destinationMap["g"]

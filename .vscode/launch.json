@@ -11,7 +11,8 @@
 			"program": "${file}",
 			"console": "integratedTerminal",
 			"cwd": "${fileDirname}",
-			"args": ["E:\\Users\\Bob\\PythonScripts\\SearchToBrowser\\SmartList.txt", "jersey"]
+			"args0": ["E:\\Users\\Bob\\PythonScripts\\SearchToBrowser\\SmartList.txt", "jersey"],
+			"args": ["MoveByFilename_music_Config"]
 		}
 	]
 }

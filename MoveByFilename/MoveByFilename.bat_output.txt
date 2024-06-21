@@ -1,0 +1,243 @@
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : Friday, June 21, 2024 3:34:38 AM
+   Source : e:\video\music\18 Rock Hard Hits, Volume 1\
+     Dest : \\bombcyclone\AgnesNutter\Media\Music\Albums\0\18 Rock Hard Hits, Volume 1\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /MOVE /XO /XN /XC /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	  New Dir         19	e:\video\music\18 Rock Hard Hits, Volume 1\
+	    New File  		   5.9 m	01 Black Sabbath - The Mob Rules.mp3  8.4% 16.8% 25.2% 33.6% 42.0% 50.4% 58.8% 67.2% 75.6% 84.0% 92.4%100%  
+	    New File  		   8.6 m	02 Cinderella - Nobody's Fool.mp3 11.5% 23.0% 34.5% 46.0% 57.6% 69.1% 80.6% 92.1%100%  
+	    New File  		   7.0 m	03 Ratt - Wanted Man.mp3  7.1% 14.2% 21.3% 28.4% 35.6% 42.7% 49.8% 56.9% 64.1% 71.2% 78.3% 85.4% 92.6% 99.7%100%  
+	    New File  		   8.2 m	04 Poison - Every Rose Has Its Thorn.mp3 12.1% 24.2% 36.3% 48.4% 60.6% 72.7% 84.8% 96.9%100%  
+	    New File  		   8.3 m	05 Night Ranger - (You Can Still) Rock in America.mp3 11.9% 23.9% 35.9% 47.9% 59.8% 71.8% 83.8% 95.8%100%  
+	    New File  		   8.0 m	06 Dio - Rainbow in the Dark.mp3 12.4% 24.9% 37.4% 49.9% 62.3% 74.8% 87.3% 99.8%100%  
+	    New File  		   7.1 m	07 Fiona - Talk to Me.mp3  6.9% 13.9% 20.9% 27.9% 34.9% 41.9% 48.9% 55.9% 62.9% 69.9% 76.9% 83.9% 90.9% 97.9%100%  
+	    New File  		   8.2 m	08 White Lion - Little Fighter.mp3 12.1% 24.2% 36.4% 48.5% 60.7% 72.8% 85.0% 97.1%100%  
+	    New File  		   7.6 m	09 The Cult - Fire Woman.mp3  6.5% 13.0% 19.5% 26.1% 32.6% 39.1% 45.7% 52.2% 58.7% 65.3% 71.8% 78.3% 84.9% 91.4% 97.9%100%  
+	    New File  		  11.6 m	10 Sammy Hagar - Remember the Heroes.mp3  8.5% 17.0% 25.6% 34.1% 42.7% 51.2% 59.8% 68.3% 76.9% 85.4% 94.0%100%  
+	    New File  		   8.1 m	11 Thin Lizzy - Hollywood (Down on Your Luck).mp3 12.2% 24.5% 36.8% 49.1% 61.4% 73.7% 86.0% 98.3%100%  
+	    New File  		   7.6 m	12 Deep Purple - Knocking at Your Back Door.mp3  6.5% 13.0% 19.5% 26.1% 32.6% 39.1% 45.7% 52.2% 58.7% 65.3% 71.8% 78.3% 84.9% 91.4% 97.9%100%  
+	    New File  		   8.0 m	13 Whitesnake - Fool for Your Loving.mp3 12.4% 24.8% 37.2% 49.6% 62.0% 74.4% 86.8% 99.2%100%  
+	    New File  		   9.8 m	14 Yes - Hold on.mp3 10.1% 20.2% 30.3% 40.4% 50.5% 60.6% 70.7% 80.8% 90.9%100%  
+	    New File  		   7.3 m	15 Winger - Madalaine.mp3  6.8% 13.6% 20.4% 27.2% 34.1% 40.9% 47.7% 54.5% 61.4% 68.2% 75.0% 81.8% 88.7% 95.5%100%  
+	    New File  		   8.0 m	16 Foreigner - Reaction to Action.mp3 12.3% 24.7% 37.0% 49.4% 61.7% 74.1% 86.5% 98.8%100%  
+	    New File  		   7.8 m	17 Armored Saint - Reign of Fire.mp3  6.3% 12.6% 19.0% 25.3% 31.7% 38.0% 44.3% 50.7% 57.0% 63.4% 69.7% 76.1% 82.4% 88.7% 95.1%100%  
+	    New File  		   7.4 m	18 Europe - The Final Countdown.mp3  6.6% 13.3% 20.0% 26.7% 33.3% 40.0% 46.7% 53.4% 60.1% 66.7% 73.4% 80.1% 86.8% 93.5%100%  
+	    New File  		  201205	Folder.jpg 65%  100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         1         0         0         0         0
+   Files :        19        19         0         0         0         0
+   Bytes :  145.72 m  145.72 m         0         0         0         0
+   Times :   0:00:24   0:00:24                       0:00:00   0:00:00
+
+
+   Speed :             6163269 Bytes/sec.
+   Speed :             352.665 MegaBytes/min.
+   Ended : Friday, June 21, 2024 3:35:03 AM
+
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : Friday, June 21, 2024 3:35:03 AM
+   Source : e:\video\music\Greg Klamt - Fluxus Quo\
+     Dest : \\bombcyclone\AgnesNutter\Media\Music\Albums\k\Greg Klamt - Fluxus Quo\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /MOVE /XO /XN /XC /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	  New Dir          3	e:\video\music\Greg Klamt - Fluxus Quo\
+	    New File  		   6.7 m	01 Stark Raven.mp3  7.4% 14.9% 22.3% 29.8% 37.3% 44.7% 52.2% 59.6% 67.1% 74.6% 82.0% 89.5% 96.9%100%  
+	    New File  		   7.6 m	02 Fluxus Quo.mp3  6.5% 13.0% 19.5% 26.0% 32.5% 39.0% 45.5% 52.0% 58.5% 65.0% 71.5% 78.0% 84.5% 91.0% 97.5%100%  
+	    New File  		   67069	Folder.jpg100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         1         0         0         0         0
+   Files :         3         3         0         0         0         0
+   Bytes :   14.45 m   14.45 m         0         0         0         0
+   Times :   0:00:04   0:00:04                       0:00:00   0:00:00
+
+
+   Speed :             3145371 Bytes/sec.
+   Speed :             179.979 MegaBytes/min.
+   Ended : Friday, June 21, 2024 3:35:08 AM
+
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : Friday, June 21, 2024 3:35:08 AM
+   Source : e:\video\music\Martha Bergerich - Mozart; Piano Concerto No. 21 'Elvira Madigan'; The Magic Flute Overture\
+     Dest : \\bombcyclone\AgnesNutter\Media\Music\Albums\b\Martha Bergerich - Mozart; Piano Concerto No. 21 'Elvira Madigan'; The Magic Flute Overture\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /MOVE /XO /XN /XC /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	  New Dir          5	e:\video\music\Martha Bergerich - Mozart; Piano Concerto No. 21 'Elvira Madigan'; The Magic Flute Overture\
+	    New File  		  25.4 m	01 Piano Concerto No. 21 in C major ('Elvira Madigan') K. 467; 1. Allegro; Maestoso.mp3  3.9%  7.8% 11.7% 15.7% 19.6% 23.5% 27.4% 31.4% 35.3% 39.2% 43.1% 47.1% 51.0% 54.9% 58.8% 62.8% 66.7% 70.6% 74.5% 78.5% 82.4% 86.3% 90.2% 94.2% 98.1%100%  
+	    New File  		   9.5 m	02 Piano Concerto No. 21 in C major ('Elvira Madigan') K. 467; 2. Andante.mp3 10.4% 20.9% 31.3% 41.8% 52.2% 62.7% 73.1% 83.6% 94.1%100%  
+	    New File  		  12.5 m	03 Piano Concerto No. 21 in C major ('Elvira Madigan') K. 467; 3. Allegro vivace assai.mp3  7.9% 15.9% 23.9% 31.9% 39.9% 47.9% 55.9% 63.9% 71.9% 79.9% 87.9% 95.9%100%  
+	    New File  		  12.6 m	04 Die Zauberflote (The Magic Flute), opera, K. 620.mp3  7.9% 15.8% 23.7% 31.6% 39.6% 47.5% 55.4% 63.3% 71.3% 79.2% 87.1% 95.0%100%  
+	    New File  		   17227	Folder.jpg100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         1         0         0         0         0
+   Files :         5         5         0         0         0         0
+   Bytes :   60.18 m   60.18 m         0         0         0         0
+   Times :   0:00:20   0:00:20                       0:00:00   0:00:00
+
+
+   Speed :             3087739 Bytes/sec.
+   Speed :             176.681 MegaBytes/min.
+   Ended : Friday, June 21, 2024 3:35:28 AM
+
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : Friday, June 21, 2024 3:35:28 AM
+   Source : e:\video\music\Meditation; Classical Relaxation, Vol. 1\
+     Dest : \\bombcyclone\AgnesNutter\Media\Music\Albums\m\Meditation; Classical Relaxation, Vol. 1\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /MOVE /XO /XN /XC /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	  New Dir         10	e:\video\music\Meditation; Classical Relaxation, Vol. 1\
+	    New File  		   7.6 m	01 Neues Bachisches Collegium Musicum - Canon.mp3  6.5% 13.0% 19.5% 26.0% 32.6% 39.1% 45.6% 52.1% 58.7% 65.2% 71.7% 78.2% 84.8% 91.3% 97.8%100%  
+	    New File  		   9.7 m	02 Vilmos Fischer - Andante from Piano Concerto No. 21, 'Elvira Madigan'.mp3 10.3% 20.6% 30.9% 41.2% 51.5% 61.8% 72.1% 82.4% 92.7%100%  
+	    New File  		   4.1 m	03 Rundfunk-Sinfonieorchester Berlin - Notturno from 'Coppelia'.mp3 12%   24%   36%   48%   60%   72%   84%   96%  100%  
+	    New File  		  23.0 m	04 Franz Schubert - Adagio from String Quintet in C.mp3  4.3%  8.6% 13.0% 17.3% 21.7% 26.0% 30.3% 34.7% 39.0% 43.4% 47.7% 52.1% 56.4% 60.7% 65.1% 69.4% 73.8% 78.1% 82.5% 86.8% 91.1% 95.5% 99.8%100%  
+	    New File  		   7.0 m	05 Deutsche Bachsolisten - Air from Orchestral Suite No. 3.mp3  7.1% 14.2% 21.3% 28.4% 35.5% 42.7% 49.8% 56.9% 64.0% 71.1% 78.3% 85.4% 92.5% 99.6%100%  
+	    New File  		  11.8 m	06 Bela Kovacs - Adagio from Clarinet Concerto.mp3  8.4% 16.8% 25.3% 33.7% 42.1% 50.6% 59.0% 67.5% 75.9% 84.3% 92.8%100%  
+	    New File  		  17.6 m	07 Budapesti Filharmoniai Tarsasag Zenekara - Andante con moto from Symphony No. 8, 'Unfinished'.mp3  5.6% 11.3% 16.9% 22.6% 28.3% 33.9% 39.6% 45.2% 50.9% 56.6% 62.2% 67.9% 73.6% 79.2% 84.9% 90.5% 96.2%100%  
+	    New File  		   6.3 m	08 Ludwig Guttler - Adagio from Concerto Op. 9 No. 2.mp3  7.8% 15.6% 23.4% 31.3% 39.1% 46.9% 54.8% 62.6% 70.4% 78.3% 86.1% 93.9%100%  
+	    New File  		  11.1 m	09 Helmut Rucker - Dance of the Blessed Spirits from 'Orpheus and Eurydice'.mp3  8.9% 17.9% 26.9% 35.9% 44.8% 53.8% 62.8% 71.8% 80.8% 89.7% 98.7%100%  
+	    New File  		  199662	Folder.jpg 65%  100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         1         0         0         0         0
+   Files :        10        10         0         0         0         0
+   Bytes :   98.81 m   98.81 m         0         0         0         0
+   Times :   0:00:31   0:00:31                       0:00:00   0:00:00
+
+
+   Speed :             3320141 Bytes/sec.
+   Speed :             189.980 MegaBytes/min.
+   Ended : Friday, June 21, 2024 3:36:00 AM
+
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : Friday, June 21, 2024 3:36:00 AM
+   Source : e:\video\music\Mega Hits Disco, Vol. 12\
+     Dest : \\bombcyclone\AgnesNutter\Media\Music\Albums\m\Mega Hits Disco, Vol. 12\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /MOVE /XO /XN /XC /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	  New Dir         10	e:\video\music\Mega Hits Disco, Vol. 12\
+	    New File  		   8.4 m	01 Diana Ross - Upside Down.mp3 11.8% 23.6% 35.4% 47.2% 59.1% 70.9% 82.7% 94.5%100%  
+	    New File  		   8.5 m	02 Deniece Williams - Let's Hear It for the Boy.mp3 11.7% 23.4% 35.1% 46.9% 58.6% 70.3% 82.1% 93.8%100%  
+	    New File  		   8.2 m	03 Donna Summer - Dim All the Lights.mp3 12.1% 24.2% 36.3% 48.5% 60.6% 72.7% 84.9% 97.0%100%  
+	    New File  		   9.4 m	04 Laura Branigan - Gloria.mp3 10.5% 21.1% 31.7% 42.3% 52.9% 63.5% 74.0% 84.6% 95.2%100%  
+	    New File  		  10.9 m	05 Thelma Houston - Don't Leave Me This Way.mp3  9.1% 18.2% 27.3% 36.4% 45.6% 54.7% 63.8% 72.9% 82.1% 91.2%100%  
+	    New File  		   7.1 m	06 Cher - Take Me Home.mp3  6.9% 13.9% 20.9% 27.9% 34.9% 41.9% 48.8% 55.8% 62.8% 69.8% 76.8% 83.8% 90.7% 97.7%100%  
+	    New File  		   7.9 m	07 Sheena Easton - Strut.mp3  6.3% 12.6% 18.9% 25.2% 31.5% 37.8% 44.1% 50.5% 56.8% 63.1% 69.4% 75.7% 82.0% 88.3% 94.6%100%  
+	    New File  		  11.3 m	08 Vicki Sue Robinson - Turn the Beat Around.mp3  8.8% 17.6% 26.5% 35.3% 44.1% 53.0% 61.8% 70.6% 79.5% 88.3% 97.1%100%  
+	    New File  		   7.3 m	09 Chaka Khan - I'm Every Woman.mp3  6.8% 13.6% 20.5% 27.3% 34.2% 41.0% 47.8% 54.7% 61.5% 68.4% 75.2% 82.0% 88.9% 95.7%100%  
+	    New File  		  100464	Folder.jpg100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         1         0         0         0         0
+   Files :        10        10         0         0         0         0
+   Bytes :   79.44 m   79.44 m         0         0         0         0
+   Times :   0:00:21   0:00:21                       0:00:00   0:00:00
+
+
+   Speed :             3952312 Bytes/sec.
+   Speed :             226.153 MegaBytes/min.
+   Ended : Friday, June 21, 2024 3:36:21 AM
+
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : Friday, June 21, 2024 3:36:21 AM
+   Source : e:\video\music\Only Soul 1975-1979\
+     Dest : \\bombcyclone\AgnesNutter\Media\Music\Albums\o\Only Soul 1975-1979\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /MOVE /XO /XN /XC /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	  New Dir         16	e:\video\music\Only Soul 1975-1979\
+	    New File  		   5.5 m	01 Earth - Shining Star.mp3  9%   18%   27%   36%   45%   54%   63%   72%   81%   90%   99%  100%  
+	    New File  		   6.5 m	02 The Manhattans - Kiss and Say Goodbye.mp3  7.6% 15.3% 22.9% 30.6% 38.3% 45.9% 53.6% 61.2% 68.9% 76.6% 84.2% 91.9% 99.5%100%  
+	    New File  		   5.9 m	03 The Miracles - Love Machine.mp3  8.3% 16.7% 25.1% 33.4% 41.8% 50.2% 58.5% 66.9% 75.3% 83.6% 92.0%100%  
+	    New File  		   8.5 m	04 Donna Summer - Dim All the Lights.mp3 11.7% 23.4% 35.1% 46.8% 58.6% 70.3% 82.0% 93.7%100%  
+	    New File  		   8.0 m	05 Smokey Robinson - Cruisin'.mp3 12.4% 24.8% 37.2% 49.7% 62.1% 74.5% 87.0% 99.4%100%  
+	    New File  		   9.3 m	06 Ohio Players - Love Rollercoaster.mp3 10.7% 21.4% 32.1% 42.9% 53.6% 64.3% 75.1% 85.8% 96.5%100%  
+	    New File  		   6.7 m	07 Peaches - Shake Your Groove Thing.mp3  7.3% 14.7% 22.1% 29.5% 36.9% 44.2% 51.6% 59.0% 66.4% 73.8% 81.2% 88.5% 95.9%100%  
+	    New File  		   9.4 m	08 Kool - Too Hot.mp3 10.5% 21.0% 31.5% 42.1% 52.6% 63.1% 73.7% 84.2% 94.7%100%  
+	    New File  		   6.8 m	09 Commodores - Sweet Love.mp3  7.2% 14.5% 21.8% 29.0% 36.3% 43.6% 50.8% 58.1% 65.4% 72.6% 79.9% 87.2% 94.4%100%  
+	    New File  		  10.5 m	10 Major Harris - Love Won't Let Me Wait.mp3  9.4% 18.9% 28.3% 37.8% 47.3% 56.7% 66.2% 75.7% 85.1% 94.6%100%  
+	    New File  		   6.2 m	11 David Ruffin - Walk Away from Love.mp3  7.9% 15.9% 23.8% 31.8% 39.7% 47.7% 55.6% 63.6% 71.6% 79.5% 87.5% 95.4%100%  
+	    New File  		   8.2 m	12 Lou Rawls - You'll Never Find Another Love Like Mine.mp3 12.1% 24.2% 36.4% 48.5% 60.6% 72.8% 84.9% 97.1%100%  
+	    New File  		   7.1 m	13 The Pointer Sisters - How Long (Betcha Got a Chick on the Side).mp3  7.0% 14.0% 21.0% 28.0% 35.0% 42.0% 49.1% 56.1% 63.1% 70.1% 77.1% 84.1% 91.2% 98.2%100%  
+	    New File  		   6.8 m	14 William Bell - Tryin' to Love Two.mp3  7.3% 14.6% 21.9% 29.2% 36.5% 43.8% 51.1% 58.4% 65.7% 73.0% 80.3% 87.6% 94.9%100%  
+	    New File  		   6.7 m	15 The Brothers Johnson - I'll Be Good to You.mp3  7.3% 14.7% 22.1% 29.5% 36.8% 44.2% 51.6% 59.0% 66.3% 73.7% 81.1% 88.5% 95.8%100%  
+	    New File  		   17491	Folder.jpg100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         1         0         0         0         0
+   Files :        16        16         0         0         0         0
+   Bytes :  112.93 m  112.93 m         0         0         0         0
+   Times :   0:00:13   0:00:13                       0:00:00   0:00:00
+
+
+   Speed :             8661249 Bytes/sec.
+   Speed :             495.600 MegaBytes/min.
+   Ended : Friday, June 21, 2024 3:36:35 AM
+

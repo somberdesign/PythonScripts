@@ -3,9 +3,9 @@
    ROBOCOPY     ::     Robust File Copy for Windows                              
 -------------------------------------------------------------------------------
 
-  Started : Friday, June 21, 2024 3:34:38 AM
-   Source : e:\video\music\18 Rock Hard Hits, Volume 1\
-     Dest : \\bombcyclone\AgnesNutter\Media\Music\Albums\0\18 Rock Hard Hits, Volume 1\
+  Started : Thursday, July 4, 2024 3:34:38 AM
+   Source : e:\video\music\Blur - Focusing in With Blur\
+     Dest : \\bombcyclone\AgnesNutter\Media\Music\Albums\b\Blur - Focusing in With Blur\
 
     Files : *.*
 	    
@@ -13,48 +13,42 @@
 
 ------------------------------------------------------------------------------
 
-	  New Dir         19	e:\video\music\18 Rock Hard Hits, Volume 1\
-	    New File  		   5.9 m	01 Black Sabbath - The Mob Rules.mp3  8.4% 16.8% 25.2% 33.6% 42.0% 50.4% 58.8% 67.2% 75.6% 84.0% 92.4%100%  
-	    New File  		   8.6 m	02 Cinderella - Nobody's Fool.mp3 11.5% 23.0% 34.5% 46.0% 57.6% 69.1% 80.6% 92.1%100%  
-	    New File  		   7.0 m	03 Ratt - Wanted Man.mp3  7.1% 14.2% 21.3% 28.4% 35.6% 42.7% 49.8% 56.9% 64.1% 71.2% 78.3% 85.4% 92.6% 99.7%100%  
-	    New File  		   8.2 m	04 Poison - Every Rose Has Its Thorn.mp3 12.1% 24.2% 36.3% 48.4% 60.6% 72.7% 84.8% 96.9%100%  
-	    New File  		   8.3 m	05 Night Ranger - (You Can Still) Rock in America.mp3 11.9% 23.9% 35.9% 47.9% 59.8% 71.8% 83.8% 95.8%100%  
-	    New File  		   8.0 m	06 Dio - Rainbow in the Dark.mp3 12.4% 24.9% 37.4% 49.9% 62.3% 74.8% 87.3% 99.8%100%  
-	    New File  		   7.1 m	07 Fiona - Talk to Me.mp3  6.9% 13.9% 20.9% 27.9% 34.9% 41.9% 48.9% 55.9% 62.9% 69.9% 76.9% 83.9% 90.9% 97.9%100%  
-	    New File  		   8.2 m	08 White Lion - Little Fighter.mp3 12.1% 24.2% 36.4% 48.5% 60.7% 72.8% 85.0% 97.1%100%  
-	    New File  		   7.6 m	09 The Cult - Fire Woman.mp3  6.5% 13.0% 19.5% 26.1% 32.6% 39.1% 45.7% 52.2% 58.7% 65.3% 71.8% 78.3% 84.9% 91.4% 97.9%100%  
-	    New File  		  11.6 m	10 Sammy Hagar - Remember the Heroes.mp3  8.5% 17.0% 25.6% 34.1% 42.7% 51.2% 59.8% 68.3% 76.9% 85.4% 94.0%100%  
-	    New File  		   8.1 m	11 Thin Lizzy - Hollywood (Down on Your Luck).mp3 12.2% 24.5% 36.8% 49.1% 61.4% 73.7% 86.0% 98.3%100%  
-	    New File  		   7.6 m	12 Deep Purple - Knocking at Your Back Door.mp3  6.5% 13.0% 19.5% 26.1% 32.6% 39.1% 45.7% 52.2% 58.7% 65.3% 71.8% 78.3% 84.9% 91.4% 97.9%100%  
-	    New File  		   8.0 m	13 Whitesnake - Fool for Your Loving.mp3 12.4% 24.8% 37.2% 49.6% 62.0% 74.4% 86.8% 99.2%100%  
-	    New File  		   9.8 m	14 Yes - Hold on.mp3 10.1% 20.2% 30.3% 40.4% 50.5% 60.6% 70.7% 80.8% 90.9%100%  
-	    New File  		   7.3 m	15 Winger - Madalaine.mp3  6.8% 13.6% 20.4% 27.2% 34.1% 40.9% 47.7% 54.5% 61.4% 68.2% 75.0% 81.8% 88.7% 95.5%100%  
-	    New File  		   8.0 m	16 Foreigner - Reaction to Action.mp3 12.3% 24.7% 37.0% 49.4% 61.7% 74.1% 86.5% 98.8%100%  
-	    New File  		   7.8 m	17 Armored Saint - Reign of Fire.mp3  6.3% 12.6% 19.0% 25.3% 31.7% 38.0% 44.3% 50.7% 57.0% 63.4% 69.7% 76.1% 82.4% 88.7% 95.1%100%  
-	    New File  		   7.4 m	18 Europe - The Final Countdown.mp3  6.6% 13.3% 20.0% 26.7% 33.3% 40.0% 46.7% 53.4% 60.1% 66.7% 73.4% 80.1% 86.8% 93.5%100%  
-	    New File  		  201205	Folder.jpg 65%  100%  
+	  New Dir         13	e:\video\music\Blur - Focusing in With Blur\
+	    New File  		   1.2 m	01 Bang (Excerpt).mp3 20%   40%   61%   81%  100%  
+	    New File  		   5.7 m	02 Interview.mp3  8.7% 17.4% 26.1% 34.8% 43.5% 52.2% 60.9% 69.6% 78.4% 87.1% 95.8%100%  
+	    New File  		   1.2 m	03 There's No Other Way (Excerpt).mp3 20%   40%   60%   80%  100%  
+	    New File  		   5.2 m	04 Interview.mp3  9%   19%   28%   38%   47%   57%   67%   76%   86%   95%  100%  
+	    New File  		   1.3 m	05 She's So High (Excerpt).mp3 19%   38%   57%   76%   95%  100%  
+	    New File  		   8.9 m	06 Interview.mp3 11.2% 22.4% 33.6% 44.8% 56.0% 67.3% 78.5% 89.7%100%  
+	    New File  		   3.7 m	07 Bad Day (Excerpt).mp3 13%   27%   40%   54%   67%   81%   94%  100%  
+	    New File  		   7.6 m	08 Interview.mp3  6.5% 13.0% 19.5% 26.0% 32.5% 39.0% 45.5% 52.0% 58.5% 65.1% 71.6% 78.1% 84.6% 91.1% 97.6%100%  
+	    New File  		  897751	09 High Cool (Excerpt).mp3 29%   58%   87%  100%  
+	    New File  		   6.1 m	10 Interview.mp3  8.1% 16.3% 24.5% 32.7% 40.9% 49.1% 57.2% 65.4% 73.6% 81.8% 90.0% 98.2%100%  
+	    New File  		   1.1 m	11 I Know (Excerpt).mp3 22%   44%   66%   88%  100%  
+	    New File  		   5.4 m	12 Interview.mp3  9%   18%   27%   36%   45%   55%   64%   73%   82%   91%  100%  
+	    New File  		  137556	Folder.jpg 95%  100%  
 
 ------------------------------------------------------------------------------
 
                Total    Copied   Skipped  Mismatch    FAILED    Extras
     Dirs :         1         1         0         0         0         0
-   Files :        19        19         0         0         0         0
-   Bytes :  145.72 m  145.72 m         0         0         0         0
-   Times :   0:00:24   0:00:24                       0:00:00   0:00:00
+   Files :        13        13         0         0         0         0
+   Bytes :   48.69 m   48.69 m         0         0         0         0
+   Times :   0:00:06   0:00:06                       0:00:00   0:00:00
 
 
-   Speed :             6163269 Bytes/sec.
-   Speed :             352.665 MegaBytes/min.
-   Ended : Friday, June 21, 2024 3:35:03 AM
+   Speed :             7652041 Bytes/sec.
+   Speed :             437.853 MegaBytes/min.
+   Ended : Thursday, July 4, 2024 3:34:45 AM
 
 
 -------------------------------------------------------------------------------
    ROBOCOPY     ::     Robust File Copy for Windows                              
 -------------------------------------------------------------------------------
 
-  Started : Friday, June 21, 2024 3:35:03 AM
-   Source : e:\video\music\Greg Klamt - Fluxus Quo\
-     Dest : \\bombcyclone\AgnesNutter\Media\Music\Albums\k\Greg Klamt - Fluxus Quo\
+  Started : Thursday, July 4, 2024 3:34:45 AM
+   Source : e:\video\music\Deep Forest - Boheme\
+     Dest : \\bombcyclone\AgnesNutter\Media\Music\Albums\d\Deep Forest - Boheme\
 
     Files : *.*
 	    
@@ -62,32 +56,42 @@
 
 ------------------------------------------------------------------------------
 
-	  New Dir          3	e:\video\music\Greg Klamt - Fluxus Quo\
-	    New File  		   6.7 m	01 Stark Raven.mp3  7.4% 14.9% 22.3% 29.8% 37.3% 44.7% 52.2% 59.6% 67.1% 74.6% 82.0% 89.5% 96.9%100%  
-	    New File  		   7.6 m	02 Fluxus Quo.mp3  6.5% 13.0% 19.5% 26.0% 32.5% 39.0% 45.5% 52.0% 58.5% 65.0% 71.5% 78.0% 84.5% 91.0% 97.5%100%  
-	    New File  		   67069	Folder.jpg100%  
+	  New Dir         13	e:\video\music\Deep Forest - Boheme\
+	    New File  		   3.2 m	01 Anasthasia.mp3 15%   30%   45%   60%   76%   91%  100%  
+	    New File  		  10.0 m	02 Bohemian Ballet.mp3  9.9% 19.8% 29.7% 39.6% 49.5% 59.5% 69.4% 79.3% 89.2% 99.1%100%  
+	    New File  		   8.2 m	03 Marta's Song.mp3 12.1% 24.3% 36.5% 48.7% 60.9% 73.1% 85.3% 97.5%100%  
+	    New File  		   9.8 m	04 Gathering.mp3 10.1% 20.2% 30.3% 40.4% 50.5% 60.7% 70.8% 80.9% 91.0%100%  
+	    New File  		   6.4 m	05 Lament.mp3  7.7% 15.5% 23.3% 31.0% 38.8% 46.6% 54.3% 62.1% 69.9% 77.6% 85.4% 93.2%100%  
+	    New File  		   5.3 m	06 Bulgarian Melody.mp3  9%   18%   28%   37%   46%   56%   65%   75%   84%   93%  100%  
+	    New File  		   2.4 m	07 Deep Folk Song.mp3 20%   41%   62%   83%  100%  
+	    New File  		   6.3 m	08 Freedom Cry.mp3  7.9% 15.8% 23.7% 31.6% 39.6% 47.5% 55.4% 63.3% 71.3% 79.2% 87.1% 95.0%100%  
+	    New File  		   8.1 m	09 Twosome.mp3 12.2% 24.4% 36.7% 48.9% 61.2% 73.4% 85.7% 97.9%100%  
+	    New File  		   8.5 m	10 Cafe Europa.mp3 11.6% 23.2% 34.8% 46.5% 58.1% 69.7% 81.4% 93.0%100%  
+	    New File  		   5.8 m	11 Katharina.mp3  8.5% 17.0% 25.5% 34.1% 42.6% 51.1% 59.6% 68.2% 76.7% 85.2% 93.7%100%  
+	    New File  		   9.3 m	12 Boheme.mp3 10.6% 21.2% 31.9% 42.5% 53.2% 63.8% 74.4% 85.1% 95.7%100%  
+	    New File  		  174545	Folder.jpg 75%  100%  
 
 ------------------------------------------------------------------------------
 
                Total    Copied   Skipped  Mismatch    FAILED    Extras
     Dirs :         1         1         0         0         0         0
-   Files :         3         3         0         0         0         0
-   Bytes :   14.45 m   14.45 m         0         0         0         0
-   Times :   0:00:04   0:00:04                       0:00:00   0:00:00
+   Files :        13        13         0         0         0         0
+   Bytes :   84.12 m   84.12 m         0         0         0         0
+   Times :   0:00:10   0:00:10                       0:00:00   0:00:00
 
 
-   Speed :             3145371 Bytes/sec.
-   Speed :             179.979 MegaBytes/min.
-   Ended : Friday, June 21, 2024 3:35:08 AM
+   Speed :             8102445 Bytes/sec.
+   Speed :             463.625 MegaBytes/min.
+   Ended : Thursday, July 4, 2024 3:34:56 AM
 
 
 -------------------------------------------------------------------------------
    ROBOCOPY     ::     Robust File Copy for Windows                              
 -------------------------------------------------------------------------------
 
-  Started : Friday, June 21, 2024 3:35:08 AM
-   Source : e:\video\music\Martha Bergerich - Mozart; Piano Concerto No. 21 'Elvira Madigan'; The Magic Flute Overture\
-     Dest : \\bombcyclone\AgnesNutter\Media\Music\Albums\b\Martha Bergerich - Mozart; Piano Concerto No. 21 'Elvira Madigan'; The Magic Flute Overture\
+  Started : Thursday, July 4, 2024 3:34:56 AM
+   Source : e:\video\music\Hilary Duff - Metamorphosis\
+     Dest : \\bombcyclone\AgnesNutter\Media\Music\Albums\d\Hilary Duff - Metamorphosis\
 
     Files : *.*
 	    
@@ -95,34 +99,42 @@
 
 ------------------------------------------------------------------------------
 
-	  New Dir          5	e:\video\music\Martha Bergerich - Mozart; Piano Concerto No. 21 'Elvira Madigan'; The Magic Flute Overture\
-	    New File  		  25.4 m	01 Piano Concerto No. 21 in C major ('Elvira Madigan') K. 467; 1. Allegro; Maestoso.mp3  3.9%  7.8% 11.7% 15.7% 19.6% 23.5% 27.4% 31.4% 35.3% 39.2% 43.1% 47.1% 51.0% 54.9% 58.8% 62.8% 66.7% 70.6% 74.5% 78.5% 82.4% 86.3% 90.2% 94.2% 98.1%100%  
-	    New File  		   9.5 m	02 Piano Concerto No. 21 in C major ('Elvira Madigan') K. 467; 2. Andante.mp3 10.4% 20.9% 31.3% 41.8% 52.2% 62.7% 73.1% 83.6% 94.1%100%  
-	    New File  		  12.5 m	03 Piano Concerto No. 21 in C major ('Elvira Madigan') K. 467; 3. Allegro vivace assai.mp3  7.9% 15.9% 23.9% 31.9% 39.9% 47.9% 55.9% 63.9% 71.9% 79.9% 87.9% 95.9%100%  
-	    New File  		  12.6 m	04 Die Zauberflote (The Magic Flute), opera, K. 620.mp3  7.9% 15.8% 23.7% 31.6% 39.6% 47.5% 55.4% 63.3% 71.3% 79.2% 87.1% 95.0%100%  
-	    New File  		   17227	Folder.jpg100%  
+	  New Dir         13	e:\video\music\Hilary Duff - Metamorphosis\
+	    New File  		   6.6 m	01 So Yesterday.mp3  7.4% 14.9% 22.4% 29.9% 37.4% 44.8% 52.3% 59.8% 67.3% 74.8% 82.2% 89.7% 97.2%100%  
+	    New File  		   6.9 m	02 Come Clean.mp3  7.1% 14.3% 21.5% 28.7% 35.9% 43.0% 50.2% 57.4% 64.6% 71.8% 78.9% 86.1% 93.3%100%  
+	    New File  		   6.4 m	03 Workin' It Out.mp3  7.7% 15.5% 23.3% 31.1% 38.9% 46.7% 54.5% 62.3% 70.0% 77.8% 85.6% 93.4%100%  
+	    New File  		   6.1 m	04 Little Voice.mp3  8.1% 16.3% 24.4% 32.6% 40.7% 48.9% 57.0% 65.2% 73.3% 81.5% 89.6% 97.8%100%  
+	    New File  		   6.8 m	05 Where Did I Go Right¨.mp3  7.2% 14.5% 21.8% 29.1% 36.4% 43.7% 50.9% 58.2% 65.5% 72.8% 80.1% 87.4% 94.7%100%  
+	    New File  		   6.7 m	06 Anywhere But Here.mp3  7.4% 14.8% 22.2% 29.6% 37.0% 44.4% 51.8% 59.2% 66.6% 74.0% 81.4% 88.8% 96.2%100%  
+	    New File  		   6.4 m	07 The Math.mp3  7.7% 15.5% 23.2% 31.0% 38.7% 46.5% 54.3% 62.0% 69.8% 77.5% 85.3% 93.0%100%  
+	    New File  		   8.0 m	08 Love Just Is.mp3 12.4% 24.8% 37.2% 49.7% 62.1% 74.5% 86.9% 99.4%100%  
+	    New File  		   7.4 m	10 Party Up.mp3  6.7% 13.4% 20.2% 26.9% 33.6% 40.4% 47.1% 53.8% 60.6% 67.3% 74.0% 80.8% 87.5% 94.2%100%  
+	    New File  		   6.9 m	11 Metamorphosis.mp3  7.1% 14.3% 21.4% 28.6% 35.7% 42.9% 50.0% 57.2% 64.3% 71.5% 78.6% 85.8% 92.9%100%  
+	    New File  		   2.8 m	12 Inner Strength.mp3 17%   35%   53%   71%   89%  100%  
+	    New File  		   5.8 m	13 Why Not.mp3  8.5% 17.0% 25.5% 34.0% 42.5% 51.0% 59.5% 68.0% 76.5% 85.0% 93.5%100%  
+	    New File  		   99039	Folder.jpg100%  
 
 ------------------------------------------------------------------------------
 
                Total    Copied   Skipped  Mismatch    FAILED    Extras
     Dirs :         1         1         0         0         0         0
-   Files :         5         5         0         0         0         0
-   Bytes :   60.18 m   60.18 m         0         0         0         0
-   Times :   0:00:20   0:00:20                       0:00:00   0:00:00
+   Files :        13        13         0         0         0         0
+   Bytes :   77.49 m   77.49 m         0         0         0         0
+   Times :   0:00:10   0:00:10                       0:00:00   0:00:00
 
 
-   Speed :             3087739 Bytes/sec.
-   Speed :             176.681 MegaBytes/min.
-   Ended : Friday, June 21, 2024 3:35:28 AM
+   Speed :             7885955 Bytes/sec.
+   Speed :             451.237 MegaBytes/min.
+   Ended : Thursday, July 4, 2024 3:35:06 AM
 
 
 -------------------------------------------------------------------------------
    ROBOCOPY     ::     Robust File Copy for Windows                              
 -------------------------------------------------------------------------------
 
-  Started : Friday, June 21, 2024 3:35:28 AM
-   Source : e:\video\music\Meditation; Classical Relaxation, Vol. 1\
-     Dest : \\bombcyclone\AgnesNutter\Media\Music\Albums\m\Meditation; Classical Relaxation, Vol. 1\
+  Started : Thursday, July 4, 2024 3:35:06 AM
+   Source : e:\video\music\Jose Feliciano - Light My Fire\
+     Dest : \\bombcyclone\AgnesNutter\Media\Music\Albums\f\Jose Feliciano - Light My Fire\
 
     Files : *.*
 	    
@@ -130,39 +142,51 @@
 
 ------------------------------------------------------------------------------
 
-	  New Dir         10	e:\video\music\Meditation; Classical Relaxation, Vol. 1\
-	    New File  		   7.6 m	01 Neues Bachisches Collegium Musicum - Canon.mp3  6.5% 13.0% 19.5% 26.0% 32.6% 39.1% 45.6% 52.1% 58.7% 65.2% 71.7% 78.2% 84.8% 91.3% 97.8%100%  
-	    New File  		   9.7 m	02 Vilmos Fischer - Andante from Piano Concerto No. 21, 'Elvira Madigan'.mp3 10.3% 20.6% 30.9% 41.2% 51.5% 61.8% 72.1% 82.4% 92.7%100%  
-	    New File  		   4.1 m	03 Rundfunk-Sinfonieorchester Berlin - Notturno from 'Coppelia'.mp3 12%   24%   36%   48%   60%   72%   84%   96%  100%  
-	    New File  		  23.0 m	04 Franz Schubert - Adagio from String Quintet in C.mp3  4.3%  8.6% 13.0% 17.3% 21.7% 26.0% 30.3% 34.7% 39.0% 43.4% 47.7% 52.1% 56.4% 60.7% 65.1% 69.4% 73.8% 78.1% 82.5% 86.8% 91.1% 95.5% 99.8%100%  
-	    New File  		   7.0 m	05 Deutsche Bachsolisten - Air from Orchestral Suite No. 3.mp3  7.1% 14.2% 21.3% 28.4% 35.5% 42.7% 49.8% 56.9% 64.0% 71.1% 78.3% 85.4% 92.5% 99.6%100%  
-	    New File  		  11.8 m	06 Bela Kovacs - Adagio from Clarinet Concerto.mp3  8.4% 16.8% 25.3% 33.7% 42.1% 50.6% 59.0% 67.5% 75.9% 84.3% 92.8%100%  
-	    New File  		  17.6 m	07 Budapesti Filharmoniai Tarsasag Zenekara - Andante con moto from Symphony No. 8, 'Unfinished'.mp3  5.6% 11.3% 16.9% 22.6% 28.3% 33.9% 39.6% 45.2% 50.9% 56.6% 62.2% 67.9% 73.6% 79.2% 84.9% 90.5% 96.2%100%  
-	    New File  		   6.3 m	08 Ludwig Guttler - Adagio from Concerto Op. 9 No. 2.mp3  7.8% 15.6% 23.4% 31.3% 39.1% 46.9% 54.8% 62.6% 70.4% 78.3% 86.1% 93.9%100%  
-	    New File  		  11.1 m	09 Helmut Rucker - Dance of the Blessed Spirits from 'Orpheus and Eurydice'.mp3  8.9% 17.9% 26.9% 35.9% 44.8% 53.8% 62.8% 71.8% 80.8% 89.7% 98.7%100%  
-	    New File  		  199662	Folder.jpg 65%  100%  
+	  New Dir         22	e:\video\music\Jose Feliciano - Light My Fire\
+	    New File  		   6.5 m	01 Light My Fire.mp3  7.6% 15.3% 22.9% 30.6% 38.3% 45.9% 53.6% 61.2% 68.9% 76.6% 84.2% 91.9% 99.5%100%  
+	    New File  		   5.5 m	02 There's Always Something There to Remind Me.mp3  8%   17%   26%   35%   44%   53%   62%   71%   80%   89%   98%  100%  
+	    New File  		   7.3 m	03 And I Love Her.mp3  6.8% 13.6% 20.4% 27.2% 34.0% 40.9% 47.7% 54.5% 61.3% 68.1% 75.0% 81.8% 88.6% 95.4%100%  
+	    New File  		   7.5 m	04 California Dreamin'.mp3  6.6% 13.2% 19.8% 26.4% 33.0% 39.6% 46.2% 52.8% 59.5% 66.1% 72.7% 79.3% 85.9% 92.5% 99.1%100%  
+	    New File  		   5.1 m	05 Don't Let the Sun Catch You Crying.mp3  9%   19%   29%   38%   48%   58%   67%   77%   87%   96%  100%  
+	    New File  		   6.1 m	06 In My Life.mp3  8.1% 16.3% 24.5% 32.7% 40.9% 49.1% 57.3% 65.4% 73.6% 81.8% 90.0% 98.2%100%  
+	    New File  		   4.7 m	07 Nena Na Na.mp3 10%   20%   31%   41%   52%   62%   72%   83%   93%  100%  
+	    New File  		   6.3 m	08 Sunny.mp3  7.8% 15.6% 23.5% 31.3% 39.1% 47.0% 54.8% 62.6% 70.5% 78.3% 86.1% 94.0%100%  
+	    New File  		   5.0 m	09 Hey! Baby.mp3  9%   19%   29%   39%   49%   58%   68%   78%   88%   98%  100%  
+	    New File  		   4.4 m	10 Hi-Heel Sneakers.mp3 11%   22%   33%   44%   56%   67%   78%   89%  100%  
+	    New File  		   5.4 m	11 I'll Be Your Baby Tonight.mp3  9%   18%   27%   36%   45%   55%   64%   73%   82%   91%  100%  
+	    New File  		   6.5 m	12 My World Is Empty Without You.mp3  7.6% 15.3% 23.0% 30.7% 38.4% 46.1% 53.8% 61.4% 69.1% 76.8% 84.5% 92.2% 99.9%100%  
+	    New File  		   6.7 m	13 Satisfaction.mp3  7.4% 14.8% 22.3% 29.7% 37.2% 44.6% 52.1% 59.5% 67.0% 74.4% 81.8% 89.3% 96.7%100%  
+	    New File  		   6.2 m	14 Feliz Navidad.mp3  8.0% 16.0% 24.1% 32.1% 40.2% 48.2% 56.3% 64.3% 72.3% 80.4% 88.4% 96.5%100%  
+	    New File  		   3.1 m	15 Lady Madonna.mp3 15%   31%   47%   62%   78%   94%  100%  
+	    New File  		   9.4 m	16 Little Red Rooster.mp3 10.5% 21.1% 31.7% 42.3% 52.9% 63.5% 74.1% 84.7% 95.3%100%  
+	    New File  		   9.7 m	17 She's a Woman.mp3 10.2% 20.5% 30.8% 41.1% 51.4% 61.7% 72.0% 82.3% 92.6%100%  
+	    New File  		   5.3 m	18 Yesterday.mp3  9%   18%   28%   37%   46%   56%   65%   75%   84%   93%  100%  
+	    New File  		   5.6 m	19 I Got a Woman.mp3  8%   17%   26%   35%   44%   53%   62%   70%   79%   88%   97%  100%  
+	    New File  		   5.9 m	20 Chico and the Man.mp3  8.3% 16.7% 25.0% 33.4% 41.8% 50.1% 58.5% 66.9% 75.2% 83.6% 92.0%100%  
+	    New File  		   4.9 m	21 Adios Amour.mp3 10%   20%   30%   40%   50%   60%   70%   80%   90%  100%  
+	    New File  		  160629	Folder.jpg 81%  100%  
 
 ------------------------------------------------------------------------------
 
                Total    Copied   Skipped  Mismatch    FAILED    Extras
     Dirs :         1         1         0         0         0         0
-   Files :        10        10         0         0         0         0
-   Bytes :   98.81 m   98.81 m         0         0         0         0
-   Times :   0:00:31   0:00:31                       0:00:00   0:00:00
+   Files :        22        22         0         0         0         0
+   Bytes :  128.26 m  128.26 m         0         0         0         0
+   Times :   0:00:17   0:00:17                       0:00:00   0:00:00
 
 
-   Speed :             3320141 Bytes/sec.
-   Speed :             189.980 MegaBytes/min.
-   Ended : Friday, June 21, 2024 3:36:00 AM
+   Speed :             7815967 Bytes/sec.
+   Speed :             447.233 MegaBytes/min.
+   Ended : Thursday, July 4, 2024 3:35:24 AM
 
 
 -------------------------------------------------------------------------------
    ROBOCOPY     ::     Robust File Copy for Windows                              
 -------------------------------------------------------------------------------
 
-  Started : Friday, June 21, 2024 3:36:00 AM
-   Source : e:\video\music\Mega Hits Disco, Vol. 12\
-     Dest : \\bombcyclone\AgnesNutter\Media\Music\Albums\m\Mega Hits Disco, Vol. 12\
+  Started : Thursday, July 4, 2024 3:35:24 AM
+   Source : e:\video\music\Lenny Kravitz - Let Love Rule\
+     Dest : \\bombcyclone\AgnesNutter\Media\Music\Albums\k\Lenny Kravitz - Let Love Rule\
 
     Files : *.*
 	    
@@ -170,39 +194,43 @@
 
 ------------------------------------------------------------------------------
 
-	  New Dir         10	e:\video\music\Mega Hits Disco, Vol. 12\
-	    New File  		   8.4 m	01 Diana Ross - Upside Down.mp3 11.8% 23.6% 35.4% 47.2% 59.1% 70.9% 82.7% 94.5%100%  
-	    New File  		   8.5 m	02 Deniece Williams - Let's Hear It for the Boy.mp3 11.7% 23.4% 35.1% 46.9% 58.6% 70.3% 82.1% 93.8%100%  
-	    New File  		   8.2 m	03 Donna Summer - Dim All the Lights.mp3 12.1% 24.2% 36.3% 48.5% 60.6% 72.7% 84.9% 97.0%100%  
-	    New File  		   9.4 m	04 Laura Branigan - Gloria.mp3 10.5% 21.1% 31.7% 42.3% 52.9% 63.5% 74.0% 84.6% 95.2%100%  
-	    New File  		  10.9 m	05 Thelma Houston - Don't Leave Me This Way.mp3  9.1% 18.2% 27.3% 36.4% 45.6% 54.7% 63.8% 72.9% 82.1% 91.2%100%  
-	    New File  		   7.1 m	06 Cher - Take Me Home.mp3  6.9% 13.9% 20.9% 27.9% 34.9% 41.9% 48.8% 55.8% 62.8% 69.8% 76.8% 83.8% 90.7% 97.7%100%  
-	    New File  		   7.9 m	07 Sheena Easton - Strut.mp3  6.3% 12.6% 18.9% 25.2% 31.5% 37.8% 44.1% 50.5% 56.8% 63.1% 69.4% 75.7% 82.0% 88.3% 94.6%100%  
-	    New File  		  11.3 m	08 Vicki Sue Robinson - Turn the Beat Around.mp3  8.8% 17.6% 26.5% 35.3% 44.1% 53.0% 61.8% 70.6% 79.5% 88.3% 97.1%100%  
-	    New File  		   7.3 m	09 Chaka Khan - I'm Every Woman.mp3  6.8% 13.6% 20.5% 27.3% 34.2% 41.0% 47.8% 54.7% 61.5% 68.4% 75.2% 82.0% 88.9% 95.7%100%  
-	    New File  		  100464	Folder.jpg100%  
+	  New Dir         14	e:\video\music\Lenny Kravitz - Let Love Rule\
+	    New File  		   5.8 m	01 Sittin' on Top of the World.mp3  8.5% 17.1% 25.6% 34.2% 42.8% 51.3% 59.9% 68.5% 77.0% 85.6% 94.2%100%  
+	    New File  		  10.9 m	02 Let Love Rule.mp3  9.0% 18.1% 27.2% 36.3% 45.4% 54.5% 63.6% 72.7% 81.8% 90.9%100%  
+	    New File  		   5.7 m	03 Freedom Train.mp3  8.6% 17.2% 25.8% 34.5% 43.1% 51.7% 60.3% 69.0% 77.6% 86.2% 94.9%100%  
+	    New File  		   9.3 m	04 My Precious Love.mp3 10.6% 21.3% 31.9% 42.6% 53.2% 63.9% 74.5% 85.2% 95.9%100%  
+	    New File  		  11.9 m	05 I Build This Garden for Us.mp3  8.3% 16.7% 25.1% 33.5% 41.8% 50.2% 58.6% 67.0% 75.4% 83.7% 92.1%100%  
+	    New File  		   9.8 m	06 Fear.mp3 10.1% 20.2% 30.4% 40.5% 50.7% 60.8% 71.0% 81.1% 91.3%100%  
+	    New File  		   6.9 m	07 Does Anybody Out There Even Care.mp3  7.2% 14.4% 21.7% 28.9% 36.1% 43.4% 50.6% 57.9% 65.1% 72.3% 79.6% 86.8% 94.1%100%  
+	    New File  		   7.6 m	08 Mr. Cab Driver.mp3  6.5% 13.0% 19.5% 26.0% 32.5% 39.0% 45.5% 52.0% 58.5% 65.0% 71.5% 78.0% 84.5% 91.1% 97.6%100%  
+	    New File  		  10.0 m	09 Rosemary.mp3  9.9% 19.9% 29.8% 39.8% 49.7% 59.7% 69.7% 79.6% 89.6% 99.5%100%  
+	    New File  		   6.2 m	10 Be.mp3  8.0% 16.1% 24.1% 32.2% 40.2% 48.3% 56.3% 64.4% 72.4% 80.5% 88.5% 96.6%100%  
+	    New File  		   5.6 m	11 Blues for Sister Someone.mp3  8%   17%   26%   35%   44%   53%   62%   71%   79%   88%   97%  100%  
+	    New File  		   8.6 m	12 Empty Hands.mp3 11.5% 23.1% 34.7% 46.3% 57.9% 69.5% 81.1% 92.6%100%  
+	    New File  		   5.6 m	13 Flower Child.mp3  8%   17%   26%   35%   44%   52%   61%   70%   79%   88%   97%  100%  
+	    New File  		  194889	Folder.jpg 67%  100%  
 
 ------------------------------------------------------------------------------
 
                Total    Copied   Skipped  Mismatch    FAILED    Extras
     Dirs :         1         1         0         0         0         0
-   Files :        10        10         0         0         0         0
-   Bytes :   79.44 m   79.44 m         0         0         0         0
-   Times :   0:00:21   0:00:21                       0:00:00   0:00:00
+   Files :        14        14         0         0         0         0
+   Bytes :  104.76 m  104.76 m         0         0         0         0
+   Times :   0:00:15   0:00:15                       0:00:00   0:00:00
 
 
-   Speed :             3952312 Bytes/sec.
-   Speed :             226.153 MegaBytes/min.
-   Ended : Friday, June 21, 2024 3:36:21 AM
+   Speed :             7276292 Bytes/sec.
+   Speed :             416.352 MegaBytes/min.
+   Ended : Thursday, July 4, 2024 3:35:39 AM
 
 
 -------------------------------------------------------------------------------
    ROBOCOPY     ::     Robust File Copy for Windows                              
 -------------------------------------------------------------------------------
 
-  Started : Friday, June 21, 2024 3:36:21 AM
-   Source : e:\video\music\Only Soul 1975-1979\
-     Dest : \\bombcyclone\AgnesNutter\Media\Music\Albums\o\Only Soul 1975-1979\
+  Started : Thursday, July 4, 2024 3:35:39 AM
+   Source : e:\video\music\Lorrie Morgan - Secret Love\
+     Dest : \\bombcyclone\AgnesNutter\Media\Music\Albums\m\Lorrie Morgan - Secret Love\
 
     Files : *.*
 	    
@@ -210,34 +238,150 @@
 
 ------------------------------------------------------------------------------
 
-	  New Dir         16	e:\video\music\Only Soul 1975-1979\
-	    New File  		   5.5 m	01 Earth - Shining Star.mp3  9%   18%   27%   36%   45%   54%   63%   72%   81%   90%   99%  100%  
-	    New File  		   6.5 m	02 The Manhattans - Kiss and Say Goodbye.mp3  7.6% 15.3% 22.9% 30.6% 38.3% 45.9% 53.6% 61.2% 68.9% 76.6% 84.2% 91.9% 99.5%100%  
-	    New File  		   5.9 m	03 The Miracles - Love Machine.mp3  8.3% 16.7% 25.1% 33.4% 41.8% 50.2% 58.5% 66.9% 75.3% 83.6% 92.0%100%  
-	    New File  		   8.5 m	04 Donna Summer - Dim All the Lights.mp3 11.7% 23.4% 35.1% 46.8% 58.6% 70.3% 82.0% 93.7%100%  
-	    New File  		   8.0 m	05 Smokey Robinson - Cruisin'.mp3 12.4% 24.8% 37.2% 49.7% 62.1% 74.5% 87.0% 99.4%100%  
-	    New File  		   9.3 m	06 Ohio Players - Love Rollercoaster.mp3 10.7% 21.4% 32.1% 42.9% 53.6% 64.3% 75.1% 85.8% 96.5%100%  
-	    New File  		   6.7 m	07 Peaches - Shake Your Groove Thing.mp3  7.3% 14.7% 22.1% 29.5% 36.9% 44.2% 51.6% 59.0% 66.4% 73.8% 81.2% 88.5% 95.9%100%  
-	    New File  		   9.4 m	08 Kool - Too Hot.mp3 10.5% 21.0% 31.5% 42.1% 52.6% 63.1% 73.7% 84.2% 94.7%100%  
-	    New File  		   6.8 m	09 Commodores - Sweet Love.mp3  7.2% 14.5% 21.8% 29.0% 36.3% 43.6% 50.8% 58.1% 65.4% 72.6% 79.9% 87.2% 94.4%100%  
-	    New File  		  10.5 m	10 Major Harris - Love Won't Let Me Wait.mp3  9.4% 18.9% 28.3% 37.8% 47.3% 56.7% 66.2% 75.7% 85.1% 94.6%100%  
-	    New File  		   6.2 m	11 David Ruffin - Walk Away from Love.mp3  7.9% 15.9% 23.8% 31.8% 39.7% 47.7% 55.6% 63.6% 71.6% 79.5% 87.5% 95.4%100%  
-	    New File  		   8.2 m	12 Lou Rawls - You'll Never Find Another Love Like Mine.mp3 12.1% 24.2% 36.4% 48.5% 60.6% 72.8% 84.9% 97.1%100%  
-	    New File  		   7.1 m	13 The Pointer Sisters - How Long (Betcha Got a Chick on the Side).mp3  7.0% 14.0% 21.0% 28.0% 35.0% 42.0% 49.1% 56.1% 63.1% 70.1% 77.1% 84.1% 91.2% 98.2%100%  
-	    New File  		   6.8 m	14 William Bell - Tryin' to Love Two.mp3  7.3% 14.6% 21.9% 29.2% 36.5% 43.8% 51.1% 58.4% 65.7% 73.0% 80.3% 87.6% 94.9%100%  
-	    New File  		   6.7 m	15 The Brothers Johnson - I'll Be Good to You.mp3  7.3% 14.7% 22.1% 29.5% 36.8% 44.2% 51.6% 59.0% 66.3% 73.7% 81.1% 88.5% 95.8%100%  
-	    New File  		   17491	Folder.jpg100%  
+	  New Dir         12	e:\video\music\Lorrie Morgan - Secret Love\
+	    New File  		   8.8 m	01 Once upon a Time.mp3 11.2% 22.5% 33.7% 45.0% 56.3% 67.5% 78.8% 90.0%100%  
+	    New File  		   7.8 m	02 Here's That Rainy Day.mp3  6.3% 12.7% 19.0% 25.4% 31.7% 38.1% 44.4% 50.8% 57.1% 63.5% 69.8% 76.2% 82.5% 88.9% 95.2%100%  
+	    New File  		   9.1 m	03 Good Morning Heartache.mp3 10.9% 21.8% 32.7% 43.7% 54.6% 65.5% 76.5% 87.4% 98.3%100%  
+	    New File  		   4.8 m	04 I've Got the World on a String.mp3 10%   20%   30%   40%   51%   61%   71%   81%   91%  100%  
+	    New File  		   9.1 m	05 Secret Love.mp3 10.8% 21.7% 32.6% 43.5% 54.4% 65.3% 76.2% 87.1% 98.0%100%  
+	    New File  		   7.8 m	06 My Foolish Heart.mp3  6.3% 12.7% 19.0% 25.4% 31.7% 38.1% 44.4% 50.8% 57.1% 63.5% 69.8% 76.2% 82.5% 88.9% 95.2%100%  
+	    New File  		   7.5 m	07 Summer of '42 (The Summer Knows).mp3  6.6% 13.2% 19.8% 26.4% 33.0% 39.6% 46.2% 52.8% 59.4% 66.0% 72.6% 79.2% 85.8% 92.5% 99.1%100%  
+	    New File  		   5.7 m	08 They Can't Take That Away from Me.mp3  8%   17%   26%   35%   43%   52%   61%   70%   78%   87%   96%  100%  
+	    New File  		   8.8 m	09 I Wish You Love.mp3 11.2% 22.5% 33.7% 45.0% 56.3% 67.5% 78.8% 90.1%100%  
+	    New File  		   6.6 m	10 Fly Me to the Moon.mp3  7.5% 15.0% 22.5% 30.0% 37.5% 45.0% 52.5% 60.0% 67.5% 75.0% 82.5% 90.0% 97.5%100%  
+	    New File  		   8.5 m	11 An Affair to Remember (Our Love Affair).mp3 11.7% 23.4% 35.1% 46.8% 58.5% 70.3% 82.0% 93.7%100%  
+	    New File  		  201054	Folder.jpg 65%  100%  
 
 ------------------------------------------------------------------------------
 
                Total    Copied   Skipped  Mismatch    FAILED    Extras
     Dirs :         1         1         0         0         0         0
-   Files :        16        16         0         0         0         0
-   Bytes :  112.93 m  112.93 m         0         0         0         0
+   Files :        12        12         0         0         0         0
+   Bytes :   85.39 m   85.39 m         0         0         0         0
    Times :   0:00:13   0:00:13                       0:00:00   0:00:00
 
 
-   Speed :             8661249 Bytes/sec.
-   Speed :             495.600 MegaBytes/min.
-   Ended : Friday, June 21, 2024 3:36:35 AM
+   Speed :             6880744 Bytes/sec.
+   Speed :             393.719 MegaBytes/min.
+   Ended : Thursday, July 4, 2024 3:35:52 AM
+
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : Thursday, July 4, 2024 3:35:52 AM
+   Source : e:\video\music\Peabo Bryson - Christmas with You\
+     Dest : \\bombcyclone\AgnesNutter\Media\Music\Albums\p\Peabo Bryson - Christmas with You\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /MOVE /XO /XN /XC /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	  New Dir         12	e:\video\music\Peabo Bryson - Christmas with You\
+	    New File  		   5.9 m	01 It's the Most Wonderful Time of the Year.mp3  8.4% 16.8% 25.2% 33.6% 42.0% 50.4% 58.8% 67.2% 75.6% 84.0% 92.4%100%  
+	    New File  		   7.8 m	02 The Christmas Song.mp3  6.4% 12.8% 19.2% 25.6% 32.0% 38.4% 44.8% 51.2% 57.6% 64.0% 70.4% 76.8% 83.3% 89.7% 96.1%100%  
+	    New File  		   8.9 m	03 My Gift Is You.mp3 11.2% 22.4% 33.6% 44.9% 56.1% 67.3% 78.5% 89.8%100%  
+	    New File  		   7.5 m	04 Have Yourself a Merry Little Christmas.mp3  6.6% 13.2% 19.8% 26.4% 33.0% 39.6% 46.2% 52.8% 59.4% 66.0% 72.6% 79.2% 85.8% 92.5% 99.1%100%  
+	    New File  		   4.1 m	05 What Child Is This¨.mp3 12%   24%   36%   48%   60%   72%   84%   96%  100%  
+	    New File  		   7.6 m	06 Moments Like This.mp3  6.5% 13.1% 19.7% 26.2% 32.8% 39.4% 46.0% 52.5% 59.1% 65.7% 72.3% 78.8% 85.4% 92.0% 98.5%100%  
+	    New File  		   7.1 m	07 This Christmas.mp3  6.9% 13.9% 20.9% 27.9% 34.9% 41.9% 48.9% 55.8% 62.8% 69.8% 76.8% 83.8% 90.8% 97.8%100%  
+	    New File  		   7.0 m	08 Sweet Little Jesus Boy.mp3  7.1% 14.2% 21.3% 28.4% 35.5% 42.6% 49.7% 56.8% 63.9% 71.0% 78.2% 85.3% 92.4% 99.5%100%  
+	    New File  		   8.4 m	09 Born on Christmas Day.mp3 11.7% 23.5% 35.3% 47.1% 58.9% 70.7% 82.5% 94.3%100%  
+	    New File  		   9.9 m	10 Silent Night.mp3 10.0% 20.1% 30.2% 40.3% 50.4% 60.5% 70.5% 80.6% 90.7%100%  
+	    New File  		   7.5 m	11 I'll Be Home for Christmas.mp3  6.6% 13.3% 19.9% 26.6% 33.3% 39.9% 46.6% 53.3% 59.9% 66.6% 73.3% 79.9% 86.6% 93.3% 99.9%100%  
+	    New File  		  121685	Folder.jpg100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         1         0         0         0         0
+   Files :        12        12         0         0         0         0
+   Bytes :   82.19 m   82.19 m         0         0         0         0
+   Times :   0:00:11   0:00:11                       0:00:00   0:00:00
+
+
+   Speed :             7488579 Bytes/sec.
+   Speed :             428.499 MegaBytes/min.
+   Ended : Thursday, July 4, 2024 3:36:04 AM
+
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : Thursday, July 4, 2024 3:36:04 AM
+   Source : e:\video\music\Robin Gruver - Meditations from Hawaii for Birthing with Wisdom\
+     Dest : \\bombcyclone\AgnesNutter\Media\Music\Albums\g\Robin Gruver - Meditations from Hawaii for Birthing with Wisdom\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /MOVE /XO /XN /XC /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	  New Dir          6	e:\video\music\Robin Gruver - Meditations from Hawaii for Birthing with Wisdom\
+	    New File  		   9.1 m	01 Welcome.mp3 10.9% 21.9% 32.8% 43.8% 54.8% 65.7% 76.7% 87.6% 98.6%100%  
+	    New File  		  17.1 m	02 Basic Breathing and Relaxation.mp3  5.8% 11.6% 17.4% 23.3% 29.1% 34.9% 40.8% 46.6% 52.4% 58.3% 64.1% 69.9% 75.8% 81.6% 87.4% 93.3% 99.1%100%  
+	    New File  		  18.5 m	03 Clouds of Hawaii Meditation.mp3  5.3% 10.7% 16.1% 21.5% 26.8% 32.2% 37.6% 43.0% 48.4% 53.7% 59.1% 64.5% 69.9% 75.3% 80.6% 86.0% 91.4% 96.8%100%  
+	    New File  		  22.1 m	04 Rainbows of Hawaii Meditation.mp3  4.5%  9.0% 13.5% 18.0% 22.5% 27.0% 31.5% 36.0% 40.6% 45.1% 49.6% 54.1% 58.6% 63.1% 67.6% 72.1% 76.7% 81.2% 85.7% 90.2% 94.7% 99.2%100%  
+	    New File  		  19.5 m	05 Sunshine of Hawaii Meditation.mp3  5.1% 10.2% 15.3% 20.4% 25.5% 30.7% 35.8% 40.9% 46.0% 51.1% 56.2% 61.4% 66.5% 71.6% 76.7% 81.8% 87.0% 92.1% 97.2%100%  
+	    New File  		  29.0 m	06 Waves of Hawaii Meditation.mp3  3.4%  6.8% 10.3% 13.7% 17.2% 20.6% 24.0% 27.5% 30.9% 34.4% 37.8% 41.2% 44.7% 48.1% 51.6% 55.0% 58.4% 61.9% 65.3% 68.8% 72.2% 75.6% 79.1% 82.5% 86.0% 89.4% 92.8% 96.3% 99.7%100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         1         0         0         0         0
+   Files :         6         6         0         0         0         0
+   Bytes :  115.63 m  115.63 m         0         0         0         0
+   Times :   0:00:15   0:00:15                       0:00:00   0:00:00
+
+
+   Speed :             7752412 Bytes/sec.
+   Speed :             443.596 MegaBytes/min.
+   Ended : Thursday, July 4, 2024 3:36:19 AM
+
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : Thursday, July 4, 2024 3:36:19 AM
+   Source : e:\video\music\The Doors - The Doors\
+     Dest : \\bombcyclone\AgnesNutter\Media\Music\Albums\the\The Doors - The Doors\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /MOVE /XO /XN /XC /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	  New Dir         12	e:\video\music\The Doors - The Doors\
+	    New File  		   4.6 m	01 Break on Through (To the Other Side).mp3 10%   21%   32%   42%   53%   64%   74%   85%   96%  100%  
+	    New File  		   6.4 m	02 Soul Kitchen.mp3  7.7% 15.5% 23.2% 31.0% 38.8% 46.5% 54.3% 62.0% 69.8% 77.6% 85.3% 93.1%100%  
+	    New File  		   4.5 m	03 The Crystal Ship.mp3 11%   22%   33%   44%   55%   66%   77%   88%   99%  100%  
+	    New File  		   4.7 m	04 Twentieth Century Fox.mp3 10%   21%   31%   42%   52%   63%   73%   84%   94%  100%  
+	    New File  		   6.0 m	05 Alabama Song (Whisky Bar).mp3  8.2% 16.5% 24.7% 33.0% 41.3% 49.5% 57.8% 66.1% 74.3% 82.6% 90.9% 99.1%100%  
+	    New File  		  13.2 m	06 Light My Fire.mp3  7.5% 15.1% 22.6% 30.2% 37.7% 45.3% 52.8% 60.4% 67.9% 75.5% 83.0% 90.6% 98.1%100%  
+	    New File  		   6.4 m	07 Back Door Man.mp3  7.7% 15.4% 23.2% 30.9% 38.7% 46.4% 54.1% 61.9% 69.6% 77.4% 85.1% 92.8%100%  
+	    New File  		   4.3 m	08 I Looked at You.mp3 11%   22%   34%   45%   57%   68%   80%   91%  100%  
+	    New File  		   4.8 m	09 End of the Night.mp3 10%   20%   30%   41%   51%   61%   71%   82%   92%  100%  
+	    New File  		   4.3 m	10 Take It as It Comes.mp3 11%   23%   34%   46%   58%   69%   81%   92%  100%  
+	    New File  		  20.7 m	11 The End.mp3  4.8%  9.6% 14.4% 19.3% 24.1% 28.9% 33.8% 38.6% 43.4% 48.2% 53.1% 57.9% 62.7% 67.6% 72.4% 77.2% 82.0% 86.9% 91.7% 96.5%100%  
+	    New File  		  132221	Folder.jpg 99%  100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         1         0         0         0         0
+   Files :        12        12         0         0         0         0
+   Bytes :   80.52 m   80.52 m         0         0         0         0
+   Times :   0:00:11   0:00:10                       0:00:00   0:00:00
+
+
+   Speed :             7678456 Bytes/sec.
+   Speed :             439.364 MegaBytes/min.
+   Ended : Thursday, July 4, 2024 3:36:30 AM
 

@@ -3263,7 +3263,6 @@ Letricia,F,20
 Liberty,F,20
 Lilliam,F,20
 Lilliana,F,20
-London,F,20
 Loretha,F,20
 Lorilyn,F,20
 Luvenia,F,20
@@ -11225,7 +11224,6 @@ Jerone,M,23
 Kari,M,23
 Karim,M,23
 Kathleen,M,23
-London,M,23
 Loy,M,23
 Malvin,M,23
 Muhammad,M,23

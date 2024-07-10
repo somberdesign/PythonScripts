@@ -1,0 +1,421 @@
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : Wednesday, July 10, 2024 3:34:38 AM
+   Source : e:\video\music\101 Strings Orchestra - Dance Classics; Ballroom\
+     Dest : \\bombcyclone\AgnesNutter\Media\Music\Albums\0\101 Strings Orchestra - Dance Classics; Ballroom\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /MOVE /XO /XN /XC /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	  New Dir         14	e:\video\music\101 Strings Orchestra - Dance Classics; Ballroom\
+	    New File  		   5.6 m	01 Moon River.mp3  8%   17%   26%   35%   43%   52%   61%   70%   79%   87%   96%  100%  
+	    New File  		   6.1 m	02 Somewhere My Love.mp3  8.1% 16.2% 24.3% 32.5% 40.6% 48.7% 56.9% 65.0% 73.1% 81.3% 89.4% 97.5%100%  
+	    New File  		   5.6 m	03 Charade.mp3  8%   17%   26%   35%   44%   53%   62%   70%   79%   88%   97%  100%  
+	    New File  		   4.4 m	04 Besame Mucho.mp3 11%   22%   34%   45%   56%   68%   79%   90%  100%  
+	    New File  		   3.9 m	05 La Paloma.mp3 12%   25%   37%   50%   62%   75%   88%  100%  
+	    New File  		   4.2 m	06 Hernando's Hideaway.mp3 11%   23%   35%   46%   58%   70%   81%   93%  100%  
+	    New File  		   6.3 m	07 Mambo #5.mp3  7.8% 15.6% 23.5% 31.3% 39.1% 47.0% 54.8% 62.6% 70.5% 78.3% 86.2% 94.0%100%  
+	    New File  		   5.1 m	08 Mambo Jambo.mp3  9%   19%   28%   38%   48%   57%   67%   77%   86%   96%  100%  
+	    New File  		   4.8 m	09 Peanut Vender.mp3 10%   20%   31%   41%   51%   62%   72%   82%   93%  100%  
+	    New File  		   5.2 m	10 Cheery Pink and Apple Blossom White.mp3  9%   19%   28%   38%   47%   57%   66%   76%   86%   95%  100%  
+	    New File  		   5.2 m	11 Moonglow.mp3  9%   19%   28%   38%   47%   57%   66%   76%   86%   95%  100%  
+	    New File  		   4.4 m	12 Me And My Shadow.mp3 11%   22%   34%   45%   56%   68%   79%   90%  100%  
+	    New File  		   5.4 m	13 5000.mp3  9%   18%   27%   36%   45%   54%   63%   73%   82%   91%  100%  
+	    New File  		   5.5 m	14 In The Mood.mp3  9%   18%   27%   36%   45%   54%   63%   72%   81%   90%   99%  100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         1         0         0         0         0
+   Files :        14        14         0         0         0         0
+   Bytes :   72.42 m   72.42 m         0         0         0         0
+   Times :   0:00:09   0:00:09                       0:00:00   0:00:00
+
+
+   Speed :             7896350 Bytes/sec.
+   Speed :             451.832 MegaBytes/min.
+   Ended : Wednesday, July 10, 2024 3:34:47 AM
+
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : Wednesday, July 10, 2024 3:34:47 AM
+   Source : e:\video\music\Born to Be Wild, Vol. 1 [Madacy]\
+     Dest : \\bombcyclone\AgnesNutter\Media\Music\Albums\b\Born to Be Wild, Vol. 1 [Madacy]\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /MOVE /XO /XN /XC /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	  New Dir         12	e:\video\music\Born to Be Wild, Vol. 1 [Madacy]\
+	    New File  		   7.2 m	01 Blood - And When I Die.mp3  6.8% 13.7% 20.5% 27.4% 34.3% 41.1% 48.0% 54.9% 61.7% 68.6% 75.5% 82.3% 89.2% 96.0%100%  
+	    New File  		   5.8 m	02 The Edgar Winter Group - Free Ride.mp3  8.5% 17.1% 25.7% 34.2% 42.8% 51.4% 59.9% 68.5% 77.1% 85.6% 94.2%100%  
+	    New File  		   6.6 m	03 The Byrds - Turn! Turn! Turn! (To Everything There Is a Season).mp3  7.5% 15.1% 22.7% 30.2% 37.8% 45.4% 53.0% 60.5% 68.1% 75.7% 83.2% 90.8% 98.4%100%  
+	    New File  		  10.5 m	04 Carlos Santana - Them Changes.mp3  9.4% 18.9% 28.3% 37.8% 47.3% 56.7% 66.2% 75.6% 85.1% 94.6%100%  
+	    New File  		   6.2 m	05 Mott the Hoople - All the Young Dudes.mp3  7.9% 15.8% 23.8% 31.7% 39.6% 47.6% 55.5% 63.5% 71.4% 79.3% 87.3% 95.2%100%  
+	    New File  		   7.5 m	06 Mountain - Mississippi Queen.mp3  6.5% 13.1% 19.7% 26.3% 32.9% 39.5% 46.1% 52.7% 59.3% 65.9% 72.4% 79.0% 85.6% 92.2% 98.8%100%  
+	    New File  		   5.4 m	07 Electric Flag - Groovin' Is Easy.mp3  9%   18%   27%   36%   45%   55%   64%   73%   82%   91%  100%  
+	    New File  		   7.0 m	08 Poco - A Good Feelin' to Know.mp3  7.1% 14.2% 21.3% 28.4% 35.6% 42.7% 49.8% 56.9% 64.0% 71.2% 78.3% 85.4% 92.5% 99.6%100%  
+	    New File  		  11.4 m	09 Argent - Hold Your Head Up.mp3  8.7% 17.4% 26.1% 34.8% 43.6% 52.3% 61.0% 69.7% 78.5% 87.2% 95.9%100%  
+	    New File  		   6.2 m	10 David Essex - Rock On.mp3  8.0% 16.0% 24.0% 32.0% 40.0% 48.0% 56.0% 64.0% 72.0% 80.0% 88.0% 96.0%100%  
+	    New File  		   4.5 m	11 Spirit - Nature's Way.mp3 10%   21%   32%   43%   54%   65%   76%   87%   98%  100%  
+	    New File  		   25541	Folder.jpg100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         1         0         0         0         0
+   Files :        12        12         0         0         0         0
+   Bytes :   78.95 m   78.95 m         0         0         0         0
+   Times :   0:00:08   0:00:08                       0:00:00   0:00:00
+
+
+   Speed :             9363382 Bytes/sec.
+   Speed :             535.777 MegaBytes/min.
+   Ended : Wednesday, July 10, 2024 3:34:56 AM
+
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : Wednesday, July 10, 2024 3:34:56 AM
+   Source : e:\video\music\Charles Munch - Saint-Saens, Poulenc, Franck\
+     Dest : \\bombcyclone\AgnesNutter\Media\Music\Albums\m\Charles Munch - Saint-Saens, Poulenc, Franck\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /MOVE /XO /XN /XC /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	  New Dir          9	e:\video\music\Charles Munch - Saint-Saens, Poulenc, Franck\
+	    New File  		  16.5 m	01 Symphony No. 3 in C minor, Op. 78; I. Adagio; Allegro moderato.mp3  6.0% 12.0% 18.1% 24.1% 30.2% 36.2% 42.2% 48.3% 54.3% 60.4% 66.4% 72.4% 78.5% 84.5% 90.6% 96.6%100%  
+	    New File  		  12.9 m	03 Symphony No. 3 in C minor, Op. 78; III. Allegro moderato.mp3  7.6% 15.3% 23.0% 30.7% 38.4% 46.1% 53.8% 61.5% 69.2% 76.9% 84.6% 92.3%100%  
+	    New File  		  13.9 m	04 Symphony No. 3 in C minor, Op. 78; IV. Maestoso; Allegro.mp3  7.1% 14.3% 21.4% 28.6% 35.8% 42.9% 50.1% 57.3% 64.4% 71.6% 78.8% 85.9% 93.1%100%  
+	    New File  		  37.7 m	05 Concerto in G minor for Organ, Strings and Timpani.mp3  2.6%  5.2%  7.9% 10.5% 13.2% 15.8% 18.5% 21.1% 23.8% 26.4% 29.1% 31.7% 34.4% 37.0% 39.6% 42.3% 44.9% 47.6% 50.2% 52.9% 55.5% 58.2% 60.8% 63.5% 66.1% 68.8% 71.4% 74.1% 76.7% 79.3% 82.0% 84.6% 87.3% 89.9% 92.6% 95.2% 97.9%100%  
+	    New File  		   4.4 m	06 Le Chasseur Maudit; I.The Peaceful Sunday Landscape.mp3 11%   22%   33%   44%   55%   66%   77%   88%  100%  
+	    New File  		   9.5 m	07 Le Chasseur Maudit; II.The Hunt.mp3 10.4% 20.9% 31.3% 41.8% 52.2% 62.7% 73.1% 83.6% 94.0%100%  
+	    New File  		   4.8 m	08 Le Chasseur Maudit; III.The Curse.mp3 10%   20%   30%   41%   51%   61%   72%   82%   92%  100%  
+	    New File  		   5.4 m	09 Le Chasseur Maudit; IV.The Demons' Chase.mp3  9%   18%   27%   36%   45%   54%   64%   73%   82%   91%  100%  
+	    New File  		   37634	Folder.jpg100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         1         0         0         0         0
+   Files :         9         9         0         0         0         0
+   Bytes :  105.69 m  105.69 m         0         0         0         0
+   Times :   0:00:13   0:00:13                       0:00:00   0:00:00
+
+
+   Speed :             8423529 Bytes/sec.
+   Speed :             481.998 MegaBytes/min.
+   Ended : Wednesday, July 10, 2024 3:35:09 AM
+
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : Wednesday, July 10, 2024 3:35:09 AM
+   Source : e:\video\music\Classic Moods, Vol. 1\
+     Dest : \\bombcyclone\AgnesNutter\Media\Music\Albums\c\Classic Moods, Vol. 1\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /MOVE /XO /XN /XC /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	  New Dir          9	e:\video\music\Classic Moods, Vol. 1\
+	    New File  		   7.4 m	01 I Musici di San Marco - Brandenburg Concerto No. 1 in F major, BWV 1046; Adagio.mp3  6.7% 13.4% 20.2% 26.9% 33.7% 40.4% 47.2% 53.9% 60.7% 67.4% 74.2% 80.9% 87.7% 94.4%100%  
+	    New File  		  18.7 m	02 Radio Symphony Orchestra - Symphony No. 5 in C minor ('Fate'), Op. 67; Andante con molto.mp3  5.3% 10.6% 15.9% 21.2% 26.6% 31.9% 37.2% 42.5% 47.9% 53.2% 58.5% 63.8% 69.1% 74.5% 79.8% 85.1% 90.4% 95.8%100%  
+	    New File  		  16.2 m	03 Josef Vondra - Kol Nidrei, for cello & orchestra, Op. 47; Adagio for cello and orchestra.mp3  6.1% 12.2% 18.4% 24.5% 30.7% 36.8% 43.0% 49.1% 55.2% 61.4% 67.5% 73.7% 79.8% 86.0% 92.1% 98.3%100%  
+	    New File  		  16.9 m	04 Philharmonic Festival Orchestra - Symphony in C major ('No. 1'); Adagio.mp3  5.9% 11.8% 17.7% 23.6% 29.5% 35.4% 41.3% 47.2% 53.1% 59.0% 64.9% 70.8% 76.7% 82.6% 88.5% 94.4%100%  
+	    New File  		   7.0 m	05 Alfred Scholz - Faust, opera; Ballet music; Adagio.mp3  7.1% 14.2% 21.4% 28.5% 35.6% 42.8% 49.9% 57.1% 64.2% 71.3% 78.5% 85.6% 92.8% 99.9%100%  
+	    New File  		   9.7 m	06 Daniel Nazareth - Piano Concerto No. 1 in E flat major, S. 124 (LW H4); Allegro maestoso.mp3 10.2% 20.4% 30.6% 40.8% 51.0% 61.2% 71.5% 81.7% 91.9%100%  
+	    New File  		   7.6 m	07 SWR Stuttgart Radio Symphony Orchestra - Concerto Grosso in G minor ('Christmas Concerto'), Op. 6-8; Pastorale.mp3  6.5% 13.1% 19.6% 26.2% 32.8% 39.3% 45.9% 52.5% 59.0% 65.6% 72.1% 78.7% 85.3% 91.8% 98.4%100%  
+	    New File  		  23.2 m	08 Dubravka Tomsic - Piano Concerto in A minor, Op. 16; Allegro molto.mp3  4.3%  8.6% 12.9% 17.2% 21.5% 25.8% 30.1% 34.4% 38.7% 43.0% 47.3% 51.6% 55.9% 60.2% 64.5% 68.8% 73.1% 77.4% 81.7% 86.1% 90.4% 94.7% 99.0%100%  
+	    New File  		  216605	Folder.jpg 60%  100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         1         0         0         0         0
+   Files :         9         9         0         0         0         0
+   Bytes :  107.25 m  107.25 m         0         0         0         0
+   Times :   0:00:16   0:00:16                       0:00:00   0:00:00
+
+
+   Speed :             7001717 Bytes/sec.
+   Speed :             400.641 MegaBytes/min.
+   Ended : Wednesday, July 10, 2024 3:35:26 AM
+
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : Wednesday, July 10, 2024 3:35:26 AM
+   Source : e:\video\music\Club Mix '96, Vol. 2\
+     Dest : \\bombcyclone\AgnesNutter\Media\Music\Albums\c\Club Mix '96, Vol. 2\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /MOVE /XO /XN /XC /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	  New Dir         14	e:\video\music\Club Mix '96, Vol. 2\
+	    New File  		   6.5 m	01 Nuyorican Soul - Mind Fluid.mp3  7.6% 15.2% 22.9% 30.5% 38.2% 45.8% 53.5% 61.1% 68.8% 76.4% 84.0% 91.7% 99.3%100%  
+	    New File  		   7.0 m	02 Black Magic - Freedom (Make It Funky).mp3  7.0% 14.1% 21.1% 28.2% 35.2% 42.3% 49.3% 56.4% 63.4% 70.5% 77.5% 84.6% 91.6% 98.7%100%  
+	    New File  		   7.6 m	03 Taylor Dayne - Say A Prayer (Morales mix).mp3  6.5% 13.0% 19.5% 26.0% 32.5% 39.0% 45.5% 52.0% 58.5% 65.0% 71.5% 78.0% 84.5% 91.0% 97.5%100%  
+	    New File  		  21.8 m	04 Vanessa Daou - Sunday Afternoons.mp3  4.5%  9.1% 13.7% 18.2% 22.8% 27.4% 32.0% 36.5% 41.1% 45.7% 50.3% 54.8% 59.4% 64.0% 68.6% 73.1% 77.7% 82.3% 86.8% 91.4% 96.0%100%  
+	    New File  		   8.6 m	05 Sandy B - Make the World Go Round.mp3 11.5% 23.0% 34.5% 46.0% 57.5% 69.0% 80.5% 92.0%100%  
+	    New File  		   7.7 m	06 Groove Collective - I Want You (She's So Heavy).mp3  6.4% 12.8% 19.3% 25.7% 32.2% 38.6% 45.0% 51.5% 57.9% 64.4% 70.8% 77.2% 83.7% 90.1% 96.6%100%  
+	    New File  		   6.9 m	07 Kenlou - What A Sensation (Sensational Mix).mp3  7.1% 14.3% 21.4% 28.6% 35.7% 42.9% 50.1% 57.2% 64.4% 71.5% 78.7% 85.9% 93.0%100%  
+	    New File  		   6.5 m	08 Fresh Fish - Bang da Bush.mp3  7.5% 15.1% 22.7% 30.3% 37.9% 45.5% 53.1% 60.7% 68.3% 75.9% 83.5% 91.1% 98.7%100%  
+	    New File  		   9.1 m	09 Soul Solution - Can't Stop Love.mp3 10.9% 21.9% 32.9% 43.8% 54.8% 65.8% 76.7% 87.7% 98.7%100%  
+	    New File  		   9.0 m	10 Joi Cardwell - You Got to Pray.mp3 10.9% 21.9% 32.9% 43.9% 54.9% 65.9% 76.9% 87.9% 98.9%100%  
+	    New File  		   9.1 m	11 D'Still'D - Stopgo.mp3 10.9% 21.8% 32.7% 43.6% 54.5% 65.4% 76.3% 87.2% 98.1%100%  
+	    New File  		   9.3 m	12 Planet Soul - Set U Free (Fever Mix).mp3 10.6% 21.2% 31.9% 42.5% 53.2% 63.8% 74.5% 85.1% 95.8%100%  
+	    New File  		   8.5 m	13 Ace of Base - Don't Turn Around.mp3 11.6% 23.3% 35.0% 46.7% 58.3% 70.0% 81.7% 93.4%100%  
+	    New File  		   21752	Folder.jpg100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         1         0         0         0         0
+   Files :        14        14         0         0         0         0
+   Bytes :  118.56 m  118.56 m         0         0         0         0
+   Times :   0:00:16   0:00:16                       0:00:00   0:00:00
+
+
+   Speed :             7348169 Bytes/sec.
+   Speed :             420.465 MegaBytes/min.
+   Ended : Wednesday, July 10, 2024 3:35:43 AM
+
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : Wednesday, July 10, 2024 3:35:43 AM
+   Source : e:\video\music\London Philharmonic Orchestra - Mozart; Symphony No. 41 'Jupiter'\
+     Dest : \\bombcyclone\AgnesNutter\Media\Music\Albums\l\London Philharmonic Orchestra - Mozart; Symphony No. 41 'Jupiter'\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /MOVE /XO /XN /XC /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	  New Dir          5	e:\video\music\London Philharmonic Orchestra - Mozart; Symphony No. 41 'Jupiter'\
+	    New File  		  19.8 m	01 Symphony No. 41 in C major ('Jupiter'), K. 551; [Part 1].mp3  5.0% 10.0% 15.1% 20.1% 25.1% 30.2% 35.2% 40.2% 45.3% 50.3% 55.4% 60.4% 65.4% 70.5% 75.5% 80.5% 85.6% 90.6% 95.7%100%  
+	    New File  		  16.0 m	02 Symphony No. 41 in C major ('Jupiter'), K. 551; [Part 2].mp3  6.2% 12.4% 18.6% 24.8% 31.1% 37.3% 43.5% 49.7% 56.0% 62.2% 68.4% 74.6% 80.8% 87.1% 93.3% 99.5%100%  
+	    New File  		   8.8 m	03 Symphony No. 41 in C major ('Jupiter'), K. 551; [Part 3].mp3 11.3% 22.6% 34.0% 45.3% 56.7% 68.0% 79.4% 90.7%100%  
+	    New File  		  15.5 m	04 Symphony No. 41 in C major ('Jupiter'), K. 551; [Part 4].mp3  6.4% 12.8% 19.3% 25.7% 32.2% 38.6% 45.1% 51.5% 58.0% 64.4% 70.9% 77.3% 83.8% 90.2% 96.7%100%  
+	    New File  		  132656	Folder.jpg 98%  100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         1         0         0         0         0
+   Files :         5         5         0         0         0         0
+   Bytes :   60.36 m   60.36 m         0         0         0         0
+   Times :   0:00:07   0:00:07                       0:00:00   0:00:00
+
+
+   Speed :             8077354 Bytes/sec.
+   Speed :             462.189 MegaBytes/min.
+   Ended : Wednesday, July 10, 2024 3:35:51 AM
+
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : Wednesday, July 10, 2024 3:35:51 AM
+   Source : e:\video\music\Mojo; The Best Of 2023\
+     Dest : \\bombcyclone\AgnesNutter\Media\Music\Albums\m\Mojo; The Best Of 2023\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /MOVE /XO /XN /XC /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	  New Dir         16	e:\video\music\Mojo; The Best Of 2023\
+	    New File  		   6.6 m	01 Young Fathers - Drum.mp3  7.5% 15.0% 22.6% 30.1% 37.7% 45.2% 52.8% 60.3% 67.9% 75.4% 82.9% 90.5% 98.0%100%  
+	    New File  		   4.4 m	02 The Tubs - Round The Bend.mp3 11%   22%   34%   45%   56%   68%   79%   90%  100%  
+	    New File  		   9.7 m	03 The Coral - Oceans Apart.mp3 10.2% 20.4% 30.6% 40.8% 51.0% 61.2% 71.4% 81.7% 91.9%100%  
+	    New File  		   9.4 m	04 ANOHNI - Scapegoat.mp3 10.5% 21.1% 31.6% 42.2% 52.8% 63.3% 73.9% 84.4% 95.0%100%  
+	    New File  		  12.6 m	05 Lankum - Clear Away In The Morning.mp3  7.9% 15.8% 23.7% 31.6% 39.5% 47.4% 55.3% 63.2% 71.1% 79.0% 86.9% 94.8%100%  
+	    New File  		   7.6 m	06 Grian Chatten - All Of The People.mp3  6.5% 13.1% 19.7% 26.3% 32.8% 39.4% 46.0% 52.6% 59.1% 65.7% 72.3% 78.9% 85.4% 92.0% 98.6%100%  
+	    New File  		   6.0 m	07 Julie Byrne - Portrait Of A Clear Day.mp3  8.3% 16.6% 24.9% 33.2% 41.5% 49.8% 58.1% 66.4% 74.7% 83.0% 91.3% 99.6%100%  
+	    New File  		   8.0 m	08 Wilco - Meant To Be.mp3 12.4% 24.9% 37.4% 49.9% 62.4% 74.9% 87.4% 99.9%100%  
+	    New File  		   6.5 m	09 Billy Woods - FaceTime.mp3  7.6% 15.3% 23.0% 30.7% 38.3% 46.0% 53.7% 61.4% 69.0% 76.7% 84.4% 92.1% 99.7%100%  
+	    New File  		   5.5 m	10 Rickie Lee Jones - Just In Time.mp3  8%   17%   26%   35%   44%   53%   62%   71%   80%   89%   98%  100%  
+	    New File  		  17.4 m	11 Jaimie Branch - Baba Louie.mp3  5.7% 11.4% 17.1% 22.8% 28.5% 34.3% 40.0% 45.7% 51.4% 57.1% 62.8% 68.6% 74.3% 80.0% 85.7% 91.4% 97.1%100%  
+	    New File  		   6.4 m	12 Everything But The Girl - Run A Red Light.mp3  7.7% 15.4% 23.1% 30.9% 38.6% 46.3% 54.1% 61.8% 69.5% 77.3% 85.0% 92.7%100%  
+	    New File  		   8.3 m	13 BC Camplight - The Last Rotation Of Earth.mp3 11.9% 23.8% 35.7% 47.7% 59.6% 71.5% 83.5% 95.4%100%  
+	    New File  		  12.3 m	14 Slowdive - Shanty.mp3  8.0% 16.1% 24.2% 32.3% 40.4% 48.5% 56.6% 64.7% 72.8% 80.9% 89.0% 97.1%100%  
+	    New File  		  10.5 m	15 Robert Forster - Tender Years.mp3  9.5% 19.0% 28.5% 38.0% 47.5% 57.0% 66.5% 76.0% 85.5% 95.0%100%  
+	    New File  		  243673	Folder.jpg 53%  100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         1         0         0         0         0
+   Files :        16        16         0         0         0         0
+   Bytes :  132.11 m  132.11 m         0         0         0         0
+   Times :   0:00:19   0:00:19                       0:00:00   0:00:00
+
+
+   Speed :             7082060 Bytes/sec.
+   Speed :             405.238 MegaBytes/min.
+   Ended : Wednesday, July 10, 2024 3:36:10 AM
+
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : Wednesday, July 10, 2024 3:36:10 AM
+   Source : e:\video\music\Mozart; Eine Kleine Nachtmusik; Overtures\
+     Dest : \\bombcyclone\AgnesNutter\Media\Music\Albums\m\Mozart; Eine Kleine Nachtmusik; Overtures\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /MOVE /XO /XN /XC /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	  New Dir          8	e:\video\music\Mozart; Eine Kleine Nachtmusik; Overtures\
+	    New File  		  11.5 m	01 Camerata Academica - Serenade No. 13 for strings in G major ('Eine kleine Nachtmusik'), K. 525; Allegro.mp3  8.6% 17.3% 25.9% 34.6% 43.2% 51.9% 60.5% 69.2% 77.8% 86.5% 95.1%100%  
+	    New File  		  11.4 m	02 Camerata Academica - Serenade No. 13 for strings in G major ('Eine kleine Nachtmusik'), K. 525; Romanze; Andante.mp3  8.7% 17.5% 26.2% 35.0% 43.8% 52.5% 61.3% 70.0% 78.8% 87.6% 96.3%100%  
+	    New File  		   4.1 m	03 Camerata Academica - Serenade No. 13 for strings in G major ('Eine kleine Nachtmusik'), K. 525; menuett; Allegretto.mp3 12%   24%   36%   48%   60%   72%   84%   96%  100%  
+	    New File  		   6.0 m	04 Camerata Academica - Serenade No. 13 for strings in G major ('Eine kleine Nachtmusik'), K. 525; Rondo; Allegro.mp3  8.2% 16.4% 24.7% 32.9% 41.2% 49.4% 57.6% 65.9% 74.1% 82.4% 90.6% 98.8%100%  
+	    New File  		   7.3 m	05 Berlin Symphony Orchestra - Le nozze di Figaro (The Marriage of Figaro), opera, K. 492; Overture.mp3  6.7% 13.5% 20.3% 27.1% 33.9% 40.7% 47.5% 54.2% 61.0% 67.8% 74.6% 81.4% 88.2% 95.0%100%  
+	    New File  		   8.4 m	06 Mozart Festival Orchestra - Cosi fan tutte, opera, K. 588; Overture.mp3 11.8% 23.6% 35.4% 47.2% 59.0% 70.8% 82.6% 94.4%100%  
+	    New File  		   6.4 m	07 Berlin Symphony Orchestra - Work(s); German Dances No. 1 & 2.mp3  7.7% 15.5% 23.3% 31.1% 38.9% 46.6% 54.4% 62.2% 70.0% 77.8% 85.5% 93.3%100%  
+	    New File  		   13032	Folder.jpg100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         1         0         0         0         0
+   Files :         8         8         0         0         0         0
+   Bytes :   55.46 m   55.46 m         0         0         0         0
+   Times :   0:00:07   0:00:07                       0:00:00   0:00:00
+
+
+   Speed :             7885684 Bytes/sec.
+   Speed :             451.222 MegaBytes/min.
+   Ended : Wednesday, July 10, 2024 3:36:18 AM
+
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : Wednesday, July 10, 2024 3:36:18 AM
+   Source : e:\video\music\Prince - Diamonds and Pearls\
+     Dest : \\bombcyclone\AgnesNutter\Media\Music\Albums\p\Prince - Diamonds and Pearls\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /MOVE /XO /XN /XC /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	  New Dir         14	e:\video\music\Prince - Diamonds and Pearls\
+	    New File  		  11.7 m	01 Thunder.mp3  8.4% 16.9% 25.4% 33.9% 42.4% 50.9% 59.4% 67.9% 76.4% 84.8% 93.3%100%  
+	    New File  		  11.1 m	02 Daddy Pop.mp3  8.9% 17.9% 26.9% 35.8% 44.8% 53.8% 62.7% 71.7% 80.7% 89.7% 98.6%100%  
+	    New File  		   9.6 m	03 Diamonds and Pearls.mp3 10.3% 20.6% 31.0% 41.3% 51.7% 62.0% 72.4% 82.7% 93.1%100%  
+	    New File  		   8.4 m	04 Cream.mp3 11.8% 23.6% 35.4% 47.2% 59.0% 70.8% 82.6% 94.4%100%  
+	    New File  		   7.3 m	05 Strollin'.mp3  6.8% 13.6% 20.5% 27.3% 34.1% 41.0% 47.8% 54.6% 61.5% 68.3% 75.2% 82.0% 88.8% 95.7%100%  
+	    New File  		   9.9 m	06 Willing and Able.mp3 10.0% 20.0% 30.1% 40.1% 50.2% 60.2% 70.3% 80.3% 90.4%100%  
+	    New File  		   9.0 m	07 Gett Off.mp3 11.0% 22.0% 33.0% 44.0% 55.0% 66.0% 77.1% 88.1% 99.1%100%  
+	    New File  		   6.6 m	08 Walk Don't Walk.mp3  7.5% 15.0% 22.6% 30.1% 37.7% 45.2% 52.8% 60.3% 67.8% 75.4% 82.9% 90.5% 98.0%100%  
+	    New File  		   9.5 m	09 Jughead.mp3 10.4% 20.8% 31.2% 41.6% 52.0% 62.5% 72.9% 83.3% 93.7%100%  
+	    New File  		   9.4 m	10 Money Don't Matter 2 Night.mp3 10.6% 21.2% 31.8% 42.4% 53.0% 63.6% 74.2% 84.8% 95.4%100%  
+	    New File  		  11.5 m	11 Push.mp3  8.6% 17.3% 25.9% 34.6% 43.2% 51.9% 60.5% 69.2% 77.8% 86.5% 95.1%100%  
+	    New File  		  12.9 m	12 Insatiable.mp3  7.7% 15.4% 23.1% 30.8% 38.5% 46.2% 53.9% 61.6% 69.3% 77.0% 84.7% 92.4%100%  
+	    New File  		  14.5 m	13 Live 4 Love.mp3  6.8% 13.6% 20.5% 27.3% 34.2% 41.0% 47.9% 54.7% 61.6% 68.4% 75.3% 82.1% 89.0% 95.8%100%  
+	    New File  		  305119	Folder.jpg 42%   85%  100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         1         0         0         0         0
+   Files :        14        14         0         0         0         0
+   Bytes :  132.48 m  132.48 m         0         0         0         0
+   Times :   0:00:17   0:00:17                       0:00:00   0:00:00
+
+
+   Speed :             7964063 Bytes/sec.
+   Speed :             455.707 MegaBytes/min.
+   Ended : Wednesday, July 10, 2024 3:36:35 AM
+
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : Wednesday, July 10, 2024 3:36:35 AM
+   Source : e:\video\music\Worlds of Dr. Who\
+     Dest : \\bombcyclone\AgnesNutter\Media\Music\Albums\w\Worlds of Dr. Who\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /MOVE /XO /XN /XC /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	  New Dir         20	e:\video\music\Worlds of Dr. Who\
+	    New File  		   9.0 m	01 Original TV Soundtrack - Doctor Who.mp3 11.0% 22.1% 33.2% 44.3% 55.4% 66.5% 77.6% 88.7% 99.8%100%  
+	    New File  		   5.0 m	02 Original TV Soundtrack - Tardis-Doctor Who.mp3  9%   19%   29%   39%   49%   59%   69%   79%   89%   99%  100%  
+	    New File  		   4.8 m	03 Dudley Simpson - The World of Doctor Who.mp3 10%   20%   31%   41%   51%   62%   72%   82%   93%  100%  
+	    New File  		   6.0 m	04 Original TV Soundtrack - The Sea Devils.mp3  8.2% 16.5% 24.7% 33.0% 41.3% 49.5% 57.8% 66.0% 74.3% 82.6% 90.8% 99.1%100%  
+	    New File  		   1.9 m	05 Original TV Soundtrack - The Ark in Space; Violation.mp3 13%   26%   39%   52%   65%   78%   91%  100%  
+	    New File  		   7.3 m	06 Original TV Soundtrack - Pyramids of Mars; Clements and the Mummies.mp3  6.8% 13.6% 20.5% 27.3% 34.1% 41.0% 47.8% 54.7% 61.5% 68.3% 75.2% 82.0% 88.9% 95.7%100%  
+	    New File  		   5.9 m	07 Original TV Soundtrack - The Brain of Morbius; Condo's Death-Monster Rampage.mp3  8.3% 16.7% 25.1% 33.5% 41.9% 50.3% 58.7% 67.1% 75.5% 83.8% 92.2%100%  
+	    New File  		   5.0 m	08 Peter Howell - Doctor Who.mp3 10%   20%   30%   40%   50%   60%   70%   80%   90%  100%  100%  
+	    New File  		   3.0 m	09 Peter Howell - Meglos.mp3 16%   33%   49%   66%   82%   99%  100%  
+	    New File  		  10.3 m	10 Peter Howell - The Five Doctors.mp3  9.6% 19.3% 29.0% 38.6% 48.3% 58.0% 67.7% 77.3% 87.0% 96.7%100%  
+	    New File  		  10.6 m	11 Roger Limb - The Caves of Androzani.mp3  9.3% 18.7% 28.0% 37.4% 46.7% 56.1% 65.4% 74.8% 84.2% 93.5%100%  
+	    New File  		   4.3 m	12 Mark Ayres - Myth Makers Theme.mp3 11%   23%   34%   46%   57%   69%   81%   92%  100%  
+	    New File  		   7.5 m	13 Dominic Glynn - Doctor Who - Terror Version; From the EP Variations on a Theme.mp3  6.6% 13.2% 19.8% 26.4% 33.0% 39.6% 46.2% 52.8% 59.4% 66.0% 72.6% 79.2% 85.8% 92.4% 99.0%100%  
+	    New File  		   3.6 m	14 Mark Ayres - Terror in Totters Lane.mp3 13%   27%   40%   54%   68%   81%   95%  100%  
+	    New File  		  16.2 m	15 Mark Ayres - The Greatest Show in the Galaxy; Bellboy and Flowerchild-The Robot Attacks.mp3  6.1% 12.3% 18.4% 24.6% 30.8% 36.9% 43.1% 49.3% 55.4% 61.6% 67.7% 73.9% 80.1% 86.2% 92.4% 98.6%100%  
+	    New File  		  14.5 m	16 Mark Ayres - Ghost Light; The Madhouse-Uncharted Territory-Heart of the Interior.mp3  6.8% 13.7% 20.5% 27.4% 34.2% 41.1% 48.0% 54.8% 61.7% 68.5% 75.4% 82.3% 89.1% 96.0%100%  
+	    New File  		  16.3 m	17 Mark Ayres - The Curse of Fenric; The Translations-Vampire City! (The Battle for St ...).mp3  6.1% 12.2% 18.3% 24.4% 30.5% 36.6% 42.7% 48.8% 55.0% 61.1% 67.2% 73.3% 79.4% 85.5% 91.6% 97.7%100%  
+	    New File  		   5.2 m	18 Mark Ayres - Return to Devils End - Main Title.mp3  9%   18%   28%   37%   47%   56%   66%   75%   85%   94%  100%  
+	    New File  		   8.5 m	19 Mark Ayres - Doctor Who - Spoons Version.mp3 11.6% 23.3% 35.0% 46.6% 58.3% 70.0% 81.7% 93.3%100%  
+	    New File  		  403132	Folder.jpg 32%   65%   97%  100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         1         0         0         0         0
+   Files :        20        20         0         0         0         0
+   Bytes :  146.10 m  146.10 m         0         0         0         0
+   Times :   0:00:20   0:00:20                       0:00:00   0:00:00
+
+
+   Speed :             7453510 Bytes/sec.
+   Speed :             426.493 MegaBytes/min.
+   Ended : Wednesday, July 10, 2024 3:36:56 AM
+

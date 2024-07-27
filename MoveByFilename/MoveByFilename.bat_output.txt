@@ -1,0 +1,295 @@
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : Saturday, July 27, 2024 3:34:37 AM
+   Source : e:\video\music\August Rush\
+     Dest : \\bombcyclone\AgnesNutter\Media\Music\Albums\a\August Rush\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /MOVE /XO /XN /XC /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	  New Dir         16	e:\video\music\August Rush\
+	    New File  		   4.1 m	01 Mark Mancina - Main Title.mp3 12%   24%   36%   48%   60%   72%   84%   96%  100%  
+	    New File  		   7.4 m	02 Jonathan Rhys Meyers - Break.mp3  6.7% 13.4% 20.1% 26.8% 33.5% 40.2% 46.9% 53.6% 60.3% 67.1% 73.8% 80.5% 87.2% 93.9%100%  
+	    New File  		   3.1 m	03 Jonathan Rhys Meyers - Moondance.mp3 16%   32%   48%   64%   80%   96%  100%  
+	    New File  		   8.0 m	04 Jonathan Rhys Meyers - This Time.mp3 12.4% 24.8% 37.2% 49.6% 62.0% 74.5% 86.9% 99.3%100%  
+	    New File  		   3.5 m	05 Kaki King - Bari Improv.mp3 14%   28%   42%   56%   70%   84%   98%  100%  
+	    New File  		   3.5 m	06 Kaki King - Ritual Dance.mp3 13%   27%   41%   55%   69%   83%   97%  100%  
+	    New File  		   4.4 m	07 The IMPACT Repertory Theatre - Raise It Up.mp3 11%   22%   33%   44%   55%   66%   77%   89%  100%  
+	    New File  		   4.9 m	08 Heitor Teixeira Pereira - Dueling Guitars.mp3 10%   20%   30%   40%   50%   61%   71%   81%   91%  100%  
+	    New File  		   8.5 m	09 Jonathan Rhys Meyers - Something Inside.mp3 11.6% 23.2% 34.9% 46.5% 58.2% 69.8% 81.4% 93.1%100%  
+	    New File  		  13.8 m	10 Mark Mancina - August's Rhapsody.mp3  7.2% 14.4% 21.6% 28.9% 36.1% 43.3% 50.5% 57.8% 65.0% 72.2% 79.5% 86.7% 93.9%100%  
+	    New File  		   5.4 m	11 John Legend - Someday.mp3  9%   18%   27%   36%   45%   54%   63%   72%   82%   91%  100%  
+	    New File  		   6.9 m	12 John Ondrasik - King of the Earth.mp3  7.1% 14.2% 21.4% 28.5% 35.7% 42.8% 50.0% 57.1% 64.3% 71.4% 78.5% 85.7% 92.8%100%  
+	    New File  		   7.9 m	13 Chris Botti - God Bless the Child.mp3  6.3% 12.6% 18.9% 25.2% 31.5% 37.8% 44.2% 50.5% 56.8% 63.1% 69.4% 75.7% 82.1% 88.4% 94.7%100%  
+	    New File  		   7.2 m	14 Leon Thomas III - La Bamba.mp3  6.8% 13.7% 20.5% 27.4% 34.2% 41.1% 47.9% 54.8% 61.6% 68.5% 75.3% 82.2% 89.1% 95.9%100%  
+	    New File  		   4.5 m	15 Soundtrack - [Untitled].mp3 10%   21%   32%   43%   54%   65%   76%   87%   98%  100%  
+	    New File  		  184718	Folder.jpg 70%  100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         1         0         0         0         0
+   Files :        16        16         0         0         0         0
+   Bytes :   94.18 m   94.18 m         0         0         0         0
+   Times :   0:00:14   0:00:13                       0:00:00   0:00:00
+
+
+   Speed :             7061081 Bytes/sec.
+   Speed :             404.038 MegaBytes/min.
+   Ended : Saturday, July 27, 2024 3:34:51 AM
+
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : Saturday, July 27, 2024 3:34:51 AM
+   Source : e:\video\music\Deadwood; Music From the HBO Original Series\
+     Dest : \\bombcyclone\AgnesNutter\Media\Music\Albums\d\Deadwood; Music From the HBO Original Series\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /MOVE /XO /XN /XC /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	  New Dir         24	e:\video\music\Deadwood; Music From the HBO Original Series\
+	    New File  		  314613	01 James Bull Parks - No Law.mp3 41%   83%  100%  
+	    New File  		   2.9 m	02 David Schwartz - Theme From Deadwood.mp3 17%   34%   51%   68%   85%  100%  
+	    New File  		  884102	03 Ian McShane - In Life.mp3 29%   59%   88%  100%  
+	    New File  		   7.2 m	04 Michael Hurley - Hog of the Forsaken.mp3  6.9% 13.8% 20.7% 27.6% 34.6% 41.5% 48.4% 55.3% 62.3% 69.2% 76.1% 83.0% 89.9% 96.9%100%  
+	    New File  		   6.1 m	05 June Carter Cash - Will the Circle Be Unbroken.mp3  8.1% 16.3% 24.4% 32.6% 40.7% 48.9% 57.1% 65.2% 73.4% 81.5% 89.7% 97.8%100%  
+	    New File  		   1.3 m	06 Keith Carradine - Go to Hell.mp3 18%   37%   55%   74%   92%  100%  
+	    New File  		   5.9 m	07 Lyle Lovett - Old Friend.mp3  8.4% 16.8% 25.3% 33.7% 42.1% 50.6% 59.0% 67.4% 75.9% 84.3% 92.8%100%  
+	    New File  		   1.6 m	08 Margaret - Creek Lullaby.mp3 15%   30%   45%   61%   76%   91%  100%  
+	    New File  		  978123	09 Calamity Jane - Row, Row, Row Your Boat.mp3 26%   53%   80%  100%  
+	    New File  		   8.9 m	10 Gustavo Santaolalla - Iguazu.mp3 11.1% 22.2% 33.3% 44.4% 55.5% 66.7% 77.8% 88.9%100%  
+	    New File  		  690675	11 Al Swearengen - Pardon My French.mp3 37%   75%  100%  
+	    New File  		   2.2 m	12 Jelly Roll Morton - Stars and Stripes Forever.mp3 22%   45%   67%   90%  100%  
+	    New File  		   8.1 m	13 Sonny Terry - God and Man.mp3 12.3% 24.6% 37.0% 49.3% 61.6% 74.0% 86.3% 98.6%100%  
+	    New File  		   5.7 m	14 Mark Lee Scott - Fallen from Grace.mp3  8%   17%   26%   35%   43%   52%   61%   70%   78%   87%   96%  100%  
+	    New File  		   3.1 m	15 Reinhold Heil - Native Funeral.mp3 15%   31%   47%   62%   78%   94%  100%  
+	    New File  		   1.2 m	16 Al Swearengen - Who-, Wu-!.mp3 19%   39%   58%   78%   98%  100%  
+	    New File  		   1.8 m	17 Mike Seeger - Snake Baked a Hoecake.mp3 13%   27%   41%   55%   68%   82%   96%  100%  
+	    New File  		   4.1 m	18 Bukka White - High Fever Blues.mp3 11%   23%   35%   47%   59%   71%   83%   95%  100%  
+	    New File  		   6.3 m	19 Michael J. Sheehy - Twisted Little Man.mp3  7.9% 15.8% 23.7% 31.7% 39.6% 47.5% 55.5% 63.4% 71.3% 79.3% 87.2% 95.1%100%  
+	    New File  		   1.1 m	20 Ian McShane - Next Round's on the House.mp3 21%   43%   65%   87%  100%  
+	    New File  		   1.9 m	21 Michael Brook - Arriving in Deadwood.mp3 13%   26%   39%   52%   65%   78%   91%  100%  
+	    New File  		   6.5 m	22 Mississippi John Hurt - Farther Along.mp3  7.6% 15.2% 22.8% 30.4% 38.0% 45.7% 53.3% 60.9% 68.5% 76.1% 83.8% 91.4% 99.0%100%  
+	    New File  		  508413	23 Seth Bullock - There's Blood.mp3 25%   51%   77%  100%  
+	    New File  		  190517	Folder.jpg 68%  100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         1         0         0         0         0
+   Files :        24        24         0         0         0         0
+   Bytes :   79.96 m   79.96 m         0         0         0         0
+   Times :   0:00:12   0:00:12                       0:00:00   0:00:00
+
+
+   Speed :             6790003 Bytes/sec.
+   Speed :             388.527 MegaBytes/min.
+   Ended : Saturday, July 27, 2024 3:35:04 AM
+
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : Saturday, July 27, 2024 3:35:04 AM
+   Source : e:\video\music\Ennio Morricone - Ennio Morricone; 50 Movie Theme Hits\
+     Dest : \\bombcyclone\AgnesNutter\Media\Music\Albums\m\Ennio Morricone - Ennio Morricone; 50 Movie Theme Hits\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /MOVE /XO /XN /XC /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	  New Dir         51	e:\video\music\Ennio Morricone - Ennio Morricone; 50 Movie Theme Hits\
+	    New File  		   7.5 m	01-01 Giu' La Testa.mp3  6.6% 13.2% 19.8% 26.4% 33.1% 39.7% 46.3% 52.9% 59.6% 66.2% 72.8% 79.4% 86.0% 92.7% 99.3%100%  
+	    New File  		   8.5 m	01-02 Metti una Sera a Cena.mp3 11.6% 23.3% 35.0% 46.7% 58.4% 70.1% 81.8% 93.5%100%  
+	    New File  		   4.6 m	01-03 La Califfa.mp3 10%   21%   32%   42%   53%   64%   75%   85%   96%  100%  
+	    New File  		   5.1 m	01-04 Per Qualche Dollaro in Piu'.mp3  9%   19%   29%   38%   48%   58%   67%   77%   87%   97%  100%  
+	    New File  		   7.3 m	01-05 Romanzo.mp3  6.7% 13.5% 20.3% 27.1% 33.8% 40.6% 47.4% 54.2% 61.0% 67.7% 74.5% 81.3% 88.1% 94.8%100%  
+	    New File  		   4.5 m	01-06 Ninna Nanna in Blu.mp3 10%   21%   32%   43%   54%   65%   76%   87%   98%  100%  
+	    New File  		   5.5 m	01-07 A Lydia.mp3  9%   18%   27%   36%   45%   54%   63%   72%   81%   90%   99%  100%  
+	    New File  		   6.0 m	01-08 Viaggio Con Anita.mp3  8.2% 16.4% 24.6% 32.8% 41.1% 49.3% 57.5% 65.7% 73.9% 82.2% 90.4% 98.6%100%  
+	    New File  		   7.8 m	01-09 Lontano.mp3  6.4% 12.8% 19.2% 25.6% 32.0% 38.4% 44.8% 51.2% 57.6% 64.0% 70.4% 76.8% 83.2% 89.6% 96.0%100%  
+	    New File  		   8.1 m	01-10 Viva La Revolucion.mp3 12.3% 24.6% 36.9% 49.2% 61.5% 73.8% 86.1% 98.4%100%  
+	    New File  		   5.3 m	01-11 L' Uomo Delle Stelle.mp3  9%   18%   28%   37%   46%   56%   65%   74%   84%   93%  100%  
+	    New File  		   6.6 m	01-12 La Ragione, Il Cuore, l'Amore.mp3  7.5% 15.1% 22.6% 30.2% 37.8% 45.3% 52.9% 60.5% 68.0% 75.6% 83.2% 90.7% 98.3%100%  
+	    New File  		   7.6 m	01-13 Il Trio Infernale.mp3  6.5% 13.0% 19.6% 26.1% 32.7% 39.2% 45.8% 52.3% 58.8% 65.4% 71.9% 78.5% 85.0% 91.6% 98.1%100%  
+	    New File  		   6.9 m	01-14 The Endless Game.mp3  7.1% 14.3% 21.5% 28.7% 35.8% 43.0% 50.2% 57.4% 64.6% 71.7% 78.9% 86.1% 93.3%100%  
+	    New File  		   6.4 m	01-15 Faccia a Faccia.mp3  7.7% 15.5% 23.3% 31.0% 38.8% 46.6% 54.4% 62.1% 69.9% 77.7% 85.4% 93.2%100%  
+	    New File  		  10.8 m	01-16 Oceano.mp3  9.2% 18.4% 27.6% 36.8% 46.0% 55.2% 64.5% 73.7% 82.9% 92.1%100%  
+	    New File  		   4.9 m	02-01 Il Buono, Il Brutto, Il Cattivo (Titoli) [from il Buono, Il Brutto, Il Cat.mp3 10%   20%   30%   40%   50%   60%   70%   81%   91%  100%  
+	    New File  		   5.6 m	02-02 C'Era una Volta il West (Edda's Version).mp3  8%   17%   26%   35%   44%   53%   62%   71%   80%   89%   98%  100%  
+	    New File  		   4.3 m	02-03 Indagine.mp3 11%   23%   34%   46%   57%   69%   80%   92%  100%  
+	    New File  		   7.2 m	02-04 Il Deserto Dei Tartari (Il Deserto Come Estasi).mp3  6.8% 13.7% 20.6% 27.5% 34.3% 41.2% 48.1% 55.0% 61.9% 68.7% 75.6% 82.5% 89.4% 96.2%100%  
+	    New File  		   3.8 m	02-05 Tema Per Oria.mp3 12%   25%   38%   51%   64%   77%   90%  100%  
+	    New File  		   5.5 m	02-06 Veruschka.mp3  8%   17%   26%   35%   44%   53%   62%   71%   80%   89%   98%  100%  
+	    New File  		   7.9 m	02-07 Dimenticare Palermo.mp3  6.2% 12.5% 18.7% 25.0% 31.3% 37.5% 43.8% 50.1% 56.3% 62.6% 68.8% 75.1% 81.4% 87.6% 93.9%100%  
+	    New File  		   4.6 m	02-08 Questa Specie d'Amore.mp3 10%   21%   32%   42%   53%   64%   74%   85%   96%  100%  
+	    New File  		   4.6 m	02-09 Companeros.mp3 10%   21%   32%   43%   53%   64%   75%   86%   97%  100%  
+	    New File  		   6.2 m	02-10 Dal Mare.mp3  7.9% 15.9% 23.9% 31.8% 39.8% 47.8% 55.7% 63.7% 71.7% 79.7% 87.6% 95.6%100%  
+	    New File  		   5.2 m	02-11 Belinda May.mp3  9%   19%   28%   38%   47%   57%   66%   76%   85%   95%  100%  
+	    New File  		   7.4 m	02-12 La Cugina.mp3  6.7% 13.4% 20.2% 26.9% 33.7% 40.4% 47.1% 53.9% 60.6% 67.4% 74.1% 80.8% 87.6% 94.3%100%  
+	    New File  		   8.7 m	02-13 L' Mercenario (L'Arena).mp3 11.3% 22.7% 34.1% 45.5% 56.9% 68.3% 79.7% 91.1%100%  
+	    New File  		   7.9 m	02-14 Piume di Cristallo.mp3  6.2% 12.5% 18.8% 25.0% 31.3% 37.6% 43.8% 50.1% 56.4% 62.6% 68.9% 75.2% 81.4% 87.7% 94.0%100%  
+	    New File  		   6.1 m	02-15 La Scoperta Dell'america.mp3  8.0% 16.1% 24.2% 32.3% 40.4% 48.5% 56.6% 64.7% 72.8% 80.9% 89.0% 97.1%100%  
+	    New File  		   8.4 m	02-16 Mosca Addio.mp3 11.8% 23.7% 35.6% 47.5% 59.4% 71.3% 83.2% 95.1%100%  
+	    New File  		   6.2 m	02-17 Chi Mai.mp3  8.0% 16.1% 24.1% 32.2% 40.3% 48.3% 56.4% 64.5% 72.5% 80.6% 88.6% 96.7%100%  
+	    New File  		   4.1 m	03-01 Nuovo Cinema Paradiso (Titoli).mp3 11%   23%   35%   47%   59%   71%   83%   95%  100%  
+	    New File  		   8.7 m	03-02 Forse Basta.mp3 11.4% 22.9% 34.3% 45.8% 57.3% 68.7% 80.2% 91.7%100%  
+	    New File  		   6.0 m	03-03 Il Mio Nome E' Nessuno.mp3  8.3% 16.6% 24.9% 33.2% 41.5% 49.8% 58.2% 66.5% 74.8% 83.1% 91.4% 99.7%100%  
+	    New File  		   9.3 m	03-04 Abolicao.mp3 10.6% 21.3% 32.0% 42.7% 53.4% 64.1% 74.8% 85.4% 96.1%100%  
+	    New File  		   9.3 m	03-05 Alla Serenita'.mp3 10.6% 21.2% 31.9% 42.5% 53.2% 63.8% 74.4% 85.1% 95.7%100%  
+	    New File  		   6.4 m	03-06 Il Figlio E La Nostalgia.mp3  7.7% 15.5% 23.2% 31.0% 38.7% 46.5% 54.3% 62.0% 69.8% 77.5% 85.3% 93.0%100%  
+	    New File  		   6.2 m	03-07 Tre Colonne in Cronaca.mp3  8.0% 16.0% 24.0% 32.0% 40.1% 48.1% 56.1% 64.1% 72.1% 80.2% 88.2% 96.2%100%  
+	    New File  		   6.8 m	03-08 Come un Madrigale.mp3  7.2% 14.5% 21.8% 29.1% 36.4% 43.6% 50.9% 58.2% 65.5% 72.8% 80.1% 87.3% 94.6%100%  
+	    New File  		   5.5 m	03-09 Castelli di Scozia.mp3  8%   17%   26%   35%   44%   53%   62%   71%   80%   89%   98%  100%  
+	    New File  		   4.8 m	03-10 I Crudeli.mp3 10%   20%   30%   41%   51%   61%   71%   82%   92%  100%  
+	    New File  		   6.3 m	03-11 Le Due Stagioni Della Vita.mp3  7.8% 15.6% 23.5% 31.3% 39.2% 47.0% 54.8% 62.7% 70.5% 78.4% 86.2% 94.1%100%  
+	    New File  		   6.8 m	03-12 E Finalmente.mp3  7.3% 14.6% 22.0% 29.3% 36.7% 44.0% 51.4% 58.7% 66.0% 73.4% 80.7% 88.1% 95.4%100%  
+	    New File  		   3.8 m	03-13 La Ballata di Hank McCain.mp3 12%   25%   38%   51%   64%   77%   90%  100%  
+	    New File  		   6.2 m	03-14 Addio a Palermo.mp3  7.9% 15.9% 23.8% 31.8% 39.8% 47.7% 55.7% 63.7% 71.6% 79.6% 87.6% 95.5%100%  
+	    New File  		   5.6 m	03-15 Si Muore d'Amore.mp3  8%   17%   26%   35%   43%   52%   61%   70%   79%   87%   96%  100%  
+	    New File  		   5.3 m	03-16 Un Esercito di 5 Uomini.mp3  9%   18%   27%   37%   46%   55%   65%   74%   83%   92%  100%  
+	    New File  		   3.0 m	03-17 La Ragazza E il Generale.mp3 16%   33%   49%   66%   83%   99%  100%  
+	    New File  		   49116	Folder.jpg100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         1         0         0         0         0
+   Files :        51        51         0         0         0         0
+   Bytes :  319.74 m  319.74 m         0         0         0         0
+   Times :   0:00:51   0:00:51                       0:00:00   0:00:00
+
+
+   Speed :             6498962 Bytes/sec.
+   Speed :             371.873 MegaBytes/min.
+   Ended : Saturday, July 27, 2024 3:35:56 AM
+
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : Saturday, July 27, 2024 3:35:56 AM
+   Source : e:\video\music\Nina Simone - The Best Of Nina Simone [PolyGram]\
+     Dest : \\bombcyclone\AgnesNutter\Media\Music\Albums\s\Nina Simone - The Best Of Nina Simone [PolyGram]\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /MOVE /XO /XN /XC /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	  New Dir         13	e:\video\music\Nina Simone - The Best Of Nina Simone [PolyGram]\
+	    New File  		   4.4 m	01 I Loves You, Porgy.mp3 11%   22%   34%   45%   56%   68%   79%   90%  100%  
+	    New File  		   9.6 m	02 Mississippi Goddam.mp3 10.3% 20.7% 31.1% 41.5% 51.9% 62.2% 72.6% 83.0% 93.4%100%  
+	    New File  		   5.3 m	03 The Other Woman.mp3  9%   18%   28%   37%   47%   56%   65%   75%   84%   94%  100%  
+	    New File  		  19.7 m	04 Sinnerman.mp3  5.0% 10.1% 15.2% 20.2% 25.3% 30.4% 35.4% 40.5% 45.6% 50.6% 55.7% 60.8% 65.8% 70.9% 76.0% 81.1% 86.1% 91.2% 96.3%100%  
+	    New File  		   6.6 m	05 Ne Me Quitte Pas.mp3  7.5% 15.1% 22.7% 30.2% 37.8% 45.4% 52.9% 60.5% 68.1% 75.7% 83.2% 90.8% 98.4%100%  
+	    New File  		   5.5 m	06 See Line Woman.mp3  8%   17%   26%   35%   44%   53%   62%   71%   80%   89%   98%  100%  
+	    New File  		   4.8 m	07 I Put a Spell on You.mp3 10%   20%   31%   41%   52%   62%   72%   83%   93%  100%  
+	    New File  		   4.9 m	08 Break Down and Let It All Out.mp3 10%   20%   30%   40%   50%   61%   71%   81%   91%  100%  
+	    New File  		   7.7 m	09 Four Women.mp3  6.4% 12.9% 19.4% 25.8% 32.3% 38.8% 45.2% 51.7% 58.2% 64.6% 71.1% 77.6% 84.0% 90.5% 97.0%100%  
+	    New File  		  11.4 m	10 Wild Is the Wind.mp3  8.7% 17.4% 26.2% 34.9% 43.6% 52.4% 61.1% 69.8% 78.6% 87.3% 96.0%100%  
+	    New File  		  11.6 m	11 Pirate Jenny.mp3  8.5% 17.1% 25.6% 34.2% 42.8% 51.3% 59.9% 68.5% 77.0% 85.6% 94.2%100%  
+	    New File  		   5.1 m	12 Don't Let Me Be Misunderstood.mp3  9%   19%   29%   39%   48%   58%   68%   78%   88%   97%  100%  
+	    New File  		  214710	Folder.jpg 61%  100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         1         0         0         0         0
+   Files :        13        13         0         0         0         0
+   Bytes :   97.13 m   97.13 m         0         0         0         0
+   Times :   0:00:12   0:00:12                       0:00:00   0:00:00
+
+
+   Speed :             8061615 Bytes/sec.
+   Speed :             461.289 MegaBytes/min.
+   Ended : Saturday, July 27, 2024 3:36:08 AM
+
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : Saturday, July 27, 2024 3:36:08 AM
+   Source : e:\video\music\Vintage Sex Songs\
+     Dest : \\bombcyclone\AgnesNutter\Media\Music\Albums\v\Vintage Sex Songs\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /MOVE /XO /XN /XC /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	  New Dir         41	e:\video\music\Vintage Sex Songs\
+	    New File  		   3.4 m	01-01 The Swallows - It Ain't the Meat (It's the Motion).mp3 14%   28%   43%   57%   72%   86%  100%  
+	    New File  		   4.5 m	01-02 Bull Moose Jackson - I Want a Bow-Legged Woman.mp3 10%   21%   32%   43%   54%   65%   76%   87%   98%  100%  
+	    New File  		   3.9 m	01-03 Crown Prince Waterford - Move Your Hand Baby.mp3 12%   25%   37%   50%   63%   75%   88%  100%  
+	    New File  		   4.0 m	01-04 Frankie -Half-Pint- Jaxon - It Must Be Jelly ('Cos Jam Don't Shake Like That).mp3 12%   24%   36%   49%   61%   73%   86%   98%  100%  
+	    New File  		   4.3 m	01-05 Wynonie Harris - She Kept on Sittin' on It All the Time.mp3 11%   22%   34%   45%   57%   68%   79%   91%  100%  
+	    New File  		   3.9 m	01-06 Julia Lee - King Size Papa.mp3 12%   25%   37%   50%   62%   75%   87%  100%  
+	    New File  		   4.5 m	01-07 Sister Rosetta Tharpe - I Want a Tall Skinny Papa.mp3 11%   22%   33%   44%   55%   66%   77%   88%   99%  100%  
+	    New File  		   4.1 m	01-08 Mabel Scott - Just Give Me a Man.mp3 12%   24%   36%   48%   60%   72%   84%   96%  100%  
+	    New File  		   3.8 m	01-09 Connie Allen - Rocket 69.mp3 13%   26%   39%   52%   65%   78%   91%  100%  
+	    New File  		   4.7 m	01-10 Cleo Gibson - I've Got Ford Movements in My Hips.mp3 10%   20%   31%   41%   52%   62%   73%   83%   94%  100%  
+	    New File  		   3.6 m	01-11 Margaruet Love Carter - I Want Plenty Grease in My Frying Pan.mp3 13%   27%   40%   54%   68%   81%   95%  100%  
+	    New File  		   4.3 m	01-12 Sippie Wallace - A Man for Every Day in the Week.mp3 11%   22%   34%   45%   57%   68%   80%   91%  100%  
+	    New File  		   3.1 m	01-13 Fats Noel - Ride Daddy Ride.mp3 15%   31%   47%   63%   79%   95%  100%  
+	    New File  		   4.3 m	01-14 Jimmy Preston - Hucklebuck Baby.mp3 11%   23%   34%   46%   57%   69%   80%   92%  100%  
+	    New File  		   5.3 m	01-15 Papa Charlie Jackson - You Put It In, I'll Take it Out.mp3  9%   18%   28%   37%   46%   56%   65%   74%   84%   93%  100%  
+	    New File  		   4.2 m	01-16 Al Miller - I Found Your Keyhole.mp3 11%   23%   35%   47%   59%   71%   82%   94%  100%  
+	    New File  		   4.4 m	01-17 Jimmie Gordon - Bed Springs Blues.mp3 11%   22%   33%   44%   56%   67%   78%   89%  100%  
+	    New File  		   3.3 m	01-18 Roosevelt Sykes - My Baby's Playground.mp3 14%   29%   44%   59%   74%   89%  100%  
+	    New File  		   3.5 m	01-19 Memphis Minnie - Keep on Eatin'.mp3 14%   28%   42%   56%   70%   84%   98%  100%  
+	    New File  		   3.9 m	01-20 Bessie Smith - I Need a Little Sugar in My Bowl.mp3 12%   25%   37%   50%   62%   75%   88%  100%  
+	    New File  		   3.4 m	02-01 Lillie Mae Kirkman - He's Just My Size.mp3 14%   28%   43%   57%   71%   86%  100%  
+	    New File  		   3.4 m	02-02 Barrelhouse Annie - If It Don't Fit, Don't Force It.mp3 14%   28%   43%   57%   71%   86%  100%  
+	    New File  		   3.8 m	02-03 Sippie Wallace - I'm a Mighty Tight Woman.mp3 12%   25%   38%   51%   64%   77%   90%  100%  
+	    New File  		   4.0 m	02-04 Johnnie -Geechie- Temple - Sit Right on It.mp3 12%   24%   37%   49%   61%   74%   86%   98%  100%  
+	    New File  		   4.3 m	02-05 The Treniers - Poon Tang.mp3 11%   22%   34%   45%   57%   68%   79%   91%  100%  
+	    New File  		   4.5 m	02-06 Lowell Fulson - Let Me Ride in Your Little Automobile.mp3 10%   21%   32%   43%   54%   65%   76%   87%   98%  100%  
+	    New File  		   3.3 m	02-07 Lightnin' Hopkins - Let Me Play with Your Poodle.mp3 14%   29%   44%   59%   74%   89%  100%  
+	    New File  		   3.8 m	02-08 Charlie Pickett - Let Me Squeeze Your Lemon.mp3 13%   26%   39%   52%   65%   78%   91%  100%  
+	    New File  		   3.6 m	02-09 Bo Carter - My Pencil Won't Write No More.mp3 13%   27%   41%   55%   68%   82%   96%  100%  
+	    New File  		   4.3 m	02-10 Mississippi Sheiks - Driving That Thing.mp3 11%   22%   34%   45%   57%   68%   79%   91%  100%  
+	    New File  		   3.7 m	02-11 Lonnie Johnson - The Best Jockey in Town.mp3 13%   26%   39%   52%   66%   79%   92%  100%  
+	    New File  		   4.4 m	02-12 John Lee Hooker - My Daddy Was a Jockey.mp3 11%   22%   34%   45%   56%   68%   79%   90%  100%  
+	    New File  		   4.3 m	02-13 Blind Boy Fuller - Sweet Honey Hole.mp3 11%   22%   34%   45%   57%   68%   80%   91%  100%  
+	    New File  		   4.3 m	02-14 Jazz Gillum - Sarah Jane.mp3 11%   23%   34%   46%   57%   69%   80%   92%  100%  
+	    New File  		   4.2 m	02-15 Wynonie Harris - I Want My Fanny Brown.mp3 11%   23%   35%   47%   59%   71%   83%   94%  100%  
+	    New File  		   4.0 m	02-16 Victoria Spivey - Good Cabbage.mp3 12%   24%   36%   49%   61%   73%   86%   98%  100%  
+	    New File  		   3.9 m	02-17 Lil Johnson - Sam the Hot Dog Man.mp3 12%   25%   37%   50%   62%   75%   88%  100%  
+	    New File  		   3.8 m	02-18 Bo Carter - Banana in Your Fruit Basket.mp3 13%   26%   39%   52%   65%   78%   91%  100%  
+	    New File  		   5.7 m	02-19 Floyd Dixon - Baby Let's Go Down to the Woods.mp3  8%   17%   26%   35%   43%   52%   61%   70%   78%   87%   96%  100%  
+	    New File  		   4.2 m	02-20 Lucille Bogan - Shave 'Em Dry.mp3 11%   23%   35%   47%   59%   70%   82%   94%  100%  
+	    New File  		   37531	Folder.jpg100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         1         0         0         0         0
+   Files :        41        41         0         0         0         0
+   Bytes :  163.93 m  163.93 m         0         0         0         0
+   Times :   0:00:24   0:00:24                       0:00:00   0:00:00
+
+
+   Speed :             6962090 Bytes/sec.
+   Speed :             398.374 MegaBytes/min.
+   Ended : Saturday, July 27, 2024 3:36:33 AM
+

@@ -1,348 +1,0 @@
-
--------------------------------------------------------------------------------
-   ROBOCOPY     ::     Robust File Copy for Windows                              
--------------------------------------------------------------------------------
-
-  Started : Monday, July 29, 2024 3:34:38 AM
-   Source : e:\video\music\Alan Menken - Enchanted [Original Score]\
-     Dest : \\bombcyclone\AgnesNutter\Media\Music\Albums\m\Alan Menken - Enchanted [Original Score]\
-
-    Files : *.*
-	    
-  Options : *.* /S /E /DCOPY:DA /COPY:DAT /MOVE /XO /XN /XC /R:1000000 /W:30 
-
-------------------------------------------------------------------------------
-
-	  New Dir         16	e:\video\music\Alan Menken - Enchanted [Original Score]\
-	    New File  		   6.2 m	01 True Love's Kiss (As Used in the Film Enchanted).mp3  8.0% 16.0% 24.0% 32.0% 40.0% 48.0% 56.0% 64.0% 72.0% 80.0% 88.1% 96.1%100%  
-	    New File  		   4.2 m	02 Happy Working Song (As Used in the Film Enchanted).mp3 11%   23%   35%   47%   59%   70%   82%   94%  100%  
-	    New File  		   7.4 m	03 That's How You Know (As Used in the Film Enchanted).mp3  6.7% 13.4% 20.2% 26.9% 33.7% 40.4% 47.2% 53.9% 60.7% 67.4% 74.2% 80.9% 87.6% 94.4%100%  
-	    New File  		   6.9 m	04 So Close (As Used in the Film Enchanted).mp3  7.2% 14.4% 21.6% 28.8% 36.0% 43.2% 50.4% 57.6% 64.8% 72.0% 79.2% 86.4% 93.6%100%  
-	    New File  		   7.0 m	05 Ever Ever After (As Used in the Film Enchanted).mp3  7.1% 14.2% 21.3% 28.4% 35.6% 42.7% 49.8% 56.9% 64.1% 71.2% 78.3% 85.4% 92.5% 99.7%100%  
-	    New File  		   3.3 m	06 Andalasia.mp3 15%   30%   45%   60%   75%   90%  100%  
-	    New File  		   8.7 m	07 Into the Well.mp3 11.4% 22.8% 34.3% 45.7% 57.1% 68.6% 80.0% 91.5%100%  
-	    New File  		   5.7 m	08 Robert Says Goodbye.mp3  8.6% 17.3% 26.0% 34.6% 43.3% 52.0% 60.7% 69.3% 78.0% 86.7% 95.4%100%  
-	    New File  		   7.5 m	09 Nathaniel and Pip.mp3  6.6% 13.2% 19.8% 26.4% 33.0% 39.6% 46.2% 52.8% 59.4% 66.0% 72.6% 79.2% 85.8% 92.4% 99.0%100%  
-	    New File  		   4.5 m	10 Prince Edward's Search.mp3 11%   22%   33%   44%   55%   66%   77%   88%   99%  100%  
-	    New File  		   3.5 m	11 Girls Go Shopping.mp3 14%   28%   42%   56%   70%   84%   98%  100%  
-	    New File  		   3.2 m	12 Narissa Arrives.mp3 15%   30%   46%   61%   76%   92%  100%  
-	    New File  		  20.6 m	13 Styorybook Ending.mp3  4.8%  9.6% 14.5% 19.3% 24.1% 29.0% 33.8% 38.6% 43.5% 48.3% 53.2% 58.0% 62.8% 67.7% 72.5% 77.3% 82.2% 87.0% 91.9% 96.7%100%  
-	    New File  		   9.1 m	14 Enchanted Suite.mp3 10.8% 21.7% 32.6% 43.4% 54.3% 65.2% 76.0% 86.9% 97.8%100%  
-	    New File  		   6.1 m	15 That's Amore.mp3  8.0% 16.1% 24.2% 32.3% 40.3% 48.4% 56.5% 64.6% 72.7% 80.7% 88.8% 96.9%100%  
-	    New File  		   82586	Folder.jpg100%  
-
-------------------------------------------------------------------------------
-
-               Total    Copied   Skipped  Mismatch    FAILED    Extras
-    Dirs :         1         1         0         0         0         0
-   Files :        16        16         0         0         0         0
-   Bytes :  104.70 m  104.70 m         0         0         0         0
-   Times :   0:00:16   0:00:16                       0:00:00   0:00:00
-
-
-   Speed :             6618606 Bytes/sec.
-   Speed :             378.719 MegaBytes/min.
-   Ended : Monday, July 29, 2024 3:34:55 AM
-
-
--------------------------------------------------------------------------------
-   ROBOCOPY     ::     Robust File Copy for Windows                              
--------------------------------------------------------------------------------
-
-  Started : Monday, July 29, 2024 3:34:55 AM
-   Source : e:\video\music\John Barry - James Bond; Back in Action [Silva]\
-     Dest : \\bombcyclone\AgnesNutter\Media\Music\Albums\b\John Barry - James Bond; Back in Action [Silva]\
-
-    Files : *.*
-	    
-  Options : *.* /S /E /DCOPY:DA /COPY:DAT /MOVE /XO /XN /XC /R:1000000 /W:30 
-
-------------------------------------------------------------------------------
-
-	  New Dir         20	e:\video\music\John Barry - James Bond; Back in Action [Silva]\
-	    New File  		   3.8 m	01 Dr. No.mp3 13%   26%   39%   52%   65%   78%   91%  100%  
-	    New File  		   9.6 m	02 Dr. No.mp3 10.3% 20.7% 31.1% 41.5% 51.9% 62.3% 72.7% 83.1% 93.5%100%  
-	    New File  		   4.5 m	03 Main Title.mp3 11%   22%   33%   44%   55%   66%   77%   88%   99%  100%  
-	    New File  		   4.2 m	04 The Zagreb Express-Gypsy Camp.mp3 11%   23%   35%   47%   58%   70%   82%   94%  100%  
-	    New File  		   4.2 m	05 The Golden Horn.mp3 11%   23%   35%   47%   59%   71%   83%   95%  100%  
-	    New File  		   3.9 m	06 Girl Trouble.mp3 12%   25%   37%   50%   62%   75%   88%  100%  
-	    New File  		   6.0 m	07 007 Takes the Lektor.mp3  8.2% 16.5% 24.8% 33.0% 41.3% 49.6% 57.8% 66.1% 74.4% 82.7% 90.9% 99.2%100%  
-	    New File  		   5.1 m	08 Goldfinger Suite-Into Miami-Alpine Drive.mp3  9%   19%   29%   38%   48%   58%   67%   77%   87%   97%  100%  
-	    New File  		  10.4 m	09 Dawn Raid at Fort Knox.mp3  9.6% 19.2% 28.8% 38.4% 48.0% 57.6% 67.2% 76.9% 86.5% 96.1%100%  
-	    New File  		   5.4 m	10 The Bomb-Cafe Martinique.mp3  9%   18%   27%   36%   46%   55%   64%   73%   82%   92%  100%  
-	    New File  		  11.6 m	11 Fight on the Disco Volante-Death of Largo-Finale.mp3  8.5% 17.1% 25.7% 34.3% 42.9% 51.5% 60.1% 68.7% 77.3% 85.9% 94.5%100%  
-	    New File  		   9.2 m	12 Bond's Funeral-The Human Torpedo-Mountains and Sunsets.mp3 10.7% 21.5% 32.2% 43.0% 53.7% 64.5% 75.2% 86.0% 96.7%100%  
-	    New File  		   8.7 m	13 The Wedding-James Bond Averts WW III-Capsule in Space.mp3 11.4% 22.8% 34.3% 45.7% 57.2% 68.6% 80.0% 91.5%100%  
-	    New File  		   7.8 m	14 This Never Happened to the Other Fella-Gumbold's Safe Break.mp3  6.3% 12.7% 19.1% 25.4% 31.8% 38.2% 44.6% 50.9% 57.3% 63.7% 70.0% 76.4% 82.8% 89.2% 95.5%100%  
-	    New File  		   8.2 m	15 Bond Meets the Girls-Who Will Buy My Yesterdays¨.mp3 12.1% 24.2% 36.3% 48.4% 60.5% 72.6% 84.8% 96.9%100%  
-	    New File  		   8.2 m	16 Escape from Piz Gloria and Ski Chase.mp3 12.1% 24.2% 36.4% 48.5% 60.7% 72.8% 85.0% 97.1%100%  
-	    New File  		   8.6 m	17 Mr. Wint and Mr. Kidd-Moon Buggy Ride.mp3 11.5% 23.1% 34.7% 46.3% 57.9% 69.4% 81.0% 92.6%100%  
-	    New File  		   8.8 m	18 Blofeld's Laser-Killing Wint and Kidd.mp3 11.3% 22.7% 34.0% 45.4% 56.8% 68.1% 79.5% 90.9%100%  
-	    New File  		   5.9 m	19 Diamonds Are Forever.mp3  8.4% 16.8% 25.2% 33.7% 42.1% 50.5% 58.9% 67.4% 75.8% 84.2% 92.6%100%  
-	    New File  		   68665	Folder.jpg100%  
-
-------------------------------------------------------------------------------
-
-               Total    Copied   Skipped  Mismatch    FAILED    Extras
-    Dirs :         1         1         0         0         0         0
-   Files :        20        20         0         0         0         0
-   Bytes :  134.88 m  134.88 m         0         0         0         0
-   Times :   0:00:18   0:00:18                       0:00:00   0:00:00
-
-
-   Speed :             7701068 Bytes/sec.
-   Speed :             440.658 MegaBytes/min.
-   Ended : Monday, July 29, 2024 3:35:13 AM
-
-
--------------------------------------------------------------------------------
-   ROBOCOPY     ::     Robust File Copy for Windows                              
--------------------------------------------------------------------------------
-
-  Started : Monday, July 29, 2024 3:35:13 AM
-   Source : e:\video\music\Lou Reed - Mojo; A Life In Music\
-     Dest : \\bombcyclone\AgnesNutter\Media\Music\Albums\r\Lou Reed - Mojo; A Life In Music\
-
-    Files : *.*
-	    
-  Options : *.* /S /E /DCOPY:DA /COPY:DAT /MOVE /XO /XN /XC /R:1000000 /W:30 
-
-------------------------------------------------------------------------------
-
-	  New Dir         16	e:\video\music\Lou Reed - Mojo; A Life In Music\
-	    New File  		  10.4 m	01 Lisa Says.mp3  9.6% 19.2% 28.8% 38.4% 48.0% 57.6% 67.2% 76.9% 86.5% 96.1%100%  
-	    New File  		   6.3 m	02 Andy's Chest.mp3  7.9% 15.8% 23.7% 31.6% 39.5% 47.4% 55.3% 63.2% 71.1% 79.0% 86.9% 94.8%100%  
-	    New File  		   6.8 m	03 How Do You Think It Feels.mp3  7.3% 14.6% 22.0% 29.3% 36.7% 44.0% 51.3% 58.7% 66.0% 73.4% 80.7% 88.1% 95.4%100%  
-	    New File  		  10.1 m	04 White Light - White Heat.mp3  9.8% 19.7% 29.5% 39.4% 49.3% 59.1% 69.0% 78.9% 88.7% 98.6%100%  
-	    New File  		   7.2 m	05 Kill Your Sons.mp3  6.8% 13.7% 20.5% 27.4% 34.3% 41.1% 48.0% 54.9% 61.7% 68.6% 75.5% 82.3% 89.2% 96.1%100%  
-	    New File  		  28.2 m	06 Metal Machine Music, Pt. 1.mp3  3.5%  7.0% 10.6% 14.1% 17.6% 21.2% 24.7% 28.3% 31.8% 35.3% 38.9% 42.4% 46.0% 49.5% 53.0% 56.6% 60.1% 63.7% 67.2% 70.7% 74.3% 77.8% 81.3% 84.9% 88.4% 92.0% 95.5% 99.0%100%  
-	    New File  		  12.3 m	07 She's My Best Friend.mp3  8.0% 16.1% 24.2% 32.3% 40.4% 48.5% 56.6% 64.7% 72.8% 80.9% 89.0% 97.1%100%  
-	    New File  		   4.1 m	08 Follow The Leader.mp3 11%   23%   35%   47%   59%   71%   83%   95%  100%  
-	    New File  		   6.8 m	09 Real Good Time Together.mp3  7.2% 14.5% 21.8% 29.0% 36.3% 43.6% 50.8% 58.1% 65.4% 72.6% 79.9% 87.2% 94.4%100%  
-	    New File  		   8.6 m	10 I Want To Boogie With You.mp3 11.5% 23.1% 34.6% 46.2% 57.7% 69.3% 80.8% 92.4%100%  
-	    New File  		   6.1 m	11 Teach The Gifted Children.mp3  8.0% 16.1% 24.2% 32.2% 40.3% 48.4% 56.4% 64.5% 72.6% 80.6% 88.7% 96.8%100%  
-	    New File  		   6.7 m	12 The Gun.mp3  7.3% 14.7% 22.1% 29.5% 36.9% 44.3% 51.6% 59.0% 66.4% 73.8% 81.2% 88.6% 95.9%100%  
-	    New File  		   5.3 m	13 Make Up Mind.mp3  9%   18%   28%   37%   47%   56%   65%   75%   84%   94%  100%  
-	    New File  		   5.8 m	14 Fly Into The Sun.mp3  8.5% 17.1% 25.7% 34.3% 42.9% 51.5% 60.1% 68.6% 77.2% 85.8% 94.4%100%  
-	    New File  		   6.7 m	15 I Remember You.mp3  7.3% 14.7% 22.0% 29.4% 36.7% 44.1% 51.5% 58.8% 66.2% 73.5% 80.9% 88.3% 95.6%100%  
-	    New File  		   88540	Folder.jpg100%  
-
-------------------------------------------------------------------------------
-
-               Total    Copied   Skipped  Mismatch    FAILED    Extras
-    Dirs :         1         1         0         0         0         0
-   Files :        16        16         0         0         0         0
-   Bytes :  132.27 m  132.27 m         0         0         0         0
-   Times :   0:00:17   0:00:17                       0:00:00   0:00:00
-
-
-   Speed :             7873065 Bytes/sec.
-   Speed :             450.500 MegaBytes/min.
-   Ended : Monday, July 29, 2024 3:35:31 AM
-
-
--------------------------------------------------------------------------------
-   ROBOCOPY     ::     Robust File Copy for Windows                              
--------------------------------------------------------------------------------
-
-  Started : Monday, July 29, 2024 3:35:31 AM
-   Source : e:\video\music\Michael Stillwater - Songs from the Threshold\
-     Dest : \\bombcyclone\AgnesNutter\Media\Music\Albums\s\Michael Stillwater - Songs from the Threshold\
-
-    Files : *.*
-	    
-  Options : *.* /S /E /DCOPY:DA /COPY:DAT /MOVE /XO /XN /XC /R:1000000 /W:30 
-
-------------------------------------------------------------------------------
-
-	  New Dir         12	e:\video\music\Michael Stillwater - Songs from the Threshold\
-	    New File  		   8.8 m	01 Angel Eyes.mp3 11.2% 22.5% 33.8% 45.1% 56.4% 67.7% 79.0% 90.3%100%  
-	    New File  		  10.2 m	02 Forbidden City of the Heart.mp3  9.7% 19.4% 29.1% 38.8% 48.6% 58.3% 68.0% 77.7% 87.5% 97.2%100%  
-	    New File  		  10.5 m	03 If I Open Up My Heart.mp3  9.5% 19.0% 28.5% 38.0% 47.5% 57.0% 66.5% 76.1% 85.6% 95.1%100%  
-	    New File  		  10.4 m	04 Living Inside Your Love.mp3  9.5% 19.0% 28.6% 38.1% 47.7% 57.2% 66.7% 76.3% 85.8% 95.4%100%  
-	    New File  		  10.4 m	05 Heaven Help a Heart.mp3  9.5% 19.1% 28.7% 38.3% 47.9% 57.5% 67.0% 76.6% 86.2% 95.8%100%  
-	    New File  		   4.1 m	06 Reflecting Pond.mp3 12%   24%   36%   48%   60%   72%   85%   97%  100%  
-	    New File  		   5.8 m	07 You Were the One.mp3  8.6% 17.2% 25.8% 34.4% 43.0% 51.6% 60.2% 68.8% 77.4% 86.0% 94.6%100%  
-	    New File  		   9.6 m	08 Just a Matter of Time.mp3 10.3% 20.6% 30.9% 41.2% 51.5% 61.8% 72.2% 82.5% 92.8%100%  
-	    New File  		   6.6 m	09 Turn to Me.mp3  7.4% 14.9% 22.4% 29.8% 37.3% 44.8% 52.2% 59.7% 67.2% 74.6% 82.1% 89.6% 97.0%100%  
-	    New File  		  11.3 m	10 Into Your Hands.mp3  8.8% 17.6% 26.5% 35.3% 44.1% 53.0% 61.8% 70.6% 79.5% 88.3% 97.2%100%  
-	    New File  		   7.0 m	11 He Waits for You.mp3  7.0% 14.1% 21.2% 28.3% 35.4% 42.5% 49.5% 56.6% 63.7% 70.8% 77.9% 85.0% 92.1% 99.1%100%  
-	    New File  		  10.5 m	12 Rocked in the Cradle.mp3  9.4% 18.8% 28.3% 37.7% 47.2% 56.6% 66.1% 75.5% 85.0% 94.4%100%  
-
-------------------------------------------------------------------------------
-
-               Total    Copied   Skipped  Mismatch    FAILED    Extras
-    Dirs :         1         1         0         0         0         0
-   Files :        12        12         0         0         0         0
-   Bytes :  105.83 m  105.83 m         0         0         0         0
-   Times :   0:00:15   0:00:15                       0:00:00   0:00:00
-
-
-   Speed :             6978042 Bytes/sec.
-   Speed :             399.286 MegaBytes/min.
-   Ended : Monday, July 29, 2024 3:35:47 AM
-
-
--------------------------------------------------------------------------------
-   ROBOCOPY     ::     Robust File Copy for Windows                              
--------------------------------------------------------------------------------
-
-  Started : Monday, July 29, 2024 3:35:47 AM
-   Source : e:\video\music\Steve Earle - El Corazon\
-     Dest : \\bombcyclone\AgnesNutter\Media\Music\Albums\e\Steve Earle - El Corazon\
-
-    Files : *.*
-	    
-  Options : *.* /S /E /DCOPY:DA /COPY:DAT /MOVE /XO /XN /XC /R:1000000 /W:30 
-
-------------------------------------------------------------------------------
-
-	  New Dir         13	e:\video\music\Steve Earle - El Corazon\
-	    New File  		   9.1 m	01 Christmas in Washington.mp3 10.8% 21.7% 32.6% 43.5% 54.4% 65.3% 76.2% 87.1% 97.9%100%  
-	    New File  		  10.0 m	02 Taneytown.mp3  9.9% 19.9% 29.9% 39.9% 49.9% 59.9% 69.9% 79.9% 89.9% 99.9%100%  
-	    New File  		   8.0 m	03 If You Fall.mp3 12.3% 24.7% 37.0% 49.4% 61.7% 74.1% 86.5% 98.8%100%  
-	    New File  		   5.3 m	04 I Still Carry You Around.mp3  9%   18%   27%   37%   46%   55%   64%   74%   83%   92%  100%  
-	    New File  		   7.4 m	05 Telephone Road.mp3  6.7% 13.5% 20.2% 27.0% 33.7% 40.5% 47.2% 54.0% 60.7% 67.5% 74.2% 81.0% 87.7% 94.5%100%  
-	    New File  		   7.6 m	06 Somewhere out There.mp3  6.5% 13.1% 19.6% 26.2% 32.7% 39.3% 45.8% 52.4% 58.9% 65.5% 72.0% 78.6% 85.1% 91.7% 98.2%100%  
-	    New File  		   4.4 m	07 You Know the Rest.mp3 11%   22%   33%   44%   55%   66%   78%   89%  100%  
-	    New File  		   6.8 m	08 N.Y.C..mp3  7.2% 14.5% 21.7% 29.0% 36.3% 43.5% 50.8% 58.0% 65.3% 72.6% 79.8% 87.1% 94.3%100%  
-	    New File  		   7.6 m	09 Poison Lovers.mp3  6.4% 12.9% 19.4% 25.9% 32.4% 38.9% 45.4% 51.9% 58.4% 64.9% 71.4% 77.9% 84.4% 90.9% 97.4%100%  
-	    New File  		   6.7 m	10 The Other Side of Town.mp3  7.4% 14.8% 22.3% 29.7% 37.2% 44.6% 52.1% 59.5% 66.9% 74.4% 81.8% 89.3% 96.7%100%  
-	    New File  		   5.0 m	11 Here I Am.mp3  9%   19%   29%   39%   49%   58%   68%   78%   88%   98%  100%  
-	    New File  		   7.8 m	12 Ft. Worth Blues.mp3  6.3% 12.7% 19.1% 25.5% 31.9% 38.3% 44.7% 51.1% 57.5% 63.9% 70.3% 76.7% 83.1% 89.5% 95.9%100%  
-	    New File  		  197526	Folder.jpg 66%  100%  
-
-------------------------------------------------------------------------------
-
-               Total    Copied   Skipped  Mismatch    FAILED    Extras
-    Dirs :         1         1         0         0         0         0
-   Files :        13        13         0         0         0         0
-   Bytes :   86.60 m   86.60 m         0         0         0         0
-   Times :   0:00:11   0:00:11                       0:00:00   0:00:00
-
-
-   Speed :             8105660 Bytes/sec.
-   Speed :             463.809 MegaBytes/min.
-   Ended : Monday, July 29, 2024 3:35:58 AM
-
-
--------------------------------------------------------------------------------
-   ROBOCOPY     ::     Robust File Copy for Windows                              
--------------------------------------------------------------------------------
-
-  Started : Monday, July 29, 2024 3:35:58 AM
-   Source : e:\video\music\Subcomandante Marcos - Our Word Is Our Weapon\
-     Dest : \\bombcyclone\AgnesNutter\Media\Music\Albums\s\Subcomandante Marcos - Our Word Is Our Weapon\
-
-    Files : *.*
-	    
-  Options : *.* /S /E /DCOPY:DA /COPY:DAT /MOVE /XO /XN /XC /R:1000000 /W:30 
-
-------------------------------------------------------------------------------
-
-	  New Dir          4	e:\video\music\Subcomandante Marcos - Our Word Is Our Weapon\
-	    New File  		  21.2 m	01 Opening Remarks at the First Intercontinental Encuentro for Humanity and Against Neoliberalism.mp3  4.7%  9.4% 14.1% 18.8% 23.5% 28.2% 32.9% 37.6% 42.3% 47.1% 51.8% 56.5% 61.2% 65.9% 70.6% 75.3% 80.0% 84.7% 89.5% 94.2% 98.9%100%  
-	    New File  		  16.6 m	02 To Plant the Tree of Tomorrow.mp3  6.0% 12.0% 18.0% 24.0% 30.0% 36.1% 42.1% 48.1% 54.1% 60.1% 66.1% 72.2% 78.2% 84.2% 90.2% 96.2%100%  
-	    New File  		  33.3 m	03 Why We Use the Weapon of Resistance.mp3  3.0%  6.0%  9.0% 12.0% 15.0% 18.0% 21.0% 24.0% 27.0% 30.0% 33.0% 36.0% 39.0% 42.0% 45.0% 48.0% 51.0% 54.0% 57.0% 60.0% 63.0% 66.0% 69.0% 72.0% 75.0% 78.0% 81.0% 84.0% 87.0% 90.0% 93.0% 96.0% 99.0%100%  
-	    New File  		   2.8 m	04 The Word and the Silence.mp3 17%   35%   53%   71%   88%  100%  
-
-------------------------------------------------------------------------------
-
-               Total    Copied   Skipped  Mismatch    FAILED    Extras
-    Dirs :         1         1         0         0         0         0
-   Files :         4         4         0         0         0         0
-   Bytes :   73.99 m   73.99 m         0         0         0         0
-   Times :   0:00:08   0:00:08                       0:00:00   0:00:00
-
-
-   Speed :             9091323 Bytes/sec.
-   Speed :             520.209 MegaBytes/min.
-   Ended : Monday, July 29, 2024 3:36:07 AM
-
-
--------------------------------------------------------------------------------
-   ROBOCOPY     ::     Robust File Copy for Windows                              
--------------------------------------------------------------------------------
-
-  Started : Monday, July 29, 2024 3:36:07 AM
-   Source : e:\video\music\Tangerine Dream - Ricochet\
-     Dest : \\bombcyclone\AgnesNutter\Media\Music\Albums\t\Tangerine Dream - Ricochet\
-
-    Files : *.*
-	    
-  Options : *.* /S /E /DCOPY:DA /COPY:DAT /MOVE /XO /XN /XC /R:1000000 /W:30 
-
-------------------------------------------------------------------------------
-
-	  New Dir          3	e:\video\music\Tangerine Dream - Ricochet\
-	    New File  		  32.5 m	01 Ricochet Part One.mp3  3.0%  6.1%  9.2% 12.2% 15.3% 18.4% 21.5% 24.5% 27.6% 30.7% 33.8% 36.8% 39.9% 43.0% 46.1% 49.1% 52.2% 55.3% 58.4% 61.4% 64.5% 67.6% 70.7% 73.7% 76.8% 79.9% 83.0% 86.0% 89.1% 92.2% 95.3% 98.3%100%  
-	    New File  		  40.7 m	02 Ricochet Part Two.mp3  2.4%  4.9%  7.3%  9.8% 12.2% 14.7% 17.1% 19.6% 22.0% 24.5% 26.9% 29.4% 31.8% 34.3% 36.8% 39.2% 41.7% 44.1% 46.6% 49.0% 51.5% 53.9% 56.4% 58.8% 61.3% 63.7% 66.2% 68.7% 71.1% 73.6% 76.0% 78.5% 80.9% 83.4% 85.8% 88.3% 90.7% 93.2% 95.6% 98.1%100%  
-	    New File  		  152459	Folder.jpg 85%  100%  
-
-------------------------------------------------------------------------------
-
-               Total    Copied   Skipped  Mismatch    FAILED    Extras
-    Dirs :         1         1         0         0         0         0
-   Files :         3         3         0         0         0         0
-   Bytes :   73.42 m   73.42 m         0         0         0         0
-   Times :   0:00:08   0:00:08                       0:00:00   0:00:00
-
-
-   Speed :             8714203 Bytes/sec.
-   Speed :             498.630 MegaBytes/min.
-   Ended : Monday, July 29, 2024 3:36:16 AM
-
-
--------------------------------------------------------------------------------
-   ROBOCOPY     ::     Robust File Copy for Windows                              
--------------------------------------------------------------------------------
-
-  Started : Monday, July 29, 2024 3:36:16 AM
-   Source : e:\video\music\Willie Nelson - Greatest Hits (& Some That Will Be) [Bonus Tracks]\
-     Dest : \\bombcyclone\AgnesNutter\Media\Music\Albums\n\Willie Nelson - Greatest Hits (& Some That Will Be) [Bonus Tracks]\
-
-    Files : *.*
-	    
-  Options : *.* /S /E /DCOPY:DA /COPY:DAT /MOVE /XO /XN /XC /R:1000000 /W:30 
-
-------------------------------------------------------------------------------
-
-	  New Dir         24	e:\video\music\Willie Nelson - Greatest Hits (& Some That Will Be) [Bonus Tracks]\
-	    New File  		   5.0 m	01 Railroad Lady.mp3  9%   19%   29%   39%   49%   59%   68%   78%   88%   98%  100%  
-	    New File  		   4.3 m	02 Heartaches of a Fool.mp3 11%   22%   34%   45%   56%   68%   79%   90%  100%  
-	    New File  		   4.1 m	03 Blue Eyes Crying in the Rain.mp3 12%   24%   36%   48%   60%   72%   84%   96%  100%  
-	    New File  		   6.9 m	04 Whiskey River.mp3  7.1% 14.3% 21.4% 28.6% 35.7% 42.9% 50.1% 57.2% 64.4% 71.5% 78.7% 85.8% 93.0%100%  
-	    New File  		   6.2 m	05 Good Hearted Woman.mp3  8.0% 16.1% 24.1% 32.2% 40.3% 48.3% 56.4% 64.4% 72.5% 80.6% 88.6% 96.7%100%  
-	    New File  		   7.7 m	06 Georgia on My Mind.mp3  6.4% 12.8% 19.2% 25.6% 32.0% 38.5% 44.9% 51.3% 57.7% 64.1% 70.6% 77.0% 83.4% 89.8% 96.2%100%  
-	    New File  		   7.2 m	07 All of Me.mp3  6.9% 13.8% 20.7% 27.6% 34.6% 41.5% 48.4% 55.3% 62.3% 69.2% 76.1% 83.0% 90.0% 96.9%100%  
-	    New File  		   4.1 m	08 If You've Got the Money (I've Got the Time).mp3 12%   24%   36%   48%   60%   72%   84%   96%  100%  
-	    New File  		   5.0 m	09 Look What Thoughts Will Do.mp3  9%   19%   29%   39%   49%   59%   69%   79%   89%   99%  100%  
-	    New File  		   5.3 m	10 Remember Me.mp3  9%   18%   28%   37%   47%   56%   65%   75%   84%   94%  100%  
-	    New File  		   8.7 m	11 Uncloudy Day.mp3 11.4% 22.9% 34.4% 45.9% 57.3% 68.8% 80.3% 91.8%100%  
-	    New File  		   6.6 m	12 Mamas Don't Let Your Babies Grow Up to Be Cowboys.mp3  7.4% 14.9% 22.4% 29.8% 37.3% 44.8% 52.2% 59.7% 67.2% 74.6% 82.1% 89.6% 97.0%100%  
-	    New File  		   5.8 m	13 My Heroes Have Always Been Cowboys.mp3  8.6% 17.2% 25.8% 34.4% 43.0% 51.6% 60.2% 68.9% 77.5% 86.1% 94.7%100%  
-	    New File  		   7.4 m	14 Help Me Make It Through the Night.mp3  6.7% 13.4% 20.1% 26.8% 33.6% 40.3% 47.0% 53.7% 60.4% 67.2% 73.9% 80.6% 87.3% 94.1%100%  
-	    New File  		   9.1 m	15 Angel Flying Too Close to the Ground.mp3 10.9% 21.9% 32.9% 43.8% 54.8% 65.8% 76.7% 87.7% 98.7%100%  
-	    New File  		   6.6 m	16 I'd Have to Be Crazy.mp3  7.5% 15.1% 22.6% 30.2% 37.7% 45.3% 52.9% 60.4% 68.0% 75.5% 83.1% 90.7% 98.2%100%  
-	    New File  		   7.1 m	17 Faded Love.mp3  6.9% 13.9% 20.9% 27.9% 34.8% 41.8% 48.8% 55.8% 62.8% 69.7% 76.7% 83.7% 90.7% 97.7%100%  
-	    New File  		   4.9 m	18 On the Road Again.mp3 10%   20%   30%   40%   50%   60%   70%   81%   91%  100%  
-	    New File  		   5.3 m	19 Midnight Rider.mp3  9%   18%   27%   37%   46%   55%   64%   74%   83%   92%  100%  
-	    New File  		   5.8 m	20 Heartbreak Hotel.mp3  8.5% 17.0% 25.5% 34.0% 42.5% 51.0% 59.5% 68.0% 76.5% 85.0% 93.5%100%  
-	    New File  		   6.3 m	21 If You Could Touch Her at All.mp3  7.8% 15.6% 23.4% 31.2% 39.1% 46.9% 54.7% 62.5% 70.3% 78.2% 86.0% 93.8%100%  
-	    New File  		  10.5 m	22 Till I Gain Control Again.mp3  9.4% 18.9% 28.3% 37.8% 47.2% 56.7% 66.2% 75.6% 85.1% 94.5%100%  
-	    New File  		   6.9 m	23 Stay All Night (Stay a Little Longer).mp3  7.2% 14.4% 21.6% 28.9% 36.1% 43.3% 50.5% 57.8% 65.0% 72.2% 79.4% 86.7% 93.9%100%  
-	    New File  		  202527	Folder.jpg 64%  100%  
-
-------------------------------------------------------------------------------
-
-               Total    Copied   Skipped  Mismatch    FAILED    Extras
-    Dirs :         1         1         0         0         0         0
-   Files :        24        24         0         0         0         0
-   Bytes :  148.11 m  148.11 m         0         0         0         0
-   Times :   0:00:18   0:00:18                       0:00:00   0:00:00
-
-
-   Speed :             8611781 Bytes/sec.
-   Speed :             492.770 MegaBytes/min.
-   Ended : Monday, July 29, 2024 3:36:34 AM
-

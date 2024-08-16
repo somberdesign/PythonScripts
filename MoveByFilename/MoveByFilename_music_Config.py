@@ -42,6 +42,9 @@ destinationMap["z"] = "\\\\bombcyclone\\AgnesNutter\\Media\\Music\\Albums\\z"
 
 # exceptions to the rule
 ruleExceptions = {}
-ruleExceptions["reo speedwagon"] = destinationMap["r"]
 ruleExceptions["gene loves jezebel"] = destinationMap["g"]
+ruleExceptions["john cafferty and the beaver brown band"] = destinationMap["j"]
 ruleExceptions["monty python"] = destinationMap["m"]
+ruleExceptions["reo speedwagon"] = destinationMap["r"]
+ruleExceptions["steve miller band"] = destinationMap["s"]
+ruleExceptions["tina and the b-side movement"] = destinationMap["t"]

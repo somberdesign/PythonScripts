@@ -1,0 +1,277 @@
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : Thursday, August 15, 2024 3:34:38 AM
+   Source : e:\video\music\Blue Rodeo - Casino\
+     Dest : \\bombcyclone\AgnesNutter\Media\Music\Albums\b\Blue Rodeo - Casino\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /MOVE /XO /XN /XC /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	  New Dir         11	e:\video\music\Blue Rodeo - Casino\
+	    New File  		   8.3 m	01 Til I Am Myself Again.mp3 12.0% 24.0% 36.0% 48.0% 60.1% 72.1% 84.1% 96.1%100%  
+	    New File  		   6.6 m	02 What Am I Doing Here.mp3  7.5% 15.1% 22.7% 30.2% 37.8% 45.4% 53.0% 60.5% 68.1% 75.7% 83.3% 90.8% 98.4%100%  
+	    New File  		   8.4 m	03 5 A.M. (A Love Song).mp3 11.8% 23.6% 35.4% 47.3% 59.1% 70.9% 82.8% 94.6%100%  
+	    New File  		   6.5 m	04 Montreal.mp3  7.6% 15.3% 23.0% 30.6% 38.3% 46.0% 53.6% 61.3% 69.0% 76.6% 84.3% 92.0% 99.6%100%  
+	    New File  		   7.9 m	05 Last Laugh.mp3  6.3% 12.6% 18.9% 25.3% 31.6% 37.9% 44.3% 50.6% 56.9% 63.2% 69.6% 75.9% 82.2% 88.6% 94.9%100%  
+	    New File  		   7.2 m	06 Trust Yourself.mp3  6.8% 13.7% 20.6% 27.5% 34.4% 41.3% 48.1% 55.0% 61.9% 68.8% 75.7% 82.6% 89.5% 96.3%100%  
+	    New File  		   9.0 m	07 Two Tongues.mp3 11.0% 22.0% 33.0% 44.0% 55.1% 66.1% 77.1% 88.1% 99.1%100%  
+	    New File  		   7.4 m	08 Time.mp3  6.7% 13.4% 20.1% 26.8% 33.5% 40.2% 46.9% 53.7% 60.4% 67.1% 73.8% 80.5% 87.2% 93.9%100%  
+	    New File  		   8.5 m	09 After the Rain.mp3 11.7% 23.4% 35.1% 46.8% 58.5% 70.2% 81.9% 93.6%100%  
+	    New File  		   5.9 m	10 You're Everywhere.mp3  8.4% 16.9% 25.4% 33.8% 42.3% 50.8% 59.3% 67.7% 76.2% 84.7% 93.2%100%  
+	    New File  		  298094	Folder.jpg 43%   87%  100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         1         0         0         0         0
+   Files :        11        11         0         0         0         0
+   Bytes :   76.30 m   76.30 m         0         0         0         0
+   Times :   0:00:08   0:00:08                       0:00:00   0:00:00
+
+
+   Speed :             9074409 Bytes/sec.
+   Speed :             519.241 MegaBytes/min.
+   Ended : Thursday, August 15, 2024 3:34:47 AM
+
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : Thursday, August 15, 2024 3:34:47 AM
+   Source : e:\video\music\Bruce Springsteen - Born to Run\
+     Dest : \\bombcyclone\AgnesNutter\Media\Music\Albums\b\Bruce Springsteen - Born to Run\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /MOVE /XO /XN /XC /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	  New Dir          9	e:\video\music\Bruce Springsteen - Born to Run\
+	    New File  		   8.3 m	01 Thunder Road.mp3 11.9% 23.8% 35.8% 47.7% 59.6% 71.6% 83.5% 95.5%100%  
+	    New File  		   5.6 m	02 Tenth Avenue Freeze-Out.mp3  8%   17%   26%   35%   44%   52%   61%   70%   79%   88%   97%  100%  
+	    New File  		   5.1 m	03 Night.mp3  9%   19%   29%   39%   48%   58%   68%   78%   88%   97%  100%  
+	    New File  		  10.1 m	04 Backstreets.mp3  9.8% 19.7% 29.6% 39.4% 49.3% 59.2% 69.0% 78.9% 88.8% 98.6%100%  
+	    New File  		   9.0 m	05 Born to Run.mp3 11.0% 22.0% 33.1% 44.1% 55.2% 66.2% 77.3% 88.3% 99.4%100%  
+	    New File  		   6.7 m	06 She's the One.mp3  7.4% 14.9% 22.3% 29.8% 37.2% 44.7% 52.1% 59.6% 67.0% 74.5% 81.9% 89.4% 96.9%100%  
+	    New File  		   5.5 m	07 Meeting Across the River.mp3  9%   18%   27%   36%   45%   54%   63%   72%   81%   90%   99%  100%  
+	    New File  		  15.6 m	08 Jungleland.mp3  6.3% 12.7% 19.1% 25.5% 31.9% 38.3% 44.7% 51.1% 57.4% 63.8% 70.2% 76.6% 83.0% 89.4% 95.8%100%  
+	    New File  		  163700	Folder.jpg 80%  100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         1         0         0         0         0
+   Files :         9         9         0         0         0         0
+   Bytes :   66.39 m   66.39 m         0         0         0         0
+   Times :   0:00:07   0:00:07                       0:00:00   0:00:00
+
+
+   Speed :             9019203 Bytes/sec.
+   Speed :             516.082 MegaBytes/min.
+   Ended : Thursday, August 15, 2024 3:34:54 AM
+
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : Thursday, August 15, 2024 3:34:54 AM
+   Source : e:\video\music\David Sanborn - A Change of Heart\
+     Dest : \\bombcyclone\AgnesNutter\Media\Music\Albums\d\David Sanborn - A Change of Heart\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /MOVE /XO /XN /XC /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	  New Dir          9	e:\video\music\David Sanborn - A Change of Heart\
+	    New File  		  13.0 m	01 Chicago Song.mp3  7.6% 15.3% 22.9% 30.6% 38.2% 45.9% 53.5% 61.2% 68.8% 76.5% 84.2% 91.8% 99.5%100%  
+	    New File  		   9.4 m	02 Imogene.mp3 10.6% 21.2% 31.8% 42.5% 53.1% 63.7% 74.4% 85.0% 95.6%100%  
+	    New File  		   9.1 m	03 High Roller.mp3 10.8% 21.7% 32.6% 43.5% 54.4% 65.2% 76.1% 87.0% 97.9%100%  
+	    New File  		   8.3 m	04 Tintin.mp3 11.9% 23.8% 35.8% 47.7% 59.6% 71.6% 83.5% 95.4%100%  
+	    New File  		   9.1 m	05 Breaking Point.mp3 10.9% 21.9% 32.8% 43.8% 54.7% 65.7% 76.6% 87.6% 98.5%100%  
+	    New File  		   9.6 m	06 A Change of Heart.mp3 10.3% 20.6% 30.9% 41.3% 51.6% 61.9% 72.3% 82.6% 92.9%100%  
+	    New File  		  11.6 m	07 Summer.mp3  8.5% 17.1% 25.7% 34.3% 42.9% 51.5% 60.1% 68.6% 77.2% 85.8% 94.4%100%  
+	    New File  		   9.5 m	08 The Dream.mp3 10.5% 21.0% 31.5% 42.0% 52.5% 63.0% 73.5% 84.0% 94.5%100%  
+	    New File  		  173211	Folder.jpg 75%  100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         1         0         0         0         0
+   Files :         9         9         0         0         0         0
+   Bytes :   80.17 m   80.17 m         0         0         0         0
+   Times :   0:00:10   0:00:10                       0:00:00   0:00:00
+
+
+   Speed :             8111971 Bytes/sec.
+   Speed :             464.170 MegaBytes/min.
+   Ended : Thursday, August 15, 2024 3:35:05 AM
+
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : Thursday, August 15, 2024 3:35:05 AM
+   Source : e:\video\music\David Sanborn - Upfront\
+     Dest : \\bombcyclone\AgnesNutter\Media\Music\Albums\d\David Sanborn - Upfront\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /MOVE /XO /XN /XC /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	  New Dir         10	e:\video\music\David Sanborn - Upfront\
+	    New File  		  13.5 m	01 Snakes.mp3  7.3% 14.7% 22.1% 29.5% 36.8% 44.2% 51.6% 59.0% 66.4% 73.7% 81.1% 88.5% 95.9%100%  
+	    New File  		  10.4 m	02 Benny.mp3  9.5% 19.0% 28.5% 38.1% 47.6% 57.1% 66.6% 76.2% 85.7% 95.2%100%  
+	    New File  		  11.2 m	03 Crossfire.mp3  8.8% 17.7% 26.6% 35.4% 44.3% 53.2% 62.0% 70.9% 79.8% 88.6% 97.5%100%  
+	    New File  		  13.7 m	04 Full House.mp3  7.2% 14.5% 21.8% 29.0% 36.3% 43.6% 50.8% 58.1% 65.4% 72.6% 79.9% 87.2% 94.4%100%  
+	    New File  		   7.8 m	05 Soul Serenade.mp3  6.3% 12.6% 19.0% 25.3% 31.7% 38.0% 44.4% 50.7% 57.1% 63.4% 69.8% 76.1% 82.5% 88.8% 95.2%100%  
+	    New File  		  14.7 m	06 Hey.mp3  6.7% 13.5% 20.3% 27.1% 33.9% 40.7% 47.5% 54.2% 61.0% 67.8% 74.6% 81.4% 88.2% 95.0%100%  
+	    New File  		   9.2 m	07 Bang Bang.mp3 10.8% 21.6% 32.4% 43.2% 54.1% 64.9% 75.7% 86.5% 97.3%100%  
+	    New File  		  14.5 m	08 Alcazar.mp3  6.8% 13.7% 20.5% 27.4% 34.2% 41.1% 47.9% 54.8% 61.6% 68.5% 75.3% 82.2% 89.0% 95.9%100%  
+	    New File  		  15.4 m	09 Ramblin'.mp3  6.4% 12.9% 19.3% 25.8% 32.3% 38.7% 45.2% 51.7% 58.1% 64.6% 71.1% 77.5% 84.0% 90.5% 96.9%100%  
+	    New File  		  166624	Folder.jpg 78%  100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         1         0         0         0         0
+   Files :        10        10         0         0         0         0
+   Bytes :  111.15 m  111.15 m         0         0         0         0
+   Times :   0:00:14   0:00:14                       0:00:00   0:00:00
+
+
+   Speed :             8041033 Bytes/sec.
+   Speed :             460.111 MegaBytes/min.
+   Ended : Thursday, August 15, 2024 3:35:19 AM
+
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : Thursday, August 15, 2024 3:35:19 AM
+   Source : e:\video\music\Edward Downes - Rachmaninov; Symphony No. 2\
+     Dest : \\bombcyclone\AgnesNutter\Media\Music\Albums\e\Edward Downes - Rachmaninov; Symphony No. 2\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /MOVE /XO /XN /XC /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	  New Dir          5	e:\video\music\Edward Downes - Rachmaninov; Symphony No. 2\
+	    New File  		  37.4 m	01 Symphony No. 2 in E minor, Op. 27; Largo - Allegro moderato.mp3  2.6%  5.3%  8.0% 10.6% 13.3% 16.0% 18.7% 21.3% 24.0% 26.7% 29.4% 32.0% 34.7% 37.4% 40.1% 42.7% 45.4% 48.1% 50.7% 53.4% 56.1% 58.8% 61.4% 64.1% 66.8% 69.5% 72.1% 74.8% 77.5% 80.2% 82.8% 85.5% 88.2% 90.8% 93.5% 96.2% 98.9%100%  
+	    New File  		  16.1 m	02 Symphony No. 2 in E minor, Op. 27; Allegro molto.mp3  6.2% 12.4% 18.6% 24.8% 31.0% 37.2% 43.4% 49.6% 55.8% 62.0% 68.2% 74.4% 80.6% 86.8% 93.1% 99.3%100%  
+	    New File  		  24.0 m	03 Symphony No. 2 in E minor, Op. 27; Adagio.mp3  4.1%  8.3% 12.4% 16.6% 20.7% 24.9% 29.1% 33.2% 37.4% 41.5% 45.7% 49.8% 54.0% 58.2% 62.3% 66.5% 70.6% 74.8% 78.9% 83.1% 87.3% 91.4% 95.6% 99.7%100%  
+	    New File  		  23.8 m	04 Symphony No. 2 in E minor, Op. 27; Allegro vivace.mp3  4.1%  8.3% 12.5% 16.7% 20.9% 25.1% 29.3% 33.5% 37.7% 41.9% 46.1% 50.3% 54.5% 58.7% 62.9% 67.1% 71.3% 75.4% 79.6% 83.8% 88.0% 92.2% 96.4%100%  
+	    New File  		   18370	Folder.jpg100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         1         0         0         0         0
+   Files :         5         5         0         0         0         0
+   Bytes :  101.43 m  101.43 m         0         0         0         0
+   Times :   0:00:11   0:00:11                       0:00:00   0:00:00
+
+
+   Speed :             9003433 Bytes/sec.
+   Speed :             515.180 MegaBytes/min.
+   Ended : Thursday, August 15, 2024 3:35:31 AM
+
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : Thursday, August 15, 2024 3:35:31 AM
+   Source : e:\video\music\Eric Clapton - 461 Ocean Boulevard\
+     Dest : \\bombcyclone\AgnesNutter\Media\Music\Albums\e\Eric Clapton - 461 Ocean Boulevard\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /MOVE /XO /XN /XC /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	  New Dir         12	e:\video\music\Eric Clapton - 461 Ocean Boulevard\
+	    New File  		   9.1 m	01 Motherless Children.mp3 10.8% 21.7% 32.6% 43.5% 54.4% 65.3% 76.2% 87.1% 98.0%100%  
+	    New File  		   7.2 m	02 Better Make It Through Today.mp3  6.8% 13.7% 20.6% 27.5% 34.3% 41.2% 48.1% 55.0% 61.8% 68.7% 75.6% 82.5% 89.4% 96.2%100%  
+	    New File  		   6.5 m	03 Willie and the Hand Jive.mp3  7.6% 15.3% 23.0% 30.7% 38.4% 46.0% 53.7% 61.4% 69.1% 76.8% 84.4% 92.1% 99.8%100%  
+	    New File  		   6.8 m	04 Get Ready.mp3  7.3% 14.7% 22.0% 29.4% 36.7% 44.1% 51.4% 58.8% 66.1% 73.5% 80.8% 88.2% 95.5%100%  
+	    New File  		   8.3 m	05 I Shot the Sheriff.mp3 12.0% 24.0% 36.1% 48.1% 60.2% 72.2% 84.3% 96.3%100%  
+	    New File  		   7.4 m	06 I Can't Hold Out.mp3  6.6% 13.3% 20.0% 26.7% 33.4% 40.0% 46.7% 53.4% 60.1% 66.8% 73.5% 80.1% 86.8% 93.5%100%  
+	    New File  		   6.2 m	07 Please Be with Me.mp3  7.9% 15.8% 23.8% 31.7% 39.6% 47.6% 55.5% 63.5% 71.4% 79.3% 87.3% 95.2%100%  
+	    New File  		   9.2 m	08 Let It Grow.mp3 10.8% 21.6% 32.4% 43.2% 54.0% 64.9% 75.7% 86.5% 97.3%100%  
+	    New File  		   6.1 m	09 Steady Rollin' Man.mp3  8.1% 16.3% 24.5% 32.7% 40.9% 49.1% 57.3% 65.5% 73.7% 81.9% 90.0% 98.2%100%  
+	    New File  		   7.9 m	10 Mainline Florida.mp3  6.3% 12.6% 18.9% 25.2% 31.5% 37.8% 44.1% 50.4% 56.7% 63.1% 69.4% 75.7% 82.0% 88.3% 94.6%100%  
+	    New File  		   5.2 m	11 Give Me Strength.mp3  9%   19%   28%   38%   47%   57%   66%   76%   85%   95%  100%  
+	    New File  		  306009	Folder.jpg 42%   85%  100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         1         0         0         0         0
+   Files :        12        12         0         0         0         0
+   Bytes :   80.64 m   80.64 m         0         0         0         0
+   Times :   0:00:10   0:00:10                       0:00:00   0:00:00
+
+
+   Speed :             8325352 Bytes/sec.
+   Speed :             476.380 MegaBytes/min.
+   Ended : Thursday, August 15, 2024 3:35:42 AM
+
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : Thursday, August 15, 2024 3:35:42 AM
+   Source : e:\video\music\UB40 - Labour of Love II\
+     Dest : \\bombcyclone\AgnesNutter\Media\Music\Albums\u\UB40 - Labour of Love II\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /MOVE /XO /XN /XC /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	  New Dir         11	e:\video\music\UB40 - Labour of Love II\
+	    New File  		   7.3 m	01 Here I Am (Come and Take Me).mp3  6.8% 13.6% 20.4% 27.2% 34.0% 40.9% 47.7% 54.5% 61.3% 68.1% 74.9% 81.8% 88.6% 95.4%100%  
+	    New File  		   7.2 m	02 Tears from My Eyes.mp3  6.9% 13.8% 20.7% 27.6% 34.5% 41.4% 48.3% 55.2% 62.1% 69.0% 75.9% 82.8% 89.7% 96.6%100%  
+	    New File  		   7.1 m	03 Groovin'.mp3  7.0% 14.0% 21.1% 28.1% 35.1% 42.2% 49.2% 56.2% 63.3% 70.3% 77.4% 84.4% 91.4% 98.5%100%  
+	    New File  		   5.7 m	04 The Way You Do the Things You Do.mp3  8.7% 17.4% 26.2% 34.9% 43.6% 52.4% 61.1% 69.8% 78.6% 87.3% 96.0%100%  
+	    New File  		   7.2 m	05 Kingston Town.mp3  6.9% 13.8% 20.8% 27.7% 34.6% 41.6% 48.5% 55.4% 62.4% 69.3% 76.2% 83.2% 90.1% 97.0%100%  
+	    New File  		   5.8 m	06 Baby.mp3  8.5% 17.1% 25.7% 34.3% 42.9% 51.5% 60.1% 68.7% 77.3% 85.9% 94.5%100%  
+	    New File  		   5.7 m	07 Wedding Day.mp3  8.7% 17.4% 26.1% 34.8% 43.5% 52.2% 60.9% 69.6% 78.3% 87.0% 95.7%100%  
+	    New File  		   6.7 m	08 Wear You to the Ball.mp3  7.4% 14.8% 22.2% 29.6% 37.0% 44.4% 51.9% 59.3% 66.7% 74.1% 81.5% 88.9% 96.4%100%  
+	    New File  		   6.5 m	09 Homely Girl.mp3  7.6% 15.2% 22.9% 30.5% 38.2% 45.8% 53.5% 61.1% 68.8% 76.4% 84.1% 91.7% 99.4%100%  
+	    New File  		   9.6 m	10 Impossible Love.mp3 10.3% 20.6% 30.9% 41.2% 51.5% 61.8% 72.1% 82.4% 92.8%100%  
+	    New File  		  144327	Folder.jpg 90%  100%  
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         1         0         0         0         0
+   Files :        11        11         0         0         0         0
+   Bytes :   69.29 m   69.29 m         0         0         0         0
+   Times :   0:00:08   0:00:08                       0:00:00   0:00:00
+
+
+   Speed :             8242717 Bytes/sec.
+   Speed :             471.652 MegaBytes/min.
+   Ended : Thursday, August 15, 2024 3:35:51 AM
+

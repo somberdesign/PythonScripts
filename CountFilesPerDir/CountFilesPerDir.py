@@ -9,6 +9,8 @@ import sys
 TARGET_FILETYPE = 'url'
 SPACES = ' ' * 15
 DAYLIMIT = 45
+BLOCKDAYS = [2] # list of days-of-the-week (to place a fixed char instead of the file count. 0=Mon, 1=Tue...
+BLOCKCHAR = '-'
 
 # 2023-12-29 - just had the cataract in my right eye removed
 # expected dir structure is as follows:
@@ -155,10 +157,14 @@ if __name__ == '__main__':
 		directoryData = CountDirectories(targetDir)
 		if len(directoryData) > 0:
 			dateSpaces = ' ' * (floor(len(list(directoryData.items())[0][0]) / 2) - 2)
-			print(f'{dateSpaces}DATE             SINGLES  SERIES  ')
-			# for item in [v[0] for v in sorted(results.items(), key=lambda kv: (-kv[1][0], kv[0]))]:
+			print(f'{dateSpaces}DATE               SINGLES  SERIES  ')
 			for item in directoryData.items():
-				print(f'{item[0]}    {item[1][0] if item[1][0] > 0 else " "}       {item[1][1] if item[1][1] > 0 else " "} ')
+				dayOfWeek = dt.strptime(item[0][-14:-4], '%Y-%m-%d').weekday()
+				singleValue = BLOCKCHAR if dayOfWeek in BLOCKDAYS else item[1][0] if item[1][0] > 0 else " "
+				seriesValue = BLOCKCHAR if dayOfWeek in BLOCKDAYS else item[1][1] if item[1][1] > 0 else " "
+				
+				# print(f'{item[0]}    {item[1][0] if item[1][0] > 0 else " "}       {item[1][1] if item[1][1] > 0 else " "} ')
+				print(f'{item[0]}    {singleValue}       {seriesValue}')
 
 		
 	input()

@@ -1,7 +1,6 @@
 from sys import path
 path.insert(1, r'../Logger')
 
-from datetime import datetime
 from importlib import import_module
 import Logger2 as Logger
 from os import listdir, remove
@@ -122,7 +121,7 @@ if __name__ == '__main__':
 			if DEBUG: print(f"moveDirectoryName={moveDirectoryName}, fullTargetPath={fullTargetPath}")
 			Logger.AddInfo(f"Target directory exists: didn't move source directory ({fullTargetPath})")
 		else:
-			Logger.AddInfo(f"Added to move list: {moveDirectoryName} --> {targetDirectory}") # easier to see where dir was moved with targetDirectory instead of fullTargetPath
+			Logger.AddInfo(f"Added to move list: {moveDirectoryName} --> {fullTargetPath}")
 			moveList.append([join(configFile.sourceDirectory, moveDirectoryName), fullTargetPath])
 
 
@@ -133,17 +132,14 @@ if __name__ == '__main__':
 	# /XN excludes existing files newer than the copy in the destination directory. Robocopy normally overwrites those.
 	# /XO excludes existing files older than the copy in the destination directory. Robocopy normally overwrites those.	
 	try:
-		batFileOutputFilename = f"{configFile.batFilename}_output.txt"
 		with open(configFile.batFilename, 'w') as file:
-			file.write(f"rem {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\nrem file created by {__file__}\nrem Config file={configFilename}.py.\n")
-			file.write(f"if exist {batFileOutputFilename} (del {batFileOutputFilename})\n")
 			for line in moveList:
-				file.write(f'robocopy /MOVE /E /XC /XN /XO "{line[0]}" "{line[1]}" >> {batFileOutputFilename}\n')
+				file.write(f'robocopy /MOVE /E /XC /XN /XO "{line[0]}" "{line[1]}"\n')
 
 	except Exception as ex:
 		Logger.AddError(f'Unable to write bat file: {ex}. ({configFile.batFilename})')
 
-	# execute bat
+	# execute bat and delete
 	
 	if not DEBUG:
 		p = Popen(configFile.batFilename, shell=True, stdout=PIPE, stderr=PIPE)
@@ -160,6 +156,7 @@ if __name__ == '__main__':
 		for line in fileContents:
 			print(f"{line}")
 
+	remove(configFile.batFilename)
 
 
 

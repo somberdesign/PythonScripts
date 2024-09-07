@@ -3,6 +3,7 @@ from FileListConfig import *
 import datetime
 import json
 from math import floor
+from re import sub
 
 # leave disabled - changes file that is an input to ReadSalesCsv\ModifyMovieList.py
 ENABLE_FILENAME_LIMIT = False
@@ -200,7 +201,8 @@ def main():
 	
 	filePath = os.path.join(OutputDir, FindValidFilename(SmartListFilenameStem))
 
-	smartFiles = sorted(smartFiles, key=lambda s: s.lower())
+	rePattern=r'[^A-Za-z0-9 ]+' # sort on alphanumeric and spaces only
+	smartFiles = sorted(smartFiles, key=lambda s: sub(rePattern, '', s).lower())
 	
 	with open(filePath, 'w') as f:
 		f.write(datetime.datetime.now().strftime('%Y-%m-%d') + '\n')

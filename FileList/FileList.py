@@ -50,19 +50,36 @@ def GetListOfFiles(dirName):
 
 def GetSmartFiles(dirName):
 
-	# 2023-06-08 - this works but will interfere with ReadSalesCsv\ModifyMovieList.py
-	# because it uses SmartList as an input
-	def GetElipsizedString(inString):
-		BASE_STRING_LEN = 25
+	ENTRY_LENGTH = 25
+
+	# # 2023-06-08 - this works but will interfere with ReadSalesCsv\ModifyMovieList.py
+	# # because it uses SmartList as an input
+	# def reduceToFixedLength(inString):
+	# 	BASE_STRING_LEN = 25
 
 
-		returnVal = inString
-		if ENABLE_FILENAME_LIMIT and len(inString) > BASE_STRING_LEN:
-			backPad = BASE_STRING_LEN - floor(BASE_STRING_LEN * 0.2)
-			frontPad = BASE_STRING_LEN - floor((BASE_STRING_LEN + 6) * 0.3)
-			returnVal = f'{inString[0:frontPad]}...{inString[-1 * backPad:]}'
+	# 	returnVal = inString
+	# 	if ENABLE_FILENAME_LIMIT and len(inString) > BASE_STRING_LEN:
+	# 		backPad = BASE_STRING_LEN - floor(BASE_STRING_LEN * 0.2)
+	# 		frontPad = BASE_STRING_LEN - floor((BASE_STRING_LEN + 6) * 0.3)
+	# 		returnVal = f'{inString[0:frontPad]}...{inString[-1 * backPad:]}'
 
-		return returnVal
+	# 	return returnVal
+
+	def reduceToFixedLength(input_string, fixed_length):
+		# Check if input_string is already shorter than fixed_length
+		if len(input_string) <= fixed_length:
+			return input_string
+		
+		# Calculate number of characters to remove from the middle
+		chars_to_remove = len(input_string) - fixed_length
+		chars_to_remove_left = chars_to_remove // 2
+		chars_to_remove_right = chars_to_remove - chars_to_remove_left
+		
+		# Remove characters from the middle
+		new_string = input_string[:len(input_string)//2 - chars_to_remove_left] + "~" + input_string[len(input_string)//2 + chars_to_remove_right:]
+		
+		return new_string
 
 	smartFiles = list()
 	jsonInfo = ''
@@ -94,7 +111,7 @@ def GetSmartFiles(dirName):
 			# add items to list
 			if 'items' in jsonInfo.keys():
 				for item in jsonInfo['items']:
-					smartFiles.append(GetElipsizedString(item))
+					smartFiles.append(reduceToFixedLength(item, ENTRY_LENGTH))
 
 
 	for item in os.listdir(dirName):
@@ -109,9 +126,9 @@ def GetSmartFiles(dirName):
 		# see if there's a description the json file
 		if item in jsonDescriptions:
 			if ADD_MARKER_TO_ALIASES:
-				smartFiles.append(GetElipsizedString(jsonDescriptions[item] + ALIAS_MARKER))
+				smartFiles.append(reduceToFixedLength(jsonDescriptions[item] + ALIAS_MARKER, ENTRY_LENGTH))
 			else:
-				smartFiles.append(GetElipsizedString(jsonDescriptions[item]))
+				smartFiles.append(reduceToFixedLength(jsonDescriptions[item], ENTRY_LENGTH))
 
 		else:
 			# directory or file name
@@ -128,7 +145,7 @@ def GetSmartFiles(dirName):
 			else:
 				smartFileItemName = os.path.splitext(smartFileItemName)[0]
 
-			smartFiles.append(GetElipsizedString(smartFileItemName.replace('_', ' ')))
+			smartFiles.append(reduceToFixedLength(smartFileItemName.replace('_', ' '), ENTRY_LENGTH))
 
 
 	return smartFiles
@@ -182,7 +199,9 @@ def main():
 
 	
 	filePath = os.path.join(OutputDir, FindValidFilename(SmartListFilenameStem))
+
 	smartFiles = sorted(smartFiles, key=lambda s: s.lower())
+	
 	with open(filePath, 'w') as f:
 		f.write(datetime.datetime.now().strftime('%Y-%m-%d') + '\n')
 		f.write(str(len(smartFiles)) + ' items\n\n')

@@ -1,7 +1,7 @@
 import os
 from FileListConfig import *
-import datetime
-import json
+from datetime import datetime
+from json import load
 from math import floor
 from re import sub
 
@@ -14,9 +14,9 @@ ALIAS_MARKER = '#'
 def FindValidFilename(stem):
 	def GetFilename(stem, suffix = ''):
 		if suffix == '':
-			return datetime.datetime.now().strftime('%Y%m%d_') + stem + '.txt'
+			return datetime.now().strftime('%Y%m%d_') + stem + '.txt'
 		else:
-			return datetime.datetime.now().strftime('%Y%m%d_') + stem + '_' + '{0:0=2d}'.format(suffix) + '.txt'
+			return datetime.now().strftime('%Y%m%d_') + stem + '_' + '{0:0=2d}'.format(suffix) + '.txt'
 
 	if not os.path.isfile(os.path.join(OutputDir, GetFilename(stem))):
 		a = 1
@@ -93,7 +93,7 @@ def GetSmartFiles(dirName):
 		jsonInfo = None
 		try:
 			with open(fullJsonFilename) as f:
-				jsonInfo = json.load(f)
+				jsonInfo = load(f)
 		except ValueError as ex:
 			print('Invalid JSON (' + fullJsonFilename + ')')
 			return False
@@ -205,7 +205,7 @@ def main():
 	smartFiles = sorted(smartFiles, key=lambda s: sub(rePattern, '', s).lower())
 	
 	with open(filePath, 'w') as f:
-		f.write(datetime.datetime.now().strftime('%Y-%m-%d') + '\n')
+		f.write(datetime.now().strftime('%Y-%m-%d') + '\n')
 		f.write(str(len(smartFiles)) + ' items\n\n')
 		for item in smartFiles:
 			f.write('%s\n' % item)

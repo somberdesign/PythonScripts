@@ -12,6 +12,7 @@ from typing import Tuple
 
 DIR_TO_SEARCH = r'E:\Users\Bob\PythonScripts\SearchToBrowser'
 OUTPUT_DIRECTORY = r'E:\temp\searchToBrowser'
+EVERYTHING_COMMAND_LINE_PATH = r'"C:\Program Files\Everything\es.exe"' # leave empty to disable
 
 def CleanText(line:str) -> str:
 	returnVal = re.sub('[^A-Za-z0-9 \n\-]', str(), line)
@@ -71,7 +72,9 @@ if __name__ == '__main__':
 
 	# set output directory and filename
 	outputFilename = f'searchToBrowser_{filenameSearchTerms}.html'
+	everythingOutputFilename = f'everything_{filenameSearchTerms}.txt'
 	outputPath = os.path.join(OUTPUT_DIRECTORY, outputFilename)
+	everythingOutputPath = os.path.join(OUTPUT_DIRECTORY, everythingOutputFilename)
 	if not os.path.isdir(OUTPUT_DIRECTORY):
 		os.mkdir(OUTPUT_DIRECTORY)
 
@@ -117,6 +120,10 @@ if __name__ == '__main__':
 			for l in foundLines:
 				outfile.write(f'{l}<br />')
 	
-	
+	# everything output file
+	if (len(EVERYTHING_COMMAND_LINE_PATH) > 0):
+		command = f'{EVERYTHING_COMMAND_LINE_PATH} -r {searchTerms} > {everythingOutputPath}'
+		print(f'everything command: {command}')
+		os.system(command)
 
 

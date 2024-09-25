@@ -9,6 +9,9 @@ logfilePath = "e:\\video\\Music\\MoveByFilename_Albums.log"
 # directory with albums in it
 sourceDirectory = "e:\\video\\music"
 
+# words that indicate the artist is a group, not an individual
+artistGroupWords = ["trio"]
+
 # destination directories
 destinationMap = {}
 destinationMap["the"] = "\\\\bombcyclone\\AgnesNutter\\Media\\Music\\Albums\\the"

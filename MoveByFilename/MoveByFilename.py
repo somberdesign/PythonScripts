@@ -8,6 +8,7 @@ from os.path import isdir, isfile, join
 from subprocess import PIPE, Popen
 from sys import argv
 
+# when True, prints move commands but does not execute them
 DEBUG = False
 
 def getTargetDirectory(destinationMap, moveDirectoryName:str) -> str:
@@ -21,7 +22,7 @@ def getTargetDirectory(destinationMap, moveDirectoryName:str) -> str:
 	elif moveDirectoryName.lower() in ruleExceptions:
 		return ruleExceptions[moveDirectoryName.lower()]
 
-	# title starts with the
+	# title or artist starts with the
 	if focusDir[0].lower() == "the":
 		return destinationMap["the"]
 
@@ -32,6 +33,11 @@ def getTargetDirectory(destinationMap, moveDirectoryName:str) -> str:
 		else:
 			return destinationMap[moveDirectoryName.lower()[0]]
 
+	# check to see if artist is a group of people (like "Oscar Peterson Trio")
+	for i in range(0, focusDir.index("-")):
+		if focusDir[i].lower() in configFile.artistGroupWords:
+			return destinationMap[focusDir[0][0].lower()]
+	
 	# first word of dir is a first name, move file based on last name
 	if focusDir[0].lower() in firstNames:
 

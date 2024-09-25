@@ -9,6 +9,7 @@ import string
 import sys
 from time import time
 from typing import Tuple
+from subprocess import call
 
 DIR_TO_SEARCH = r'E:\Users\Bob\PythonScripts\SearchToBrowser'
 OUTPUT_DIRECTORY = r'E:\temp\searchToBrowser'
@@ -124,6 +125,8 @@ if __name__ == '__main__':
 	if (len(EVERYTHING_COMMAND_LINE_PATH) > 0):
 		command = f'{EVERYTHING_COMMAND_LINE_PATH} -r {searchTerms} > {everythingOutputPath}'
 		print(f'everything command: {command}')
-		os.system(command)
+		# os.system(command)
+		call(command, shell=True) # subprocess.call doesn't open a popup window
+		
 
 

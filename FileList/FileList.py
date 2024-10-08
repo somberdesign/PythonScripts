@@ -206,7 +206,9 @@ def main():
 	
 	with open(filePath, 'w') as f:
 		f.write(datetime.now().strftime('%Y-%m-%d') + '\n')
-		f.write(str(len(smartFiles)) + ' items\n\n')
+		f.write(str(len(smartFiles)) + ' items\n')
+		f.write('Missing items are (in parentheses)\n')
+		f.write('\n')
 		for item in smartFiles:
 			f.write('%s\n' % item)
 		f.close()

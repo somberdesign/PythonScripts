@@ -10,7 +10,7 @@ logfilePath = "e:\\video\\Music\\MoveByFilename_Albums.log"
 sourceDirectory = "e:\\video\\music"
 
 # words that indicate the artist is a group, not an individual
-artistGroupWords = ["trio"]
+artistGroupWords = ["trio", "orchestra"]
 
 # destination directories
 destinationMap = {}

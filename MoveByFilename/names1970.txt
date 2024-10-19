@@ -1002,7 +1002,6 @@ Leilani,F,125
 Lily,F,125
 Luisa,F,125
 Maryjo,F,125
-Merry,F,125
 Nicol,F,125
 Towanda,F,125
 Brandie,F,124

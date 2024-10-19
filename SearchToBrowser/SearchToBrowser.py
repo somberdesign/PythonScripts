@@ -16,7 +16,7 @@ OUTPUT_DIRECTORY = r'E:\temp\searchToBrowser'
 EVERYTHING_COMMAND_LINE_PATH = r'"C:\Program Files\Everything\es.exe"' # leave empty to disable
 
 def CleanText(line:str) -> str:
-	returnVal = re.sub('[^A-Za-z0-9 \n\-]', str(), line)
+	returnVal = re.sub('[^A-Za-z0-9 \n\-\~]', str(), line)
 	return returnVal
 	
 def GetArguments(configValues:dict) -> Tuple:

@@ -82,7 +82,8 @@ def GetSmartFiles(dirName):
 		
 		return new_string
 
-	smartFiles = list()
+	smartFiles = list() # titles reduced to fixed length
+	smartFilesFull = list() # complete titles
 	jsonInfo = ''
 	jsonDescriptions = {}
 	smartFileItemName = ''
@@ -113,6 +114,7 @@ def GetSmartFiles(dirName):
 			if 'items' in jsonInfo.keys():
 				for item in jsonInfo['items']:
 					smartFiles.append(reduceToFixedLength(item, ENTRY_LENGTH))
+					smartFilesFull.append(item)
 
 
 	for item in os.listdir(dirName):
@@ -128,8 +130,10 @@ def GetSmartFiles(dirName):
 		if item in jsonDescriptions:
 			if ADD_MARKER_TO_ALIASES:
 				smartFiles.append(reduceToFixedLength(jsonDescriptions[item] + ALIAS_MARKER, ENTRY_LENGTH))
+				smartFilesFull.append(jsonDescriptions[item] + ALIAS_MARKER)
 			else:
 				smartFiles.append(reduceToFixedLength(jsonDescriptions[item], ENTRY_LENGTH))
+				smartFilesFull.append(jsonDescriptions[item])
 
 		else:
 			# directory or file name
@@ -147,9 +151,10 @@ def GetSmartFiles(dirName):
 				smartFileItemName = os.path.splitext(smartFileItemName)[0]
 
 			smartFiles.append(reduceToFixedLength(smartFileItemName.replace('_', ' '), ENTRY_LENGTH))
+			smartFilesFull.append(smartFileItemName.replace('_', ' '))
 
 
-	return smartFiles
+	return smartFiles, smartFilesFull
 
 def MoveOldFiles():
 	for file in os.listdir(OutputDir):
@@ -173,21 +178,24 @@ def MoveOldFiles():
 def main():
 	
 	allFiles = list()
-	smartFiles = list()
+	smartFiles = list() # titles reduced to fixed length
+	smartFilesFull = list() # complete titles
 	
 	sortedDirectoryNames = sorted(DirNames, key=lambda set: set.lower())
 	print(sortedDirectoryNames)
 	
-	# put the files from each configured dir into two files:
-	# one for all files and one using .directory title name a skipping select files
+	# put the files from each configured dir into three files:
+	# one for all files 
+	# two using .directory title name a skipping select files (one has full file names, the other truncated filenames for printing)
 	for dirName in sortedDirectoryNames:
 		allFiles = allFiles + GetListOfFiles(dirName)
-		newSmartFiles = GetSmartFiles(dirName)
+		newSmartFiles, newSmartFilesFull = GetSmartFiles(dirName)
 		if newSmartFiles == False:
 			print(f'WARNING: Error reading directory {dirName}')
 			continue
 
 		smartFiles = smartFiles + newSmartFiles
+		smartFilesFull = smartFilesFull + newSmartFilesFull
 
 	MoveOldFiles()
 
@@ -198,11 +206,14 @@ def main():
 		f.close()
 	print('Wrote output file ' + filePath)
 
+	validSmartListFilename = FindValidFilename(SmartListFilenameStem)
+	filePath = os.path.join(OutputDir, validSmartListFilename)
+	filePathFull = os.path.join(OutputDir, os.path.splitext(validSmartListFilename)[0] + '_full' + os.path.splitext(validSmartListFilename)[1])
 	
-	filePath = os.path.join(OutputDir, FindValidFilename(SmartListFilenameStem))
 
 	rePattern=r'[^A-Za-z0-9 ]+' # sort on alphanumeric and spaces only
 	smartFiles = sorted(smartFiles, key=lambda s: sub(rePattern, '', s).lower())
+	smartFilesFull = sorted(smartFilesFull, key=lambda s: sub(rePattern, '', s).lower())
 	
 	with open(filePath, 'w') as f:
 		f.write(datetime.now().strftime('%Y-%m-%d') + '\n')
@@ -214,6 +225,15 @@ def main():
 		f.close()
 	print('Wrote output file ' + filePath)
 
+	with open(filePathFull, 'w') as f:
+		f.write(datetime.now().strftime('%Y-%m-%d') + '\n')
+		f.write(str(len(smartFilesFull)) + ' items\n')
+		f.write('Missing items are (in parentheses)\n')
+		f.write('\n')
+		for item in smartFilesFull:
+			f.write('%s\n' % item)
+		f.close()
+	print('Wrote output file ' + filePathFull)
 
 if __name__ == '__main__':
     main()

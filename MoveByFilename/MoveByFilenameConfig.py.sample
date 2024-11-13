@@ -11,3 +11,9 @@ logfilePath = "e:\\video\\Logs\\MoveByFilename_Albums.log"
 
 # directory with albums in it
 sourceDirectory = "e:\\video\\music"
+
+# words that indicate the artist is a group, not an individual
+artistGroupWords = ["trio", "orchestra"]
+
+# strings that indicate an album is a movie soundtrack
+soundtrackWords = ["soundtrack", "[ost]"]

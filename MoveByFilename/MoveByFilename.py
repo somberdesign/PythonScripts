@@ -16,7 +16,7 @@ def getTargetDirectory(destinationMap, moveDirectoryName:str) -> str:
 	ruleExceptions = configFile.ruleExceptions
 	focusDir = moveDirectoryName.split(" ")
 
-	# check for exception to rule
+	# check for exception to rules
 	if "-" in focusDir and " ".join(map(str, focusDir[0:focusDir.index("-")])).lower() in ruleExceptions:
 		return ruleExceptions[" ".join(map(str, focusDir[0:focusDir.index("-")])).lower()]
 	elif moveDirectoryName.lower() in ruleExceptions:
@@ -25,6 +25,10 @@ def getTargetDirectory(destinationMap, moveDirectoryName:str) -> str:
 	# title or artist starts with the
 	if focusDir[0].lower() == "the":
 		return destinationMap["the"]
+
+	# movie soundtrack
+	if any(w.lower() in moveDirectoryName.lower() for w in configFile.soundtrackWords):
+		return destinationMap[focusDir[0][0].lower()]
 
 	# title only: "A Country Christmas"
 	if "-" not in focusDir:

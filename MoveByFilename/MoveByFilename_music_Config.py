@@ -12,6 +12,9 @@ sourceDirectory = "e:\\video\\music"
 # words that indicate the artist is a group, not an individual
 artistGroupWords = ["trio", "orchestra"]
 
+# strings that indicate an album is a movie soundtrack
+soundtrackWords = ["soundtrack", "[ost]"]
+
 # destination directories
 destinationMap = {}
 destinationMap["the"] = "\\\\bombcyclone\\AgnesNutter\\Media\\Music\\Albums\\the"
@@ -48,8 +51,10 @@ ruleExceptions = {}
 ruleExceptions["bernie and red"] = destinationMap["b"]
 ruleExceptions["gato barbieri"] = destinationMap["b"]
 ruleExceptions["gene loves jezebel"] = destinationMap["g"]
+ruleExceptions["huntley brown"] = destinationMap["b"]
 ruleExceptions["john cafferty and the beaver brown band"] = destinationMap["j"]
 ruleExceptions["monty python"] = destinationMap["m"]
+ruleExceptions["pete and wayne"] = destinationMap["p"]
 ruleExceptions["reo speedwagon"] = destinationMap["r"]
 ruleExceptions["steve miller band"] = destinationMap["s"]
 ruleExceptions["tina and the b-side movement"] = destinationMap["t"]

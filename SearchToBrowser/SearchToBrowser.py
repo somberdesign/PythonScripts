@@ -10,6 +10,7 @@ import sys
 from time import time
 from typing import Tuple
 from subprocess import call
+import easygui
 
 DIR_TO_SEARCH = r'E:\Users\Bob\PythonScripts\SearchToBrowser'
 OUTPUT_DIRECTORY = r'E:\temp\searchToBrowser'
@@ -62,6 +63,11 @@ if __name__ == '__main__':
 
 	pattern = re.compile('[/W_]+') # non-alphanumeric chars
 	searchFile = pattern.sub('', configValues['searchfilepath'])
+
+	searchFileFull = os.path.join(os.path.split(searchFile)[0], os.path.splitext(os.path.split(searchFile)[1])[0] + "_full" + os.path.splitext(os.path.split(searchFile)[1])[1])
+	if (os.path.exists(searchFileFull)): 
+		searchFile = searchFileFull
+#	easygui.msgbox(searchFileFull)
 
 	searchTerms = CleanText(configValues['searchterm'].lower())
 	

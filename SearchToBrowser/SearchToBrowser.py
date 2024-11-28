@@ -12,8 +12,8 @@ from typing import Tuple
 from subprocess import call
 import easygui
 
-DIR_TO_SEARCH = r'E:\Users\Bob\PythonScripts\SearchToBrowser'
-OUTPUT_DIRECTORY = r'E:\temp\searchToBrowser'
+DIR_TO_SEARCH = r'c:\Users\rgw3\PythonScripts\SearchToBrowser'
+OUTPUT_DIRECTORY = r'c:\temp\searchToBrowser'
 EVERYTHING_COMMAND_LINE_PATH = r'"C:\Program Files\Everything\es.exe"' # leave empty to disable
 
 def CleanText(line:str) -> str:
@@ -38,12 +38,20 @@ def GetArguments(configValues:dict) -> Tuple:
 		if len(candidates) > 0:
 			searchFile = candidates[0]
 
-
-	if not os.path.isfile(searchFile):
-		return False, f'{searchFile} is not a file' if len(searchFile) > 0 else f'Unable to find match at {searchFile}'
+	searchFileFull = os.path.join(os.path.split(searchFile)[0], os.path.splitext(os.path.split(searchFile)[1])[0] + "_full" + os.path.splitext(os.path.split(searchFile)[1])[1])
+	if not os.path.isfile(searchFile) and not os.path.isfile(searchFileFull):
+		return False, f'neither {searchFile} nor {searchFileFull} is not a file' if len(searchFile) > 0 else f'Unable to find match at {searchFile} or {searchFileFull}'
 
 	configValues['searchfilepath'] = searchFile
 	configValues['searchterm'] = sys.argv[2]
+
+	warningMessage = str()
+	for v in ['searchfilepath', 'searchterm']:
+		if len(configValues[v]) == 0:
+			warningMessage += f'{v} has is not defined\n'
+
+	if len(warningMessage) > 0:
+		easygui(f'WARNING\n{warningMessage}')
 
 	return True, str()
 
@@ -54,11 +62,12 @@ if __name__ == '__main__':
 		'searchfilepath' : str(),
 		'searchterm' : str()
 	}
-	
+
 	result = GetArguments(configValues)
 	if not result[0]:
 		ctypes.windll.user32.MessageBoxW(0, result[1])
 		exit(0)
+
 
 
 	pattern = re.compile('[/W_]+') # non-alphanumeric chars

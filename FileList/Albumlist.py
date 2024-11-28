@@ -6,8 +6,8 @@ from os import path, stat
 import time
 
 ALBUM_DIR = r'h:\Media\Music\Albums'
-ALBUM_DIR_CACHE = r'\Users\Bob\PythonScripts\FileList\.albumlistcache'
-OUTPUT_FILE = r'\Users\Bob\PythonScripts\SearchToBrowser\AlbumList.txt'
+ALBUM_DIR_CACHE = r'c:\Users\rgw3\PythonScripts\FileList\.albumlistcache'
+OUTPUT_FILE = r'c:\Users\rgw3\PythonScripts\SearchToBrowser\AlbumList.txt'
 HEADER_LINE_COUNT = 4
 
 

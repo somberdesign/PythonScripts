@@ -7,13 +7,14 @@ from os import listdir, remove
 from os.path import isdir, isfile, join
 from subprocess import PIPE, Popen
 from sys import argv
+from yaml import safe_load, YAMLError
 
 # when True, prints move commands but does not execute them
 DEBUG = False
 
 def getTargetDirectory(destinationMap, moveDirectoryName:str) -> str:
 	
-	ruleExceptions = configFile.ruleExceptions
+	ruleExceptions = configFile['ruleExceptions']
 	focusDir = moveDirectoryName.split(" ")
 
 	# check for exception to rules
@@ -27,7 +28,7 @@ def getTargetDirectory(destinationMap, moveDirectoryName:str) -> str:
 		return destinationMap["the"]
 
 	# movie soundtrack
-	if any(w.lower() in moveDirectoryName.lower() for w in configFile.soundtrackWords):
+	if any(w.lower() in moveDirectoryName.lower() for w in configFile['soundtrackWords']):
 		return destinationMap[focusDir[0][0].lower()]
 
 	# title only: "A Country Christmas"
@@ -39,7 +40,7 @@ def getTargetDirectory(destinationMap, moveDirectoryName:str) -> str:
 
 	# check to see if artist is a group of people (like "Oscar Peterson Trio")
 	for i in range(0, focusDir.index("-")):
-		if focusDir[i].lower() in configFile.artistGroupWords:
+		if focusDir[i].lower() in configFile['artistGroupWords']:
 			return destinationMap[focusDir[0][0].lower()]
 	
 	# first word of dir is a first name, move file based on last name
@@ -80,12 +81,12 @@ def ReadFirstNames():
 	firstNames = []
 
 	try:
-		with open(configFile.firstNamesFile, 'r') as file:
+		with open(configFile['firstNamesFile'], 'r') as file:
 			for line in file:
 				firstNames.append(line.strip().split(",")[0].lower())
 
 	except Exception as ex:
-		Logger.AddError(f'Unable to read first names file: {ex}. ({firstNamesFile})')
+		Logger.AddError(f'Unable to read first names file: {ex}. ({configFile['firstNamesFile']})')
 
 	finally:
 		file.close()	
@@ -105,13 +106,21 @@ if __name__ == '__main__':
 		exit(1)
 	
 	configFilename = argv[1]
-	if not isfile(f"{configFilename}.py"):
+	if not isfile(f"{configFilename}"):
 		Logger.AddError(f"Unable to find config file. Exiting. ({configFilename}.py)")
 		exit(1)
 
-	configFile = import_module(configFilename, package=None)
+	print(f'configFilename={configFilename}')
+	configFile = object()
+	# configFile = import_module(configFilename, package=None)
+	with open(configFilename) as stream:
+		try:
+			configFile = safe_load(stream)
+		except YAMLError as ex:
+			Logger.AddError(f"Config file is invalid ({configFilename})")
+			exit(1)
 	
-	Logger.SetLogfilePath(configFile.logfilePath)
+	Logger.SetLogfilePath(configFile['logfilePath'])
 	
 	firstNames = ReadFirstNames()
 
@@ -122,9 +131,9 @@ if __name__ == '__main__':
 	moveList = []
 
 	# read directories to be moved
-	dirsToMove = [f for f in listdir(configFile.sourceDirectory) if isdir(join(configFile.sourceDirectory, f))]
+	dirsToMove = [f for f in listdir(configFile['sourceDirectory']) if isdir(join(configFile['sourceDirectory'], f))]
 	for moveDirectoryName in dirsToMove:
-		targetDirectory = getTargetDirectory(configFile.destinationMap, moveDirectoryName)
+		targetDirectory = getTargetDirectory(configFile['destinationMap'], moveDirectoryName)
 		fullTargetPath = join(targetDirectory, moveDirectoryName)
 
 		if isdir(fullTargetPath):
@@ -132,7 +141,7 @@ if __name__ == '__main__':
 			Logger.AddInfo(f"Target directory exists: didn't move source directory ({fullTargetPath})")
 		else:
 			Logger.AddInfo(f"Added to move list: {moveDirectoryName} --> {fullTargetPath}")
-			moveList.append([join(configFile.sourceDirectory, moveDirectoryName), fullTargetPath])
+			moveList.append([join(configFile['sourceDirectory'], moveDirectoryName), fullTargetPath])
 
 
 	# write bat file
@@ -142,36 +151,29 @@ if __name__ == '__main__':
 	# /XN excludes existing files newer than the copy in the destination directory. Robocopy normally overwrites those.
 	# /XO excludes existing files older than the copy in the destination directory. Robocopy normally overwrites those.	
 	try:
-		with open(configFile.batFilename, 'w') as file:
+		with open(configFile['batFilename'], 'w') as file:
 			for line in moveList:
 				file.write(f'robocopy /MOVE /E /XC /XN /XO "{line[0]}" "{line[1]}"\n')
 
 	except Exception as ex:
-		Logger.AddError(f'Unable to write bat file: {ex}. ({configFile.batFilename})')
+		Logger.AddError(f'Unable to write bat file: {ex}. ({configFile['batFilename']})')
 
 	# execute bat and delete
 	
 	if not DEBUG:
-		p = Popen(configFile.batFilename, shell=True, stdout=PIPE, stderr=PIPE)
+		p = Popen(configFile['batFilename'], shell=True, stdout=PIPE, stderr=PIPE)
 		stdout, stderr = p.communicate() # p.returncode is 0 if successful
 		if p.returncode == 0:
 			Logger.AddInfo("Ended run")
 		else:
 			Logger.AddInfo(f"Bat returned {p.returncode}.")
-			fileContents = ReadFile(configFile.batFilename)
+			fileContents = ReadFile(configFile['batFilename'])
 			for line in fileContents:
 				print(f"{line}")
 	else:
-		fileContents = ReadFile(configFile.batFilename)
+		fileContents = ReadFile(configFile['batFilename'])
 		for line in fileContents:
 			print(f"{line}")
 
-	remove(configFile.batFilename)
+	remove(configFile['batFilename'])
 
-
-
-
-
-
-
-	

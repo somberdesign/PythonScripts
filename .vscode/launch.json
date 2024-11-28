@@ -6,14 +6,14 @@
 	"configurations": [
 		{
 			"name": "Python: Current File",
-			"type": "python",
+			"type": "debugpy",
 			"request": "launch",
 			"program": "${file}",
 			"console": "integratedTerminal",
 			"cwd": "${fileDirname}",
-			"args0": ["E:\\Users\\Bob\\PythonScripts\\SearchToBrowser\\SmartList.txt", "jersey"],
-			"args1": ["MoveByFilename_music_Config"],
-			"args": ["E:\\Users\\Bob\\PythonScripts\\SearchToBrowser\\AlbumList.txt", "knopfler"]
+			"args0": ["c:\\Users\\rgw3\\PythonScripts\\SearchToBrowser\\SmartList.txt", "jersey"],
+			"args": ["MoveByFilename_music_Config.yaml"],
+			"args1": ["c:\\Users\\rgw3\\PythonScripts\\SearchToBrowser\\AlbumList.txt", "knopfler"]
 		}
 	]
 }

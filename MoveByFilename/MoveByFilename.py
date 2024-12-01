@@ -11,6 +11,7 @@ from yaml import safe_load, YAMLError
 
 # when True, prints move commands but does not execute them
 DEBUG = False
+EXTENDED_LOGGING_ENABLED = True
 
 def getTargetDirectory(destinationMap, moveDirectoryName:str) -> str:
 	
@@ -112,7 +113,7 @@ if __name__ == '__main__':
 
 	print(f'configFilename={configFilename}')
 	configFile = object()
-	# configFile = import_module(configFilename, package=None)
+
 	with open(configFilename) as stream:
 		try:
 			configFile = safe_load(stream)
@@ -154,9 +155,15 @@ if __name__ == '__main__':
 		with open(configFile['batFilename'], 'w') as file:
 			for line in moveList:
 				file.write(f'robocopy /MOVE /E /XC /XN /XO "{line[0]}" "{line[1]}"\n')
-
 	except Exception as ex:
 		Logger.AddError(f'Unable to write bat file: {ex}. ({configFile['batFilename']})')
+
+	if EXTENDED_LOGGING_ENABLED:
+		if isfile(configFile['batFilename']):
+			Logger.AddInfo(f'EXTENDED_LOGGING: bat file {configFile['batFilename']} exists')
+		else:
+			Logger.AddInfo(f'EXTENDED_LOGGING: bat file {configFile['batFilename']} does NOT exist')
+
 
 	# execute bat and delete
 	
@@ -164,7 +171,7 @@ if __name__ == '__main__':
 		p = Popen(configFile['batFilename'], shell=True, stdout=PIPE, stderr=PIPE)
 		stdout, stderr = p.communicate() # p.returncode is 0 if successful
 		if p.returncode == 0:
-			Logger.AddInfo("Ended run")
+			Logger.AddInfo("Ended run with errorcode 0")
 		else:
 			Logger.AddInfo(f"Bat returned {p.returncode}.")
 			fileContents = ReadFile(configFile['batFilename'])

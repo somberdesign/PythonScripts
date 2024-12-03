@@ -167,6 +167,7 @@ if __name__ == '__main__':
 
 	# execute bat and delete
 	
+	Logger.AddInfo(f'Executing batch file ({configFile["batFilename"]})')
 	if not DEBUG:
 		p = Popen(configFile['batFilename'], shell=True, stdout=PIPE, stderr=PIPE)
 		stdout, stderr = p.communicate() # p.returncode is 0 if successful
@@ -182,5 +183,8 @@ if __name__ == '__main__':
 		for line in fileContents:
 			print(f"{line}")
 
-	remove(configFile['batFilename'])
+	if DEBUG:
+		print(f'DEBUG enabled. Batch file not deleted ({configFile["batFilename"]})')
+	else:
+		remove(configFile['batFilename'])
 

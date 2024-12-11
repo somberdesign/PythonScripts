@@ -10,8 +10,9 @@
   ..You only need to replace ones that have changed.
 
 2. Put a current copy of 'Movie List.txt' in dir ~\ReadSalesCsv\Input .
-  .. Make a new list with "~\FileList\FileList.py". Use SmartList_*.txt.
-  .. Replace the contents of google doc 'Movie List.txt' with what's in SmartList_*.txt
+  a. Make a new list with "~\FileList\FileList.py". Use SmartList_*.txt.
+  b. Replace the contents of google doc 'Movie List.txt' with what's in SmartList_*.txt
+  c. Copy *_SmartList_Full to the DVD machine at c:\Users\rgw3\PythonScripts\SearchToBrowser\ as SmartlistFull.txt
 
 3. Execute ReadSalesCsv.py. This reads data from the csvs and puts it into \Output\SalesData.py.
 

@@ -8,6 +8,7 @@ from os.path import isdir, isfile, join
 from subprocess import PIPE, Popen
 from sys import argv
 from yaml import safe_load, YAMLError
+from string import punctuation
 
 # when True, prints move commands but does not execute them
 DEBUG = False
@@ -24,7 +25,7 @@ def getTargetDirectory(destinationMap, moveDirectoryName:str) -> str:
 	elif moveDirectoryName.lower() in ruleExceptions:
 		return ruleExceptions[moveDirectoryName.lower()]
 
-	# title or artist starts with the
+	# title or artist starts with "the"
 	if focusDir[0].lower() == "the":
 		return destinationMap["the"]
 
@@ -34,7 +35,7 @@ def getTargetDirectory(destinationMap, moveDirectoryName:str) -> str:
 
 	# title only: "A Country Christmas"
 	if "-" not in focusDir:
-		if moveDirectoryName[0].isnumeric():
+		if moveDirectoryName[0].isnumeric() or moveDirectoryName[0] in punctuation:
 			return destinationMap["0"]
 		else:
 			return destinationMap[moveDirectoryName.lower()[0]]
@@ -55,7 +56,7 @@ def getTargetDirectory(destinationMap, moveDirectoryName:str) -> str:
 		return destinationMap[focusDir[lastNamePosition][0].lower()]
 
 	# first word is not a name - assume it's the name of a group: "Off the Beat - No Static"
-	if moveDirectoryName[0].isnumeric():
+	if moveDirectoryName[0].isnumeric() or moveDirectoryName[0] in punctuation:
 		return destinationMap["0"]
 	else:
 		return destinationMap[moveDirectoryName.lower()[0]]

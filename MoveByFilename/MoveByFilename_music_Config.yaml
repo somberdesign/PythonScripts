@@ -11,8 +11,9 @@ sourceDirectory: e:\video\music
 
 # words that indicate the artist is a group, not an individual
 artistGroupWords:
-  - trio
+  - choir
   - orchestra
+  - trio
 
 # strings that indicate an album is a movie soundtrack
 soundtrackWords:
@@ -53,6 +54,7 @@ destinationMap:
 # exceptions to the rule
 ruleExceptions:
   bernie and red: b
+  dixie chicks: d
   gato barbieri: b
   gene loves jezebel: g
   huntley brown: b

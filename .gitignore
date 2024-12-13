@@ -14,7 +14,6 @@ NwAuctionDvdCheck/NwOutput.txt
 
 .albumlistcache
 .config.json
-.vscode/launch.json
 CreateStatsHtml_Secrets.json
 ReadSalesCsv/Input/
 FileList/albumlist.txt

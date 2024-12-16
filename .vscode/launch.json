@@ -10,10 +10,12 @@
 			"request": "launch",
 			"program": "${file}",
 			"console": "integratedTerminal",
-			"cwd": "${fileDirname}",
+			"cwd0": "${fileDirname}",
+			"cwd": "E:\\Video\\",
 			"args0": ["c:\\Users\\rgw3\\PythonScripts\\SearchToBrowser\\SmartList.txt", "jersey"],
-			"args": ["MoveByFilename_music_Config.yaml"],
-			"args1": ["c:\\Users\\rgw3\\PythonScripts\\SearchToBrowser\\AlbumList.txt", "knopfler"]
+			"args2": ["MoveByFilename_music_Config.yaml"],
+			"args1": ["c:\\Users\\rgw3\\PythonScripts\\SearchToBrowser\\AlbumList.txt", "knopfler"],
+			"args": [""]
 		}
 	]
 }

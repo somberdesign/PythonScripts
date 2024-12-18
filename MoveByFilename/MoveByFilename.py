@@ -99,16 +99,25 @@ def ReadFirstNames():
 # #################################################################################
 if __name__ == '__main__':
 	
-	if DEBUG: print("DEBUG enabled, will not move directories")
-
 	Logger.SetLogfilePath(".\\DefaultLogFile.log")
+	configFilename = str()
 
 	if len(argv) < 2:
-		Logger.AddError('Missing configuration filename. USAGE: py MoveByFilename.py <configFileName>')
+		Logger.AddError('Missing configuration filename. USAGE: py MoveByFilename.py [-dry] <configFileName>')
 		exit(1)
 	
-	configFilename = argv[1]
-	if not isfile(f"{configFilename}"):
+	for i in range(len(argv)):
+		if argv[i][0] == "-":
+			match argv[i]:
+				case "-dry":
+					DEBUG = True
+				case _:
+					Logger.AddWarning(f"Unknown switch ({argv[i]})")
+
+		elif isfile(f"{argv[i]}"):
+			configFilename = argv[i]
+
+	if not len(configFilename):
 		Logger.AddError(f"Unable to find config file. Exiting. ({configFilename}.py)")
 		exit(1)
 
@@ -129,6 +138,8 @@ if __name__ == '__main__':
 	if not firstNames or len(firstNames) == 0:
 		Logger.AddWarning(f"Didn't get any name from first names file")
 		firstNames = []
+
+	if DEBUG: print("DEBUG enabled, will not move directories")
 
 	moveList = []
 
@@ -186,6 +197,7 @@ if __name__ == '__main__':
 
 	if DEBUG:
 		print(f'DEBUG enabled. Batch file not deleted ({configFile["batFilename"]})')
+		input("pause")
 	else:
 		remove(configFile['batFilename'])
 

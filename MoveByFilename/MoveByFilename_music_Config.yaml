@@ -14,6 +14,8 @@ artistGroupWords:
   - choir
   - orchestra
   - trio
+  - and
+  - duo
 
 # strings that indicate an album is a movie soundtrack
 soundtrackWords:
@@ -58,6 +60,7 @@ ruleExceptions:
   fats domino: d
   gato barbieri: b
   gene loves jezebel: g
+  german air force band: g
   huntley brown: b
   john cafferty and the beaver brown band: j
   kt tunstall: t
@@ -67,6 +70,7 @@ ruleExceptions:
   pete and wayne: p
   reo speedwagon: r
   steve miller band: s
+  summer flava: s
   tina and the b-side movement: t
   van morrison: v
   victory belles: v

@@ -1,6 +1,8 @@
 from os import getcwd, path, rename, sep, walk
 from glob import glob
 from string import punctuation
+from unidecode import unidecode
+from titlecase import titlecase
 
 class filenameObject():
     def __init__(self, currentName = ""):
@@ -10,7 +12,7 @@ class filenameObject():
 
 def ReplaceChars(filename):
     newFilename = str()        
-    baseFilename = path.splitext(path.basename(filename))[0]
+    baseFilename = titlecase(unidecode(path.splitext(path.basename(filename))[0]))
 
     for i in range(len(baseFilename)):
         if baseFilename[i] not in punctuation + " ": # no change if it's a good char

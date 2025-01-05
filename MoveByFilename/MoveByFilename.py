@@ -1,4 +1,5 @@
 from sys import path
+from unidecode import unidecode
 path.insert(1, r'../Logger')
 
 from importlib import import_module
@@ -16,14 +17,24 @@ EXTENDED_LOGGING_ENABLED = True
 
 def getTargetDirectory(destinationMap, moveDirectoryName:str) -> str:
 	
-	ruleExceptions = configFile['ruleExceptions']
 	focusDir = moveDirectoryName.split(" ")
 
 	# check for exception to rules
+	ruleExceptions = configFile['ruleExceptions']
 	if "-" in focusDir and " ".join(map(str, focusDir[0:focusDir.index("-")])).lower() in ruleExceptions:
 		return ruleExceptions[" ".join(map(str, focusDir[0:focusDir.index("-")])).lower()]
 	elif moveDirectoryName.lower() in ruleExceptions:
 		return ruleExceptions[moveDirectoryName.lower()]
+	del ruleExceptions
+
+	# modify focusdir if first name is hyphenated
+	# Claude-Michel Schoenberg - The Pirate Queen (Original Broadway Cast Recording)
+	if "-" in focusDir[0]:
+		newFirstNames = focusDir[0].split("-")
+		focusDir.pop(0)
+		focusDir = newFirstNames + focusDir
+
+	##### find destination dir #####		
 
 	# title or artist starts with "the"
 	if focusDir[0].lower() == "the":
@@ -145,7 +156,8 @@ if __name__ == '__main__':
 
 	# read directories to be moved
 	dirsToMove = [f for f in listdir(configFile['sourceDirectory']) if isdir(join(configFile['sourceDirectory'], f))]
-	for moveDirectoryName in dirsToMove:
+	for rawMoveDirectoryName in dirsToMove:
+		moveDirectoryName = unidecode(rawMoveDirectoryName) # replace unicode characters with ascii equivalents
 		targetDirectory = getTargetDirectory(configFile['destinationMap'], moveDirectoryName)
 		fullTargetPath = join(targetDirectory, moveDirectoryName)
 
@@ -153,8 +165,8 @@ if __name__ == '__main__':
 			if DEBUG: print(f"moveDirectoryName={moveDirectoryName}, fullTargetPath={fullTargetPath}")
 			Logger.AddInfo(f"Target directory exists: didn't move source directory ({fullTargetPath})")
 		else:
-			Logger.AddInfo(f"Added to move list: {moveDirectoryName} --> {fullTargetPath}")
-			moveList.append([join(configFile['sourceDirectory'], moveDirectoryName), fullTargetPath])
+			Logger.AddInfo(f"Added to move list: {rawMoveDirectoryName} --> {fullTargetPath}")
+			moveList.append([join(configFile['sourceDirectory'], rawMoveDirectoryName), fullTargetPath])
 
 
 	# write bat file
@@ -190,10 +202,10 @@ if __name__ == '__main__':
 			fileContents = ReadFile(configFile['batFilename'])
 			for line in fileContents:
 				print(f"{line}")
-	else:
-		fileContents = ReadFile(configFile['batFilename'])
-		for line in fileContents:
-			print(f"{line}")
+	# else:
+	# 	fileContents = ReadFile(configFile['batFilename'])
+	# 	for line in fileContents:
+	# 		print(f"{line}")
 
 	if DEBUG:
 		print(f'DEBUG enabled. Batch file not deleted ({configFile["batFilename"]})')

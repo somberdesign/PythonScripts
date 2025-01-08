@@ -30,11 +30,11 @@ def ReplaceChars(filename):
         #####  All chars below here are punctuation chars ####
 
         # remove the char if it's at the end of a directory or file name
-        if baseFilename[i+1] in [' ', '.', sep]:
+        if len(baseFilename) >= i+2 and baseFilename[i+1] in [' ', '.', sep]:
             continue
 
         # don't create double underscores
-        if baseFilename[i-1] == REPLACEMENT_CHAR or (len(baseFilename) >= (i+1) and baseFilename[i+1] == REPLACEMENT_CHAR):
+        if baseFilename[i-1] == REPLACEMENT_CHAR or (len(baseFilename) >= i+2 and baseFilename[i+1] == REPLACEMENT_CHAR):
             continue
 
         newFilename += REPLACEMENT_CHAR

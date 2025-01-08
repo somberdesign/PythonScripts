@@ -11,16 +11,33 @@ class filenameObject():
 
 
 def ReplaceChars(filename):
+    REMOVE_CHARACTER_LIST = ["'"] # remove these characters instead of replacing them
+    REPLACEMENT_CHAR = "_"
     newFilename = str()        
     baseFilename = titlecase(unidecode(path.splitext(path.basename(filename))[0]))
 
     for i in range(len(baseFilename)):
-        if baseFilename[i] not in punctuation + " ": # no change if it's a good char
+        
+        # always remove these chars
+        if baseFilename[i] in REMOVE_CHARACTER_LIST:
+            continue
+
+        # no change if it's a good char
+        if baseFilename[i] not in punctuation + " ":
             newFilename += baseFilename[i]
             continue
-        if baseFilename[i+1] in [' ', '.', sep]: # remove the char if it's at the end of a directory or file name
+        
+        #####  All chars below here are punctuation chars ####
+
+        # remove the char if it's at the end of a directory or file name
+        if baseFilename[i+1] in [' ', '.', sep]:
             continue
-        newFilename += "_"
+
+        # don't create double underscores
+        if baseFilename[i-1] == REPLACEMENT_CHAR or (len(baseFilename) >= (i+1) and baseFilename[i+1] == REPLACEMENT_CHAR):
+            continue
+
+        newFilename += REPLACEMENT_CHAR
 
     return path.join(path.dirname(filename), newFilename + path.splitext(filename)[1])
 

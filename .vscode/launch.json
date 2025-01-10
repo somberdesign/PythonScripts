@@ -6,12 +6,16 @@
 	"configurations": [
 		{
 			"name": "Python: Current File",
-			"type": "python",
+			"type": "debugpy",
 			"request": "launch",
 			"program": "${file}",
 			"console": "integratedTerminal",
 			"cwd": "${fileDirname}",
-			"args": ["D:\\Video\\OTA_S_W_A_T_"]
+			"cwd0": "E:\\Video\\",
+			"args0": ["c:\\Users\\rgw3\\PythonScripts\\SearchToBrowser\\SmartList.txt", "jersey"],
+			"args": ["MoveByFilename_music_Config.yaml"],
+			"args1": ["c:\\Users\\rgw3\\PythonScripts\\SearchToBrowser\\AlbumList.txt", "knopfler"],
+			"args2": [""]
 		}
 	]
 }

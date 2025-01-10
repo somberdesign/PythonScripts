@@ -1,0 +1,2 @@
+ll=dir $1
+concatmp4=ffmpeg -f concat -safe 0 -i f -c copy $1.mp4

@@ -2,16 +2,22 @@ import ctypes
 import datetime
 import glob
 import os
+from pathvalidate import sanitize_filename
+import pyperclip
 import re
 import string
 import sys
+from time import time
 from typing import Tuple
+from subprocess import call
+import easygui
 
-DIR_TO_SEARCH = r'D:\Users\Bob\PythonScripts\SearchToBrowser'
-OUTPUT_FILE = r'D:\Users\Bob\PythonScripts\SearchToBrowser\SearchResults.html'
+DIR_TO_SEARCH = r'c:\Users\rgw3\PythonScripts\SearchToBrowser'
+OUTPUT_DIRECTORY = r'c:\temp\searchToBrowser'
+EVERYTHING_COMMAND_LINE_PATH = r'"C:\Program Files\Everything\es.exe"' # leave empty to disable
 
 def CleanText(line:str) -> str:
-	returnVal = re.sub('[^A-Za-z0-9 \n\-]', str(), line)
+	returnVal = re.sub('[^A-Za-z0-9 \n\-\~]', str(), line)
 	return returnVal
 	
 def GetArguments(configValues:dict) -> Tuple:
@@ -32,12 +38,20 @@ def GetArguments(configValues:dict) -> Tuple:
 		if len(candidates) > 0:
 			searchFile = candidates[0]
 
-
-	if not os.path.isfile(searchFile):
-		return False, f'{searchFile} is not a file' if len(searchFile) > 0 else f'Unable to find match at {searchFile}'
+	searchFileFull = os.path.join(os.path.split(searchFile)[0], os.path.splitext(os.path.split(searchFile)[1])[0] + "_full" + os.path.splitext(os.path.split(searchFile)[1])[1])
+	if not os.path.isfile(searchFile) and not os.path.isfile(searchFileFull):
+		return False, f'neither {searchFile} nor {searchFileFull} is not a file' if len(searchFile) > 0 else f'Unable to find match at {searchFile} or {searchFileFull}'
 
 	configValues['searchfilepath'] = searchFile
 	configValues['searchterm'] = sys.argv[2]
+
+	warningMessage = str()
+	for v in ['searchfilepath', 'searchterm']:
+		if len(configValues[v]) == 0:
+			warningMessage += f'{v} has is not defined\n'
+
+	if len(warningMessage) > 0:
+		easygui(f'WARNING\n{warningMessage}')
 
 	return True, str()
 
@@ -48,15 +62,44 @@ if __name__ == '__main__':
 		'searchfilepath' : str(),
 		'searchterm' : str()
 	}
-	
+
 	result = GetArguments(configValues)
 	if not result[0]:
 		ctypes.windll.user32.MessageBoxW(0, result[1])
 		exit(0)
 
 
-	searchFile = configValues['searchfilepath']
+
+	pattern = re.compile('[/W_]+') # non-alphanumeric chars
+	searchFile = pattern.sub('', configValues['searchfilepath'])
+
+	searchFileFull = os.path.join(os.path.split(searchFile)[0], os.path.splitext(os.path.split(searchFile)[1])[0] + "_full" + os.path.splitext(os.path.split(searchFile)[1])[1])
+	if (os.path.exists(searchFileFull)): 
+		searchFile = searchFileFull
+#	easygui.msgbox(searchFileFull)
+
 	searchTerms = CleanText(configValues['searchterm'].lower())
+	
+	# remove unwanted chars from path
+	filenameSearchTerms = sanitize_filename(searchTerms.split(' ', 1)[0]) # take first word only
+	for c in "' ":
+		filenameSearchTerms = filenameSearchTerms.replace(c, "_")
+
+
+	# set output directory and filename
+	outputFilename = f'searchToBrowser_{filenameSearchTerms}.html'
+	everythingOutputFilename = f'everything_{filenameSearchTerms}.txt'
+	outputPath = os.path.join(OUTPUT_DIRECTORY, outputFilename)
+	everythingOutputPath = os.path.join(OUTPUT_DIRECTORY, everythingOutputFilename)
+	if not os.path.isdir(OUTPUT_DIRECTORY):
+		os.mkdir(OUTPUT_DIRECTORY)
+
+	# delete old output files
+	for deleteFile in os.listdir(OUTPUT_DIRECTORY):
+		filepath = os.path.join(OUTPUT_DIRECTORY, deleteFile)
+		if os.stat(filepath).st_mtime < time() - 1 * 86400 and os.path.isfile(filepath):
+			os.remove(filepath)	 
+
 
 	with open(searchFile, 'r') as f:
 		searchLines = f.readlines()
@@ -71,16 +114,18 @@ if __name__ == '__main__':
 		ctypes.windll.user32.MessageBoxW(0, f'Invalid date on line 1:\n{stringdate}', 'Document Date Error')
 		
 	if filedate is not None and (datetime.datetime.now() - filedate).days > 30:
-		ctypes.windll.user32.MessageBoxW(0, f'Stale file list: {stringdate}\nReplace SmartList.txt in {os.path.realpath(__file__)}', 'Stale File List')
+		smartlistPath = os.path.dirname(os.path.realpath(__file__))
+		ctypes.windll.user32.MessageBoxW(0, f'Stale file list: {stringdate}\nReplace SmartList.txt in {smartlistPath}', 'Stale File List')
+		pyperclip.copy(smartlistPath)
 
 	foundLines = []
 	for readline in searchLines:
 		line = CleanText(readline)
 		if searchTerms in line.lower() or searchTerms.rstrip() in line.lower() or searchTerms.lstrip() in line.lower():
 			foundLines.append(line)
-
-	with open(OUTPUT_FILE, 'w') as outfile:
-		outfile.write(f'Searching: <a href="file://{searchFile}" target="_new">{searchFile}</a><br />')
+	
+	with open(outputPath, 'w') as outfile:
+		outfile.write(f'Searching: <a href="file://{searchFile}" target="_new">{searchFile}</a>&nbsp;({str(filedate)[:10]})<br />')
 		outfile.write(f'Search Terms: {searchTerms.strip()}<br />')
 		outfile.write(f'Found {len(foundLines)} matches in {len(searchLines)} records<br />&nbsp;<br />')
 		
@@ -91,6 +136,12 @@ if __name__ == '__main__':
 			for l in foundLines:
 				outfile.write(f'{l}<br />')
 	
-	
+	# everything output file
+	if (len(EVERYTHING_COMMAND_LINE_PATH) > 0):
+		command = f'{EVERYTHING_COMMAND_LINE_PATH} -r {searchTerms} > {everythingOutputPath}'
+		print(f'everything command: {command}')
+		# os.system(command)
+		call(command, shell=True) # subprocess.call doesn't open a popup window
+		
 
 

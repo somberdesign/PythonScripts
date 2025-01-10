@@ -1,0 +1,4 @@
+Add this key to the registry to cause win to load the target file as a list of doskey command each time a command windows is opened
+
+
+reg add "HKCU\Software\Microsoft\Command Processor" /v Autorun /d "doskey /macrofile=\"E:\Users\Bob\PythonScripts\Doskey\doskeyDefinitions.txt\"" /f

@@ -1,0 +1,76 @@
+---
+
+# name of the bat file that is created
+batFilename: MoveByFilename.bat
+
+firstNamesFile: names1970.txt
+logfilePath: e:\video\Music\MoveByFilename_Albums.log
+
+# directory with albums in it
+sourceDirectory: e:\video\music
+
+# words that indicate the artist is a group, not an individual
+artistGroupWords:
+  - choir
+  - orchestra
+  - trio
+  - and
+  - duo
+
+# strings that indicate an album is a movie soundtrack
+soundtrackWords:
+  - soundtrack
+  - ost
+
+# destination directories
+destinationMap:
+  the: \\bombcyclone\AgnesNutter\Media\Music\Albums\the
+  '0': \\bombcyclone\AgnesNutter\Media\Music\Albums\0
+  a: \\bombcyclone\AgnesNutter\Media\Music\Albums\a
+  b: \\bombcyclone\AgnesNutter\Media\Music\Albums\b
+  c: \\bombcyclone\AgnesNutter\Media\Music\Albums\c
+  d: \\bombcyclone\AgnesNutter\Media\Music\Albums\d
+  e: \\bombcyclone\AgnesNutter\Media\Music\Albums\e
+  f: \\bombcyclone\AgnesNutter\Media\Music\Albums\f
+  g: \\bombcyclone\AgnesNutter\Media\Music\Albums\g
+  h: \\bombcyclone\AgnesNutter\Media\Music\Albums\h
+  i: \\bombcyclone\AgnesNutter\Media\Music\Albums\i
+  j: \\bombcyclone\AgnesNutter\Media\Music\Albums\j
+  k: \\bombcyclone\AgnesNutter\Media\Music\Albums\k
+  l: \\bombcyclone\AgnesNutter\Media\Music\Albums\l
+  m: \\bombcyclone\AgnesNutter\Media\Music\Albums\m
+  n: \\bombcyclone\AgnesNutter\Media\Music\Albums\n
+  o: \\bombcyclone\AgnesNutter\Media\Music\Albums\o
+  p: \\bombcyclone\AgnesNutter\Media\Music\Albums\p
+  q: \\bombcyclone\AgnesNutter\Media\Music\Albums\q
+  r: \\bombcyclone\AgnesNutter\Media\Music\Albums\r
+  s: \\bombcyclone\AgnesNutter\Media\Music\Albums\s
+  t: \\bombcyclone\AgnesNutter\Media\Music\Albums\t
+  u: \\bombcyclone\AgnesNutter\Media\Music\Albums\u
+  v: \\bombcyclone\AgnesNutter\Media\Music\Albums\v
+  w: \\bombcyclone\AgnesNutter\Media\Music\Albums\w
+  x: \\bombcyclone\AgnesNutter\Media\Music\Albums\x
+  y: \\bombcyclone\AgnesNutter\Media\Music\Albums\y
+  z: \\bombcyclone\AgnesNutter\Media\Music\Albums\z
+
+# exceptions to the rule
+ruleExceptions:
+  bernie and red: b
+  dixie chicks: d
+  fats domino: d
+  gato barbieri: b
+  gene loves jezebel: g
+  german air force band: g
+  huntley brown: b
+  john cafferty and the beaver brown band: j
+  kt tunstall: t
+  les nubians: l
+  monty python: m
+  mychael danna: d
+  pete and wayne: p
+  reo speedwagon: r
+  steve miller band: s
+  summer flava: s
+  tina and the b-side movement: t
+  van morrison: v
+  victory belles: v

@@ -106,11 +106,15 @@ def GetTargetFile():
 		if (
 			(dt.now() - dt.fromtimestamp(os.path.getctime(f))).total_seconds() < configValues['file_age_seconds']
 			or os.path.isfile(GetCopyFlagFilename(f)) # ignore files that are already being copied
+			or "1stAttempt" in f # WinTV sometimes leaves some aborted files with this filename
 			):
 			continue
 		else:
 			targetFile = f
 			break
+	
+	if len(targetFile) == 0:
+		print(f'Unable to find target file at {configValues["video_directory"]}')
 	
 	return targetFile
 
@@ -221,10 +225,12 @@ if __name__ == "__main__":
 
 	SetConfigValues(configValues, configValues['config_file_path'])
 	log = Logger.Logger(configValues['logfile_path'])
+	print(f'logfile at {configValues["logfile_path"]}')
 
 	# exit if one of these is already running
 	if ENABLE_PROCESS_FILES:
 		if os.path.isfile(configValues['is_running_path']):
+			print(f'{configValues["is_running_path"]} exists, one instance is already running. Exiting.')
 			ExitScript(0, deleteIsRunningFile=False)
 		else:
 			f = open(configValues['is_running_path'], 'w')
@@ -243,7 +249,9 @@ if __name__ == "__main__":
 
 		
 	targetFile = GetTargetFile()
-	if len(targetFile) == 0: ExitScript(0)  # no file found to be processed
+	if len(targetFile) == 0:
+		print(f'Could not find target file. Exiting.')
+		ExitScript(0)  # no file found to be processed
 
 	print(f'{dt.now():%Y-%m-%d %H:%M}')
 	message = f'Processing file {os.path.basename(targetFile)}'
@@ -293,7 +301,14 @@ if __name__ == "__main__":
 	if ffprobe.ffprobe()[0]	is None:
 		log.AddInfo(f'ffprobe is unable to read file {tsFile}')
 	else:
-		streamData = ffprobe.ffprobe()[0][0]
+		try:
+			streamData = ffprobe.ffprobe()[0][0]
+		except Exception as ex:
+			log.AddWarning(f'ffprobe error: {ex}. ({tsFile})')
+			newFilepath = os.path.join(configValues['bad_files_directory'], os.path.basename(tsFile))
+			note = f'ffprobe encountered an error reading this file'
+			MoveFile(tsFile, newFilepath, note)
+			ExitScript(1)
 
 
 	# base command arguments
@@ -318,8 +333,10 @@ if __name__ == "__main__":
 
 				break
 
-		# skip file if it's a funny size
-		if performDurationCheck and floor(float(streamData["duration"])/60) % 30 != 0:
+		# skip file if it's not an increment of 30 or 1 less than an increment of 30
+		floorDuration = floor(float(streamData["duration"]) / 60)
+		print(f'floorDuration = {floorDuration}')
+		if performDurationCheck and floorDuration % 30 not in [0, 29]:
 			newFilepath = os.path.join(configValues['bad_files_directory'], os.path.basename(tsFile))
 			note = f'File is {round(float(streamData["duration"])/60, 2)} minutes long. Moved to badfiles directory.'
 			MoveFile(tsFile, newFilepath, note)
@@ -382,6 +399,7 @@ if __name__ == "__main__":
 		log.AddError(f'Unable to move file to {mp4DestinationDir}. {ex} ({mp4Filename})')
 		ExitScript(1)
 
+	log.AddInfo(f'Moved file to {mp4DestinationPath}')
 	log.AddInfo(f'Finished processing {os.path.basename(targetFile)}')
 
 	ExitScript(0)

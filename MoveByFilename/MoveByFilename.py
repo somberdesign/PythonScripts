@@ -23,8 +23,10 @@ def getTargetDirectory(destinationMap, moveDirectoryName:str) -> str:
 	ruleExceptions = configFile['ruleExceptions']
 	if "-" in focusDir and " ".join(map(str, focusDir[0:focusDir.index("-")])).lower() in ruleExceptions:
 		return ruleExceptions[" ".join(map(str, focusDir[0:focusDir.index("-")])).lower()]
+	
 	elif moveDirectoryName.lower() in ruleExceptions:
 		return ruleExceptions[moveDirectoryName.lower()]
+	
 	del ruleExceptions
 
 	# modify focusdir if first name is hyphenated

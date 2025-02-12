@@ -11,7 +11,7 @@
 
 2. Put a current copy of 'Movie List.txt' in dir ~\ReadSalesCsv\Input .
   a. Make a new list with "~\FileList\FileList.py". Use SmartList_*.txt.
-  b. Replace the contents of google doc 'Movie List.txt' with what's in SmartList_*.txt
+  b. Replace google doc SmartList.txt with the new one
   c. Copy *_SmartList_Full to the DVD machine at c:\Users\rgw3\PythonScripts\SearchToBrowser\ as SmartlistFull.txt
 
 3. Execute ReadSalesCsv.py. This reads data from the csvs and puts it into \Output\SalesData.py.
@@ -23,7 +23,7 @@
 NOTE: Series sales stats are at the end of the file
 
 Styles to apply to Movie List.txt before printing:
-  .. Format / Page Style / Margins 0.25 each
+  .. Format / Page Style / Page / Margins 0.25 each
   .. Format / Columns / 3
   .. Format / Columns / Separator Line / Style Dotted
   .. Font 8pt (try Bahnschrift Semilight 10pt)

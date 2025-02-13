@@ -34,7 +34,7 @@ def ReplaceChars(filename):
             continue
 
         # don't create double underscores
-        if baseFilename[i-1] == REPLACEMENT_CHAR or (len(baseFilename) >= i+2 and baseFilename[i+1] == REPLACEMENT_CHAR):
+        if len(newFilename) > 0 and newFilename[-1] == REPLACEMENT_CHAR:
             continue
 
         newFilename += REPLACEMENT_CHAR

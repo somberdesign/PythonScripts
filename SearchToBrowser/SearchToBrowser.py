@@ -39,8 +39,9 @@ def GetArguments(configValues:dict) -> Tuple:
 			searchFile = candidates[0]
 
 	searchFileFull = os.path.join(os.path.split(searchFile)[0], os.path.splitext(os.path.split(searchFile)[1])[0] + "_full" + os.path.splitext(os.path.split(searchFile)[1])[1])
+
 	if not os.path.isfile(searchFile) and not os.path.isfile(searchFileFull):
-		return False, f'neither {searchFile} nor {searchFileFull} is not a file' if len(searchFile) > 0 else f'Unable to find match at {searchFile} or {searchFileFull}'
+		return False, f'neither {searchFile} nor {searchFileFull} is a file' if len(searchFile) > 0 else f'Unable to find match at {searchFile} or {searchFileFull}'
 
 	configValues['searchfilepath'] = searchFile
 	configValues['searchterm'] = sys.argv[2]

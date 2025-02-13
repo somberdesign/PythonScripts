@@ -13,19 +13,25 @@ from string import punctuation
 
 # when True, prints move commands but does not execute them
 DEBUG = False
-EXTENDED_LOGGING_ENABLED = True
+EXTENDED_LOGGING_ENABLED = False
+IGNORE_DIRECTORY_PREFIX_CHAR = "_"
 
 def getTargetDirectory(destinationMap, moveDirectoryName:str) -> str:
 	
-	focusDir = moveDirectoryName.split(" ")
+	# return empty string if first character of dir is neither a letter nor number
+	if not moveDirectoryName[0].isalpha() and not moveDirectoryName[0].isdigit():
+		return str()
 
+	focusDir = moveDirectoryName.split(" ")
 	# check for exception to rules
 	ruleExceptions = configFile['ruleExceptions']
-	if "-" in focusDir and " ".join(map(str, focusDir[0:focusDir.index("-")])).lower() in ruleExceptions:
-		return ruleExceptions[" ".join(map(str, focusDir[0:focusDir.index("-")])).lower()]
+	if "-" in focusDir:
+		artistName = " ".join(map(str, focusDir[0:focusDir.index("-")])).lower()
+		if artistName in ruleExceptions:
+			return destinationMap[ruleExceptions[artistName]]
 	
 	elif moveDirectoryName.lower() in ruleExceptions:
-		return ruleExceptions[moveDirectoryName.lower()]
+		return destinationMap[ruleExceptions[moveDirectoryName.lower()]]
 	
 	del ruleExceptions
 
@@ -149,7 +155,7 @@ if __name__ == '__main__':
 	firstNames = ReadFirstNames()
 
 	if not firstNames or len(firstNames) == 0:
-		Logger.AddWarning(f"Didn't get any name from first names file")
+		if not DEBUG: Logger.AddWarning(f"Didn't get any name from first names file")
 		firstNames = []
 
 	if DEBUG: print("DEBUG enabled, will not move directories")
@@ -159,16 +165,33 @@ if __name__ == '__main__':
 	# read directories to be moved
 	dirsToMove = [f for f in listdir(configFile['sourceDirectory']) if isdir(join(configFile['sourceDirectory'], f))]
 	for rawMoveDirectoryName in dirsToMove:
+
+		# ignore dirs that begin with an _
+		if rawMoveDirectoryName[0] == IGNORE_DIRECTORY_PREFIX_CHAR and not DEBUG:
+			Logger.AddInfo(f'Ignored directory {rawMoveDirectoryName}')
+			continue
+
 		moveDirectoryName = unidecode(rawMoveDirectoryName) # replace unicode characters with ascii equivalents
+		
 		targetDirectory = getTargetDirectory(configFile['destinationMap'], moveDirectoryName)
+		if len(targetDirectory) == 0 and not DEBUG:
+			Logger.AddWarning(f'Can''t find target directory for {moveDirectoryName}')
+			continue
+
 		fullTargetPath = join(targetDirectory, moveDirectoryName)
 
 		if isdir(fullTargetPath):
-			if DEBUG: print(f"moveDirectoryName={moveDirectoryName}, fullTargetPath={fullTargetPath}")
-			Logger.AddInfo(f"Target directory exists: didn't move source directory ({fullTargetPath})")
+			if DEBUG: 
+				print(f"moveDirectoryName={moveDirectoryName}, fullTargetPath={fullTargetPath}")
+			else:
+				Logger.AddInfo(f"Target directory exists: didn't move source directory ({fullTargetPath})")
 		else:
-			Logger.AddInfo(f"Added to move list: {rawMoveDirectoryName} --> {fullTargetPath}")
-			moveList.append([join(configFile['sourceDirectory'], rawMoveDirectoryName), fullTargetPath])
+			msg = f"Added to move list: {rawMoveDirectoryName} --> {fullTargetPath}"
+			if DEBUG: 
+				print(msg)
+			else:
+				Logger.AddInfo(msg)
+				moveList.append([join(configFile['sourceDirectory'], rawMoveDirectoryName), fullTargetPath])
 
 
 	# write bat file
@@ -182,9 +205,13 @@ if __name__ == '__main__':
 			for line in moveList:
 				file.write(f'robocopy /MOVE /E /XC /XN /XO "{line[0]}" "{line[1]}"\n')
 	except Exception as ex:
-		Logger.AddError(f'Unable to write bat file: {ex}. ({configFile['batFilename']})')
+		msg = f'Unable to write bat file: {ex}. ({configFile['batFilename']})'
+		if DEBUG:
+			print(msg)
+		else:
+			Logger.AddError(msg)
 
-	if EXTENDED_LOGGING_ENABLED:
+	if EXTENDED_LOGGING_ENABLED and not DEBUG:
 		if isfile(configFile['batFilename']):
 			Logger.AddInfo(f'EXTENDED_LOGGING: bat file {configFile['batFilename']} exists')
 		else:

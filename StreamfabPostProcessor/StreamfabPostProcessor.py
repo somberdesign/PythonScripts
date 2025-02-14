@@ -4,6 +4,8 @@ from string import punctuation
 from unidecode import unidecode
 from titlecase import titlecase
 
+DEBUG = True
+
 class filenameObject():
     def __init__(self, currentName = ""):
         self.currentName = currentName
@@ -34,7 +36,7 @@ def ReplaceChars(filename):
             continue
 
         # don't create double underscores
-        if baseFilename[i-1] == REPLACEMENT_CHAR or (len(baseFilename) >= i+2 and baseFilename[i+1] == REPLACEMENT_CHAR):
+        if baseFilename[i-1] == REPLACEMENT_CHAR or (len(baseFilename) >= i+1 and baseFilename[i] == REPLACEMENT_CHAR):
             continue
 
         newFilename += REPLACEMENT_CHAR
@@ -44,6 +46,9 @@ def ReplaceChars(filename):
         
 
 def Main():
+    
+    if DEBUG: print('---> DEBUG: Will not rename files')
+
     filenameObjects = []
     readFiles = [y for x in walk(getcwd()) for y in glob(path.join(x[0], '*.mp4'))]
     
@@ -59,11 +64,14 @@ def Main():
             print(f'Skipped: no change ({path.basename(o.targetName)})')
             continue
 
-        try:
-            rename(o.currentName, o.targetName)
-            print(f'Success: {o.targetName}')
-        except Exception as ex:
-            print(f'Error renaming file {o.currentName}. {ex}')
+        if DEBUG:
+            print(f'Recommended name: {path.basename(o.targetName)}')
+        else:
+            try:
+                rename(o.currentName, o.targetName)
+                print(f'Success: {o.targetName}')
+            except Exception as ex:
+                print(f'Error renaming file {o.currentName}. {ex}')
 
     
 

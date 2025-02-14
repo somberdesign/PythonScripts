@@ -4,7 +4,7 @@ from string import punctuation
 from unidecode import unidecode
 from titlecase import titlecase
 
-DEBUG = True
+DEBUG = False
 
 class filenameObject():
     def __init__(self, currentName = ""):
@@ -36,7 +36,10 @@ def ReplaceChars(filename):
             continue
 
         # don't create double underscores
-        if baseFilename[i-1] == REPLACEMENT_CHAR or (len(baseFilename) >= i+1 and baseFilename[i] == REPLACEMENT_CHAR):
+        if (
+                (len(newFilename) > 0 and newFilename[-1] == REPLACEMENT_CHAR) # double undersore
+                or (i == len(baseFilename)-1 and baseFilename[i] == REPLACEMENT_CHAR) # underscore is last char
+            ):
             continue
 
         newFilename += REPLACEMENT_CHAR

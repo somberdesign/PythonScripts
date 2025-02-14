@@ -11,11 +11,12 @@ sourceDirectory: e:\video\music
 
 # words that indicate the artist is a group, not an individual
 artistGroupWords:
+  - and
   - choir
+  - chorale
+  - duo
   - orchestra
   - trio
-  - and
-  - duo
 
 # strings that indicate an album is a movie soundtrack
 soundtrackWords:
@@ -73,6 +74,7 @@ ruleExceptions:
   mychael danna: d
   pete and wayne: p
   reo speedwagon: r
+  speedy west: w
   steve miller band: s
   summer flava: s
   tina and the b-side movement: t

@@ -20,7 +20,7 @@ def getTargetDirectory(destinationMap, moveDirectoryName:str) -> str:
 	
 	# return empty string if first character of dir is neither a letter nor number
 	if not moveDirectoryName[0].isalpha() and not moveDirectoryName[0].isdigit():
-		return str()
+		return str(), 0
 
 	focusDir = moveDirectoryName.split(" ")
 	# check for exception to rules
@@ -28,10 +28,10 @@ def getTargetDirectory(destinationMap, moveDirectoryName:str) -> str:
 	if "-" in focusDir:
 		artistName = " ".join(map(str, focusDir[0:focusDir.index("-")])).lower()
 		if artistName in ruleExceptions:
-			return destinationMap[ruleExceptions[artistName]]
+			return destinationMap[ruleExceptions[artistName]], 1
 	
 	elif moveDirectoryName.lower() in ruleExceptions:
-		return destinationMap[ruleExceptions[moveDirectoryName.lower()]]
+		return destinationMap[ruleExceptions[moveDirectoryName.lower()]], 2
 	
 	del ruleExceptions
 
@@ -46,23 +46,23 @@ def getTargetDirectory(destinationMap, moveDirectoryName:str) -> str:
 
 	# title or artist starts with "the"
 	if focusDir[0].lower() == "the":
-		return destinationMap["the"]
+		return destinationMap["the"], 3
 
 	# movie soundtrack
-	if any(w.lower() in moveDirectoryName.lower() for w in configFile['soundtrackWords']):
-		return destinationMap[focusDir[0][0].lower()]
+	if any(w.lower() in moveDirectoryName.lower().split() for w in configFile['soundtrackWords']):
+		return destinationMap[focusDir[0][0].lower()], 4
 
 	# title only: "A Country Christmas"
 	if "-" not in focusDir:
 		if moveDirectoryName[0].isnumeric() or moveDirectoryName[0] in punctuation:
-			return destinationMap["0"]
+			return destinationMap["0"], 5
 		else:
-			return destinationMap[moveDirectoryName.lower()[0]]
+			return destinationMap[moveDirectoryName.lower()[0]], 6
 
 	# check to see if artist is a group of people (like "Oscar Peterson Trio")
 	for i in range(0, focusDir.index("-")):
 		if focusDir[i].lower() in configFile['artistGroupWords']:
-			return destinationMap[focusDir[0][0].lower()]
+			return destinationMap[focusDir[0][0].lower()], 7
 	
 	# first word of dir is a first name, move file based on last name
 	if focusDir[0].lower() in firstNames:
@@ -72,13 +72,13 @@ def getTargetDirectory(destinationMap, moveDirectoryName:str) -> str:
 		while focusDir[lastNamePosition] in IGNORED_LAST_NAMES and lastNamePosition > 0:
 			lastNamePosition -= 1
 
-		return destinationMap[focusDir[lastNamePosition][0].lower()]
+		return destinationMap[focusDir[lastNamePosition][0].lower()], 8
 
 	# first word is not a name - assume it's the name of a group: "Off the Beat - No Static"
 	if moveDirectoryName[0].isnumeric() or moveDirectoryName[0] in punctuation:
-		return destinationMap["0"]
+		return destinationMap["0"], 9
 	else:
-		return destinationMap[moveDirectoryName.lower()[0]]
+		return destinationMap[moveDirectoryName.lower()[0]], 10
 
 def ReadFile(fn):
 	fileContents = []
@@ -173,7 +173,7 @@ if __name__ == '__main__':
 
 		moveDirectoryName = unidecode(rawMoveDirectoryName) # replace unicode characters with ascii equivalents
 		
-		targetDirectory = getTargetDirectory(configFile['destinationMap'], moveDirectoryName)
+		targetDirectory, ruleNumber = getTargetDirectory(configFile['destinationMap'], moveDirectoryName)
 		if len(targetDirectory) == 0 and not DEBUG:
 			Logger.AddWarning(f'Can''t find target directory for {moveDirectoryName}')
 			continue
@@ -186,7 +186,7 @@ if __name__ == '__main__':
 			else:
 				Logger.AddInfo(f"Target directory exists: didn't move source directory ({fullTargetPath})")
 		else:
-			msg = f"Added to move list: {rawMoveDirectoryName} --> {fullTargetPath}"
+			msg = f"Added to move list: {rawMoveDirectoryName} (Rule {ruleNumber}) --> {fullTargetPath}"
 			if DEBUG: 
 				print(msg)
 			else:

@@ -2,17 +2,16 @@
 
 === Create a Movie Sales List ===
 
-0.9 Open google doc 'Movie List.txt'
-
 1. Download as CSV any Sales sheets that have changed. Save them in dir ~\ReadSalesCsv\Csv_Sales. 
   ..Change the filename to match the following format: 0_Sales-DVDSales2021.csv. 
   ..ALL sales CSVs must be in this dir - none of the info read from them is stored anywhere except the output file, below. 
   ..You only need to replace ones that have changed.
 
-2. Put a current copy of 'Movie List.txt' in dir ~\ReadSalesCsv\Input .
-  a. Make a new list with "~\FileList\FileList.py". Use SmartList_*.txt.
-  b. Replace google doc SmartList.txt with the new one
-  c. Copy *_SmartList_Full to the DVD machine at c:\Users\rgw3\PythonScripts\SearchToBrowser\ as SmartlistFull.txt
+2. Create a new list of movies based on what files are on the drives
+  a. Make a new list with "~\FileList\FileList.py". Use *_SmartList.txt.
+  b. Copy new SmartList to ~\ReadSalesCsv\Input\ as "Movie List.txt"
+  c. Replace google doc SmartList.txt with the new one
+  d. Copy *_SmartList_Full to the DVD machine at c:\Users\rgw3\PythonScripts\SearchToBrowser\ as SmartlistFull.txt
 
 3. Execute ReadSalesCsv.py. This reads data from the csvs and puts it into \Output\SalesData.py.
 

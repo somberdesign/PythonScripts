@@ -62,7 +62,10 @@ def getTargetDirectory(destinationMap, moveDirectoryName:str) -> str:
 	# check to see if artist is a group of people (like "Oscar Peterson Trio")
 	for i in range(0, focusDir.index("-")):
 		if focusDir[i].lower() in configFile['artistGroupWords']:
-			return destinationMap[focusDir[0][0].lower()], 7
+			if focusDir[0][0].isnumeric():
+				return destinationMap["0"], 11
+			else:
+				return destinationMap[focusDir[0][0].lower()], 7
 	
 	# first word of dir is a first name, move file based on last name
 	if focusDir[0].lower() in firstNames:

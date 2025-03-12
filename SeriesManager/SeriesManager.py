@@ -79,10 +79,11 @@ def GetDisplayWindow():
 	txtDisplay = sg.Text(GetDisplayText(oData), key=KEY_DISPLAYTEXT, font=("Courier New", 10))
 
 	layout = [
+				[btnLotteryDraw, btnAddSeries, btnManageSeries, btnExit],
 				[txtDisplay],
-				[btnLotteryDraw, btnAddSeries, btnManageSeries, btnExit]
 			 ]
-	return sg.Window("Series Picker", layout)
+
+	return sg.Window("Series Picker", layout, size=(500, 900))
 
 def GetManageSeriesWindow(oData):
 	

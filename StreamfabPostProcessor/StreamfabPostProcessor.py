@@ -5,6 +5,7 @@ from unidecode import unidecode
 from titlecase import titlecase
 
 DEBUG = False
+REPLACEMENT_CHAR = "_"
 
 class filenameObject():
     def __init__(self, currentName = ""):
@@ -14,7 +15,6 @@ class filenameObject():
 
 def ReplaceChars(filename):
     REMOVE_CHARACTER_LIST = ["'"] # remove these characters instead of replacing them
-    REPLACEMENT_CHAR = "_"
     newFilename = str()        
     baseFilename = titlecase(unidecode(path.splitext(path.basename(filename))[0]))
 
@@ -46,7 +46,17 @@ def ReplaceChars(filename):
 
     return path.join(path.dirname(filename), newFilename + path.splitext(filename)[1])
 
-        
+
+# ex: The_Drew_Carey_Show_S03E25_Drew_s_Cousin.mp4
+# ex: The_Drew_Carey_Show_S05E01_Y2K_You_re_Okay.mp4
+def ReplaceCommonApostropheCombinations(filename):
+    returnVal = filename
+    for c in [ 'll', 'nd', 's', 't', 're']:
+        replacementString = REPLACEMENT_CHAR + c + REPLACEMENT_CHAR
+        returnVal = returnVal.replace(replacementString, replacementString[1:])
+
+    return returnVal
+    
 
 def Main():
     
@@ -61,6 +71,7 @@ def Main():
 
     for o in filenameObjects:
         o.targetName = ReplaceChars(o.targetName)
+        o.targetName = ReplaceCommonApostropheCombinations(o.targetName)
         
     for o in filenameObjects:
         if (o.currentName == o.targetName):

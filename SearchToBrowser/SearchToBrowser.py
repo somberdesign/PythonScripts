@@ -15,6 +15,7 @@ import easygui
 DIR_TO_SEARCH = r'c:\Users\rgw3\PythonScripts\SearchToBrowser'
 OUTPUT_DIRECTORY = r'c:\temp\searchToBrowser'
 EVERYTHING_COMMAND_LINE_PATH = r'"C:\Program Files\Everything\es.exe"' # leave empty to disable
+DEBUG = False
 
 def CleanText(line:str) -> str:
 	returnVal = re.sub('[^A-Za-z0-9 \n\-\~]', str(), line)
@@ -77,7 +78,9 @@ if __name__ == '__main__':
 	searchFileFull = os.path.join(os.path.split(searchFile)[0], os.path.splitext(os.path.split(searchFile)[1])[0] + "_full" + os.path.splitext(os.path.split(searchFile)[1])[1])
 	if (os.path.exists(searchFileFull)): 
 		searchFile = searchFileFull
-#	easygui.msgbox(searchFileFull)
+
+	if DEBUG:
+		easygui.msgbox(f'searchFileFull = {searchFileFull}')
 
 	searchTerms = CleanText(configValues['searchterm'].lower())
 	
@@ -94,6 +97,9 @@ if __name__ == '__main__':
 	everythingOutputPath = os.path.join(OUTPUT_DIRECTORY, everythingOutputFilename)
 	if not os.path.isdir(OUTPUT_DIRECTORY):
 		os.mkdir(OUTPUT_DIRECTORY)
+
+	if DEBUG:
+		easygui.msgbox(f'OUTPUT_DIRECTORY = {OUTPUT_DIRECTORY}')
 
 	# delete old output files
 	for deleteFile in os.listdir(OUTPUT_DIRECTORY):

@@ -21,7 +21,7 @@ if exist f del f
 for %%f in (*.mp4) do echo file '%%f' >> f
 
 rem concat files
-ffmpeg.exe -f concat -safe 0 -i f -c copy ..\..\concat_output.mp4
+ffmpeg.exe -f concat -safe 0 -i f -c copy ..\concat_output.mp4
 
 rem clean up
 cd ..

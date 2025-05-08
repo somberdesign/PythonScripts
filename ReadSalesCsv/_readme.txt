@@ -10,8 +10,8 @@
 2. Create a new list of movies based on what files are on the drives
   a. Make a new list with "~\FileList\FileList.py". Use *_SmartList_FULL.txt.
   b. Copy new *_SmartList_Full.txt to ~\ReadSalesCsv\Input\ as "Movie List.txt"
-  c. Make a copy of *_SmartList_Full.txt and name it MovieList.txt. Upload this file to Google Docs.
-  d. Copy *_SmartList_Full to the DVD machine at c:\Users\rgw3\PythonScripts\SearchToBrowser\ as SmartlistFull.txt
+  c. Make a copy of *_SmartList_Full.txt and name it MovieList.txt. Upload this file to Google Drive.
+  d. Copy *_SmartList_Full to the DVD machine at c:\Users\rgw3\PythonScripts\SearchToBrowser\ as Smartlist_Full.txt
 
 3. Execute ReadSalesCsv.py. This reads data from the csvs and puts it into \Output\SalesData.py.
 
@@ -25,4 +25,4 @@ Styles to apply to Movie List.txt before printing:
   .. Format / Page Style / Page / Margins 0.25 each
   .. Format / Columns / 3
   .. Format / Columns / Separator Line / Style Dotted
-  .. Font 8pt (try Bahnschrift Semilight 10pt)
+  .. Font 8pt (try Bahnschrift SemiLight 10pt)

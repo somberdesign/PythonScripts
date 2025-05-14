@@ -1,9 +1,12 @@
+#!/usr/bin/env python
+
 import os
 from FileListConfig import *
 from datetime import datetime
 from json import load
 from math import floor
 from re import sub
+from shutil import copy2
 
 # leave disabled - changes file that is an input to ReadSalesCsv\ModifyMovieList.py
 ENABLE_FILENAME_LIMIT = False
@@ -215,6 +218,7 @@ def main():
 	smartFiles = sorted(smartFiles, key=lambda s: sub(rePattern, '', s).lower())
 	smartFilesFull = sorted(smartFilesFull, key=lambda s: sub(rePattern, '', s).lower())
 	
+	# file with shortened titles
 	with open(filePath, 'w') as f:
 		f.write(datetime.now().strftime('%Y-%m-%d') + '\n')
 		f.write(str(len(smartFiles)) + ' items\n')
@@ -225,6 +229,7 @@ def main():
 		f.close()
 	print('Wrote output file ' + filePath)
 
+	# file with full titles
 	with open(filePathFull, 'w') as f:
 		f.write(datetime.now().strftime('%Y-%m-%d') + '\n')
 		f.write(str(len(smartFilesFull)) + ' items\n')
@@ -234,6 +239,15 @@ def main():
 			f.write('%s\n' % item)
 		f.close()
 	print('Wrote output file ' + filePathFull)
+
+	#   b. Copy new *_SmartList_Full.txt to ~\ReadSalesCsv\Input\ as "Movie List.txt"
+	# see readme at ~\ReadSalesCsv\_readme.txt
+	movieListDir = r'..\ReadSalesCsv\Input'
+	movieListFilename = 'Movie List.txt'
+	movieListFullPath = os.path.join(movieListDir, movieListFilename);
+	if os.path.isfile(movieListFullPath): os.remove(movieListFullPath)
+	copy2(filePathFull, movieListFullPath)
+
 
 if __name__ == '__main__':
     main()

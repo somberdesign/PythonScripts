@@ -1,5 +1,5 @@
-2025-04-30
-10606 items
+2025-05-09
+10621 items
 Missing items are (in parentheses)
 
  Season 1
@@ -308,6 +308,7 @@ Abbott and Costello Meet The Invisible Man 1951
 Abbott and Costello Meet The Mummy 1955
 Abducted 2013
 Abduction 2011
+Abigail 2024
 Abilene Town 1946
 Ablaze 2001
 Abominable 2019
@@ -742,7 +743,7 @@ Aquamarine 2006
 Arbitrage 2012
 (Arc the Lad S01 E01-21)
 Arc the Lad Season 1
-Arcane Season 1
+Arcane Seasons 1-2
 Arch of Triumph 1984
 Archenemy 2020
 Archer Seasons 1-4
@@ -753,6 +754,7 @@ Arcimboldo Nature and Fantasy 2010
 Arctic Apocalypse 2019
 Arctic Blast 2010
 Arctic Dogs 2019
+Are We Done Yet 2007
 Are We There Yet 2005
 Are You Being Served 1977
 Argo 2012
@@ -1281,6 +1283,7 @@ Blood Moon 2014
 Blood of Beasts 2005
 Blood of the Dragon 1971
 Blood of the Sun 1945
+Blood on the Sun 1945
 Blood Simple 1984
 Blood Tide 1982
 Blood Ties 2013
@@ -1321,6 +1324,7 @@ Bob and Don A Love Story
 Bob Hope Ultimate Collection
 Bob Marley and The Wailers Live at the Rainbow 1991
 Bob Newhart Button Down Concert 1992
+Bob Newhart Button Down Concert 2010
 Bob Roberts 1992
 Bob the Builder Diggin For Treasure 2006
 Bobby 2006
@@ -1699,6 +1703,7 @@ Chain Reaction 1996
 Chained Heat 2 1993
 Chairman of the Board 1998
 Chalk 2006
+Challengers 2024
 Champions 2023
 Change of Habit 1969
 Changeling 2008
@@ -3337,6 +3342,7 @@ Ghostbusters 01 1984
 Ghostbusters 02 II 1989
 Ghostbusters 03 2016
 Ghostbusters 04 Afterlife 2021
+Ghostbusters 05 Frozen Empire 2024
 Ghosts of California 2003
 Ghosts of Girlfriends Past 2009
 Ghosts of Mars 2001
@@ -3487,6 +3493,7 @@ Grease 1978
 Grease 2 1982
 Great Balls of Fire 1989
 Great Expectations 1998
+Great Guy 1936
 (Great Performances S29 E01-07)
 (Great Performances S29 E09-16)
 Great Performances Season 29
@@ -3621,6 +3628,7 @@ Hard Time 1998
 Hard to Kill 1990
 Hardball 2001
 Hardflip 2012
+Hare Krishna The Mantra The Movement and the Swami 2017
 Harlem Nights 1989
 Harley Davidson and the Marlboro Man 1991
 Harold 2008
@@ -4508,6 +4516,7 @@ Kiss the Girls 1997
 Kissing a Fool 1998
 Kissing Jessica Stein 2001
 Kite 2014
+Kitten Party 2010
 Klute 1971
 Knight and Day 2010
 Knight Rider 2000 1991
@@ -4859,6 +4868,7 @@ Love Ranch 2010
 Love Simon 2018
 Love Story 1970
 Love Thy Neighbor 2005
+Lovecraft Country Complete Series 2020
 Lovelace 2013
 Loveless 2017
 Lovely Molly 2011
@@ -4989,6 +4999,7 @@ Manhunter 1986
 Mankind Complete Series 2012
 Mannequin 1987
 Mannequin On the Move 1991
+Mannheim Steamroller Christmas Live 1997
 Mannix Season 2
 Manos The Hands of Fate 1966
 Mans Favorite Sport 1964
@@ -5468,7 +5479,7 @@ My Moms New Boyfriend 2008
 My Morning Jacket Okonokos 2006
 My Mother Likes Women 2002
 My Name is Barbra 1965
-My Name Is Earl 2005
+My Name Is Earl Seasons 1-3
 My New Gun 1992
 My One and Only 2009
 My Own Worst Enemy 2008
@@ -7164,10 +7175,12 @@ Something Beneath 2007
 Something Borrowed 2011
 Something in the Wind 1947
 Something New 2006
+Something to Sing About 1937
 Something to Talk About 1995
 Something Wild 1986
 Somethings Gotta Give 2003
 Somewhere in Time 1980
+Somewhere Tomorrow 1983
 Sommersby 1993
 Sommore The Queen Stands Alone 2008
 Son of Bigfoot 2017
@@ -8827,6 +8840,7 @@ The Mackintosh Man 1973
 The Magic Blade 1976
 The Magnificent Seven 1960
 The Magnificent Seven 2016
+The Magnificent Seven Ride 1972
 The Maiden Heist 2009
 The Main Event 1979
 The Majestic 2001
@@ -9622,6 +9636,7 @@ The Whistleblower 2010
 The Whistlers 2019
 The White Dragon 2004
 The White King 2016
+The White Lotus Seasons 1-3
 The White Queen Complete Series 2013
 The White River Kid 1999
 The Whole Nine Yards 1995

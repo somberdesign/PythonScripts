@@ -12,6 +12,7 @@ sourceDirectory: e:\video\music
 # words that indicate the artist is a group, not an individual
 artistGroupWords:
   - and
+  - band
   - choir
   - chorale
   - duo
@@ -58,28 +59,27 @@ destinationMap:
 ruleExceptions:
   beegie adair: a
   bernie and red: b
+  bill bass steel pans: b
+  boy george and culture club: b
   cat stevens: s
   clare and the reasons: c
   dixie chicks: d
   fats domino: d
   gato barbieri: b
   gene loves jezebel: g
-  german air force band: g
   green day: g
   hopkinson smith: s
   huntley brown: b
-  john cafferty and the beaver brown band: j
   kt tunstall: t
   les nubians: l
   monty python: m
   mychael danna: d
   pete and wayne: p
   reo speedwagon: r
-  Rilo Kiley: k
+  rilo kiley: k
   sara k.: s
   sawyer brown: b
   speedy west: w
-  steve miller band: s
   summer flava: s
   tina and the b-side movement: t
   van morrison: v

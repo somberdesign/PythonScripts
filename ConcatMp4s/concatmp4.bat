@@ -13,7 +13,7 @@ rem 264 baseline encode
 rem for %%f in (*.mp4) do ffmpeg -i %%f -c:v libx264 -profile:v baseline -level:v 3.1 -refs 1 -r 30 -video_track_timescale 90k -filter:v scale="-1:720",pad="1280:720:720/2+ow/2",format="yuv420p" -c:a copy baseline\%%f
 
 rem 265 baseline encode
-for %%f in (*.mp4) do ffmpeg -i %%f -movflags use_metadata_tags -vcodec libx265 -crf 28 -c:a copy baseline\%%f
+for %%f in (*.mp4) do ffmpeg -i %%f -movflags use_metadata_tags -vcodec libx265 -vsync cfr -crf 28 -c:a copy baseline\%%f
 
 rem create file list
 cd baseline

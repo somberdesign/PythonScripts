@@ -10,8 +10,9 @@ import sys
 from time import time
 from typing import Tuple, List
 from subprocess import call
-import easygui
+from easygui import msgbox
 from random import choice
+from GoogleFonts import GoogleFonts
 
 DIR_TO_SEARCH = r'c:\Users\rgw3\PythonScripts\SearchToBrowser'
 OUTPUT_DIRECTORY = r'c:\temp\searchToBrowser'
@@ -55,12 +56,23 @@ def GetArguments(configValues:dict[str, str]) -> Tuple[bool, str]:
 			warningMessage += f'{v} has is not defined\n'
 
 	if len(warningMessage) > 0:
-		easygui.msgbox(f'WARNING\n{warningMessage}')
+		msgbox(f'WARNING\n{warningMessage}')
 
 	return True, str()
 
 def GetGoogleFontName() -> str:
+	
 	fontnames:List[str] = ['Roboto', 'Lora', 'Pacifico', 'Montserrat', 'Raleway', 'Oswald', 'Open', 'Playfair', 'Merriweather', 'Caveat', 'Nunito', 'Abril', 'Comfortaa', 'Indie', 'Anton', 'Quicksand', 'Libre', 'Barlow', 'Exo', 'Arvo', 'Amatic', 'Dancing', 'Josefin', 'Fira', 'Bitter', 'Patua', 'Ubuntu', 'Satisfy', 'Zilla', 'Alegreya', 'Cinzel', 'DM', 'Spectral', 'Shadows', 'PT', 'Slabo', 'Teko', 'Yanone', 'Source', 'Archivo', 'Volkhov', 'Cormorant', 'Cardo', 'Just', 'Francois', 'Fredoka', 'Kaushan', 'Sacremento', 'Chivo', 'Bangers', 'Permanent', 'Crimson', 'Overpass', 'Orbitron', 'Manrope', 'Varela', 'Fjalla', 'Rokkitt', 'Hind', 'Rock', 'Baloo', 'Maven', 'Work', 'Architects', 'Saira', 'Righteous', 'Press', 'Megrim', 'Telex', 'Cantata', 'Staatliches', 'Titan', 'Kumar', 'Economica', 'Averia', 'Noto', 'Yeseva', 'Alice', 'Handlee', 'Mukta', 'Bevan', 'Luckiest', 'Anton', 'Koulen', 'Sen', 'Tangerine', 'Corben', 'Armata', 'Julee', 'Epilogue', 'Special', 'M', 'Lexend', 'Marcellus', 'Asap', 'Vibur', 'Ewert', 'Anonymous', 'Ultra', 'Belanosima']
+	
+	fontdata = GoogleFonts.GetGoogleFontData()
+	if fontdata is None:
+		msgbox('Error receiving google font names')
+	else:
+		fontnames = []
+		for item in fontdata['items']: # type: ignore
+			fontnames.append(item['family']); # type: ignore
+
+	
 	return choice(fontnames)
 
 
@@ -104,7 +116,7 @@ if __name__ == '__main__':
 		searchFile = searchFileFull
 
 	if DEBUG:
-		easygui.msgbox(f'searchFileFull = {searchFileFull}')
+		msgbox(f'searchFileFull = {searchFileFull}')
 
 	searchTerms = CleanText(configValues['searchterm'].lower())
 	
@@ -112,7 +124,6 @@ if __name__ == '__main__':
 	filenameSearchTerms = sanitize_filename(searchTerms.split(' ', 1)[0]) # take first word only
 	for c in "' ":
 		filenameSearchTerms = filenameSearchTerms.replace(c, "_")
-
 
 	# set output directory and filename
 	outputFilename = f'searchToBrowser_{filenameSearchTerms}.html'
@@ -123,7 +134,7 @@ if __name__ == '__main__':
 		os.mkdir(OUTPUT_DIRECTORY)
 
 	if DEBUG:
-		easygui.msgbox(f'OUTPUT_DIRECTORY = {OUTPUT_DIRECTORY}')
+		msgbox(f'OUTPUT_DIRECTORY = {OUTPUT_DIRECTORY}')
 
 	# delete old output files
 	for deleteFile in os.listdir(OUTPUT_DIRECTORY):
@@ -176,28 +187,33 @@ if __name__ == '__main__':
 			salesCell += '(no sales data found)'
 
 	googleFontName:str = GetGoogleFontName()
-	with open(outputPath, 'w') as outfile:
-		outfile.write(f'<html>')
-		outfile.write(f'<head>')
-		outfile.write(f'<link rel="stylesheet" href="https://fonts.googleapis.com/css?family={googleFontName}">')
-		outfile.write(f'<style>')
-		outfile.write(f'body {{ font-family: "{googleFontName}", sans-serif; width: 100% }}')
-		outfile.write('td { width: 50%; vertical-align: top; min-width: 500px; }')
-		outfile.write(f'</style>')
-		outfile.write(f'</head><body>')
 
-		outfile.write(f'Searching: <a href="file://{searchFile}" target="_new">{searchFile}</a>&nbsp;({str(filedate)[:10]})<br />')
-		outfile.write(f'Search Terms: {searchTerms.strip()}<br />')
-		outfile.write(f'Found {len(foundLines)} matches in {len(searchLines)} records<br />') 
-		outfile.write(f'Font Name: {googleFontName}<br />')
-		outfile.write(f'&nbsp;<br />')
 
-		outfile.write(f'<table><tr>')
-		outfile.write(f'<td>{catalogCell}</td>')
-		outfile.write(f'<td>{salesCell}</td>')
-		outfile.write(f'</tr></table>')
-		outfile.write(f'</body></html>')
 
+	try:
+		with open(outputPath, 'w') as outfile:
+			outfile.write(f'<html>')
+			outfile.write(f'<head>')
+			outfile.write(f'<link rel="stylesheet" href="https://fonts.googleapis.com/css?family={googleFontName}">')
+			outfile.write(f'<style>')
+			outfile.write(f'body {{ font-family: "{googleFontName}", sans-serif; width: 100% }}')
+			outfile.write('td { width: 50%; vertical-align: top; min-width: 500px; }')
+			outfile.write(f'</style>')
+			outfile.write(f'</head><body>')
+
+			outfile.write(f'Searching: <a href="file://{searchFile}" target="_new">{searchFile}</a>&nbsp;({str(filedate)[:10]})<br />')
+			outfile.write(f'Search Terms: {searchTerms.strip()}<br />')
+			outfile.write(f'Found {len(foundLines)} matches in {len(searchLines)} records<br />') 
+			outfile.write(f'Font Name: {googleFontName}<br />')
+			outfile.write(f'&nbsp;<br />')
+
+			outfile.write(f'<table><tr>')
+			outfile.write(f'<td>{catalogCell}</td>')
+			outfile.write(f'<td>{salesCell}</td>')
+			outfile.write(f'</tr></table>')
+			outfile.write(f'</body></html>')
+	except Exception as ex:
+		msgbox(f'Error writing file {outputPath}. {ex}')
 
 				
 	# everything output file

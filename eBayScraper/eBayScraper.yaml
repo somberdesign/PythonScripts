@@ -1,0 +1,5 @@
+---
+
+eBayScrapeActiveListings:
+  logfile: 'e:\Logs\eBayScrapeActiveListings.log'
+  url: 'https://www.ebay.com/sh/lst/active'

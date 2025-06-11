@@ -46,8 +46,8 @@ class SeriesManager_Data(object):
 		self.conn = None
 		try:
 			self.conn = sqlite3.connect(SeriesManager_Data.FILENAME_DB)
-		except:
-			messagebox.showinfo(title=None, message=f'Error opening database file {SeriesManager_Data.FILENAME_DB}')
+		except Exception as ex:
+			messagebox.showinfo(title=None, message=f'Error opening database file {SeriesManager_Data.FILENAME_DB}.\n{ex}')
 		
 		return self
 

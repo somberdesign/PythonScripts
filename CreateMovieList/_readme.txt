@@ -16,6 +16,7 @@
 3. Execute ReadSalesCsv.py. This reads data from the csvs and puts it into \Output\SalesData.py.
 
 4. Execute ModifyMovieList.py. This creates MovieList_Sales.html, MovieList_Sales.txt and MovieList_Unmatched.txt in dir \Output.
+  .. copy MovieList_Sales.txt to e:\Cached for use by SearchToBrowser.py
   .. print MovieList_Sales.txt for garage sales
   .. use swriter MovieList_Sales.txt
 
@@ -26,3 +27,6 @@ Styles to apply to Movie List.txt before printing:
   .. Format / Columns / 3
   .. Format / Columns / Separator Line / Style Dotted
   .. Font 8pt (try Bahnschrift SemiLight 10pt)
+
+NOTE: 2b, 2c, and 2d must be done manually if you use the bat file
+

@@ -44,4 +44,6 @@ echo   .. Font 8pt (try Bahnschrift SemiLight 10pt)
 :END
 cd %START_DIRECTORY%
 
+type _readme.txt
+
 pause

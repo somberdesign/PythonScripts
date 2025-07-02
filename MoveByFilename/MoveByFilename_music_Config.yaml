@@ -16,7 +16,9 @@ artistGroupWords:
   - choir
   - chorale
   - duo
+  - group
   - orchestra
+  - series
   - trio
 
 # strings that indicate an album is a movie soundtrack
@@ -57,19 +59,26 @@ destinationMap:
 
 # exceptions to the rule
 ruleExceptions:
+  ab koster: k
+  baden powell: p
   beegie adair: a
   bernie and red: b
   bill bass steel pans: b
   boy george and culture club: b
   cat stevens: s
   clare and the reasons: c
+  coyote oldman: o
   dixie chicks: d
+  emmylou harris: h
   fats domino: d
+  jonatha brooke: b
   gato barbieri: b
   gene loves jezebel: g
   green day: g
   hopkinson smith: s
   huntley brown: b
+  jethro tull: j
+  jimmy eat world: j
   kenny g: k
   kt tunstall: t
   les nubians: l
@@ -85,3 +94,4 @@ ruleExceptions:
   tina and the b-side movement: t
   van morrison: v
   victory belles: v
+  

@@ -5,6 +5,7 @@ from requests import get
 import typing
 from yaml import safe_load, YAMLError
 from re import I as CaseInsensitive, sub
+from sys import exit
 
 TAB_CLASS_TITLE:str = 'shui-dt-column__title'
 TAB_CLASS_TIMEREMAINING:str = 'shui-dt-column__timeRemaining'
@@ -21,13 +22,16 @@ ebayUrl:str = str()
 
 def CreateItemText(inString:str) -> str:
     returnVal:str = str()
-    searchData:typing.List = [('cd', 'cd'), ('cassette tape', 'ct')]
+    searchData:typing.List = [('cd', 'cd'), ('cassette tape', 'ct'), ('cgc', 'cb')]
 
     # ignore items that contain any of these words
     for word in ['TitleSort']:
         if word in inString: 
             return str()
 
+    # if able to identify type of item being sold, 
+    # add the appropriate prefix and delete everthing after the keyword
+    # ex: "Nightmask 2 Dec 1986 CGC 94"
     for item in searchData:
         findLocation = inString.lower().find(' (' + item[0])
         if findLocation == -1: continue
@@ -52,10 +56,14 @@ def CreateItemText(inString:str) -> str:
         returnVal = sub(' ' + word, str(), returnVal, flags=CaseInsensitive)
 
     # replace "season x" with "sx"
-    returnVal = sub(r'(season )(/n)', 's\2', returnVal)
+    returnVal = sub(r'(season )(/n)', 's\2', returnVal, flags=CaseInsensitive)
+
+    # replace "volume x" with "vx"
+    returnVal = sub(r'(volume )(/n)', 'v\2', returnVal, flags=CaseInsensitive)
+    returnVal = sub(r'(vol )(/n)', 'v\2', returnVal, flags=CaseInsensitive)
 
     #remove region
-    returnVal = sub('region \n', '', returnVal )
+    returnVal = sub('region \n', '', returnVal, flags=CaseInsensitive)
 
     # remove doubled spaces
     returnVal = returnVal.replace('  ', ' ')
@@ -106,7 +114,9 @@ def make_soup_file(filename:str) -> BeautifulSoup | None:
             filecontents = f.read()        
     except Exception as ex:
         Logger2.AddError(f'Unable to read input file {INPUT_FILE_PATH}. {ex}')
-        return None
+        print('pause')
+        input()
+        exit(1)
 
     return BeautifulSoup(filecontents, 'html.parser')
 
@@ -128,7 +138,7 @@ def removeYesterday(inList:list) -> list:
             for item in yesterday:
                 previousItems.append(item.strip())
     except Exception as ex:
-        Logger2.AddError(f'Error opening yesterday''s items file {PREVIOUS_ITEM_PATH}. {ex}')
+        Logger2.AddError(f"Error opening yesterday's items file {PREVIOUS_ITEM_PATH}. {ex}")
 
     # remove them from returnval if they match
     if len(previousItems) > 0:
@@ -162,7 +172,7 @@ def TimeLeftToMinutes(instr:str) -> int:
 
 
 if __name__ == '__main__':
-    rejectedItemCount:int = 0
+    timeRejectedCount:int = 0
 
     GetConfigValues()
 
@@ -176,7 +186,7 @@ if __name__ == '__main__':
         timeRemainingElement = titleElement.find_next('td', class_=TAB_CLASS_TIMEREMAINING)
         minutesLeft = TimeLeftToMinutes(timeRemainingElement.text)
         if minutesLeft > MINUTE_CUTOFF: 
-            rejectedItemCount += 1
+            timeRejectedCount += 1
             continue
 
         cleanItem:str = CreateItemText(titleElement.text)
@@ -196,7 +206,7 @@ if __name__ == '__main__':
     except Exception as ex:
         Logger2.AddError(f'Error writing file {OUTPUT_FILE_PATH}. {ex}')
 
-    Logger2.AddInfo(f'Read {len(tagTitles) - 1} listings, rejected {rejectedItemCount} of them, {yesterdayCount} appeared yesterday')
+    Logger2.AddInfo(f"Read {len(tagTitles) - 1} listings, {timeRejectedCount} don't expire today, {yesterdayCount} appeared yesterday")
 
     print('pause')
     input()

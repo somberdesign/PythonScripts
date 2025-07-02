@@ -21,7 +21,7 @@ SALES_FILE_PATH = r'h:\Cached\MovieList_Sales.txt'
 DEBUG = False
 
 def CleanText(line:str) -> str:
-	returnVal = re.sub('[^A-Za-z0-9 \n\-\~]', str(), line)
+	returnVal = re.sub(r'[^A-Za-z0-9 \n\-\~]', str(), line)
 	return returnVal
 	
 def GetArguments(configValues:dict[str, str]) -> Tuple[bool, str]:
@@ -80,8 +80,12 @@ def GetSalesFileLines(searchterm:str) -> List[str]:
 	returnVal:List[str] = []
 	searchLines:List[str] = []
 
-	with open(SALES_FILE_PATH, 'r') as f:
-		searchLines = f.readlines()
+	try:
+		with open(SALES_FILE_PATH, 'r') as f:
+			searchLines = f.readlines()
+	except Exception as ex:
+		msgbox(f'ERROR: unable to open sales file ({SALES_FILE_PATH}) ')
+		exit(1)
 
 	for line in searchLines:
 		result = re.search(r'^\d*\-\d{3}', line)

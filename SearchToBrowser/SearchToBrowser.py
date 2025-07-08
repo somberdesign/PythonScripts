@@ -53,7 +53,7 @@ def GetArguments(configValues:dict[str, str]) -> Tuple[bool, str]:
 	warningMessage = str()
 	for v in ['searchfilepath', 'searchterm']:
 		if len(configValues[v]) == 0:
-			warningMessage += f'{v} has is not defined\n'
+			warningMessage += f'SearchToBrowser.GetgArguments(): {v} is not defined\n'
 
 	if len(warningMessage) > 0:
 		msgbox(f'WARNING\n{warningMessage}')

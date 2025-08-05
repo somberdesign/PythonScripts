@@ -8,7 +8,7 @@ import sys
 
 TARGET_FILETYPE = 'url'
 SPACES = ' ' * 15
-DAYLIMIT = 45
+DAYLIMIT = 60
 BLOCKDAYS = [2] # list of days-of-the-week (to place a fixed char instead of the file count. 0=Mon, 1=Tue...
 BLOCKCHAR = '-'
 

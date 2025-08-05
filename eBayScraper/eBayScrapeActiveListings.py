@@ -17,6 +17,9 @@ INPUT_FILE_PATH = r'C:\temp\DisplayEbayActiveItems.html'
 OUTPUT_FILE_PATH = r'C:\temp\ebayScrapeActiveListings_output.txt'
 PREVIOUS_ITEM_PATH = r'C:\temp\ebayScrapeActiveListings_previous.txt'
 
+# remove items that contain any of these words
+DELETE_ITEM_WORDS = ['ItemSort']
+
 logger = None
 ebayUrl:str = str()
 
@@ -193,20 +196,28 @@ if __name__ == '__main__':
         if cleanItem:
             outputItems.append(cleanItem)
 
-    # get rid of yesterday's items
     outputCount = len(outputItems)
+
+    
+    # get rid of yesterday's items
     outputItems = removeYesterday(outputItems)
     yesterdayCount = outputCount - len(outputItems)
 
+    badstringCount = 0
     try:
         with open(OUTPUT_FILE_PATH, 'w') as f:
             for item in outputItems:
-                f.write(item + '\n')
+                
+                # omit items that contain specific strings
+                if any(badstring in item for badstring in DELETE_ITEM_WORDS):
+                    badstringCount += 1
+                else:
+                    f.write(item + '\n')
         
     except Exception as ex:
         Logger2.AddError(f'Error writing file {OUTPUT_FILE_PATH}. {ex}')
 
-    Logger2.AddInfo(f"Read {len(tagTitles) - 1} listings, {timeRejectedCount} don't expire today, {yesterdayCount} appeared yesterday")
+    Logger2.AddInfo(f"Read {len(tagTitles) - 1 - badstringCount} listings, {timeRejectedCount} don't expire today, {yesterdayCount} appeared yesterday")
 
     print('pause')
     input()

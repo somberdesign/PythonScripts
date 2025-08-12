@@ -3,12 +3,16 @@ from datetime import timedelta
 from math import floor
 import os
 import sys
+from yaml import safe_load, YAMLError
+from subprocess import run
+from pyperclip import copy as pyperclipCopy
+from random import choice, seed
 
 # Counts the number of files with a specific filetype under the target dir
 
-TARGET_FILETYPE = 'url'
-SPACES = ' ' * 15
-DAYLIMIT = 60
+# TARGET_FILETYPE = 'url'
+# SPACES = ' ' * 15
+DAYLIMIT = 45
 BLOCKDAYS = [2] # list of days-of-the-week (to place a fixed char instead of the file count. 0=Mon, 1=Tue...
 BLOCKCHAR = '-'
 
@@ -25,6 +29,11 @@ BLOCKCHAR = '-'
 
 def CountDirectories(targetDir:str):
 	results = {}
+	lowItemCount = 1000
+	lowSeriesCount = 1000
+	lowItemDirs = []
+	lowSeriesDirs = []
+	lowSeriesDirs = []
 
 	# loop over month dirs
 	for monthdir in [d for d in os.listdir(targetDir) if os.path.isdir(os.path.join(targetDir, d))]:
@@ -73,9 +82,35 @@ def CountDirectories(targetDir:str):
 			for i in seriesItems:
 				if i in items: items.remove(i)
 
+			# don't look at blocked days when figuring out lowest item counts
+			directoryDateString = dir[:-4] # dir looks like this: 2025-08-21-Thu
+			directoryDate = dt.strptime(directoryDateString, '%Y-%m-%d')
+			if not directoryDate.weekday() in BLOCKDAYS:
+				if len(items) == lowItemCount:
+					lowItemDirs.append(testDir)
+				
+				elif len(items) < lowItemCount:
+					lowItemDirs.clear()
+					lowItemDirs.append(testDir)
+					lowItemCount = len(items)
+
+				if len(seriesItems) == lowSeriesCount:
+					lowSeriesDirs.append(testDir)
+				
+				elif len(seriesItems) < lowSeriesCount:
+					lowSeriesDirs.clear()
+					lowSeriesDirs.append(testDir)
+					lowSeriesCount = len(seriesItems)
+
+
 			results[testDir] = len(items), len(seriesItems)
 	
-	return results
+	seed(dt.now().microsecond) # improve randomness?
+	return { 
+		'results': results, 
+		'lowestItemDate': choice(lowItemDirs), 
+		'lowestSeriesDate': choice(lowSeriesDirs) 
+	}
 
 def CountFiles(targetDir:str):
 	results = []
@@ -87,6 +122,7 @@ def CountFiles(targetDir:str):
 	results.sort(key=lambda tup:tup[0]) # sort by number of files in dir
 	for item in results:
 		print(item[1])
+
 
 def ProcessCommandLine():
 	returnVal = [str(), []]
@@ -154,7 +190,9 @@ if __name__ == '__main__':
 		CountFiles(targetDir)
 
 	else:
-		directoryData = CountDirectories(targetDir)
+		allResults = CountDirectories(targetDir)
+		directoryData = allResults['results']
+		
 		if len(directoryData) > 0:
 			dateSpaces = ' ' * (floor(len(list(directoryData.items())[0][0]) / 2) - 2)
 			print(f'{dateSpaces}DATE               SINGLES  SERIES  ')
@@ -166,5 +204,10 @@ if __name__ == '__main__':
 				# print(f'{item[0]}    {item[1][0] if item[1][0] > 0 else " "}       {item[1][1] if item[1][1] > 0 else " "} ')
 				print(f'{item[0]}    {singleValue}       {seriesValue}')
 
-		
+			lowestItemDate = allResults['lowestItemDate']
+			print(f'\nIndividual Pick: {lowestItemDate} (clipboard)')
+			print(f'Series Pick    : {allResults['lowestSeriesDate']}')
+
+			completedProcess = run(["c:\\Windows\\explorer.exe", lowestItemDate])
+			pyperclipCopy(lowestItemDate)
 	input()

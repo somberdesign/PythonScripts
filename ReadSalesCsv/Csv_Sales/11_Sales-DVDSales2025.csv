@@ -1,9 +1,9 @@
-,,$100.00,Basil Deardens London Underground,,,$11.50,Average Sale Price,,,
+,,$100.00,Basil Deardens London Underground,,,$11.52,Average Sale Price,,,
  ,,-$137.00,Inventory cost (DVDs and CDs),,,$9.50,Median Sale Price,,,
 ,,,,,,,,,,
-$731.33,Payment Received,Sales Fees,Postage,Other Costs,Title,"Purchase Price
+$949.56,Payment Received,Sales Fees,Postage,Other Costs,Title,"Purchase Price
 Offset",,MovieList Key,Flags,Group ID
-,"$3,116.19",-$562.95,"-$1,222.63",-$599.28,,,,,,
+,"$3,814.62",-$687.36,"-$1,491.46",-$686.24,,,,,,
 1/1/2025,,,,-$21.95,eBay Store Subscription,,,,,
 1/1/2025,$12.00,-$2.33,-$4.55,,Cocktail by Rose Colella CD,$0.75,$5.87,,,C2302
 1/1/2025,$11.00,-$2.16,-$4.47,,Carolina Moon,-$1.00,$3.37,,,
@@ -237,7 +237,7 @@ Offset",,MovieList Key,Flags,Group ID
 6/28/2025,$10.00,-$1.80,-$4.63,,Circuit,-$0.13,$3.45,,,2429
 6/29/2025,$10.00,-$1.80,-$4.63,,Heart and Crime by Julie Doiron CD,$0.71,$4.28,,,2433
 6/30/2025,$9.00,-$1.65,-$4.57,,Frances,-$0.13,$2.66,,,2429
-7/1/2025,,,,-$21.95,,,,,,
+7/1/2025,,,,-$21.95,eBay Store Subscription,,,,,
 7/1/2025,$16.00,-$2.79,-$4.63,,Escape Journey into Fear by Radio Spirits CD,$0.76,$9.33,,,2426
 7/3/2025,$8.50,-$1.57,-$4.41,,Rockthology 6 Hard and Heavy,$0.57,$3.09,,,2414
 7/4/2025,$9.75,-$1.76,-$4.52,,Mrs Bradley Mysteries Speedy Death,$0.77,$4.24,,,2406
@@ -284,8 +284,71 @@ Offset",,MovieList Key,Flags,Group ID
 7/26/2025,$7.00,-$1.35,-$4.47,,Letter from Home by Pat Metheny Group CD,$0.64,$1.82,,,2513
 7/27/2025,$8.28,-$1.54,-$4.47,,White Nights and Jazz in Leningrad by The Billy Taylor Trio CD,$0.71,$2.98,,,2433
 7/28/2025,$9.00,-$1.65,-$4.47,,I Wanna Hold Your Hand,$0.03,$2.91,,,2509
+8/1/2025,,,,-$21.95,eBay Store Subscription,,,,,
 8/3/2025,$7.50,-$1.42,-$4.47,,Greatest Hits by The Who CD,$0.64,$2.25,,,2513
 8/3/2025,$7.22,-$1.38,-$4.47,,Greatest Hit of the Outlaws by The Outlaws CD,$0.38,$1.75,,,2507
 8/3/2025,$22.00,-$3.69,-$4.47,,Winds of Change California Zephyr 1949 2005,,$13.84,,,
 8/4/2025,$7.50,-$1.42,-$4.47,,U2 Elevation 2001,-$0.81,$0.80,,,
 8/4/2025,$25.00,-$4.14,-$4.47,,Under the Sun,-$0.56,$15.84,,,2409
+8/5/2025,$10.00,-$1.80,-$4.47,,Hood of the Living Dead,$0.43,$4.17,,,2428
+8/5/2025,$8.50,-$1.57,-$4.47,,Splinter / American Swing,$0.71,$3.17,,,2408
+8/5/2025,$7.50,-$1.42,-$4.47,,The Accidental Husband ,$0.78,$2.39,,,2502
+8/6/2025,$7.50,-$1.42,-$4.47,,Revolver by The Beatles CD,$0.75,$2.36,,,2506
+8/7/2025,$10.75,-$2.01,-$4.47,,Frequencies Sounds of Healing by Jonathan Goldman CD,$0.64,$4.91,,,2513
+8/7/2025,,,,-$43.06,Purchased Padded Mailers,,,,,
+8/8/2025,$9.00,-$1.65,-$4.47,,Waking the Dead Season 6,$0.03,$2.91,,,2509
+8/8/2025,$10.50,-$1.97,-$4.47,,The Ladder by Yes CD,$0.71,$4.77,,,2433
+8/8/2025,$12.00,-$2.19,-$4.47,,Pink Floyd PULSE Live at Earls Court,-$4.00,$1.34,,,
+8/8/2025,$11.25,-$2.08,-$4.47,,Headcoatitude by Thee Headcoats,$0.72,$5.42,,,2311
+8/8/2025,$8.71,-$1.60,-$4.47,,Reimagined Songs of Elis Regina by Nossa Bossa Nova CD,$0.71,$3.35,,,2408
+8/9/2025,$8.00,-$1.50,-$4.47,,Eric Clapton Crossroads Guitar Festival,$0.03,$2.06,,,2509
+8/10/2025,$50.00,-$7.88,-$4.47,,Pimsleur Language Programs German I II III,$0.64,$38.29,,,2513
+8/10/2025,$26.00,-$4.29,-$4.47,,Career Girls,$0.03,$17.27,,,2509
+8/11/2025,$8.00,-$1.50,-$4.47,,Full Moon of Sonia by Sonia Sanchez,$0.80,$2.83,,,2308
+8/11/2025,$7.50,-$1.42,-$4.47,,An Extremely Goofy Movie,$0.00,$1.61,,,
+8/12/2025,$8.50,-$1.57,-$4.35,,Ferlin Huskys Greatest Hist by Ferlin Husky Cassette Tape,$0.71,$3.29,,,2433
+8/13/2025,$7.50,-$1.42,-$4.47,,Ferras by Ferras CD,$0.71,$2.32,,,2433
+8/14/2025,$10.00,-$1.80,-$4.47,,93 WXRT New Music Sampler 2004 by Various CD,$0.77,$4.50,,,2420
+8/14/2025,$8.50,-$1.57,-$4.47,,Blood on the Sun / Time of Your Life / Great Guy / Something to Sing About Cagney,$0.78,$3.24,,doNotMatch,2502
+8/15/2025,$12.25,-$2.23,-$4.47,,A Musical Tribute to Nolan Ryan by Various CD,$0.80,$6.35,,,2315
+8/15/2025,$7.50,-$1.42,-$4.47,,The Conqueror,$0.87,$2.47,,,2515
+8/15/2025,$10.50,-$1.97,-$4.47,,The Hawaiians,$0.87,$4.93,,,2515
+8/15/2025,$8.50,-$1.57,-$4.47,,Hunky Dory by David Bowie CD,$0.64,$3.10,,,2513
+8/16/2025,$8.50,-$1.57,-$4.47,,Number One Hits of the 50s by Various CD,$0.60,$3.06,,,2401
+8/17/2025,$7.50,-$1.42,-$4.47,,Endeavour Season 6,-$0.13,$1.48,,,2503
+8/17/2025,$7.00,-$1.35,-$4.47,,Once and Again Season 1 Vol 1,$0.77,$1.95,,doNotMatch,2406
+8/17/2025,$18.00,-$3.09,-$4.47,,The Complete Fantasy Recordings Vol 1 by Bill Evans CD,,$10.44,,,
+8/18/2025,$10.75,-$2.01,-$4.47,,In Concert by Jethro Tull CD,$0.38,$4.65,,,2507
+8/19/2025,$23.00,-$3.84,-$4.47,,Sketches for My Sweetheart the Drunk by Jeff Buckley CD,$0.64,$15.33,,,2513
+8/19/2025,$40.00,-$6.38,-$4.47,,Peyton Place Part 5,$0.87,$30.02,,doNotMatch,2515
+8/19/2025,$10.00,-$1.80,-$4.47,,Fun with Thomas Two Thomas Adventures,$0.78,$4.51,,doNotMatch,2502
+8/20/2025,$11.50,-$2.12,-$4.47,,Disney American Legends,,$4.91,,,
+8/21/2025,$7.50,-$1.42,-$4.47,,Super High Me,$0.03,$1.64,,,2509
+8/22/2025,$14.00,-$2.49,-$4.47,,Toast,$0.50,$7.54,,,2512
+8/23/2025,$13.60,-$2.43,-$4.47,,The Nomi Song,$0.03,$6.72,,,2509
+8/23/2025,$9.25,-$1.68,-$4.47,,Spring Breakers,$0.60,$3.70,,,2514
+8/24/2025,$7.08,-$1.36,-$4.47,,Drawn Together Season 2,-$1.27,-$0.02,,,2510
+8/24/2025,$10.00,-$1.80,-$4.47,,Romantic Adagio by Herbert von Karajan CD,$0.64,$4.37,,,2513
+8/25/2025,$12.25,-$2.23,-$4.47,,Under Wraps by Jethro Tull CD,$0.75,$6.30,,,2506
+8/25/2025,$21.79,-$3.66,-$4.47,,The Bad Batch,$0.60,$14.26,,,2514
+8/25/2025,$7.00,-$1.35,-$4.47,,Happy Go Lovely / Three Broadway Girls,$0.00,$1.18,,doNotMatch,2508
+8/26/2025,$7.00,-$1.35,-$4.47,,Cruce en Tijuana,$0.57,$1.76,,,2414
+8/27/2025,$11.25,-$2.08,-$4.47,,Botando Chispa by Las Chicas del Can CD,$0.76,$5.45,,,2426
+8/27/2025,$10.00,-$1.80,-$4.47,,Song Without End,-$0.11,$3.62,,,2422
+8/28/2025,$9.00,-$1.65,-$4.47,,It's Too Late to Stop Now by Van Morrison CD,$0.64,$3.52,,,2513
+8/28/2025,$26.00,-$4.29,-$5.22,,Sazburg Festival 2011 CD,$0.79,$17.28,,,2419
+8/28/2025,$8.25,-$1.53,-$4.47,,Hear Music Vol 1 A Look Homeward CD,$0.75,$2.99,,,2506
+8/28/2025,$7.50,-$1.42,-$4.47,,Tabloid,$0.50,$2.11,,,2512
+8/29/2025,$7.75,-$1.46,-$4.47,,Madman Across the Water by Elton John CD,$0.64,$2.46,,,2513
+8/29/2025,$8.00,-$1.50,-$4.47,,Midsomer Murders Small Mercies,$0.80,$2.83,,,2312
+8/29/2025,$9.75,-$1.76,-$4.47,,A Map of the World,-$0.13,$3.39,,,2429
+8/29/2025,$8.50,-$1.57,-$4.47,,Untamed Heart,$0.00,$2.46,,,2517
+8/29/2025,$7.50,-$1.42,-$4.47,,Dexter Season 6,$0.38,$1.98,,,2505
+8/30/2025,$7.25,-$1.38,-$4.47,,The Lavender Hill Mob,-$0.38,$1.01,,,2430
+8/31/2025,$9.75,-$1.76,-$4.47,,Peter Gabriel (3) by Peter Gabriel CD,$0.64,$4.16,,,2513
+9/1/2025,,,,-$21.95,eBay Store Subscription,,,,,
+9/1/2025,$9.25,-$1.68,-$4.47,,Celebration of Life by John Denver CD,$0.64,$3.73,,,2513
+9/3/2025,$7.75,-$1.46,-$4.47,,The Suite Life of Zack and Cody Taking Over the Tipton,$0.78,$2.60,,,2502
+9/3/2025,$8.75,-$1.61,-$4.47,,China A Romantic Journey by Alexander Petychov and John Herberman CD,$0.71,$3.38,,,2433
+9/3/2025,$18.00,-$3.09,-$4.47,,Chrono Trigger Original Soundtrack by Yasunori Mitsuda CD,$0.64,$11.08,,,2513
+9/5/2025,$10.00,-$1.80,-$4.47,,Midnight Son by Son Seals CD,$0.71,$4.44,,,2433

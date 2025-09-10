@@ -71,6 +71,7 @@ def GetSmartFiles(dirName):
 	# 	return returnVal
 
 	def reduceToFixedLength(input_string, fixed_length):
+
 		# Check if input_string is already shorter than fixed_length
 		if len(input_string) <= fixed_length:
 			return input_string
@@ -84,6 +85,18 @@ def GetSmartFiles(dirName):
 		new_string = input_string[:len(input_string)//2 - chars_to_remove_left] + "~" + input_string[len(input_string)//2 + chars_to_remove_right:]
 		
 		return new_string
+
+	def removeUnwantedStrings(inString: str) -> str:
+		REMOVE_STRINGS_CASE_SENSITIVE = ['SCREENER']
+		workstring = inString
+
+		for s in REMOVE_STRINGS_CASE_SENSITIVE:
+			findme = '_' + s
+			if findme in workstring:
+				workstring.replace(findme, '')
+
+		return workstring
+
 
 	smartFiles = list() # titles reduced to fixed length
 	smartFilesFull = list() # complete titles
@@ -153,6 +166,7 @@ def GetSmartFiles(dirName):
 			else:
 				smartFileItemName = os.path.splitext(smartFileItemName)[0]
 
+			smartFileItemName = removeUnwantedStrings(smartFileItemName)
 			smartFiles.append(reduceToFixedLength(smartFileItemName.replace('_', ' '), ENTRY_LENGTH))
 			smartFilesFull.append(smartFileItemName.replace('_', ' '))
 

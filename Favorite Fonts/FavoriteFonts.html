@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+    <head>
+        <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Playpen Sans Thai"> -->
+        <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", () => {
+                const fontSize = 22;
+                const sampleParagraph = "Jacklyn amazed everyone by quickly fixing the broken typewriter used to draft quirky, vivid historical documents about the jazz age. While exploring dusty archives in New York, she uncovered a box of wax-sealed letters from Zachary Taylor’s presidency. Each note revealed complex political puzzles involving xenophobia, tariffs, and the quest for unity.";
+                
+                fontlist = ['Autour One', 'Borel', 'Boogaloo', 'Caveat', 'Comforter', 'Covered By Your Grace', 'DM Mono', 'Freehand', 'Jersey 15 Charted', 'Lovers Quarrel', 'M PLUS 1', 'Material Symbols Sharp', 'Pattaya', 'Playwrite AU SA', 'Rubik Doodle Shadow', 'Rubik Wet Paint', 'Rye', 'Saira Stencil One', 'Sedgwick Ave Display', 'Sevillana', 'Stalinist One'];
+                fontlist.forEach( (fontName) => {
+                    const head = document.head;
+
+                    const linkElement = document.createElement('link');
+                    linkElement.rel = 'stylesheet';
+                    linkElement.type = 'text/css';
+                    linkElement.href = 'https://fonts.googleapis.com/css?family=' + fontName;
+                    head.appendChild(linkElement)
+
+                    document.body.innerHTML += `<div style="font-family: ` + fontName 
+                        + `; font-weight:bold; font-size:` + (fontSize + 4).toString() + `px">` + fontName 
+                        + `</div><div style="font-family: ` + fontName + `; font-size:` 
+                        + fontSize.toString() + `px; padding-bottom:20px;">` + sampleParagraph + `</div>`
+                    ;
+                });
+            });
+        </script>
+    </head>
+    <body>
+
+    </body>
+</html>

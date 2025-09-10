@@ -1,0 +1,12 @@
+---
+
+selectionMethod: 'date-year'
+filestemFormat: 'DvdImage_%Y'
+
+logfilePath: 'e:\video\Music\MoveByFilename_Albums.log'
+
+# directory containing files to archive
+sourceDirectory: 'h:\Media\Images\DvdImages\'
+
+# when true will archive directories by date
+includeDirectories: False

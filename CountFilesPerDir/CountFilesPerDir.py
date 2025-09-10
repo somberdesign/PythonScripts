@@ -4,7 +4,7 @@ from math import floor
 import os
 import sys
 from yaml import safe_load, YAMLError
-from subprocess import run
+from subprocess import Popen, run
 from pyperclip import copy as pyperclipCopy
 from random import choice, seed
 
@@ -12,9 +12,11 @@ from random import choice, seed
 
 # TARGET_FILETYPE = 'url'
 # SPACES = ' ' * 15
-DAYLIMIT = 45
-BLOCKDAYS = [2] # list of days-of-the-week (to place a fixed char instead of the file count. 0=Mon, 1=Tue...
 BLOCKCHAR = '-'
+BLOCKDAYS = [2] # list of days-of-the-week (to place a fixed char instead of the file count. 0=Mon, 1=Tue...
+DAYLIMIT = 50
+FILE_EXPLORER_LOCATION = r"C:\Portable\FreeCommander\FreeCommander.exe"
+
 
 # 2023-12-29 - just had the cataract in my right eye removed
 # expected dir structure is as follows:
@@ -208,6 +210,7 @@ if __name__ == '__main__':
 			print(f'\nIndividual Pick: {lowestItemDate} (clipboard)')
 			print(f'Series Pick    : {allResults['lowestSeriesDate']}')
 
-			completedProcess = run(["c:\\Windows\\explorer.exe", lowestItemDate])
 			pyperclipCopy(lowestItemDate)
-	input()
+			completedProcess = run([FILE_EXPLORER_LOCATION, lowestItemDate])
+	
+	

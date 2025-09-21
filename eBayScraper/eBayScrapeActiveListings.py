@@ -17,20 +17,25 @@ INPUT_FILE_PATH = r'C:\temp\DisplayEbayActiveItems.html'
 OUTPUT_FILE_PATH = r'C:\temp\ebayScrapeActiveListings_output.txt'
 PREVIOUS_ITEM_PATH = r'C:\temp\ebayScrapeActiveListings_previous.txt'
 
-# remove items that contain any of these words
-DELETE_ITEM_WORDS = ['ItemSort']
-
+countBucket = { 'BadString': 0, 'Legion': 0, 'TimeRejected': 0 }
 logger = None
 ebayUrl:str = str()
 
 def CreateItemText(inString:str) -> str:
+    global countBucket
     returnVal:str = str()
     searchData:typing.List = [('cd', 'cd'), ('cassette tape', 'ct'), ('cgc', 'cb')]
 
     # ignore items that contain any of these words
-    for word in ['TitleSort']:
-        if word in inString: 
+    for word in ['ItemSort', 'TitleSort']:
+        if word.lower() in inString.lower(): 
+            countBucket['BadString'] += 1
             return str()
+        
+    if 'American Legion Lapel Pin'.lower() in inString.lower():
+        countBucket['Legion'] += 1
+        return str()
+        
 
     # if able to identify type of item being sold, 
     # add the appropriate prefix and delete everthing after the keyword
@@ -175,8 +180,7 @@ def TimeLeftToMinutes(instr:str) -> int:
 
 
 if __name__ == '__main__':
-    timeRejectedCount:int = 0
-
+    
     GetConfigValues()
 
     soup:BeautifulSoup | None = make_soup_file(INPUT_FILE_PATH)
@@ -189,7 +193,7 @@ if __name__ == '__main__':
         timeRemainingElement = titleElement.find_next('td', class_=TAB_CLASS_TIMEREMAINING)
         minutesLeft = TimeLeftToMinutes(timeRemainingElement.text)
         if minutesLeft > MINUTE_CUTOFF: 
-            timeRejectedCount += 1
+            countBucket['TimeRejected'] += 1
             continue
 
         cleanItem:str = CreateItemText(titleElement.text)
@@ -203,21 +207,15 @@ if __name__ == '__main__':
     outputItems = removeYesterday(outputItems)
     yesterdayCount = outputCount - len(outputItems)
 
-    badstringCount = 0
     try:
         with open(OUTPUT_FILE_PATH, 'w') as f:
             for item in outputItems:
-                
-                # omit items that contain specific strings
-                if any(badstring in item for badstring in DELETE_ITEM_WORDS):
-                    badstringCount += 1
-                else:
-                    f.write(item + '\n')
+                f.write(item + '\n')
         
     except Exception as ex:
         Logger2.AddError(f'Error writing file {OUTPUT_FILE_PATH}. {ex}')
 
-    Logger2.AddInfo(f"Read {len(tagTitles) - 1 - badstringCount} listings, {timeRejectedCount} don't expire today, {yesterdayCount} appeared yesterday")
+    Logger2.AddInfo(f"Read {len(tagTitles) - 1 - countBucket['BadString']} listings\n{countBucket['TimeRejected']} don't expire today\n{countBucket['Legion']} listings skipped\n{yesterdayCount} appeared yesterday")
 
     print('pause')
     input()

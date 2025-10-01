@@ -36,10 +36,15 @@ def CreateItemText(inString:str) -> str:
         countBucket['Legion'] += 1
         return str()
         
+    # graded comics
+    # ex: "Nightmask 2 Dec 1986 CGC 94"
+    if 'cgc' in inString.lower():
+        findLocation = inString.lower().find('cgc')
+        return f'cb {inString[:findLocation]}'
+
 
     # if able to identify type of item being sold, 
     # add the appropriate prefix and delete everthing after the keyword
-    # ex: "Nightmask 2 Dec 1986 CGC 94"
     for item in searchData:
         findLocation = inString.lower().find(' (' + item[0])
         if findLocation == -1: continue
@@ -217,7 +222,5 @@ if __name__ == '__main__':
 
     Logger2.AddInfo(f"Read {len(tagTitles) - 1 - countBucket['BadString']} listings\n{countBucket['TimeRejected']} don't expire today\n{countBucket['Legion']} listings skipped\n{yesterdayCount} appeared yesterday")
 
-    print('pause')
-    input()
 
 

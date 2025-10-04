@@ -15,7 +15,7 @@ from random import choice, seed
 BLOCKCHAR = '-'
 BLOCKDAYS = [2] # list of days-of-the-week (to place a fixed char instead of the file count. 0=Mon, 1=Tue...
 DAYLIMIT = 50
-FILE_EXPLORER_LOCATION = r"C:\Portable\FreeCommander\FreeCommander.exe"
+FILE_EXPLORER_LOCATION = r"C:\Portable\FreeCommander\FreeCommanderPortable.exe"
 
 
 # 2023-12-29 - just had the cataract in my right eye removed

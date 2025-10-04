@@ -12,8 +12,14 @@ from typing import Tuple, List
 from subprocess import call
 from easygui import msgbox
 from random import choice
-from GoogleFonts import GoogleFonts
+from json import load, loads, dump
 
+
+# 10/1/2025 - unable to get this to link properly
+# sys.path.insert(0, r'C:\Users\rgw3\PythonScripts\GoogleFonts')
+# from GoogleFonts import GoogleFonts
+
+CACHE_FILE_PATH:str = r'h:\Cached\google_fonts_cache_file.json'
 DIR_TO_SEARCH = r'c:\Users\rgw3\PythonScripts\SearchToBrowser'
 OUTPUT_DIRECTORY = r'c:\temp\searchToBrowser'
 EVERYTHING_COMMAND_LINE_PATH = r'"C:\Program Files\Everything\es.exe"' # leave empty to disable
@@ -64,22 +70,31 @@ def GetArguments(configValues:dict[str, str]) -> Tuple[bool, str]:
 	return True, str()
 
 def GetGoogleFontName() -> str:
-	
 	# fontnames:List[str] = ['Roboto', 'Lora', 'Pacifico', 'Montserrat', 'Raleway', 'Oswald', 'Open', 'Playfair', 'Merriweather', 'Caveat', 'Nunito', 'Abril', 'Comfortaa', 'Indie', 'Anton', 'Quicksand', 'Libre', 'Barlow', 'Exo', 'Arvo', 'Amatic', 'Dancing', 'Josefin', 'Fira', 'Bitter', 'Patua', 'Ubuntu', 'Satisfy', 'Zilla', 'Alegreya', 'Cinzel', 'DM', 'Spectral', 'Shadows', 'PT', 'Slabo', 'Teko', 'Yanone', 'Source', 'Archivo', 'Volkhov', 'Cormorant', 'Cardo', 'Just', 'Francois', 'Fredoka', 'Kaushan', 'Sacremento', 'Chivo', 'Bangers', 'Permanent', 'Crimson', 'Overpass', 'Orbitron', 'Manrope', 'Varela', 'Fjalla', 'Rokkitt', 'Hind', 'Rock', 'Baloo', 'Maven', 'Work', 'Architects', 'Saira', 'Righteous', 'Press', 'Megrim', 'Telex', 'Cantata', 'Staatliches', 'Titan', 'Kumar', 'Economica', 'Averia', 'Noto', 'Yeseva', 'Alice', 'Handlee', 'Mukta', 'Bevan', 'Luckiest', 'Anton', 'Koulen', 'Sen', 'Tangerine', 'Corben', 'Armata', 'Julee', 'Epilogue', 'Special', 'M', 'Lexend', 'Marcellus', 'Asap', 'Vibur', 'Ewert', 'Anonymous', 'Ultra', 'Belanosima']
 
-	fontdata = GoogleFonts.GetGoogleFontData()
+	# fontdata = GoogleFonts.GetGoogleFontData()
+
+	fontdata: str = str()
+
+	try:
+		with open(CACHE_FILE_PATH, 'r') as f:
+			fontdata = load(f)
+	except Exception as ex:
+		msgbox(f'Error reading cache file at {CACHE_FILE_PATH}. {ex}')
+		return None
+
 	if fontdata is None:
 		msgbox('Error receiving google font names')
+		return None
 	else:
 		fontnames = []
-		for item in fontdata['items']: # type: ignore
+		for item in fontdata['items']:  # type: ignore
 			if (
 				item not in IGNORE_FONT_NAMES
 				and not any(s in item for s in IGNORE_FONT_STRINGS)
 			):
-				fontnames.append(item['family']); # type: ignore
+				fontnames.append(item['family'])  # type: ignore
 
-	
 	return choice(fontnames)
 
 

@@ -4,6 +4,9 @@ Manage Sheets-b5896c4ab53e.json
 .vscode/
 NwAuctionDvdCheck/NwOutput.txt
 
+# symbolic links
+eBayScraper/Logger2.py
+
 # DownloadCsv creates files in these dirs
 **/CsvFiles_*/
 **/CsvFiles/

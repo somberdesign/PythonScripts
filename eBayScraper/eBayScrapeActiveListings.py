@@ -1,11 +1,14 @@
+from sys import exit, path
 from bs4 import BeautifulSoup
-from Logger import Logger2
+
+path.append(r'c:\users\rgw3\PythonScripts\Logger')
+import Logger2
+
 from os.path import dirname, isfile, join, realpath
 from requests import get
 import typing
 from yaml import safe_load, YAMLError
 from re import I as CaseInsensitive, sub
-from sys import exit
 
 TAB_CLASS_TITLE:str = 'shui-dt-column__title'
 TAB_CLASS_TIMEREMAINING:str = 'shui-dt-column__timeRemaining'

@@ -225,5 +225,5 @@ if __name__ == '__main__':
 
     Logger2.AddInfo(f"Read {len(tagTitles) - 1 - countBucket['BadString']} listings\n{countBucket['TimeRejected']} don't expire today\n{countBucket['Legion']} listings skipped\n{yesterdayCount} appeared yesterday")
 
-
+    input('Pause')
 

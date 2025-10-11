@@ -181,7 +181,7 @@ if __name__ == '__main__':
 	except Exception as ex:
 		ctypes.windll.user32.MessageBoxW(0, f'Invalid date on line 1:\n{stringdate}', 'Document Date Error')
 		
-	if filedate is not None and (datetime.datetime.now() - filedate).days > 30:
+	if filedate is not None and (datetime.datetime.now() - filedate).days > 45:
 		smartlistPath = os.path.dirname(os.path.realpath(__file__))
 		ctypes.windll.user32.MessageBoxW(0, f'Stale file list: {stringdate}\nReplace SmartList.txt in {smartlistPath}', 'Stale File List')
 		pyperclip.copy(smartlistPath)

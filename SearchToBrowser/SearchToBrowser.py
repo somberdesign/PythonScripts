@@ -19,7 +19,7 @@ from json import load, loads, dump
 # sys.path.insert(0, r'C:\Users\rgw3\PythonScripts\GoogleFonts')
 # from GoogleFonts import GoogleFonts
 
-CACHE_FILE_PATH:str = r'h:\Cached\google_fonts_cache_file.json'
+GOOGLE_FONTS_CACHE_FILE_PATH:str = r'h:\Cached\google_fonts_cache_file.json'
 DIR_TO_SEARCH = r'c:\Users\rgw3\PythonScripts\SearchToBrowser'
 OUTPUT_DIRECTORY = r'c:\temp\searchToBrowser'
 EVERYTHING_COMMAND_LINE_PATH = r'"C:\Program Files\Everything\es.exe"' # leave empty to disable
@@ -40,9 +40,9 @@ def GetArguments(configValues:dict[str, str]) -> Tuple[bool, str]:
 
 	# verify the correct number of params 
 	# arg[1] = file to search
-	# arg[2] = search term
+	# arg[2] = search terms - a single string with terms seperated by spaces
 	if argc < 3:
-		return False, 'Usage: SearchToBrowser.py <searchfile> <searchterm>'
+		return False, 'Usage: SearchToBrowser.py <searchfile> "<searchterm> <searchterm> ..."'
 
 	searchFile = sys.argv[1]
 	if '*' in sys.argv[1]:
@@ -57,10 +57,10 @@ def GetArguments(configValues:dict[str, str]) -> Tuple[bool, str]:
 		return False, f'neither {searchFile} nor {searchFileFull} is a file' if len(searchFile) > 0 else f'Unable to find match at {searchFile} or {searchFileFull}'
 
 	configValues['searchfilepath'] = searchFile
-	configValues['searchterm'] = sys.argv[2]
+	configValues['searchterms'] = sys.argv[2]
 
 	warningMessage = str()
-	for v in ['searchfilepath', 'searchterm']:
+	for v in ['searchfilepath', 'searchterms']:
 		if len(configValues[v]) == 0:
 			warningMessage += f'SearchToBrowser.GetgArguments(): {v} is not defined\n'
 
@@ -70,17 +70,13 @@ def GetArguments(configValues:dict[str, str]) -> Tuple[bool, str]:
 	return True, str()
 
 def GetGoogleFontName() -> str:
-	# fontnames:List[str] = ['Roboto', 'Lora', 'Pacifico', 'Montserrat', 'Raleway', 'Oswald', 'Open', 'Playfair', 'Merriweather', 'Caveat', 'Nunito', 'Abril', 'Comfortaa', 'Indie', 'Anton', 'Quicksand', 'Libre', 'Barlow', 'Exo', 'Arvo', 'Amatic', 'Dancing', 'Josefin', 'Fira', 'Bitter', 'Patua', 'Ubuntu', 'Satisfy', 'Zilla', 'Alegreya', 'Cinzel', 'DM', 'Spectral', 'Shadows', 'PT', 'Slabo', 'Teko', 'Yanone', 'Source', 'Archivo', 'Volkhov', 'Cormorant', 'Cardo', 'Just', 'Francois', 'Fredoka', 'Kaushan', 'Sacremento', 'Chivo', 'Bangers', 'Permanent', 'Crimson', 'Overpass', 'Orbitron', 'Manrope', 'Varela', 'Fjalla', 'Rokkitt', 'Hind', 'Rock', 'Baloo', 'Maven', 'Work', 'Architects', 'Saira', 'Righteous', 'Press', 'Megrim', 'Telex', 'Cantata', 'Staatliches', 'Titan', 'Kumar', 'Economica', 'Averia', 'Noto', 'Yeseva', 'Alice', 'Handlee', 'Mukta', 'Bevan', 'Luckiest', 'Anton', 'Koulen', 'Sen', 'Tangerine', 'Corben', 'Armata', 'Julee', 'Epilogue', 'Special', 'M', 'Lexend', 'Marcellus', 'Asap', 'Vibur', 'Ewert', 'Anonymous', 'Ultra', 'Belanosima']
-
-	# fontdata = GoogleFonts.GetGoogleFontData()
-
 	fontdata: str = str()
 
 	try:
-		with open(CACHE_FILE_PATH, 'r') as f:
+		with open(GOOGLE_FONTS_CACHE_FILE_PATH, 'r') as f:
 			fontdata = load(f)
 	except Exception as ex:
-		msgbox(f'Error reading cache file at {CACHE_FILE_PATH}. {ex}')
+		msgbox(f'Error reading cache file at {GOOGLE_FONTS_CACHE_FILE_PATH}. {ex}')
 		return None
 
 	if fontdata is None:
@@ -122,7 +118,7 @@ if __name__ == '__main__':
 
 	configValues = {
 		'searchfilepath' : str(),
-		'searchterm' : str()
+		'searchterms' : str()
 	}
 
 	result = GetArguments(configValues)
@@ -130,8 +126,8 @@ if __name__ == '__main__':
 		ctypes.windll.user32.MessageBoxW(0, result[1])
 		exit(0)
 
-	# get sales info
-	salesFileLines:List[str] = GetSalesFileLines(configValues['searchterm'])
+	# get sales info using first word of search term
+	salesFileLines:List[str] = GetSalesFileLines(configValues['searchterms'].split()[0])
 
 
 	pattern = re.compile('[/W_]+') # non-alphanumeric chars
@@ -144,16 +140,17 @@ if __name__ == '__main__':
 	if DEBUG:
 		msgbox(f'searchFileFull = {searchFileFull}')
 
-	searchTerms = CleanText(configValues['searchterm'].lower())
+	searchTerms = CleanText(configValues['searchterms'].lower())
+	firstSearchTerm = searchTerms.split()[0]
 	
 	# remove unwanted chars from path
-	filenameSearchTerms = sanitize_filename(searchTerms.split(' ', 1)[0]) # take first word only
+	filenameSearchTerms = sanitize_filename(firstSearchTerm) # take first search term only
 	for c in "' ":
 		filenameSearchTerms = filenameSearchTerms.replace(c, "_")
 
 	# set output directory and filename
-	outputFilename = f'searchToBrowser_{filenameSearchTerms}.html'
-	everythingOutputFilename = f'everything_{filenameSearchTerms}.txt'
+	outputFilename = f'searchToBrowser_{firstSearchTerm}.html'
+	everythingOutputFilename = f'everything_{firstSearchTerm}.txt'
 	outputPath = os.path.join(OUTPUT_DIRECTORY, outputFilename)
 	everythingOutputPath = os.path.join(OUTPUT_DIRECTORY, everythingOutputFilename)
 	if not os.path.isdir(OUTPUT_DIRECTORY):
@@ -189,7 +186,8 @@ if __name__ == '__main__':
 	foundLines:List[str] = []
 	for readline in searchLines:
 		line = CleanText(readline)
-		if searchTerms in line.lower() or searchTerms.rstrip() in line.lower() or searchTerms.lstrip() in line.lower():
+		# if searchTerms in line.lower() or searchTerms.rstrip() in line.lower() or searchTerms.lstrip() in line.lower():
+		if any(term in line.lower() for term in searchTerms.split()):
 			foundLines.append(line)
 	
 	headerCell:str = str()

@@ -11,22 +11,28 @@
   a. Make a new list with "~\FileList\FileList.py". Use *_SmartList_FULL.txt.
   b. Copy new *_SmartList_Full.txt to ~\ReadSalesCsv\Input\ as "Movie List.txt" (FILELIST.PY DOES THIS)
   c. Make a copy of *_SmartList_Full.txt and name it MovieList.txt. Upload this file to Google Drive. (FILELIST.PY DOES THIS)
-  d. Copy *_SmartList_Full to the DVD machine at c:\Users\rgw3\PythonScripts\SearchToBrowser\ as Smartlist_Full.txt
+  d. Copy *_SmartList_Full to the DVD machine at c:\Users\rgw3\PythonScripts\SearchToBrowser\ as Smartlist_Full.txt:
+
+      copy /y "H:\Users\bob\PythonScripts\FileList\Output\SmartList_full.txt" "c:\Users\rgw3\PythonScripts\SearchToBrowser\Smartlist_Full.txt"
 
 3. Execute ReadSalesCsv.py. This reads data from the csvs and puts it into \Output\SalesData.py.
 
 4. Execute ModifyMovieList.py. This creates MovieList_Sales.html, MovieList_Sales.txt and MovieList_Unmatched.txt in dir \Output.
   .. copy MovieList_Sales.txt to e:\Cached for use by SearchToBrowser.py
+
+      copy /y Output\MovieList_Sales.txt \Cached
+
   .. print MovieList_Sales.txt for garage sales
-  .. use swriter MovieList_Sales.txt
+
+      swriter output\MovieList_Sales.txt
 
 NOTE: Series sales stats are at the end of the file
 
 Styles to apply to Movie List.txt before printing:
-  .. Format / Page Style / Page / Margins 0.25 each
+  .. Format / Page Style / Page / Margins 0.25 each except the Top - make that 1"
   .. Format / Columns / 3
   .. Format / Columns / Separator Line / Style Dotted
-  .. Font 8pt (try Bahnschrift SemiLight 10pt)
+  .. Font: Bahnschrift SemiLight 10pt
 
 NOTE: 2b, 2c, and 2d must be done manually if you use the bat file
 

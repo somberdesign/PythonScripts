@@ -223,10 +223,11 @@ def main():
 		f.close()
 	print('Wrote output file ' + filePath)
 
-	validSmartListFilename = FindValidFilename(SmartListFilenameStem)
+	# 2025-10-12 - remove date from filename, overwrite old file every time
+	# validSmartListFilename = FindValidFilename(SmartListFilenameStem)
+	validSmartListFilename = SmartListFilenameStem + ".txt"
 	filePath = os.path.join(OutputDir, validSmartListFilename)
 	filePathFull = os.path.join(OutputDir, os.path.splitext(validSmartListFilename)[0] + '_full' + os.path.splitext(validSmartListFilename)[1])
-	
 
 	rePattern=r'[^A-Za-z0-9 ]+' # sort on alphanumeric and spaces only
 	smartFiles = sorted(smartFiles, key=lambda s: sub(rePattern, '', s).lower())
@@ -255,13 +256,15 @@ def main():
 	print('Wrote output file ' + filePathFull)
 
 	#   b. Copy new *_SmartList_Full.txt to ~\ReadSalesCsv\Input\ as "Movie List.txt"
+	#  c. Make a copy of *_SmartList_Full.txt and name it MovieList.txt. Upload this file to Google Drive.
 	# see readme at ~\ReadSalesCsv\_readme.txt
 	movieListDir = r'..\ReadSalesCsv\Input'
 	movieListFilename = 'Movie List.txt'
 	movieListFullPath = os.path.join(movieListDir, movieListFilename);
+
 	if os.path.isfile(movieListFullPath): os.remove(movieListFullPath)
 	copy2(filePathFull, movieListFullPath)
-
+	copy2(filePathFull, r'.\MovieList.txt') # google drive upload copy
 
 if __name__ == '__main__':
     main()

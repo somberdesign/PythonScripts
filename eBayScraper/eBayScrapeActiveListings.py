@@ -16,7 +16,7 @@ TAB_CLASS_TIMEREMAINING:str = 'shui-dt-column__timeRemaining'
 MINUTE_CUTOFF = 26*60
 
 THIS_FILE_PATH = dirname(realpath(__file__))
-INPUT_FILE_PATH = r'C:\temp\DisplayEbayActiveItems.html'
+INPUT_FILE_PATH = r'C:\temp\ebay.html'
 OUTPUT_FILE_PATH = r'C:\temp\ebayScrapeActiveListings_output.txt'
 PREVIOUS_ITEM_PATH = r'C:\temp\ebayScrapeActiveListings_previous.txt'
 

@@ -25,8 +25,8 @@ OUTPUT_DIRECTORY = r'c:\temp\searchToBrowser'
 EVERYTHING_COMMAND_LINE_PATH = r'"C:\Program Files\Everything\es.exe"' # leave empty to disable
 SALES_FILE_PATH = r'h:\Cached\MovieList_Sales.txt'
 DEBUG = False
-IGNORE_FONT_NAMES:List[str] = ['Bigelow Rules', 'Bytesized', 'Comforter', 'Inspiration', 'Jersey 20 Charted', 'Mrs Sheppards', 'Sankofa Display', 'Vina Sans', 'Wavefont']
-IGNORE_FONT_STRINGS:List[str] = ['Barcode', 'Yarndings']
+IGNORE_FONT_NAMES:List[str] = ['Bigelow Rules', 'Bytesized', 'Comforter', 'Inspiration', 'Jersey 20 Charted', 'Micro 5 Charted', 'Mrs Sheppards', 'Notable', 'Sankofa Display', 'Vina Sans', 'Wavefont']
+IGNORE_FONT_WORDS:List[str] = ['Barcode', 'Yarndings']
 
 
 def CleanText(line:str) -> str:
@@ -91,7 +91,7 @@ def GetGoogleFontName() -> str:
 		for item in fontdata['items']:  # type: ignore
 			if (
 				item not in IGNORE_FONT_NAMES
-				and not any(s in item for s in IGNORE_FONT_STRINGS)
+				and not any(s in item for s in IGNORE_FONT_WORDS)
 			):
 				fontnames.append(item['family'])  # type: ignore
 

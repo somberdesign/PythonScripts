@@ -1,5 +1,5 @@
-2025-10-21
-11042 items
+2025-12-06
+11161 items
 Missing items are (in parentheses)
 
  Seasons 1-2
@@ -12,6 +12,7 @@ Missing items are (in parentheses)
 100 Funniest Moments of the 20th Century Slapstick 2007
 100 Girls 2000
 10000 Bc 2008
+101 Advanced Sexual Positions for Lovers 2006
 101 Dalmatians 1996
 101 Dalmatians 2 London Adventure 2002
 102 Dalmatians 2000
@@ -178,6 +179,7 @@ A Fistful of Dollars 1964
 A Flintstones Christmas Carol 1994
 A Fool and His Money 1989
 A Fork in the Road 2009
+A Funny Thing Happened on the Way to the Forum 1966
 A Funny Thing Happened on the Way to the Forum VHS 1966
 A Glimpse of Hell 2001
 A Good Day to Die Hard 2013
@@ -197,6 +199,7 @@ A Holiday Romance 1999
 A Holiday to Remember 1995
 A Home At the End of the World 2004
 A Horse For Danny 1995
+A House of Dynamite 2025
 A Journal for Jordan 2021
 A Killing Affair 1986
 A Killing Spring 2002
@@ -337,10 +340,12 @@ About Schmidt 2002
 About Time 2013
 Above and Beyond 2006
 Above the Law 1988
+Abraham Lincoln Father of Freedom 2014
 Abraham Lincoln Vampire Hunter 2012
 Abraxas 1990
 Absence of Malice 1981
 Absent Father 2008
+Absentia Complete Series 2017
 Absolon 2003
 Absolute Power 1997
 Absolute Zero 2005
@@ -364,6 +369,7 @@ Ad Astra 2019
 (Adam 12 S02 E10)
 (Adam 12 S02 E21)
 Adam 12 Season 2
+Adam and Eve 2005
 Adam and Steve 2005
 Adams Apples 2005
 Adams Rib 1949
@@ -507,6 +513,7 @@ Almost Famous 2000
 Almost Friends 2016
 Almost Home 2015
 Almost Human 2013
+Almost Human Complete Series 2013
 Aloha 2015
 Aloha Scooby Doo 2005
 Alone 2020
@@ -543,6 +550,7 @@ America: The Story of Us Complete Series 2010
 American  Pie Presents Band Camp 2005
 American Assassin 2017
 American Beauty 1999
+American Brew 2007
 American Carol 2008
 American Courtesans 2013
 American Coyote 2014
@@ -797,6 +805,7 @@ Armored 2009
 Army of Darkness 1995
 Army of Darkness Directors Cut 1992
 Army of One 2016
+Army Wives Seasons 1-3
 Around the Bend 2004
 Around the Block 2013
 Around the Fire 1998
@@ -841,6 +850,7 @@ At First Sight 1999
 At Middleton 2013
 At Night 2007
 At War with the Army 1950
+Athena 1954
 ATL 2006
 Atlantis Milos Return 2003
 Atlas Against the Czar 1964
@@ -1147,6 +1157,7 @@ Benji Off the Leash 2004
 Benji the Hunted 1987
 Benjis Very Own Christmas Story 1978
 Benny and Joon 1993
+Benny Hill The Early Years Vol 1 1969
 Bent 1997
 Beowulf 2007
 Bernie 2011
@@ -1307,6 +1318,7 @@ Blankman 1994
 Blast from the Past 1999
 Blaze 1989
 Blazing Saddles 1974
+Bleacher Bums 2001
 Bleak House 2005
 Bleed for This 2016
 Blended 2014
@@ -1383,6 +1395,7 @@ Body Cam 2020
 Body Count 1997
 Body Double 1984
 Body Heat 1981
+Body of Evidence 1993
 Body Of Lies 2008
 Body Snatchers 1993
 Bodyguards and Assassins 2009
@@ -1448,6 +1461,7 @@ Bounty Killer 2013
 Bowfinger 1999
 Bowling Balls 2004
 Bowling for Columbine 2002
+Boy A 2007
 Boy Eats Girl 2005
 Boy Erased 2018
 Boy Meets Boy Complete Series 2003
@@ -1528,11 +1542,13 @@ Brokedown Palace 1999
 Broken 2006
 Broken 2012
 Broken Arrow 1996
+Broken Bridges 2006
 Broken City 2013
 Broken Flowers 2005
 Broken Trail 2004
 Bronco Billy 1980
 Brooklyn 2015
+Brooklyn Nine-Nine Seasons 3-6
 Brooklyn Rules 2007
 Brooklyns Finest 2009
 Brooks and Dunne Red Dirt Road 2003
@@ -1737,6 +1753,7 @@ Catching Hell 2011
 Category 6 Day of Destruction 2004
 Category 7 The End of the World 2005
 Catfish 2010
+Catlow 1971
 Cats 1998
 Cats 2019
 Cats and Dogs 2 2010
@@ -1759,6 +1776,7 @@ Celtic Thunder Take Me home 2009
 Celtic Thunder The Show 2008
 Celtic Woman 2005
 Celtic Woman Songs from the Heart 2009
+Cemetery Junction 2010
 Centennial 1978
 Center Stage 2000
 Central Intelligence 2016
@@ -2099,7 +2117,9 @@ Coupling Season 2
 Coupling Season 2 Missing E07-09
 Courage Under Fire 1996
 Courageous 2011
+Cover Girl 1944
 Covert Affairs Season 1
+Covert One 2006
 Cowboy Up 2001
 Cowboys and Aliens 2011
 Cowboys Run 2005
@@ -2190,6 +2210,8 @@ Cube 2 Hypercube 2002
 Cube Zero 2004
 Cucuy 2018
 Cujo 1983
+Cunk on Earth Complete Series 2022
+Cunk on Life 2025
 Cunningham 2019
 Curb Your Enthusiasm Seasons 1-5, 9
 Curious George 02 Follow That Monkey
@@ -2219,8 +2241,9 @@ Daddys Home 2015
 Daddys Little Girls 2007
 Daffy Ducks Quackbusters 1988
 Dagon 2001
+(Dallas 1978 S02 E02-07)
 (Dallas 1978 S03 E13-18)
-Dallas 1978 Season 3
+Dallas 1978 Season 1-4
 Dallas 2012 Season 1
 Dallas Buyers Club 2013
 Daltry Calhoun 2005
@@ -2409,6 +2432,7 @@ Delivery 1997
 Delivery Man 2013
 Delta Farce 2007
 Dementia 13 1963
+Demetrius and the Gladiators 1954
 Demolition Man 1993
 Demonic 2005
 Demonic Toys 1992
@@ -2442,6 +2466,7 @@ Destroyer 2018
 Detention 2011
 Detonator 1993
 Detour 1945
+Detroit 9000 1973
 Detroit Rock City 1999
 Deuce Bigalow 1999
 Deuce Bigalow European Gigolo 2005
@@ -2475,11 +2500,13 @@ Die Hard with a Vengeance 1995
 Diehard 1988
 Difret 2014
 Dig 2004
+Dig Complete Series 2015
 Dig SCREENER 2004
 Digimon The Movie 2000
 Dilbert Complete Series
 Dinah Washington Swing Era 2003
 Diner 1982
+Dinner at Eight 1933
 Dinner for Schmucks 2010
 Dinner Rush 2000
 Dinner with Friends 2001
@@ -2507,6 +2534,7 @@ Disclaimer Complete Series 2024
 Disclosure 1994
 Discover Planet Ocean 2011
 Discovery Channel Planet Earth 2006
+Disenchantment Complete Series 2018
 Disney Animation Collection Vol 5 2009
 Disobedience 2017
 Disorder in the Court 1936
@@ -2674,6 +2702,7 @@ Dream a Little Dream 1989
 Dream Horse 2020
 Dream House 2011
 Dream Plan Build Model Railroads 2005
+Dream Plan Build Sand Patch 2007
 Dreamcatcher 2003
 Dreamer 2005
 Dreamgirls 2006
@@ -2791,6 +2820,7 @@ Eighth Grade 2018
 Einstein Revealed 1996
 El Chicano 2018
 El Cid 1961
+El Don 2006
 El Dorado 1967
 El Mariachi 1992
 Eleanor and Franklin 1977
@@ -2813,6 +2843,7 @@ Ella and Basie Orchestra 1979
 Ella Enchanted 2004
 Ellen Degeneres Here and Now 2003
 Elmer Gantry 1960
+Elsbeth Season 2
 Elton 60 - Live at Madison Square Garden
 Elton John Never Too Late 2024
 Elton John One Night Only 2001
@@ -2948,6 +2979,7 @@ Ex Machina 2015
 Excalibur 1981
 Excess Baggage 1997
 Excision 2012
+Exclusive 1992
 Executioners from Shaolin 1977
 Executive Decision 1996
 Exhuma 2024
@@ -2972,6 +3004,7 @@ Eye for an Eye 1996
 Eye in the Sky 2015
 Eye of the Beholder 1999
 Eye of the Needle 1981
+Eye See You 2002
 Eye See You 2002
 Eyeborgs 2009
 Eyes of a Stranger 1981
@@ -3209,6 +3242,7 @@ Florence Foster Jenkins 2016
 Florida Crackers 2010
 Floundering 1994
 Flower 2017
+Flower Drum Song 1961
 Flowers for Algernon 2000
 Flowers in the Attic 1987
 Flubber 1997
@@ -3237,6 +3271,7 @@ Footnote 2011
 For a Few Dollars More 1965
 For Love of the Game 1999
 For Love or Money 1993
+For Me and My Gal 1942
 For One More Day 2007
 For Queen and Country 1988
 For Sale by Owner 2009
@@ -3282,6 +3317,7 @@ Frances 1982
 Frank and Jesse 1995
 Frankenfish 2004
 Frankenstein 1931
+Frankenstein 2025
 Frankenweenie 2012
 Frankie 2019
 Franklyn 2008
@@ -3427,6 +3463,7 @@ Garth Brooks Limited Series Box Set DVD 2005
 Gaslight 1940
 Gator 1976
 Gattaca 1997
+Gayby 2012
 GBF 2013
 Geisters Volumes 1, 3
 Gemini Man 2019
@@ -3456,6 +3493,7 @@ Get Out 2017
 Get Rich or Die Tryin 2005
 Get Rich Quick 2004
 Get Shorty 1995
+Get Smart 1995 Complete Series 1995
 Get Smart 2008
 Get Smart Again 1989
 Getaway 2013
@@ -3501,7 +3539,8 @@ Gifted Hands The Ben Carson Story 2009
 Gigantic 2008
 Gigi 1958
 Gigli 2003
-Gilligan's Island Seasons 1-2
+Gilda 1946
+Gilligan's Island Complete Series 1963
 (Gilmore Girls S03 E21-22)
 (Gilmore Girls S04 E17-22)
 Gilmore Girls Seasons 1-7
@@ -3708,6 +3747,7 @@ Gunpowder 2017
 Guns and Talks 2001
 Guns at Batasi 1964
 Guns The Evolution of Firearms 2013
+Gunslingers Revenge 1998
 Gus 1976
 Guys and Dolls 1955
 Gypsy 1962
@@ -3736,6 +3776,8 @@ Halloween 10 II 2009
 Halloween 11 2018
 Halloween 12 Halloween Kills 2021
 Halloween Ends 2022
+Halloweentown 01 1998
+Halloweentown 02 2 2001
 Halloweentown High 2004
 Halo Legends 2010
 Hamburger Hill 1987
@@ -3816,6 +3858,7 @@ Haunting of Winchester House 2009
 Have Gun Will Travel Season 6
 Haven 2004
 Havoc 2005
+Hawaii 1966
 Hawaii Calls 1938
 Hawaii Five-0 2010 Seasons 1-2
 Hawaii Five-O 1968 Seasons 1, 4, 6, 12
@@ -3909,6 +3952,7 @@ Hidden Figures 2016
 Hide and Seek 2000
 Hide and Seek 2005
 High Crimes 2002
+High Desert Complete Series 2023
 High Explosive 2001
 High Fidelity 2000
 High Heels and Low Lifes 2001
@@ -3962,6 +4006,7 @@ Hitmans Wifes Bodyguard 2021
 Hobbs and Shaw 2019
 Hobbs End 2002
 Hobo with a Shotgun 2011
+Hocus Pocus 1993
 Hogan's Heros Season 1
 Holes 2003
 Holiday 1938
@@ -4134,6 +4179,7 @@ I Can Do Bad All By Myself 2009
 I Can Only Imagine 2018
 I Dont Know How She Does It 2011
 I Dream of Jeannie Complete Series 1965
+I Dreamed of Africa 2000
 I Feel Pretty 2018
 I Frankenstein 2014
 I Give It a Year 2013
@@ -4144,9 +4190,11 @@ I Know Who Killed Me 2007
 I Love Lucy Collectors Edition
 I Love Lucy Collectors Edition
 I Love Lucy Seasons 1-3
+I Love Melvin 1953
 I Love You Beth Cooper 2009
 I Love You Man 2009
 I Love You to Death 1990
+I Married an Angel 1942
 I Melt with You 2011
 I Now Pronounce You Chuck and Larry 2007
 I Robot 2004
@@ -4169,6 +4217,7 @@ I Want Candy SCREENER 2007
 I Want Someone to Eat Cheese With 2006
 I Want to Marry Ryan Banks 2004
 I Was a Teenage Faust 2003
+I Witness 2003
 Ice 1994
 Ice Age 01 2002
 Ice Age 02 The Meltdown 2006
@@ -4208,6 +4257,7 @@ Ill Be Seeing You 1944
 Ill Be There 2003
 Ill Gotten Gains 1997
 Illusion 2004
+Ilo Ilo 2013
 Im Gonna Git You Sucka 1988
 Im Not There 2007
 Im Reed Fish 2006
@@ -4325,6 +4375,7 @@ Interstellar 2014
 Interview with the Vampire 1994
 Intimate Affairs 2001
 Intimate Nights 1998
+Into the Abyss 2011
 Into the Blue 2005
 Into the Sun 2005
 Into the West
@@ -4374,6 +4425,7 @@ It Came from the Sky 2001
 It Chapter Two 2019
 It Comes at Night 2017
 It Could Happen to You 1994
+It Ends with Us 2024
 It Follows 2014
 It Had To Be You The Great American Songbook 2002
 It Happened at the Worlds Fair 1963
@@ -4451,6 +4503,7 @@ Jeff Foxworthy You Might Be a Redneck 2004
 Jeffrey 1995
 Jekyll and Hyde 2006
 Jennifer 8 1992
+Jennifer Lopez Feelin So Good 2000
 Jennifer Lopez Unauthorized 2003
 Jennifers Body 2009
 Jeremiah Johnson 1972
@@ -4471,6 +4524,7 @@ Jessica Simpson Reality Tour Live 2004
 Jesus Christ Superstar 1973
 Jesus Fact or Fiction 2004
 Jethro Tull Living with the Past 2002
+Jetsons The Movie 1990
 Jewtopia 2012
 Jexi 2019
 JFK 1991
@@ -4634,6 +4688,7 @@ Kevin Hart Laugh at My Pain 2011
 Kevin Hart Let Me Explain 2013
 Kevin Hart Seriously Funny 2010
 Kevin Hart What Now 2016
+Khartoum 1966
 Kick Ass 2 2013
 Kick Ass 2010
 Kickboxer 1989
@@ -4677,6 +4732,7 @@ Kindred 2020
 King Arthur 2004
 King Arthur Legend of the Sword 2017
 King Creole 1958
+King David 1985
 King Kong 1933
 King Kong 1976
 King Kong 2005
@@ -4689,6 +4745,7 @@ King Richard 2021
 King Solomons Mine 1950
 Kingdom Come 2001
 Kingdom of Heaven 2005
+Kingdom of Planet of the Apes 2024
 Kingdom of the Planet of the Apes 2024
 Kingdom of the Spiders 1977
 Kingpin 1996
@@ -4814,7 +4871,7 @@ Laurel Canyon 2002
 Lavender Hill Mob 1951
 Laverne and Shirley Seasons 1-2
 Law Abiding Citizen 2009
-Law and Order: Criminal Intent Season 1
+Law and Order: Criminal Intent Season 1-3
 (Law and Order S014 E01-04)
 Law and Order Seasons 1, 3, 14
 (Law and Order SVU S01 E09-12)
@@ -4892,6 +4949,7 @@ Lewis and Clark - The Journey of the Corps of Discovery 1997
 Lewis Black Unleashed 2003
 Lexx Season 2
 Liar Liar 1997
+Libeled Lady 1936
 License to Kill 1984
 License to Wed 2007
 Licorice Pizza 2021
@@ -4965,6 +5023,7 @@ Live Aid 1985
 Live and Let Die 1973
 Live and Still Kickin 2015
 Live and Swingin The Ultimate Rat Pack Collection 2003
+Live at Montreux by Kenny G 2010
 Live by Night 2016
 Live Forever SCREENER 2003
 Live Free or Die Hard 2007
@@ -5100,6 +5159,7 @@ Lucky You 2007
 Luckytown 2000
 Lucy 2014
 Lullaby 2014
+Lullaby of Broadway 1951
 Luminous Motion 1998
 Lura 2007
 Lurking Fear 1994
@@ -5114,6 +5174,7 @@ Lying in Wait 2008
 Lyle Lyle Crocodile 2022
 Lymelife 2008
 M 1931
+M3GAN 2 0 Unrated 2025
 M3gan 2022
 Ma 2019
 Ma And Pa Kettle 1949
@@ -5155,6 +5216,7 @@ Madeas Class Reunion 2003
 Madeas Family Reunion 2006
 Madonna Drowned World Tour 2001
 Madonna The Girlie Show Live Down Under 1993
+Madonna The Immaculate Collection 1999
 Madonna The Video Collection 93 99 1999
 Madonna Wild Angel 2007
 Mafia 1998
@@ -5179,9 +5241,11 @@ Malcolm in the Middle Season 1
 Malcolm X 1992
 Maleficent 2014
 Maleficent Mistress of Evil 2019
+Malena 2000
 Malevolence 2003
 Malevolent 2002
 Malibus Most Wanted 2003
+Malice 1993
 Malice in the Palace 1949
 Malice in Wonderland 2010
 Malicious 1995
@@ -5296,9 +5360,10 @@ Mayor of Sunset Strip 2003
 Maze Runner Scorch Trials 2015
 Maze Runner The Death Cure 2018
 Mazes and Monsters 1982
-McCale's Navy Season 4
+McCale's Navy Season 2, 4
 McFarland USA 2015
 Mchales Navy 1997
+(McHale's Navy S02 E24-36)
 McLintock 1963
 McMillan and Wife Complete Series 1971
 Me and You and Everyone We Know 2005
@@ -5466,6 +5531,7 @@ Miss Nobody 2011
 Miss Peregrines Home 2016
 Miss Pettigrew Lives for a Day 2008
 Miss Potter 2006
+Miss Sadie Thompson 1953
 Miss Sloane 2016
 Missing in Action 1984
 Missing in Action 2 1985
@@ -5477,6 +5543,7 @@ Mission Impossible 3 2006
 Mission Impossible 4 Ghost Protocol 2011
 Mission Impossible Fallout 2018
 Mission Impossible Rogue Nation 2015
+Mission Impossible S03E22 Nicole
 Mission Impossible Seasons 1-2, 4
 Mission to Mars 2000
 Mississippi Burning 1988
@@ -5922,6 +5989,7 @@ Nothing But the Truth 1941
 Nothing but the Truth 2008
 Nothing But Trouble 1991
 Nothing in Common 1986
+Nothing Like the Holidays 2008
 Nothing Sacred 1937
 Nothing to Lose 1997
 Notorious 1946
@@ -5997,7 +6065,7 @@ Once 2006
 Once a Thief 1996
 Once an Eagle 1976
 (Once and Again S01 E17-22)
-Once and Again Season 1
+Once and Again Season 1-2
 Once Bitten 1985
 Once Fallen 2010
 Once Upon a Crime 1992
@@ -6126,6 +6194,7 @@ Pain and Glory 2019
 Painkiller Jane Complete Series 2007
 Paint Your Wagon 1969
 Palm Royale Season 1
+Palo Alto CA 2007
 Pamela Anderson Roast 2005
 Pan 2015
 Pan Am Season 1
@@ -6322,6 +6391,7 @@ Plaza Suite VHS 1971
 Pleasantville 1998
 Please Dont Eat the Daisies 1960
 Pledge This 2006
+Plunder Sun 1953
 Plutos Christmas Tree 1952
 Pocketful of Miracles 1961
 Point Blank 1967
@@ -6392,6 +6462,7 @@ Possessor 2020
 Possum 2018
 Post Grad 2009
 Postcards from the Edge 1990
+Posthumous 2014
 Pot o Gold 1941
 Powder Blue 2009
 Power 1986
@@ -6487,6 +6558,7 @@ Pulse 2006
 Pump Up the Volume 1990
 Punch 2002
 Punch Drunk Love 2002
+Punchline 1988
 Puncture 2011
 Punisher War Zone 2008
 Punk Love 2006
@@ -6563,6 +6635,7 @@ Raising Genius 2004
 Raising Helen 2004
 Raising Your Dog with The Monks of New Skete 1996
 Ralph Breaks the Internet 2018
+Rambling Rose 1991
 Rambo 01 First Blood 1982
 Rambo 02 First Blood Part 2 1985
 Rambo 03 3 1988
@@ -6581,6 +6654,7 @@ Rapid Fire 1992
 Rat Race 2001
 Ratatoing 2007
 Ratatouille 2007
+Ratched Complete Series 2020
 Ratchet and Clank 2016
 Ravenous 1999
 Raw Deal 1986
@@ -6598,6 +6672,7 @@ Ready or Not 2012
 Ready or Not 2019
 Ready Player One 2018
 Ready to Rumble 2000
+Reagan 2024
 Real Genius 1985
 Real Men 1987
 Real Steel 2011
@@ -6659,6 +6734,7 @@ Reign Over Me 2007
 Reign Season 1
 Reincarnation 2005
 Release the Bats 2005
+Relic 1997
 Relic 2020
 Religulous 2008
 Remember Me 2010
@@ -6686,6 +6762,7 @@ Rescue from Gilligans Island 1978
 Rescue Me Seasons 1-5
 Reservation Road 2007
 Reservoir Dogs 1992
+Resident Alien Season 1
 Resident Evil 01 2002
 Resident Evil 02 Apocalypse 2004
 Resident Evil 03 Extinction 2007
@@ -6782,6 +6859,7 @@ Risky Business 1983
 Rites of Passage 1999
 River of No Return 1954
 Riverdance The New Show 1996
+Riverworld 2010
 Rizzoli & Isles Seasons 1-6
 Road Case 2 2004
 Road Case The Movie 2004
@@ -6926,6 +7004,7 @@ Runaway Jury 2003
 Runaway Romance 2018
 Runner Runner 2013
 Running Delilah 1993
+Running Funny 2007
 Running on Empty 1988
 Running Out of Time 1999
 Running Scared 1986
@@ -7067,10 +7146,10 @@ Scooby Doo The Mystery Begins 2009
 Scooby Doo Winter Wonderdog 2002
 Scooby Doos Original Mysteries 1969
 Scoop 2006
-Scream 1996
-Scream 2 1997
-Scream 2022
-Scream 3 2000
+Scream 01 1996
+Scream 02 2 1997
+Scream 03 3 2000
+Scream 05 2022
 Screamers SCREENER 2006
 Scrooge 1935
 Scrooged 1988
@@ -7151,7 +7230,7 @@ Seven Pounds 2008
 Seven Swords 2005
 Seven Years in Tibet 1997
 Seventh Son 2014
-Severance 2022 Season 1
+Severance 2022 Seasons 1-2
 Severed 2005
 Sex and Breakfast SCREENER 2005
 Sex and Death 101 2008
@@ -7176,6 +7255,7 @@ Shaft 1971
 Shaft 2000
 Shaft 2019
 Shakespeare in Love 1998
+Shaking the Tree 1990
 Shakugan no Shana Season 1
 Shall We Dance 2004
 Shallow Hal 2001
@@ -7193,6 +7273,7 @@ Shania Twain Live 1998
 Shaolin Soccer 2001
 Shark 1969
 Shark Night 2011
+Shark Season 1
 Shark Tale 2004
 Shark Week 20th Anniversary
 Sharknado 03 Oh Hell No 2013
@@ -7422,6 +7503,7 @@ SNL Best of Molly Shannon
 SNL Best of Phil Hartman
 SNL Best of Saturday TV Funhouse 2006
 SNL Best of Steve Martin 1998
+SNL Best of Tom Hanks 2004
 SNL Best of Will Ferrell 2002
 SNL Best of Will Ferrell Vol 1 2002
 SNL Best of Will Ferrell Vol 2 2004
@@ -7606,6 +7688,7 @@ Spy Game 2001
 Spy Kids 2001
 Spy Kids 3 2003
 Spyhard 1996
+Squid Game Complete Series 2021
 St Agatha 2018
 St Elmos Fire 1985
 St Helens 1981
@@ -7688,6 +7771,7 @@ Stay 2005
 Stay 2014
 Stay Alive 2006
 Stay Tuned 1992
+Staying Alive 1983
 Stealing Harvard 2002
 Stealing Home 1988
 Stealth 2005
@@ -7912,6 +7996,7 @@ Tai Chi Zero 2012
 Take Em 08 VIII 2006
 Take Me Home 2011
 Take Me Home Tonight 2011
+Take Me Out to the Ball Game 1949
 Take My Advice 1999
 Take Shelter 2011
 Take the Lead 2006
@@ -7999,6 +8084,7 @@ Terror Rising Know Your Enemy 2008
 Terror Train 1980
 Terry Fator Live From Las Vegas 2009
 Tesla 2020
+Testament of Youth 2014
 Texas Chainsaw Massacre The Next Generation 1994
 Texas Killing Fields 2011
 Texas Rangers 2001
@@ -8013,6 +8099,7 @@ That '70s Show Seasons 1-7
 That Awkward Moment 2014
 That Darn Cat 1997
 That Evening Sun 2009
+That Gang of Mine 1940
 That Touch of Mink 1962
 Thats Entertainment 01 1974
 Thats Entertainment 02 1976
@@ -8315,6 +8402,7 @@ The Brothers Grimsby 2016
 The Brothers McMullen 1995
 The Brothers Solomon 2007
 The Bucket List 2007
+The Buckingham Murders 2024
 (The Bullwinkle Show S01 E15-21)
 The Burbs 1989
 The Burly Man Chronicles 2004
@@ -8434,6 +8522,7 @@ The Count of Monte Cristo 2002
 The Country Bears 2002
 The Courageous Heart of Irena Sendler 2009
 The Courier 2020
+The Court Jester 1955
 The Court Martial of Billy Mitchell 1955
 The Cove 2009
 The Covenant 2006
@@ -8447,6 +8536,7 @@ The Crocodile Hunter Collision Course 2002
 The Croods 2013
 The Croods A New Age 2020
 The Cross and the Switchblade 1970
+The Crossing Guard 1995
 The Crow 1994
 The Crown Seasons 1-2
 The Crucible 1998
@@ -8461,6 +8551,7 @@ The Curse of La Llorona 2019
 The Curse of Oak Island Season 1
 The Cutting Edge 02 Going for the Gold 2006
 The Cutting Edge 1992
+The Dalton Gang 1949
 The Damned 2006
 The Damned 2024
 The Damned Dont Cry 1950
@@ -8576,6 +8667,7 @@ The Egg and I 1947
 The Eiger Sanction 1975
 The Eighteenth Angel 1997
 The Elephant Man 1980
+The Elizabeth Smart Story 2003
 The Ellen Show Complete Series 2001
 The Emoji Movie 2017
 The Emperors Club 2002
@@ -8589,6 +8681,7 @@ The Englishman Who Went Up a Hill But Came Down a Mountain 1995
 The Entitled 2011
 The Equalizer 2 2018
 The Equalizer 2014
+The Escape Artist 1982
 The Essential Bugs Bunny
 The Event 2003
 The Everly Brothers Reunion Concert 1983
@@ -8639,6 +8732,7 @@ The Final Cut Complete Series 1995
 The Final Destination 2009
 The Final Girls 2015
 The Finest Hours 2016
+The Firing Line 1988
 The First Omen
 The First Purge 2018
 The Fisher King 1991
@@ -8756,6 +8850,7 @@ The Golden Girls Complete Series 1985
 (The Golden Girls S04 E07)
 (The Golden Girls S05 E01-09)
 The Goldfinch 2019
+The Gollum Smeagol Collectible 2003
 The Good Dinosaur 2015
 The Good Fight 1992
 The Good German 2006
@@ -8841,6 +8936,7 @@ The Harbinger Decoded 2013
 The Hard Man 1957
 The Hard Way 1991
 The Harvest 2013
+The Harvey Girls 1946
 The Hate U Give 2018
 The Hateful Eight 2015
 The Haunted Airman 2006
@@ -8853,6 +8949,7 @@ The Heart Deceitful 2004
 The Heartbreak Kid 2007
 The Heat 2013
 The Heavenly Kid 1985
+The Helen Morgan Story 1957
 The Help 2011
 The High and the Mighty 1954
 The High Commissioner 1968
@@ -9041,6 +9138,7 @@ The Lady Vanishes 1938
 The Ladykillers 1955
 The Ladykillers 2004
 The Lake House 2006
+The Land Before Time 1988
 The Land Before Time IX Journey to Big Water 2002
 The Landlady 2005
 The Landladys Pet 1914
@@ -9186,6 +9284,7 @@ The Love Bug 1968
 The Love God 1969
 The Love Guru 2008
 The Love Letter 1999
+The Loved Ones 2009
 The Lovely Bones 2009
 The Lucky One 2012
 The Lucky Ones 2008
@@ -9270,6 +9369,7 @@ The Men Who Stare at Goats 2009
 The Mentalist Seasons 1-5
 The Menu 2022
 The Merry Gentleman 2008
+The Merry Widow 1952
 The Messengers 2007
 The Meteor Man 1993
 The Mexican 2001
@@ -9311,6 +9411,7 @@ The Muppet Christmas Carol 1992
 The Muppet Show Seasons 1-2
 The Muppets 2011
 The Muppets Take Manhattan 1984
+The Muppets Wizard of Oz 2005
 The Murder of Nicole Brown Simpson 2019
 The Murders in the Rue Morgue 1986
 The Muse 1999
@@ -9320,6 +9421,7 @@ The Musketeers Season 1
 The Mysteries of Pittsburgh 2008
 The Nail 2009
 The Naked City 1948
+The Naked Gun 2025
 The Name of the Rose 1986
 The Nanny Diaries 2007
 The Nanny Seasons 1-2
@@ -9401,6 +9503,7 @@ The Other Guys 2010
 The Other Side 2006
 The Other Side of Midnight 1977
 The Other Side of Sunday 1996
+The Other Side of the Bed 2002
 The Other Sister 1999
 The Other Woman 2008
 The Other Woman 2014
@@ -9597,6 +9700,7 @@ The Rescuers Down Under 1990
 The Resident 2011
 The Retrievers 2001
 The Return of Doctor Mabuse 1961
+The Return of Jafar 1994
 The Revenant 2015
 The Revengers Comedies 1998
 The Rewrite 2014
@@ -9647,6 +9751,7 @@ The Russia House 1990
 The Russian Woodpecker 2015
 The Russians Are Coming 1966
 The Ruthless Four 1968
+The Sacketts 1979
 The Sacrament 2013
 The Saddest Music in the World 2003
 The Safety of Objects 2001
@@ -9801,6 +9906,7 @@ The Stickup 2002
 The Sticky Complete Series 2024
 The Sting 1973
 The Stolen Jools 1931
+The Stomp 1979
 The Stone Angel 2007
 The Stoning of Soraya M 2008
 The Stork Club 1945
@@ -9818,13 +9924,15 @@ The Strangers Chapter 1 2024
 The Strangers Prey at Night 2018
 The Stream 2013
 (The Streets of San Francisco S01 E15-27)
-The Streets of San Francisco Season 1
+(The Streets of San Francisco S03 E04, 06, 23)
+The Streets of San Francisco Season 1, 3
 The Student Prince 1954
 The Substance 2025
 The Substitute 2007
 The Suburbans 1999
 The Suicide Squad 2021
 The Sum of All Fears 2002
+The Summit 2012
 The Sun Is Also a Star 2019
 The Sundowners 1960
 The Super 1991
@@ -9944,6 +10052,7 @@ The Turning 2020
 The Tuskegee Airmen 1995
 The Tuxedo 2002
 The Tv Set 2006
+The Twilight Zone 1959 Season 1
 The Twins Effect II
 The Two Worlds of Jennie Logan 1979
 The Ugly Truth 2009
@@ -9974,6 +10083,7 @@ The Vampires Assistant Cirque Du Freak 2009
 The Vanishing 1988
 The Vanishing 2018
 The Venture Bros. Season 2
+The Vicar of Dibley Seasons 1-3
 The Vigil 2019
 The Vikings Dark Warriors 2015
 The Village 2004
@@ -10091,6 +10201,7 @@ Their Eyes Were Watching God 2005
 Thelma and Louise 1991
 Them 1954
 Them Idiots Whirled Tour 2012
+There Auto Be a Law 1953
 There Be Dragons 2011
 There Will Be Blood 2007
 Theres No Business Like Show Business 1954
@@ -10174,14 +10285,17 @@ Thumbs
 Thumbs
 Thumbsucker 2005
 Thunderball 1965
+Thunderbirds Are GO 1966
 Thunderbolt and Lightfoot 1974
 Thunderheart 1992
 Thx 1138 1971
 Ticker 2001
 Ticket to Paradise 2022
+Tidal Wave No Escape 1997
 Tie Died Rock and Rolls Most Deadicated Fans 1995
 Tig 2015
 Tig Notaro Drawn 2021
+Tiger Warsaw 1988
 Tigerland 2000
 Tightrope 1984
 Til Death Season 1
@@ -10253,6 +10367,7 @@ Tommy 1975
 Tommy Boy 1995
 Tomorrow Never Dies 1997
 Tomorrowland 2015
+Tonight and Every Night 1945
 Tony Bennett An American Classic 2006
 Tony Bennett Duets 2006
 Tony Bennett Live by Request 1996
@@ -10431,6 +10546,7 @@ Two Moon Junction 1988
 Two Mules for Sister Sara 1970
 Two of a Kind 1983
 Two Seconds 1932
+Two Sisters from Boston 1946
 Two Weeks 2006
 Two Weeks Notice 2002
 U 571 2000
@@ -10635,7 +10751,7 @@ Wake of the Red Witch 1948
 Waking Ned Devine 1998
 Waking the Baby Mammoth 2009
 Waking the Dead 2000
-Waking the Dead Season 6
+Waking the Dead Seasons 1, 6
 Wal Mart 2005
 Walk Hard The Dewey Cox Story 2007
 Walk of Shame 2014
@@ -10813,6 +10929,7 @@ Who Framed Roger Rabbit 1988
 Who is Simon Miller 2011
 Who Killed the Electric Car SCREENER 2006
 Who Was That Lady 1960
+Wholly Moses 1988
 Wholphin Issue 4
 Whos Harry Crumb 1989
 Whos Your Daddy 2002
@@ -10899,6 +11016,7 @@ Woman in Gold 2015
 Woman of the Hour
 Woman of the Year 1942
 Woman on Top 2000
+Woman Thou Art Loosed 2004
 Women in Trouble 2009
 Women Talking 2022
 Women vs Men 2002
@@ -10969,11 +11087,12 @@ Y tu mama tambien 2001
 Yakky Doodle 1961 Complete Series
 Yakov Smirnoffs Moscow Circus 2011
 Yakuza Princess 2021
+Yankee Doodle Dandy 1942
 Yanks 1979
 Year of the Dragon 1985
 Year One 2009
 Yellow Rose 2019
-Yellowjackets Season 1
+Yellowjackets Seasons 1-2
 (Yellowstone S03 E07-09)
 Yellowstone Seasons 1-3
 Yes Man 2008

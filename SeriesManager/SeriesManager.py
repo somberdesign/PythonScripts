@@ -1,5 +1,5 @@
 
-import random, math, PySimpleGUI as sg, SeriesManager_Data as data, contextlib
+import random, math, FreeSimpleGUI as sg, SeriesManager_Data as data, contextlib
 from tkinter import *
 import datetime
 import os

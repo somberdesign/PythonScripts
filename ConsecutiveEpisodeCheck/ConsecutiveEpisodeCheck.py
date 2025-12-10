@@ -1,4 +1,4 @@
-from os import listdir, path
+from os import getcwd, listdir, path
 from re import match
 from sys import argv, exit
 
@@ -66,11 +66,17 @@ def ProcessCommandLine():
 	
 	print('USAGE: py ConsecutiveEpisodeCheck.py <sourceDirectory> <outputFile>')
 
-	# verify first param is a diectory
+	# strip backslash from end of directory if present
+	if argc >= 2 and argv[1].endswith('\\'):
+		argv[1] = argv[1][:-1]
+	
+	# verify first param is a directory
 	if argc >= 2 and path.isdir(argv[1]) and path.isdir(argv[1]):
 		returnVal['sourceDirectory'] = argv[1]
 	else:
-		returnVal['sourceDirectory'] = path.abspath(path.dirname(__file__))
+		
+		returnVal['sourceDirectory'] = getcwd()
+		print(f'Invalid or missing source directory parameter. Using current working directory: {returnVal["sourceDirectory"]}')
 
 	# get output path
 	if argc >= 3:

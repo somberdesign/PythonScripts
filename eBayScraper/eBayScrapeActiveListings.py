@@ -1,6 +1,8 @@
 from sys import exit, path
 from bs4 import BeautifulSoup
 
+# this is a test
+
 path.append(r'c:\users\rgw3\PythonScripts\Logger')
 import Logger2
 

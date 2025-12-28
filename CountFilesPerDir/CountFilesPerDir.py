@@ -213,4 +213,4 @@ if __name__ == '__main__':
 			pyperclipCopy(lowestItemDate)
 			completedProcess = run([FILE_EXPLORER_LOCATION, lowestItemDate])
 	
-	
+	# input('\nPress ENTER to exit...')

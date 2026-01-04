@@ -15,6 +15,9 @@ from random import choice
 from json import load, loads, dump
 
 
+# 2025-12-30 - run from console (in ~\PythonScripts\SearchToBrowser):
+# py SearchToBrowser.py "c:\Users\rgw3\PythonScripts\SearchToBrowser\AlbumList.txt" joel
+
 # 10/1/2025 - unable to get this to link properly
 # sys.path.insert(0, r'C:\Users\rgw3\PythonScripts\GoogleFonts')
 # from GoogleFonts import GoogleFonts
@@ -25,7 +28,7 @@ OUTPUT_DIRECTORY = r'c:\temp\searchToBrowser'
 EVERYTHING_COMMAND_LINE_PATH = r'"C:\Program Files\Everything\es.exe"' # leave empty to disable
 SALES_FILE_PATH = r'h:\Cached\MovieList_Sales.txt'
 DEBUG = False
-IGNORE_FONT_NAMES:List[str] = ['Bigelow Rules', 'Bytesized', 'Comforter', 'Inspiration', 'Jersey 20 Charted', 'Micro 5 Charted', 'Mrs Sheppards', 'Notable', 'Sankofa Display', 'Vina Sans', 'Wavefont']
+IGNORE_FONT_NAMES:List[str] = ['Bigelow Rules', 'Bytesized', 'Comforter', 'Festive', 'Inspiration', 'Jersey 20 Charted', 'Micro 5 Charted', 'Mrs Sheppards', 'Notable', 'Sankofa Display', 'Splash', 'Vina Sans', 'Wavefont']
 IGNORE_FONT_WORDS:List[str] = ['Barcode', 'Yarndings']
 
 
@@ -91,7 +94,7 @@ def GetGoogleFontName() -> str:
 		for item in fontdata['items']:  # type: ignore
 			if (
 				item not in IGNORE_FONT_NAMES
-				and not any(s in item for s in IGNORE_FONT_WORDS)
+				and not any(s.casefold() in item['family'].casefold() for s in IGNORE_FONT_WORDS)
 			):
 				fontnames.append(item['family'])  # type: ignore
 

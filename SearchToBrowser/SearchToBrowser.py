@@ -28,7 +28,7 @@ OUTPUT_DIRECTORY = r'c:\temp\searchToBrowser'
 EVERYTHING_COMMAND_LINE_PATH = r'"C:\Program Files\Everything\es.exe"' # leave empty to disable
 SALES_FILE_PATH = r'h:\Cached\MovieList_Sales.txt'
 DEBUG = False
-IGNORE_FONT_NAMES:List[str] = ['Bigelow Rules', 'Bytesized', 'Comforter', 'Festive', 'Inspiration', 'Jersey 20 Charted', 'Micro 5 Charted', 'Mrs Sheppards', 'Notable', 'Sankofa Display', 'Splash', 'Vina Sans', 'Wavefont']
+IGNORE_FONT_NAMES:List[str] = ['Bigelow Rules', 'Bytesized', 'Comforter', 'Festive', 'Inspiration', 'Jersey 20 Charted', 'Micro 5 Charted', 'Mrs Sheppards', 'Notable', 'Sankofa Display', 'Splash', 'Vina Sans', 'Wavefont', 'WindSong']
 IGNORE_FONT_WORDS:List[str] = ['Barcode', 'Yarndings']
 
 

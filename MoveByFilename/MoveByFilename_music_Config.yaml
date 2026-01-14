@@ -4,7 +4,7 @@
 batFilename: MoveByFilename.bat
 
 firstNamesFile: names1970.txt
-logfilePath: e:\video\Music\MoveByFilename_Albums.log
+logfilePath: c:\logs\MoveByFilename_Albums_log.txt
 
 # directory with albums in it
 sourceDirectory: e:\video\music
@@ -75,7 +75,7 @@ ruleExceptions:
   dixie chicks: d
   emmylou harris: h
   fats domino: d
-  jonatha brooke: b
+  jonatha brooke: b # "jonatha" is correct spelling
   gato barbieri: b
   gene loves jezebel: g
   green day: g

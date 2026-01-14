@@ -6,7 +6,7 @@ from importlib import import_module
 import Logger2 as Logger
 from os import listdir, remove
 from os.path import isdir, isfile, join
-from subprocess import PIPE, Popen
+from subprocess import run
 from sys import argv
 from yaml import safe_load, YAMLError
 from string import punctuation
@@ -225,15 +225,10 @@ if __name__ == '__main__':
 	
 	Logger.AddInfo(f'Executing batch file ({configFile["batFilename"]})')
 	if not DEBUG:
-		p = Popen(configFile['batFilename'], shell=True, stdout=PIPE, stderr=PIPE)
-		stdout, stderr = p.communicate() # p.returncode is 0 if successful
-		if p.returncode == 0:
-			Logger.AddInfo("Ended run with errorcode 0")
-		else:
-			Logger.AddInfo(f"Bat returned {p.returncode}.")
-			fileContents = ReadFile(configFile['batFilename'])
-			for line in fileContents:
-				print(f"{line}")
+		batFile = configFile['batFilename']
+		run(batFile, shell=True)	
+		Logger.AddInfo("Ended run")
+
 	# else:
 	# 	fileContents = ReadFile(configFile['batFilename'])
 	# 	for line in fileContents:

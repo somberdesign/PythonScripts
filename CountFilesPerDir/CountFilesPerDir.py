@@ -13,7 +13,7 @@ from random import choice, seed
 # TARGET_FILETYPE = 'url'
 # SPACES = ' ' * 15
 BLOCKCHAR = '-'
-BLOCKDAYS = [2] # list of days-of-the-week (to place a fixed char instead of the file count. 0=Mon, 1=Tue...
+BLOCKDAYS = [2, 6] # list of days-of-the-week (to place a fixed char instead of the file count. 0=Mon, 1=Tue...
 DAYLIMIT = 55 # number of days into the future to process
 FILE_EXPLORER_LOCATION = r"C:\Portable\FreeCommander\FreeCommanderPortable.exe"
 

@@ -8,10 +8,10 @@ copy
   ..You only need to replace ones that have changed.
 
 2. Create a new list of movies based on what files are on the drives
-  a. Make a new list with "~\FileList\FileList.py". Use *_SmartList_FULL.txt.
-  b. Copy new *_SmartList_Full.txt to ~\ReadSalesCsv\Input\ as "Movie List.txt" (FILELIST.PY DOES THIS)
-  c. Make a copy of *_SmartList_Full.txt and name it MovieList.txt. Upload this file to Google Drive. (FILELIST.PY DOES THIS)
-  d. Copy *_SmartList_Full to the DVD machine at c:\Users\rgw3\PythonScripts\SearchToBrowser\ as Smartlist_Full.txt:
+  a. Make a new list with "~\FileList\FileList.py". Use SmartList_FULL.txt.
+  b. Copy new SmartList_Full.txt to ~\ReadSalesCsv\Input\ as "Movie List.txt" (FILELIST.PY DOES THIS)
+  c. Make a copy of SmartList_Full.txt and name it MovieList.txt. Upload this file to Google Drive. (FILELIST.PY DOES THIS)
+  d. Copy SmartList_Full to the DVD machine at c:\Users\rgw3\PythonScripts\SearchToBrowser\ as Smartlist_Full.txt:
 
       copy /y "H:\Users\bob\PythonScripts\FileList\Output\SmartList_full.txt" "c:\Users\rgw3\PythonScripts\SearchToBrowser\Smartlist_Full.txt"
 

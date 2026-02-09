@@ -32,6 +32,10 @@ if __name__ == '__main__':
         line = line.strip()
         if line == '' or line.startswith('#'):
             continue
+        
+        # ignore comments after a '#'
+        if '#' in line:
+            line = line.split('#')[0].strip()
 
         searchTerm = quote_plus(line.split('#')[0].strip()) # ignore everything after a '#'
         url = f'https://www.justwatch.com/us/search?q={searchTerm}'

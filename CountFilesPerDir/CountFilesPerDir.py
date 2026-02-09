@@ -3,7 +3,7 @@ from datetime import timedelta
 from math import floor
 import os
 import sys
-from yaml import safe_load, YAMLError
+# from yaml import safe_load, YAMLError
 from subprocess import Popen, run
 from pyperclip import copy as pyperclipCopy
 from random import choice, seed
@@ -14,8 +14,9 @@ from random import choice, seed
 # SPACES = ' ' * 15
 BLOCKCHAR = '-'
 BLOCKDAYS = [2, 6] # list of days-of-the-week (to place a fixed char instead of the file count. 0=Mon, 1=Tue...
+BLOCKDATES = ['2026-03-16','2026-03-17','2026-03-18','2026-03-19','2026-03-20','2026-03-21','2026-03-22'] # list of specific dates (yyyy-mm-dd) to block
 DAYLIMIT = 55 # number of days into the future to process
-FILE_EXPLORER_LOCATION = r"C:\Portable\FreeCommander\FreeCommanderPortable.exe"
+FILE_EXPLORER_LOCATION = r"C:\Portable\FreeCommander\FreeCommander.exe"
 
 
 # 2023-12-29 - just had the cataract in my right eye removed
@@ -87,7 +88,8 @@ def CountDirectories(targetDir:str):
 			# don't look at blocked days when figuring out lowest item counts
 			directoryDateString = dir[:-4] # dir looks like this: 2025-08-21-Thu
 			directoryDate = dt.strptime(directoryDateString, '%Y-%m-%d')
-			if not directoryDate.weekday() in BLOCKDAYS:
+
+			if not IsBlockedDate(directoryDateString):
 				if len(items) == lowItemCount:
 					lowItemDirs.append(testDir)
 				
@@ -125,6 +127,20 @@ def CountFiles(targetDir:str):
 	for item in results:
 		print(item[1])
 
+def IsBlockedDate(dirstring):
+	parts = dirstring.split('-')
+	
+	if (
+		len(parts) != 3
+		or not RepresentsInt(parts[0])
+		or not RepresentsInt(parts[1])
+		or not RepresentsInt(parts[2])
+		):
+		return False
+		
+	dateString = f'{parts[0]}-{parts[1]}-{parts[2]}'
+	dayOfWeek = dt.strptime(dateString, '%Y-%m-%d').weekday()
+	return dateString in BLOCKDATES or dayOfWeek in BLOCKDAYS
 
 def ProcessCommandLine():
 	returnVal = [str(), []]
@@ -199,10 +215,14 @@ if __name__ == '__main__':
 			dateSpaces = ' ' * (floor(len(list(directoryData.items())[0][0]) / 2) - 2)
 			print(f'{dateSpaces}DATE               SINGLES  SERIES  ')
 			for item in directoryData.items():
-				dayOfWeek = dt.strptime(item[0][-14:-4], '%Y-%m-%d').weekday()
-				singleValue = BLOCKCHAR if dayOfWeek in BLOCKDAYS else item[1][0] if item[1][0] > 0 else " "
-				seriesValue = BLOCKCHAR if dayOfWeek in BLOCKDAYS else item[1][1] if item[1][1] > 0 else " "
-				
+				dayString = item[0][-14:-4]
+				if IsBlockedDate(dayString):
+					singleValue = BLOCKCHAR
+					seriesValue = BLOCKCHAR
+				else:
+					singleValue = item[1][0] if item[1][0] > 0 else " "
+					seriesValue = item[1][1] if item[1][1] > 0 else " "
+			
 				# print(f'{item[0]}    {item[1][0] if item[1][0] > 0 else " "}       {item[1][1] if item[1][1] > 0 else " "} ')
 				print(f'{item[0]}    {singleValue}       {seriesValue}')
 

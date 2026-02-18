@@ -1,9 +1,13 @@
+from sys import argv, path
+from os.path import abspath, dirname, join, realpath, isfile
+
+path.append(abspath(join(dirname(__file__), '..'))) # add parent directory to path so we can import CommonFunctions
+from CommonFunctions import StringToInt # in PythonScripts root directory
+
 from datetime import datetime, timedelta, date
 import Logger2
 from os import makedirs, listdir, remove, stat
-from os.path import dirname, join, realpath, isfile
 from random import choice
-from sys import argv, path
 from yaml import safe_load, YAMLError
 
 THIS_FILE_PATH: str = dirname(realpath(__file__))
@@ -40,8 +44,6 @@ def CheckPaths() -> bool:
 
 def CreateLinkPage(linkPagePath:str, searchArgs:list[str]) -> bool:
 	
-	searchArgsStringUrl = '%20'.join(searchArgs)
-	searchArgsStringUnderscore = '_'.join(searchArgs)
 	styleLinkList = [
 		'<link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">', 
 		'<link rel="stylesheet" href="https://unpkg.com/mvp.css">', 
@@ -59,16 +61,17 @@ def CreateLinkPage(linkPagePath:str, searchArgs:list[str]) -> bool:
 
 		f.write('<td valign="top" style="padding-right: 20px;">\n')
 		f.write('<h3>DVD / Blu-Ray Links:</h3>\n')
-		f.write(f'<a href="https://www.google.com/search?q={searchArgsStringUrl}%20dvd%20cover&-site:ebay.com&tbs=isz:l&hl=en-US&sa=X&biw=1865&bih=970&udm=2" target="_google_{searchArgsStringUnderscore}">Google Large Image Search</a><br />\n')
-		f.write(f'<a href="https://www.imdb.com/find?ref_=nv_sr_fn&q={searchArgsStringUrl}&s=all" target="_imdb_{searchArgsStringUnderscore}">IMDb</a><br />\n')
-		f.write(f'<a href="https://www.google.com/search?q={searchArgsStringUrl}%20site%3Aimdb.com" target="_imdb_google_{searchArgsStringUnderscore}">IMDb (via Google)</a><br />\n')
-		f.write(f'<a href="https://www.justwatch.com/us/search?q={searchArgsStringUrl}" target="_justwatch_{searchArgsStringUnderscore}">JustWatch</a><br />\n')
+		f.write(f'<a href="https://www.google.com/search?q={"%20".join(searchArgs)}%20dvd%20cover&-site:ebay.com&tbs=isz:l&hl=en-US&sa=X&biw=1865&bih=970&udm=2" target="_google_{"_".join(searchArgs)}">Google Large Image Search</a><br />\n')
+		f.write(f'<a href="https://www.imdb.com/find?ref_=nv_sr_fn&q={"%20".join(StripSeasonDesignation(searchArgs))}&s=all" target="_imdb_{"_".join(searchArgs)}">IMDb</a><br />\n')
+		f.write(f'<a href="https://www.google.com/search?q={"%20".join(StripSeasonDesignation(searchArgs))}%20site%3Aimdb.com" target="_imdb_google_{"_".join(searchArgs)}">IMDb (via Google)</a><br />\n')
+		f.write(f'<a href="https://www.justwatch.com/us/search?q={"%20".join(StripSeasonDesignation(searchArgs))}" target="_justwatch_{"_".join(searchArgs)}">JustWatch</a><br />\n')
+		f.write(f'<a href="https://www.metacritic.com/search/{"%20".join(StripSeasonDesignation(searchArgs))}/" target="_metacritic_{"_".join(searchArgs)}">Metacritic</a><br />\n')
 		f.write('</td>\n')
 
 		f.write('<td valign="top" style="padding-right: 20px;">\n')
 		f.write('<h3> CD Links:</h3>\n')
-		f.write(f'<a href="https://www.allmusic.com/search/all/{searchArgsStringUrl}" target="_allmusic_{searchArgsStringUnderscore}">AllMusic</a><br />\n')
-		f.write(f'<a href="https://www.google.com/search?q={searchArgsStringUrl}%20cd%20cover&-site:ebay.com&tbs=isz:l&hl=en-US&sa=X&biw=1865&bih=970&udm=2" target="_google_{searchArgsStringUnderscore}">Google Large Image Search</a><br />\n')
+		f.write(f'<a href="https://www.allmusic.com/search/all/{"%20".join(searchArgs)}" target="_allmusic_{"_".join(searchArgs)}">AllMusic</a><br />\n')
+		f.write(f'<a href="https://www.google.com/search?q={"%20".join(searchArgs)}%20cd%20cover&-site:ebay.com&tbs=isz:l&hl=en-US&sa=X&biw=1865&bih=970&udm=2" target="_google_{"_".join(searchArgs)}">Google Large Image Search</a><br />\n')
 		f.write('</td>\n')
 
 		f.write('</tr></table>\n')
@@ -97,6 +100,11 @@ def delete_old_files(directory_path, days_old):
 
 	Logger2.AddInfo(f"File cleanup complete. Total files deleted: {files_deleted_count}")
 
+def StripSeasonDesignation(args:list[str]) -> list[str]:
+	if (args and len(args) > 2) and (args[-2] == 'season') and StringToInt(args[-1]) is not None:
+		return args[:-2]
+	return args
+
 def ProcessCommandLine():
 	returnVal = {
 		'sourceDirectory': str(),
@@ -114,7 +122,15 @@ def ProcessCommandLine():
 	
 
 	if argc > 1:
-		configValues['searchargs'] = argv[1:]
+		workArgs = argv[1:]
+		
+		# if the last argument is a season number, convert it to "season X" format for better search results
+		if workArgs[-1][0] == 's' and StringToInt(workArgs[-1][1:]) is not None:
+			seasonString = workArgs.pop()
+			workArgs.extend(['season', seasonString[1:]])
+
+		
+		configValues['searchargs'] = workArgs
 	else:
 		print('USAGE: py CreateLinkPage.py <searchArg1> <searchArg2> ... <searchArgN>')
 
@@ -129,7 +145,8 @@ if __name__ == "__main__":
 		exit(1)
 
 	Logger2.SetLogfilePath(configValues['logfile'])
-	outputFileName = ' '.join(configValues['searchargs'][:3]).replace(' ', '_') + '.html'
+	numberOfArgsForFilename = min(len(argv) -1, 3)
+	outputFileName = '_'.join(configValues['searchargs'][:numberOfArgsForFilename]) + '.html'
 	configValues['outputfilename'] = join(DEFAULT_OUTPUT_FILE_DIR, outputFileName)
 
 	# delete old output files

@@ -15,7 +15,7 @@ from random import choice, seed
 BLOCKCHAR = '-'
 BLOCKDAYS = [2, 6] # list of days-of-the-week (to place a fixed char instead of the file count. 0=Mon, 1=Tue...
 BLOCKDATES = ['2026-03-16','2026-03-17','2026-03-18','2026-03-19','2026-03-20','2026-03-21','2026-03-22'] # list of specific dates (yyyy-mm-dd) to block
-DAYLIMIT = 55 # number of days into the future to process
+DAYLIMIT = 60 # number of days into the future to process
 FILE_EXPLORER_LOCATION = r"C:\Portable\FreeCommander\FreeCommander.exe"
 
 

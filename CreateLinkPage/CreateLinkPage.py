@@ -18,42 +18,42 @@ IS_DEBUG: bool = False
 configValues = {'logfile': DEFAULT_LOGFILE_PATH, 'url': str(), 'outputfilename': str(), 'searchargs': []}
 
 
-def CheckPaths() -> bool:
-	returnVal: bool = True
+def check_paths() -> bool:
+	return_val: bool = True
 
 	# verify logfile path
-	logfilePath = configValues['logfile']
-	logfileDir = dirname(logfilePath)
-	if not isfile(logfileDir):
+	logfile_path = configValues['logfile']
+	logfile_dir = dirname(logfile_path)
+	if not isfile(logfile_dir):
 		try:
-			makedirs(logfileDir, exist_ok=True)
+			makedirs(logfile_dir, exist_ok=True)
 		except Exception as ex:
-			print(f'CreateLinkPage.CheckPaths(): unable to create logfile directory {logfileDir}. {ex}')
-			returnVal = False
+			print(f'CreateLinkPage.CheckPaths(): unable to create logfile directory {logfile_dir}. {ex}')
+			return_val = False
 
 	# verify output directory
-	outputDir = DEFAULT_OUTPUT_FILE_DIR
-	if not isfile(outputDir):
+	output_dir = DEFAULT_OUTPUT_FILE_DIR
+	if not isfile(output_dir):
 		try:
-			makedirs(outputDir, exist_ok=True)
+			makedirs(output_dir, exist_ok=True)
 		except Exception as ex:
-			print(f'CreateLinkPage.CheckPaths(): unable to create output directory {outputDir}. {ex}')
-			returnVal = False
+			print(f'CreateLinkPage.CheckPaths(): unable to create output directory {output_dir}. {ex}')
+			return_val = False
 
-	return returnVal
+	return return_val
 
-def CreateLinkPage(linkPagePath:str, searchArgs:list[str]) -> bool:
+def create_link_page(link_page_path:str, search_args:list[str]) -> bool:
 	
-	styleLinkList = [
+	style_link_list = [
 		'<link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">', 
 		'<link rel="stylesheet" href="https://unpkg.com/mvp.css">', 
 		'<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css">'
 	]
-	styleLink = styleLinkList[datetime.now().month % len(styleLinkList)]
+	style_link = style_link_list[datetime.now().month % len(style_link_list)]
 
-	with open(linkPagePath, 'w') as f:
-		f.write(f'<html>\n<head>\n<title>Link Page</title>\n{styleLink}\n</head>\n<body>\n')
-		f.write(f'<h1>Link Page</h1> <h2 style="font-style: italic;">{" ".join(searchArgs)}</h2>\n')
+	with open(link_page_path, 'w') as f:
+		f.write(f'<html>\n<head>\n<title>Link Page</title>\n{style_link}\n</head>\n<body>\n')
+		f.write(f'<h1>Link Page</h1> <h2 style="font-style: italic;">{" ".join(search_args)}</h2>\n')
 		
 		f.write('<table border="0" width="75%"<tr>\n')
 
@@ -61,17 +61,17 @@ def CreateLinkPage(linkPagePath:str, searchArgs:list[str]) -> bool:
 
 		f.write('<td valign="top" style="padding-right: 20px;">\n')
 		f.write('<h3>DVD / Blu-Ray Links:</h3>\n')
-		f.write(f'<a href="https://www.google.com/search?q={"%20".join(searchArgs)}%20dvd%20cover&-site:ebay.com&tbs=isz:l&hl=en-US&sa=X&biw=1865&bih=970&udm=2" target="_google_{"_".join(searchArgs)}">Google Large Image Search</a><br />\n')
-		f.write(f'<a href="https://www.imdb.com/find?ref_=nv_sr_fn&q={"%20".join(StripSeasonDesignation(searchArgs))}&s=all" target="_imdb_{"_".join(searchArgs)}">IMDb</a><br />\n')
-		f.write(f'<a href="https://www.google.com/search?q={"%20".join(StripSeasonDesignation(searchArgs))}%20site%3Aimdb.com" target="_imdb_google_{"_".join(searchArgs)}">IMDb (via Google)</a><br />\n')
-		f.write(f'<a href="https://www.justwatch.com/us/search?q={"%20".join(StripSeasonDesignation(searchArgs))}" target="_justwatch_{"_".join(searchArgs)}">JustWatch</a><br />\n')
-		f.write(f'<a href="https://www.metacritic.com/search/{"%20".join(StripSeasonDesignation(searchArgs))}/" target="_metacritic_{"_".join(searchArgs)}">Metacritic</a><br />\n')
+		f.write(f'<a href="https://www.google.com/search?q={"%20".join(search_args)}%20dvd%20cover&-site:ebay.com&tbs=isz:l&hl=en-US&sa=X&biw=1865&bih=970&udm=2" target="_google_{"_".join(search_args)}">Google Large Image Search</a><br />\n')
+		f.write(f'<a href="https://www.imdb.com/find?ref_=nv_sr_fn&q={"%20".join(strip_season_designation(search_args))}&s=all" target="_imdb_{"_".join(search_args)}">IMDb</a><br />\n')
+		f.write(f'<a href="https://www.google.com/search?q={"%20".join(strip_season_designation(search_args))}%20site%3Aimdb.com" target="_imdb_google_{"_".join(search_args)}">IMDb (via Google)</a><br />\n')
+		f.write(f'<a href="https://www.justwatch.com/us/search?q={"%20".join(strip_season_designation(search_args))}" target="_justwatch_{"_".join(search_args)}">JustWatch</a><br />\n')
+		f.write(f'<a href="https://www.metacritic.com/search/{"%20".join(strip_season_designation(search_args))}/" target="_metacritic_{"_".join(search_args)}">Metacritic</a><br />\n')
 		f.write('</td>\n')
 
 		f.write('<td valign="top" style="padding-right: 20px;">\n')
 		f.write('<h3> CD Links:</h3>\n')
-		f.write(f'<a href="https://www.allmusic.com/search/all/{"%20".join(searchArgs)}" target="_allmusic_{"_".join(searchArgs)}">AllMusic</a><br />\n')
-		f.write(f'<a href="https://www.google.com/search?q={"%20".join(searchArgs)}%20cd%20cover&-site:ebay.com&tbs=isz:l&hl=en-US&sa=X&biw=1865&bih=970&udm=2" target="_google_{"_".join(searchArgs)}">Google Large Image Search</a><br />\n')
+		f.write(f'<a href="https://www.allmusic.com/search/all/{"%20".join(search_args)}" target="_allmusic_{"_".join(search_args)}">AllMusic</a><br />\n')
+		f.write(f'<a href="https://www.google.com/search?q={"%20".join(search_args)}%20cd%20cover&-site:ebay.com&tbs=isz:l&hl=en-US&sa=X&biw=1865&bih=970&udm=2" target="_google_{"_".join(search_args)}">Google Large Image Search</a><br />\n')
 		f.write('</td>\n')
 
 		f.write('</tr></table>\n')
@@ -100,13 +100,13 @@ def delete_old_files(directory_path, days_old):
 
 	Logger2.AddInfo(f"File cleanup complete. Total files deleted: {files_deleted_count}")
 
-def StripSeasonDesignation(args:list[str]) -> list[str]:
+def strip_season_designation(args:list[str]) -> list[str]:
 	if (args and len(args) > 2) and (args[-2] == 'season') and StringToInt(args[-1]) is not None:
 		return args[:-2]
 	return args
 
-def ProcessCommandLine():
-	returnVal = {
+def process_command_line():
+	return_val = {
 		'sourceDirectory': str(),
 		'outputFile': str(),
 	} 
@@ -122,15 +122,15 @@ def ProcessCommandLine():
 	
 
 	if argc > 1:
-		workArgs = argv[1:]
+		work_args = argv[1:]
 		
 		# if the last argument is a season number, convert it to "season X" format for better search results
-		if workArgs[-1][0] == 's' and StringToInt(workArgs[-1][1:]) is not None:
-			seasonString = workArgs.pop()
-			workArgs.extend(['season', seasonString[1:]])
+		if work_args[-1][0] == 's' and StringToInt(work_args[-1][1:]) is not None:
+			season_string = work_args.pop()
+			work_args.extend(['season', season_string[1:]])
 
 		
-		configValues['searchargs'] = workArgs
+		configValues['searchargs'] = work_args
 	else:
 		print('USAGE: py CreateLinkPage.py <searchArg1> <searchArg2> ... <searchArgN>')
 
@@ -139,8 +139,8 @@ def ProcessCommandLine():
 
 if __name__ == "__main__":
 	print(f"CreateLinkPage starting...")
-	ProcessCommandLine()
-	if not CheckPaths():
+	process_command_line()
+	if not check_paths():
 		print("CreateLinkPage: path check failed. Exiting...")
 		exit(1)
 
@@ -156,7 +156,7 @@ if __name__ == "__main__":
 	delete_old_files(DEFAULT_OUTPUT_FILE_DIR, 7)
 
 	# create page
-	CreateLinkPage(configValues['outputfilename'], configValues['searchargs'])
+	create_link_page(configValues['outputfilename'], configValues['searchargs'])
 
 	msg = f"logfile: {configValues['logfile']}\noutput file: {configValues['outputfilename']}\nsearch args: {' '.join(configValues['searchargs'])}"
 	Logger2.AddInfo(msg)

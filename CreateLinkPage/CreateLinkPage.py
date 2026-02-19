@@ -145,8 +145,11 @@ if __name__ == "__main__":
 		exit(1)
 
 	Logger2.SetLogfilePath(configValues['logfile'])
-	numberOfArgsForFilename = min(len(argv) -1, 3)
-	outputFileName = '_'.join(configValues['searchargs'][:numberOfArgsForFilename]) + '.html'
+
+	# generate output filename based on search args 
+	outputFilenameArgs = argv[1:]
+	numberOfArgsForFilename = min(len(outputFilenameArgs), 3)
+	outputFileName = '_'.join(outputFilenameArgs[:numberOfArgsForFilename]) + '.html'
 	configValues['outputfilename'] = join(DEFAULT_OUTPUT_FILE_DIR, outputFileName)
 
 	# delete old output files

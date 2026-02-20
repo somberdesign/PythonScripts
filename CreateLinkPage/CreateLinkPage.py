@@ -6,14 +6,19 @@ from CommonFunctions import StringToInt # in PythonScripts root directory
 
 from datetime import datetime, timedelta, date
 import Logger2
-from os import makedirs, listdir, remove, stat
+from os import makedirs, listdir, path, remove, stat, walk
 from random import choice
-from yaml import safe_load, YAMLError
+from rapidfuzz import process, fuzz
+# from random import choice
+# from yaml import safe_load, YAMLError
 
 THIS_FILE_PATH: str = dirname(realpath(__file__))
 DEFAULT_LOGFILE_PATH: str = join(r"c:\logs\CreateLinkPage_log.txt")
 DEFAULT_OUTPUT_FILE_DIR: str = r'c:\temp\CreateLinkPage'
+FUZZY_SEARCH_THRESHOLD: int = 70
+IMAGE_DIR: str = r'h:\Media\Images\DvdImages'
 IS_DEBUG: bool = False
+LINK_PAGE_CSS: str = join(THIS_FILE_PATH, 'CreateLinkPage.css')
 
 configValues = {'logfile': DEFAULT_LOGFILE_PATH, 'url': str(), 'outputfilename': str(), 'searchargs': []}
 
@@ -42,7 +47,7 @@ def check_paths() -> bool:
 
 	return return_val
 
-def create_link_page(link_page_path:str, search_args:list[str]) -> bool:
+def create_link_page(link_page_path:str, search_args:list[str], background_image:str) -> bool:
 	
 	style_link_list = [
 		'<link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">', 
@@ -52,7 +57,18 @@ def create_link_page(link_page_path:str, search_args:list[str]) -> bool:
 	style_link = style_link_list[datetime.now().month % len(style_link_list)]
 
 	with open(link_page_path, 'w') as f:
-		f.write(f'<html>\n<head>\n<title>Link Page</title>\n{style_link}\n</head>\n<body>\n')
+		f.write(f'<html>\n<head>\n')
+		f.write(f'<title>Link Page</title>\n{style_link}\n')
+
+		if background_image:
+			f.write(f'<link rel="stylesheet" href="file:///{LINK_PAGE_CSS.replace("\\", "/")}" />\n')
+
+			f.write(f'<style>\n .background-container::before {{ background-image: url(http://bombcyclone:8123/{background_image}); }} </style>\n')
+
+		f.write(f'</head>\n<body>\n')
+
+		f.write(f'<div class="background-container">\n')
+		f.write(f'<div class="content">\n')
 		f.write(f'<h1>Link Page</h1> <h2 style="font-style: italic;">{" ".join(search_args)}</h2>\n')
 		
 		f.write('<table border="0" width="75%"<tr>\n')
@@ -78,6 +94,7 @@ def create_link_page(link_page_path:str, search_args:list[str]) -> bool:
 
 		f.write('</tr></table>\n')
 
+		f.write('</div></div>\n')
 		f.write('</body>\n</html>\n')
 	
 	return True
@@ -101,6 +118,26 @@ def delete_old_files(directory_path, days_old):
 					Logger2.AddError(f"  Error deleting file {filename}: {e}")
 
 	Logger2.AddInfo(f"File cleanup complete. Total files deleted: {files_deleted_count}")
+
+
+def fuzzy_find_files(directory, keywords, threshold=70):
+	# 1. Gather all file paths
+	file_list = []
+	for root, dirs, files in walk(directory):
+		for file in files:
+			file_list.append(path.join(root, file))
+
+	# 2. Combine keywords into a single query string for matching
+	query = " ".join(keywords)
+
+	# 3. Perform fuzzy search
+	# extractMatches returns: (matched_string, score, index)
+	results = process.extract(query, file_list, scorer=fuzz.WRatio, limit=10)
+
+	# 4. Filter by threshold
+	matched_files = [match for match in results if match[1] >= threshold]
+	return matched_files
+
 
 def strip_season_designation(args:list[str]) -> list[str]:
 	if (args and len(args) > 2) and (args[-2] == 'season') and StringToInt(args[-1]) is not None:
@@ -157,8 +194,16 @@ if __name__ == "__main__":
 	# delete old output files
 	delete_old_files(DEFAULT_OUTPUT_FILE_DIR, 7)
 
+	# get background image
+	background_image = None
+	candidate = choice(fuzzy_find_files(IMAGE_DIR, configValues['searchargs'], threshold=FUZZY_SEARCH_THRESHOLD))
+	if candidate:
+		background_image = candidate[0]
+		background_image = background_image.replace('\\', '/')
+		background_image = background_image.replace('"', '')[9:]
+
 	# create page
-	create_link_page(configValues['outputfilename'], configValues['searchargs'])
+	create_link_page(configValues['outputfilename'], configValues['searchargs'], background_image)
 
 	msg = f"logfile: {configValues['logfile']}\noutput file: {configValues['outputfilename']}\nsearch args: {' '.join(configValues['searchargs'])}"
 	Logger2.AddInfo(msg)

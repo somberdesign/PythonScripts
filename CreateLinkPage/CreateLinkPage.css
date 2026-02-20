@@ -1,0 +1,41 @@
+.background-container {
+    /* 1. Establish a relative positioning context for the pseudo-element */
+    position: relative;
+    /* Set height/width as needed for your layout, e.g., to cover the whole page */
+    height: 90vh;
+    width: 90%;
+}
+
+.background-container::before {
+    /* 2. Create the pseudo-element and position it absolutely */
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    /* 3. Add the background image and styling */
+    background-size: cover; /* This makes the image cover the entire container */
+    background-position: center;
+    background-repeat: no-repeat;
+
+    /* 4. Set the opacity */
+    opacity: 0.2; /* % transparency */
+
+    /* 5. Place the pseudo-element behind the content */
+    z-index: -1;
+}
+
+.content {
+    /* 6. Ensure content is positioned above the background layer */
+    position: relative;
+    z-index: 1;
+    /* Add padding/styling to make content readable */
+    /*
+    padding: 20px;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+    */
+
+}

@@ -1,12 +1,18 @@
+from os import listdir
+from os.path import abspath, isdir, join, dirname
+
 from datetime import datetime as dt
 from datetime import timedelta
 from math import floor
-import os
 import sys
 # from yaml import safe_load, YAMLError
 from subprocess import Popen, run
 from pyperclip import copy as pyperclipCopy
 from random import choice, seed
+
+join(abspath(join(dirname(__file__), '..'))) # add parent directory to path so we can import CommonFunctions
+from CommonFunctions import Colors
+
 
 # Counts the number of files with a specific filetype under the target dir
 
@@ -37,28 +43,31 @@ def CountDirectories(targetDir:str):
 	lowItemDirs = []
 	lowSeriesDirs = []
 	lowSeriesDirs = []
+	directory_counter = 0
 
 	# loop over month dirs
-	for monthdir in [d for d in os.listdir(targetDir) if os.path.isdir(os.path.join(targetDir, d))]:
+	for monthdir in [d for d in listdir(targetDir) if isdir(join(targetDir, d))]:
 
 		# loop over date dirs
-		for dir in [d for d in os.listdir(os.path.join(targetDir, monthdir)) if os.path.isdir(os.path.join(targetDir, monthdir, d))]:
-			
+		for dir in [d for d in listdir(join(targetDir, monthdir)) if isdir(join(targetDir, monthdir, d))]:
+
+			directory_counter += 1
+
 			# limit number of dirs that are processed
 			if GetDirDate(dir) < dt.now() or GetDirDate(dir) > dt.now() + timedelta(days=DAYLIMIT):
 				continue
 			
 			items:list = []
 			seriesItems:list = []
-			testDir = os.path.join(targetDir, monthdir, dir)
+			testDir = join(targetDir, monthdir, dir)
 			
 			# loop over items in date dir
-			for f in os.listdir(testDir):
+			for f in listdir(testDir):
 
-				testItem = os.path.join(testDir, f)
+				testItem = join(testDir, f)
 				
 				# skip files
-				if not os.path.isdir(testItem):
+				if not isdir(testItem):
 					continue
 
 				# ignore dirs beginning with _
@@ -108,12 +117,13 @@ def CountDirectories(targetDir:str):
 
 
 			results[testDir] = len(items), len(seriesItems)
-	
+
 	seed(dt.now().microsecond) # improve randomness?
 	return { 
 		'results': results, 
 		'lowestItemDate': choice(lowItemDirs), 
-		'lowestSeriesDate': choice(lowSeriesDirs) 
+		'lowestSeriesDate': choice(lowSeriesDirs),
+		'directoryCounter': directory_counter,
 	}
 
 def CountFiles(targetDir:str):
@@ -156,7 +166,7 @@ def ProcessCommandLine():
 
 	# verify param is an xml file
 	targetDir = sys.argv[1]
-	if not os.path.isdir(targetDir):
+	if not isdir(targetDir):
 		print(f'Invalid directory ({targetDir})')
 		exit(1)
 	returnVal[0] = targetDir
@@ -199,7 +209,6 @@ def RepresentsInt(s):
         return False	
 
 if __name__ == '__main__':
-	
 
 	arguments = ProcessCommandLine()
 	targetDir = arguments[0]
@@ -227,6 +236,10 @@ if __name__ == '__main__':
 				print(f'{item[0]}    {singleValue}       {seriesValue}')
 
 			lowestItemDate = allResults['lowestItemDate']
+
+			if allResults['directoryCounter'] < DAYLIMIT:
+				print(f'\n{Colors.FAIL}** WARNING: Ran out of directories before DAYLIMIT reached **{Colors.ENDC}')
+
 			print(f'\nIndividual Pick: {lowestItemDate} (clipboard)')
 			print(f'Series Pick    : {allResults['lowestSeriesDate']}')
 

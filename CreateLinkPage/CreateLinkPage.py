@@ -9,6 +9,7 @@ import Logger2
 from os import makedirs, listdir, path, remove, stat, walk
 from random import choice
 from rapidfuzz import process, fuzz
+from re import sub
 # from random import choice
 # from yaml import safe_load, YAMLError
 
@@ -63,7 +64,7 @@ def create_link_page(link_page_path:str, search_args:list[str], background_image
 		if background_image:
 			f.write(f'<link rel="stylesheet" href="file:///{LINK_PAGE_CSS.replace("\\", "/")}" />\n')
 
-			f.write(f'<style>\n .background-container::before {{ background-image: url(http://bombcyclone:8123/{background_image}); }} </style>\n')
+			f.write(f'<style>\n.background-container::before {{ background-image: url(http://bombcyclone:8123/{background_image}); }}\na:link, a:visited, a:hover, a:active {{ color: black; }}\n</style>\n')
 
 		f.write(f'</head>\n<body>\n')
 
@@ -117,7 +118,8 @@ def delete_old_files(directory_path, days_old):
 				except OSError as e:
 					Logger2.AddError(f"  Error deleting file {filename}: {e}")
 
-	Logger2.AddInfo(f"File cleanup complete. Total files deleted: {files_deleted_count}")
+	if files_deleted_count > 0:
+		Logger2.AddInfo(f"File cleanup complete. Total files deleted: {files_deleted_count}")
 
 
 def fuzzy_find_files(directory, keywords, threshold=70):
@@ -185,19 +187,22 @@ if __name__ == "__main__":
 
 	Logger2.SetLogfilePath(configValues['logfile'])
 
-	# generate output filename based on search args 
-	outputFilenameArgs = argv[1:]
+	# generate output filename based on search args
+	outputFilenameArgs = []
+	for i in range(1,len(argv)):
+		outputFilenameArgs.append(sub(r'[^a-zA-Z0-9]+', '', argv[i]))
 	numberOfArgsForFilename = min(len(outputFilenameArgs), 3)
 	outputFileName = '_'.join(outputFilenameArgs[:numberOfArgsForFilename]) + '.html'
 	configValues['outputfilename'] = join(DEFAULT_OUTPUT_FILE_DIR, outputFileName)
 
 	# delete old output files
-	delete_old_files(DEFAULT_OUTPUT_FILE_DIR, 7)
+	delete_old_files(DEFAULT_OUTPUT_FILE_DIR, 1)
 
 	# get background image
 	background_image = None
-	candidate = choice(fuzzy_find_files(IMAGE_DIR, configValues['searchargs'], threshold=FUZZY_SEARCH_THRESHOLD))
-	if candidate:
+	find_results = fuzzy_find_files(IMAGE_DIR, configValues['searchargs'], threshold=FUZZY_SEARCH_THRESHOLD)
+	if find_results:
+		candidate = choice(find_results)
 		background_image = candidate[0]
 		background_image = background_image.replace('\\', '/')
 		background_image = background_image.replace('"', '')[9:]

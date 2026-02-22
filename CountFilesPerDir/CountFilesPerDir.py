@@ -10,7 +10,7 @@ from subprocess import Popen, run
 from pyperclip import copy as pyperclipCopy
 from random import choice, seed
 
-join(abspath(join(dirname(__file__), '..'))) # add parent directory to path so we can import CommonFunctions
+sys.path.append(abspath(join(dirname(__file__), '..'))) # add parent directory to path so we can import CommonFunctions
 from CommonFunctions import Colors
 
 

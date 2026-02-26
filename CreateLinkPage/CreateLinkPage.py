@@ -60,6 +60,7 @@ def create_link_page(link_page_path:str, search_args:list[str], background_image
 	with open(link_page_path, 'w') as f:
 		f.write(f'<html>\n<head>\n')
 		f.write(f'<title>Link Page</title>\n{style_link}\n')
+		f.write('<style>.primaryLink{font-size:20px;}</style>\n')
 
 		if background_image:
 			f.write(f'<link rel="stylesheet" href="file:///{LINK_PAGE_CSS.replace("\\", "/")}" />\n')
@@ -78,7 +79,7 @@ def create_link_page(link_page_path:str, search_args:list[str], background_image
 
 		f.write('<td valign="top" style="padding-right: 20px;">\n')
 		f.write('<h3>DVD / Blu-Ray Links:</h3>\n')
-		f.write(f'<a href="https://www.imdb.com/find?ref_=nv_sr_fn&q={"%20".join(strip_season_designation(search_args))}&s=all" target="_dvd_imdb_{"_".join(search_args)}" style="font-size:20px;">IMDb</a><br />\n')
+		f.write(f'<a href="https://www.imdb.com/find?ref_=nv_sr_fn&q={"%20".join(strip_season_designation(search_args))}&s=all" target="_dvd_imdb_{"_".join(search_args)}" class="primaryLink">IMDb</a><br />\n')
 		f.write(f'<a href="https://www.ebay.com/sch/i.html?_from=R40&_nkw={"%20".join(search_args)}&+-%28blu%29=&_sacat=617&LH_TitleDesc=0&LH_PrefLoc=1&_fsrp=1&_sop=15&LH_BIN=1&LH_ItemCondition=1000%7C2750&LH_BIN=1&rt=nc&LH_Sold=1" target="_dvd_ebaysolditems_{"_".join(search_args)}">eBay (Sold Items)</a><br />\n')
 		f.write(f'<a href="https://www.google.com/search?q={"%20".join(search_args)}%20dvd%20cover&-site:ebay.com&tbs=isz:l&hl=en-US&sa=X&biw=1865&bih=970&udm=2" target="_dvd_googleimage_{"_".join(search_args)}">Google Large Image Search</a><br />\n')
 		f.write(f'<a href="https://www.google.com/search?q={"%20".join(strip_season_designation(search_args))}%20site%3Aimdb.com" target="_dvd_imdb_google_{"_".join(search_args)}">IMDb (via Google)</a><br />\n')
@@ -88,7 +89,7 @@ def create_link_page(link_page_path:str, search_args:list[str], background_image
 
 		f.write('<td valign="top" style="padding-right: 20px;">\n')
 		f.write('<h3> CD Links:</h3>\n')
-		f.write(f'<a href="https://www.allmusic.com/search/all/{"%20".join(search_args)}" target="_cd_allmusic_{"_".join(search_args)}">AllMusic</a><br />\n')
+		f.write(f'<a href="https://www.allmusic.com/search/all/{"%20".join(search_args)}" target="_cd_allmusic_{"_".join(search_args)}" class="primaryLink">AllMusic</a><br />\n')
 		f.write(f'<a href="https://www.ebay.com/sch/i.html?_fsrp=1&_from=R40&_nkw={"%20".join(search_args)}&_sacat=176984&LH_BIN=1&_sop=15&LH_PrefLoc=2&rt=nc&LH_Sold=1" target="_cd_ebaysolditems_{"_".join(search_args)}">eBay (Sold Items)</a><br />\n')
 		f.write(f'<a href="https://www.google.com/search?q={"%20".join(search_args)}%20cd%20cover&-site:ebay.com&tbs=isz:l&hl=en-US&sa=X&biw=1865&bih=970&udm=2" target="_cd_googleimage_{"_".join(search_args)}">Google Large Image Search</a><br />\n')
 		f.write('</td>\n')

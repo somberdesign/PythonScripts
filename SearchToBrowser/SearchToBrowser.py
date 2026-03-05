@@ -33,7 +33,7 @@ IGNORE_FONT_WORDS:List[str] = ['Barcode', 'Yarndings']
 
 
 def CleanText(line:str) -> str:
-	returnVal = re.sub(r'[^A-Za-z0-9 \n\-\~]', str(), line)
+	returnVal = re.sub(r'[^A-Za-z0-9 \n\-~()]', str(), line)
 	return returnVal
 	
 def GetArguments(configValues:dict[str, str]) -> Tuple[bool, str]:
@@ -191,8 +191,10 @@ if __name__ == '__main__':
 
 	foundLines:List[str] = []
 	for readline in searchLines:
-		line = CleanText(readline)
+		line = CleanText(readline).strip()
 		if searchTerms in line.lower() or searchTerms.rstrip() in line.lower() or searchTerms.lstrip() in line.lower():
+			if line.startswith('(') and line.endswith(')'):
+				line = f'<span style="font-weight: bold;">{line}</span>'
 			foundLines.append(line)
 	
 	headerCell:str = str()
@@ -205,13 +207,13 @@ if __name__ == '__main__':
 		catalogCell += '<p>INVALID</p>'
 	else:
 		for l in foundLines:
-			catalogCell += f'{l}<br />'
+			catalogCell += f'{l}<br />\n'
 
 		# add lines from sales file
 		salesCell += '<h2>Sales Data</h2>'
 		if len(salesFileLines) > 0:
 			for l in salesFileLines:
-				salesCell += f'{l}<br />'
+				salesCell += f'{l}<br />\n'
 		else:
 			salesCell += '(no sales data found)'
 
@@ -221,32 +223,32 @@ if __name__ == '__main__':
 
 	try:
 		with open(outputPath, 'w') as outfile:
-			outfile.write(f'<html>')
-			outfile.write(f'<head>')
-			outfile.write(f'<link rel="stylesheet" href="https://fonts.googleapis.com/css?family={googleFontName}">')
-			outfile.write(f'<style>')
-			outfile.write(f'body {{ font-family: "{googleFontName}", sans-serif; width: 100% }}')
-			outfile.write('td { width: 50%; vertical-align: top; min-width: 500px; }')
-			outfile.write(f'</style>')
-			outfile.write(f'</head><body>')
+			outfile.write(f'<html>\n')
+			outfile.write(f'<head>\n')
+			outfile.write(f'<link rel="stylesheet" href="https://fonts.googleapis.com/css?family={googleFontName}">\n')
+			outfile.write(f'<style>\n')
+			outfile.write(f'body {{ font-family: "{googleFontName}", sans-serif; width: 100% }}\n')
+			outfile.write('td { width: 50%; vertical-align: top; min-width: 500px; }\n')
+			outfile.write(f'</style>\n')
+			outfile.write(f'</head><body>\n')
 
-			outfile.write(f'Searching: <a href="file://{searchFile}" target="_new">{searchFile}</a>&nbsp;({str(filedate)[:10]})<br />')
-			outfile.write(f'Search Terms: {searchTerms.strip()}<br />')
-			outfile.write(f'Found {len(foundLines)} matches in {len(searchLines)} records<br />') 
-			outfile.write(f'Font Name: {googleFontName}<br />')
-			outfile.write(f'&nbsp;<br />')
+			outfile.write(f'Searching: <a href="file://{searchFile}" target="_new">{searchFile}</a>&nbsp;({str(filedate)[:10]})<br />\n')
+			outfile.write(f'Search Terms: {searchTerms.strip()}<br />\n')
+			outfile.write(f'Found {len(foundLines)} matches in {len(searchLines)} records<br />\n')
+			outfile.write(f'Font Name: {googleFontName}<br />\n')
+			outfile.write(f'&nbsp;<br />\n')
 
-			outfile.write(f'<table><tr>')
-			outfile.write(f'<td>{catalogCell}</td>')
-			outfile.write(f'<td>{salesCell}</td>')
-			outfile.write(f'</tr></table>')
-			outfile.write(f'</body></html>')
+			outfile.write(f'<table><tr>\n')
+			outfile.write(f'<td>{catalogCell}</td>\n')
+			outfile.write(f'<td>{salesCell}</td>\n')
+			outfile.write(f'</tr></table>\n')
+			outfile.write(f'</body></html>\n')
 	except Exception as ex:
 		msgbox(f'Error writing file {outputPath}. {ex}')
 
 				
 	# everything output file
-	if (len(EVERYTHING_COMMAND_LINE_PATH) > 0):
+	if len(EVERYTHING_COMMAND_LINE_PATH) > 0:
 		command = f'{EVERYTHING_COMMAND_LINE_PATH} -r {searchTerms} > {everythingOutputPath}'
 		print(f'everything command: {command}')
 		# os.system(command)

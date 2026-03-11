@@ -1,4 +1,4 @@
-@echo off
+rem @echo off
 if ""=="%PYTHONSCRIPTS_PATH%" (
     echo PYTHONSCRIPTS_PATH is not set. Exiting.
     goto END
@@ -10,9 +10,9 @@ set START_DIRECTORY=%CD%
 
 @REM 1. Download as CSV any Sales sheets that have changed. Save them in dir ~\ReadSalesCsv\Csv_Sales. 
 @REM    ..Change the filename to match the following format: 0_Sales-DVDSales2021.csv. 
-cd %PYTHONSCRIPTS_PATH%\CreateMovieList
-py DownloadSalesCsv.py
-
+rem cd %PYTHONSCRIPTS_PATH%\CreateMovieList
+rem py DownloadSalesCsv.py
+pause
 
 
 
@@ -20,8 +20,12 @@ py DownloadSalesCsv.py
 @REM   a. Make a new list with "~\FileList\FileList.py". Use *_SmartList_FULL.txt.
 cd %PYTHONSCRIPTS_PATH%\FileList
 py FileList.py
+pause
 
-
+echo
+echo Perform steps 2b, 2c and 2d now
+echo
+pause
 
 @REM 3. Execute ReadSalesCsv.py. This reads data from the csvs and puts it into \Output\SalesData.py.
 @REM 4. Execute ModifyMovieList.py. This creates MovieList_Sales.html, MovieList_Sales.txt and MovieList_Unmatched.txt in dir \Output.

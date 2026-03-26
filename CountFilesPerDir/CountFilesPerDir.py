@@ -74,18 +74,18 @@ def CountDirectories(targetDir:str):
 				if f[0] == '_':
 					continue
 
-				halfstring = f[:int(len(f) / 2)]
+				half_string = f[:int(len(f) / 2)]
 				if len(items) == 0:
-					items.append(halfstring)
+					items.append(half_string)
 					continue
 					
 				# assume it's part of a series if the first half of the string has been seen before
-				if halfstring in items:
-					if halfstring not in seriesItems: seriesItems.append(halfstring)
+				if half_string in items:
+					if half_string not in seriesItems: seriesItems.append(half_string)
 					continue
 				
 				# assume it's an individual title if you get here
-				items.append(halfstring)
+				items.append(half_string)
 
 				if len(items) > 0:
 					a = 1
@@ -95,10 +95,10 @@ def CountDirectories(targetDir:str):
 				if i in items: items.remove(i)
 
 			# don't look at blocked days when figuring out lowest item counts
-			directoryDateString = dir[:-4] # dir looks like this: 2025-08-21-Thu
-			directoryDate = dt.strptime(directoryDateString, '%Y-%m-%d')
+			directory_date_string = dir[:-4] # dir looks like this: 2025-08-21-Thu
+			# directoryDate = dt.strptime(directory_date_string, '%Y-%m-%d')
 
-			if not IsBlockedDate(directoryDateString):
+			if not is_blocked_date(directory_date_string):
 				if len(items) == lowItemCount:
 					lowItemDirs.append(testDir)
 				
@@ -137,8 +137,8 @@ def CountFiles(targetDir:str):
 	for item in results:
 		print(item[1])
 
-def IsBlockedDate(dirstring):
-	parts = dirstring.split('-')
+def is_blocked_date(dir_string):
+	parts = dir_string.split('-')
 	
 	if (
 		len(parts) != 3
@@ -148,9 +148,9 @@ def IsBlockedDate(dirstring):
 		):
 		return False
 		
-	dateString = f'{parts[0]}-{parts[1]}-{parts[2]}'
-	dayOfWeek = dt.strptime(dateString, '%Y-%m-%d').weekday()
-	return dateString in BLOCKDATES or dayOfWeek in BLOCKDAYS
+	date_string = f'{parts[0]}-{parts[1]}-{parts[2]}'
+	day_of_week = dt.strptime(date_string, '%Y-%m-%d').weekday()
+	return date_string in BLOCKDATES or day_of_week in BLOCKDAYS
 
 def ProcessCommandLine():
 	returnVal = [str(), []]
@@ -225,7 +225,7 @@ if __name__ == '__main__':
 			print(f'{dateSpaces}DATE               SINGLES  SERIES  ')
 			for item in directoryData.items():
 				dayString = item[0][-14:-4]
-				if IsBlockedDate(dayString):
+				if is_blocked_date(dayString):
 					singleValue = BLOCKCHAR
 					seriesValue = BLOCKCHAR
 				else:

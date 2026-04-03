@@ -229,6 +229,10 @@ if __name__ == '__main__':
 			outfile.write(f'<style>\n')
 			outfile.write(f'body {{ font-family: "{googleFontName}", sans-serif; width: 100% }}\n')
 			outfile.write('td { width: 50%; vertical-align: top; min-width: 500px; }\n')
+
+			# 2026-03-26 - added this to prevent the catalog column from wrapping. not sure if it works.
+			outfile.write('.catalog-cell { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%; }\n')
+
 			outfile.write(f'</style>\n')
 			outfile.write(f'</head><body>\n')
 
@@ -239,7 +243,7 @@ if __name__ == '__main__':
 			outfile.write(f'&nbsp;<br />\n')
 
 			outfile.write(f'<table><tr>\n')
-			outfile.write(f'<td>{catalogCell}</td>\n')
+			outfile.write(f'<td class="catalog-cell">{catalogCell}</td>\n')
 			outfile.write(f'<td>{salesCell}</td>\n')
 			outfile.write(f'</tr></table>\n')
 			outfile.write(f'</body></html>\n')

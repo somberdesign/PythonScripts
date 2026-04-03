@@ -20,6 +20,7 @@ artistGroupWords:
   - orchestra
   - series
   - trio
+  - project
 
 # strings that indicate an album is a movie soundtrack
 soundtrackWords:

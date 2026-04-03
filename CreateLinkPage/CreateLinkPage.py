@@ -89,6 +89,7 @@ def create_link_page(link_page_path:str, search_args:list[str], background_image
 		f.write('<h3>CD Links</h3>\n')
 		f.write(f'<a href="https://www.allmusic.com/search/all/{"%20".join(search_args)}" target="_cd_allmusic_{"_".join(search_args)}" class="primaryLink">AllMusic</a><br />\n')
 		f.write(f'<a href="https://www.google.com/search?q={"%20".join(strip_season_designation(search_args))}%20site%3Aallmusic.com" target="_cd_allmusic_google_{"_".join(search_args)}">AllMusic (via Google)</a><br />\n')
+		f.write(f'<a href="https://www.discogs.com/search?q={"%20".join(search_args)}&type=all" target="_cd_discogs_{"_".join(search_args)}">Discogs</a><br />\n')
 		f.write(f'<a href="https://www.ebay.com/sch/i.html?_fsrp=1&_from=R40&_nkw={"%20".join(search_args)}&_sacat=176984&LH_BIN=1&_sop=15&LH_PrefLoc=2&rt=nc&LH_Sold=1" target="_cd_ebaysolditems_{"_".join(search_args)}">eBay (Sold Items)</a><br />\n')
 		f.write(f'<a href="https://www.google.com/search?q={"%20".join(search_args)}%20cd%20cover&-site:ebay.com&tbs=isz:l&hl=en-US&sa=X&biw=1865&bih=970&udm=2" target="_cd_googleimage_{"_".join(search_args)}">Google Large Image Search</a><br />\n')
 		f.write('</td>\n')

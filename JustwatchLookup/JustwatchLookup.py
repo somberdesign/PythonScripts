@@ -2,6 +2,7 @@
 
 import Logger2
 from sys import argv, exit
+from time import sleep
 from webbrowser import open as webopen
 from urllib.parse import quote_plus
 
@@ -34,12 +35,13 @@ if __name__ == '__main__':
             continue
         
         # ignore comments after a '#'
-        if '#' in line:
-            line = line.split('#')[0].strip()
+        line = line.split('#')[0].strip()
 
         searchTerm = quote_plus(line.split('#')[0].strip()) # ignore everything after a '#'
         url = f'https://www.justwatch.com/us/search?q={searchTerm}'
         webopen(url)
         itemCount += 1
+        sleep(30)
+
 
     Logger2.AddInfo(f'Finished run. Opened {itemCount} Justwatch search pages.')

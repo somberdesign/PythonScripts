@@ -19,6 +19,7 @@ artistGroupWords:
   - group
   - orchestra
   - series
+  - singers
   - trio
   - project
 
@@ -64,6 +65,7 @@ ruleExceptions:
   aldo nova: a
   amaryllis consort: a
   baden powell: p
+  barbra streisand: s
   b.b. king: k
   beegie adair: a
   bernie and red: b

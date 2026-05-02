@@ -23,7 +23,7 @@ BLOCKDAYS = [2, 6] # list of days-of-the-week (to place a fixed char instead of 
 BLOCKDATES = ['2026-03-16','2026-03-17','2026-03-18','2026-03-19','2026-03-20','2026-03-21','2026-03-22'] # list of specific dates (yyyy-mm-dd) to block
 DAYLIMIT = 75 # number of days into the future to process
 FILE_EXPLORER_LOCATION = r"C:\Portable\FreeCommander\FreeCommander.exe"
-FILE_EXPLORER_ENABLED = False
+FILE_EXPLORER_ENABLED = True
 
 
 # 2023-12-29 - just had the cataract in my right eye removed
@@ -247,7 +247,10 @@ if __name__ == '__main__':
 			pyperclipCopy(lowestItemDate)
 
 			if FILE_EXPLORER_ENABLED:
-				completedProcess = run([FILE_EXPLORER_LOCATION, lowestItemDate])
+
+				# 2026-05-01 - this format reportedly does not create zombie processes.
+				# I previously used run([FILE_EXPLORER_LOCATION, lowestItemDate])
+				completedProcess = run(['cmd', r'/c', FILE_EXPLORER_LOCATION, lowestItemDate])
 			else:
 				print('File Explorer is not enabled')
 				input('\nPress ENTER to exit...')

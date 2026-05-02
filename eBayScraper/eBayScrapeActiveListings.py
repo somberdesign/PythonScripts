@@ -10,7 +10,7 @@ from os.path import dirname, isfile, join, realpath
 from requests import get
 import typing
 from yaml import safe_load, YAMLError
-from re import I as CaseInsensitive, sub
+from re import IGNORECASE, sub
 
 TAB_CLASS_TITLE:str = 'shui-dt-column__title'
 TAB_CLASS_TIMEREMAINING:str = 'shui-dt-column__timeRemaining'
@@ -30,20 +30,18 @@ def CreateItemText(inString:str) -> str:
     global countBucket
     returnVal:str = str()
     searchData:typing.List = [('cd', 'cd'), ('cassette tape', 'ct'), ('cgc', 'cb')]
+    remove_date = True # remove date from string
 
     # ignore items that contain any of these words
     for word in ['ItemSort', 'TitleSort']:
         if word.lower() in inString.lower(): 
             countBucket['BadString'] += 1
             return str()
-        
-    if 'American Legion Lapel Pin'.lower() in inString.lower():
-        countBucket['Legion'] += 1
-        return str()
-        
+
     # graded comics
     # ex: "Nightmask 2 Dec 1986 CGC 94"
     if 'cgc' in inString.lower():
+        remove_date = False
         findLocation = inString.lower().find('cgc')
         return f'cb {inString[:findLocation]}'
 
@@ -71,19 +69,23 @@ def CreateItemText(inString:str) -> str:
     # remove unwanted words
     badWords = ['by', 'screener', 'various']
     for word in badWords:
-        returnVal = sub(' ' + word, str(), returnVal, flags=CaseInsensitive)
+        returnVal = sub(' ' + word, str(), returnVal, flags=IGNORECASE)
 
     # replace "season x" with "sx"
-    returnVal = sub(r'(season )(/n)', 's\2', returnVal, flags=CaseInsensitive)
+    returnVal = sub(r'(season )(/n)', 's\2', returnVal, flags=IGNORECASE)
 
     # replace "volume x" with "vx"
-    returnVal = sub(r'(volume )(/n)', 'v\2', returnVal, flags=CaseInsensitive)
-    returnVal = sub(r'(vol )(/n)', 'v\2', returnVal, flags=CaseInsensitive)
+    returnVal = sub(r'(volume )(/n)', 'v\2', returnVal, flags=IGNORECASE)
+    returnVal = sub(r'(vol )(/n)', 'v\2', returnVal, flags=IGNORECASE)
 
     #remove region
-    returnVal = sub('region \n', '', returnVal, flags=CaseInsensitive)
+    returnVal = sub('region \n', '', returnVal, flags=IGNORECASE)
 
-    # remove doubled spaces
+    # remove date
+    if remove_date:
+        returnVal = sub(r'\b\d{4}\b', '', returnVal, flags=IGNORECASE)
+
+    # remove doubled spaces (this one is last)
     returnVal = returnVal.replace('  ', ' ')
 
     return returnVal.strip()

@@ -1,4 +1,4 @@
-rem @echo off
+@echo off
 if ""=="%PYTHONSCRIPTS_PATH%" (
     echo PYTHONSCRIPTS_PATH is not set. Exiting.
     goto END
@@ -23,8 +23,14 @@ py FileList.py
 pause
 
 echo
-echo Perform steps 2b, 2c and 2d now
-echo
+echo Perform step 2c
+echo     upload ~\ReadSalesCsv\Input\MovieList.txt to google drive
+echo( 
+echo Perform step 2d
+echo     Copy SmartList_Full to the DVD machine 
+echo(
+echo     copy /y "H:\Users\bob\PythonScripts\FileList\Output\SmartList_full.txt" "c:\Users\rgw3\PythonScripts\SearchToBrowser\Smartlist_Full.txt"
+echo(
 pause
 
 @REM 3. Execute ReadSalesCsv.py. This reads data from the csvs and puts it into \Output\SalesData.py.
@@ -48,6 +54,5 @@ echo   .. Font 8pt (try Bahnschrift SemiLight 10pt)
 :END
 cd %START_DIRECTORY%
 
-type _readme.txt
 
 pause

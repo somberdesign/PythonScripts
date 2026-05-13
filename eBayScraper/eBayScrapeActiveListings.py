@@ -10,7 +10,7 @@ from os.path import dirname, isfile, join, realpath
 from requests import get
 import typing
 from yaml import safe_load, YAMLError
-from re import IGNORECASE, sub
+from re import IGNORECASE, search, sub
 
 TAB_CLASS_TITLE:str = 'shui-dt-column__title'
 TAB_CLASS_TIMEREMAINING:str = 'shui-dt-column__timeRemaining'
@@ -30,7 +30,8 @@ def CreateItemText(inString:str) -> str:
     global countBucket
     returnVal:str = str()
     searchData:typing.List = [('cd', 'cd'), ('cassette tape', 'ct'), ('cgc', 'cb')]
-    remove_date = True # remove date from string
+    remove_year = True # remove date from string
+    is_comic_book = search(r'\b#\d{1,3}\b', inString) is not None
 
     # ignore items that contain any of these words
     for word in ['ItemSort', 'TitleSort']:
@@ -41,7 +42,7 @@ def CreateItemText(inString:str) -> str:
     # graded comics
     # ex: "Nightmask 2 Dec 1986 CGC 94"
     if 'cgc' in inString.lower():
-        remove_date = False
+        remove_year = False
         findLocation = inString.lower().find('cgc')
         return f'cb {inString[:findLocation]}'
 
@@ -82,7 +83,7 @@ def CreateItemText(inString:str) -> str:
     returnVal = sub('region \n', '', returnVal, flags=IGNORECASE)
 
     # remove date
-    if remove_date:
+    if remove_year and not is_comic_book:
         returnVal = sub(r'\b\d{4}\b', '', returnVal, flags=IGNORECASE)
 
     # remove doubled spaces (this one is last)

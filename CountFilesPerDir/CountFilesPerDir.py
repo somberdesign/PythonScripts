@@ -20,7 +20,7 @@ from CommonFunctions import Colors
 # SPACES = ' ' * 15
 BLOCKCHAR = '-'
 BLOCKDAYS = [2, 6] # list of days-of-the-week (to place a fixed char instead of the file count. 0=Mon, 1=Tue...
-BLOCKDATES = ['2026-03-16','2026-03-17','2026-03-18','2026-03-19','2026-03-20','2026-03-21','2026-03-22'] # list of specific dates (yyyy-mm-dd) to block
+BLOCKDATES = ['2026-07-29', '2026-07-30', '2026-07-31', '2026-08-01', '2026-08-02'] # list of specific dates (yyyy-mm-dd) to block
 DAYLIMIT = 75 # number of days into the future to process
 FILE_EXPLORER_LOCATION = r"C:\Portable\FreeCommander\FreeCommander.exe"
 FILE_EXPLORER_ENABLED = True
@@ -249,7 +249,7 @@ if __name__ == '__main__':
 			if FILE_EXPLORER_ENABLED:
 
 				# 2026-05-01 - this format reportedly does not create zombie processes.
-				# I previously used run([FILE_EXPLORER_LOCATION, lowestItemDate])
+				# I previously used run([FILE_EXPLORER_LOCATION, lowestItemDate]) which may create a zombie process
 				completedProcess = run(['cmd', r'/c', FILE_EXPLORER_LOCATION, lowestItemDate])
 			else:
 				print('File Explorer is not enabled')

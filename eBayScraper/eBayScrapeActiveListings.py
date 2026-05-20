@@ -29,7 +29,7 @@ ebayUrl:str = str()
 
 def create_item_text(inString:str) -> str:
     global countBucket
-    returnVal:str = str()
+    return_val:str = str()
     searchData:typing.List = [('cd', 'cd'), ('cassette tape', 'ct'), ('cgc', 'cb')]
     remove_year = True # remove date from string
     is_comic_book = search(r'\b#\d{1,3}\b', inString) is not None
@@ -54,49 +54,49 @@ def create_item_text(inString:str) -> str:
         findLocation = inString.lower().find(' (' + item[0])
         if findLocation == -1: continue
 
-        returnVal = f'{item[1]} {inString[:findLocation]}'
+        return_val = f'{item[1]} {inString[:findLocation]}'
         break
         
     # default to dvd or complete string
-    if len(returnVal) == 0:
+    if len(return_val) == 0:
         findLocation = inString.lower().find(' (')
         if findLocation != -1:
-            returnVal = f'{inString[:findLocation]}'
+            return_val = f'{inString[:findLocation]}'
         else:
-            returnVal = inString
+            return_val = inString
 
     # strip non-alpanumeric chars
-    returnVal = sub(r'[^A-Za-z0-9 ]+', str(), returnVal)
+    return_val = sub(r'[^A-Za-z0-9 ]+', str(), return_val)
 
     # replace "season x" with "sx"
-    returnVal = sub(r'(season )(/n)', 's\2', returnVal, flags=IGNORECASE)
+    return_val = sub(r'(season )(/n)', 's\2', return_val, flags=IGNORECASE)
 
     # replace "volume x" with "vx"
-    returnVal = sub(r'(volume )(/n)', 'v\2', returnVal, flags=IGNORECASE)
-    returnVal = sub(r'(vol )(/n)', 'v\2', returnVal, flags=IGNORECASE)
+    return_val = sub(r'(volume )(/n)', 'v\2', return_val, flags=IGNORECASE)
+    return_val = sub(r'(vol )(/n)', 'v\2', return_val, flags=IGNORECASE)
 
     #remove region
-    returnVal = sub('region \n', '', returnVal, flags=IGNORECASE)
+    return_val = sub('region \n', '', return_val, flags=IGNORECASE)
 
     # remove date
     if remove_year and not is_comic_book:
-        returnVal = sub(r'\b\d{4}\b', '', returnVal, flags=IGNORECASE)
+        return_val = sub(r'\b\d{4}\b', '', return_val, flags=IGNORECASE)
 
     # remove strings that are not relevant to the search
     for string in STRINGS_TO_REMOVE:
-        if returnVal.lower().startswith(string.lower() + ' '):
-            returnVal = sub(string + ' ', '', returnVal, flags=IGNORECASE)
+        if return_val.lower().startswith(string.lower() + ' '):
+            return_val = sub(string + ' ', '', return_val, flags=IGNORECASE)
 
-        if returnVal.lower().endswith(' ' + string.lower()):
-            returnVal = sub(' ' + string, '', returnVal, flags=IGNORECASE)
+        if return_val.lower().endswith(' ' + string.lower()):
+            return_val = sub(' ' + string, '', return_val, flags=IGNORECASE)
 
-        if returnVal.lower().find(' ' + string.lower() + ' ') != -1:
-            returnVal = sub(' ' + string + ' ', ' ', returnVal, flags=IGNORECASE)
+        if return_val.lower().find(' ' + string.lower() + ' ') != -1:
+            return_val = sub(' ' + string + ' ', ' ', return_val, flags=IGNORECASE)
 
     # remove doubled spaces (this one is last)
-    returnVal = returnVal.replace('  ', ' ')
+    return_val = return_val.replace('  ', ' ')
 
-    return returnVal.strip()
+    return return_val.strip()
 
 def GetConfigValues() -> bool:
     returnVal:bool = True

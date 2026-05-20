@@ -21,12 +21,13 @@ THIS_FILE_PATH = dirname(realpath(__file__))
 INPUT_FILE_PATH = r'C:\temp\ebay.html'
 OUTPUT_FILE_PATH = r'C:\temp\ebayScrapeActiveListings_output.txt'
 PREVIOUS_ITEM_PATH = r'C:\temp\ebayScrapeActiveListings_previous.txt'
+STRINGS_TO_REMOVE = ['See condition descriptionBuy It Now', 'suitable for reading and handling', 'detailed condition description', 'by', 'screener', 'various']
 
-countBucket = { 'BadString': 0, 'Legion': 0, 'TimeRejected': 0 }
+countBucket = { 'BadString': 0, 'TimeRejected': 0 }
 logger = None
 ebayUrl:str = str()
 
-def CreateItemText(inString:str) -> str:
+def create_item_text(inString:str) -> str:
     global countBucket
     returnVal:str = str()
     searchData:typing.List = [('cd', 'cd'), ('cassette tape', 'ct'), ('cgc', 'cb')]
@@ -65,12 +66,7 @@ def CreateItemText(inString:str) -> str:
             returnVal = inString
 
     # strip non-alpanumeric chars
-    returnVal = sub(r'[^A-Za-z0-9 ]+', str(), returnVal) 
-
-    # remove unwanted words
-    badWords = ['by', 'screener', 'various']
-    for word in badWords:
-        returnVal = sub(' ' + word, str(), returnVal, flags=IGNORECASE)
+    returnVal = sub(r'[^A-Za-z0-9 ]+', str(), returnVal)
 
     # replace "season x" with "sx"
     returnVal = sub(r'(season )(/n)', 's\2', returnVal, flags=IGNORECASE)
@@ -85,6 +81,17 @@ def CreateItemText(inString:str) -> str:
     # remove date
     if remove_year and not is_comic_book:
         returnVal = sub(r'\b\d{4}\b', '', returnVal, flags=IGNORECASE)
+
+    # remove strings that are not relevant to the search
+    for string in STRINGS_TO_REMOVE:
+        if returnVal.lower().startswith(string.lower() + ' '):
+            returnVal = sub(string + ' ', '', returnVal, flags=IGNORECASE)
+
+        if returnVal.lower().endswith(' ' + string.lower()):
+            returnVal = sub(' ' + string, '', returnVal, flags=IGNORECASE)
+
+        if returnVal.lower().find(' ' + string.lower() + ' ') != -1:
+            returnVal = sub(' ' + string + ' ', ' ', returnVal, flags=IGNORECASE)
 
     # remove doubled spaces (this one is last)
     returnVal = returnVal.replace('  ', ' ')
@@ -209,7 +216,7 @@ if __name__ == '__main__':
             countBucket['TimeRejected'] += 1
             continue
 
-        cleanItem:str = CreateItemText(titleElement.text)
+        cleanItem:str = create_item_text(titleElement.text)
         if cleanItem:
             outputItems.append(cleanItem)
 
@@ -228,7 +235,7 @@ if __name__ == '__main__':
     except Exception as ex:
         Logger2.AddError(f'Error writing file {OUTPUT_FILE_PATH}. {ex}')
 
-    Logger2.AddInfo(f"Read {len(tagTitles) - 1 - countBucket['BadString']} listings\n{countBucket['TimeRejected']} don't expire today\n{countBucket['Legion']} listings skipped\n{yesterdayCount} appeared yesterday")
+    Logger2.AddInfo(f"Read {len(tagTitles) - 1 - countBucket['BadString']} listings\n{countBucket['TimeRejected']} don't expire today\n{yesterdayCount} appeared yesterday")
 
     input('Pause')
 

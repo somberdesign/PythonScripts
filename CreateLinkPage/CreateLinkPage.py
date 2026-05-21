@@ -1,5 +1,6 @@
 from sys import argv, path
 from os.path import abspath, dirname, join, realpath, isfile
+from unittest import case
 
 path.append(abspath(join(dirname(__file__), '..'))) # add parent directory to path so we can import CommonFunctions
 from CommonFunctions import StringToInt # in PythonScripts root directory
@@ -18,7 +19,7 @@ DEFAULT_LOGFILE_PATH: str = join(r"c:\logs\CreateLinkPage_log.txt")
 DEFAULT_OUTPUT_FILE_DIR: str = r'c:\temp\CreateLinkPage'
 FUZZY_SEARCH_THRESHOLD: int = 70
 IMAGE_DIR: str = r'h:\Media\Images\DvdImages'
-IS_DEBUG: bool = False
+IS_DEBUG: bool = True
 LINK_PAGE_CSS: str = join(THIS_FILE_PATH, 'CreateLinkPage.css')
 
 configValues = {'logfile': DEFAULT_LOGFILE_PATH, 'url': str(), 'outputfilename': str(), 'searchargs': []}
@@ -48,8 +49,34 @@ def check_paths() -> bool:
 
 	return return_val
 
-def create_link_page(link_page_path:str, search_args:list[str], background_image:str) -> bool:
-	
+def create_link_page(link_page_path:str, search_args:list[str], background_image:str, search_type:str='dvd') -> bool:
+
+	def get_comic_book_content():
+		f.write('<td valign="top" style="padding-right: 20px;">\n')
+		f.write('<h3>Comic Book Links</h3>\n')
+		f.write(f'<a href="https://www.comics.org/searchNew/?q={"%20".join(search_args)}" target="_cb_grandcomicsdb_{"_".join(search_args)}">Grand Comics Database</a><br />\n')
+
+	def get_dvd_content():
+		f.write('<td valign="top" style="padding-right: 20px;">\n')
+		f.write('<h3>DVD Links</h3>\n')
+		f.write(f'<a href="https://www.imdb.com/find?ref_=nv_sr_fn&q={"%20".join(strip_season_designation(search_args))}&s=all" target="_dvd_imdb_{"_".join(search_args)}" class="primaryLink">IMDb</a><br />\n')
+		f.write(f'<a href="https://www.ebay.com/sch/i.html?_from=R40&_nkw={"%20".join(search_args)}&+-%28blu%29=&_sacat=617&LH_TitleDesc=0&LH_PrefLoc=1&_fsrp=1&_sop=15&LH_BIN=1&LH_ItemCondition=1000%7C2750&LH_BIN=1&rt=nc&LH_Sold=1" target="_dvd_ebaysolditems_{"_".join(search_args)}">eBay (Sold Items)</a><br />\n')
+		f.write(f'<a href="https://www.google.com/search?q={"%20".join(search_args)}%20dvd%20cover&-site:ebay.com&tbs=isz:l&hl=en-US&sa=X&biw=1865&bih=970&udm=2" target="_dvd_googleimage_{"_".join(search_args)}">Google Large Image Search</a><br />\n')
+		f.write(f'<a href="https://www.google.com/search?q={"%20".join(strip_season_designation(search_args))}%20site%3Aimdb.com" target="_dvd_imdb_google_{"_".join(search_args)}">IMDb (via Google)</a><br />\n')
+		f.write(f'<a href="https://www.justwatch.com/us/search?q={"%20".join(strip_season_designation(search_args))}" target="_dvd_justwatch_{"_".join(search_args)}">JustWatch</a><br />\n')
+		f.write(f'<a href="https://www.metacritic.com/search/{"%20".join(strip_season_designation(search_args))}/" target="_dvd_metacritic_{"_".join(search_args)}">Metacritic</a><br />\n')
+		f.write('</td>\n')
+
+		f.write('<td valign="top" style="padding-right: 20px;">\n')
+		f.write('<h3>CD Links</h3>\n')
+		f.write(f'<a href="https://www.allmusic.com/search/all/{"%20".join(search_args)}" target="_cd_allmusic_{"_".join(search_args)}" class="primaryLink">AllMusic</a><br />\n')
+		f.write(f'<a href="https://www.google.com/search?q={"%20".join(strip_season_designation(search_args))}%20site%3Aallmusic.com" target="_cd_allmusic_google_{"_".join(search_args)}">AllMusic (via Google)</a><br />\n')
+		f.write(f'<a href="https://www.discogs.com/search?q={"%20".join(search_args)}&type=all" target="_cd_discogs_{"_".join(search_args)}">Discogs</a><br />\n')
+		f.write(f'<a href="https://www.ebay.com/sch/i.html?_fsrp=1&_from=R40&_nkw={"%20".join(search_args)}&_sacat=176984&LH_BIN=1&_sop=15&LH_PrefLoc=2&rt=nc&LH_Sold=1" target="_cd_ebaysolditems_{"_".join(search_args)}">eBay (Sold Items)</a><br />\n')
+		f.write(f'<a href="https://www.google.com/search?q={"%20".join(search_args)}%20cd%20cover&-site:ebay.com&tbs=isz:l&hl=en-US&sa=X&biw=1865&bih=970&udm=2" target="_cd_googleimage_{"_".join(search_args)}">Google Large Image Search</a><br />\n')
+		f.write('</td>\n')
+
+
 	style_link_list = [
 		'<link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">', 
 		'<link rel="stylesheet" href="https://unpkg.com/mvp.css">', 
@@ -75,24 +102,9 @@ def create_link_page(link_page_path:str, search_args:list[str], background_image
 		
 		f.write('<table border="0" width="75%"<tr>\n')
 
-		f.write('<td valign="top" style="padding-right: 20px;">\n')
-		f.write('<h3>DVD Links</h3>\n')
-		f.write(f'<a href="https://www.imdb.com/find?ref_=nv_sr_fn&q={"%20".join(strip_season_designation(search_args))}&s=all" target="_dvd_imdb_{"_".join(search_args)}" class="primaryLink">IMDb</a><br />\n')
-		f.write(f'<a href="https://www.ebay.com/sch/i.html?_from=R40&_nkw={"%20".join(search_args)}&+-%28blu%29=&_sacat=617&LH_TitleDesc=0&LH_PrefLoc=1&_fsrp=1&_sop=15&LH_BIN=1&LH_ItemCondition=1000%7C2750&LH_BIN=1&rt=nc&LH_Sold=1" target="_dvd_ebaysolditems_{"_".join(search_args)}">eBay (Sold Items)</a><br />\n')
-		f.write(f'<a href="https://www.google.com/search?q={"%20".join(search_args)}%20dvd%20cover&-site:ebay.com&tbs=isz:l&hl=en-US&sa=X&biw=1865&bih=970&udm=2" target="_dvd_googleimage_{"_".join(search_args)}">Google Large Image Search</a><br />\n')
-		f.write(f'<a href="https://www.google.com/search?q={"%20".join(strip_season_designation(search_args))}%20site%3Aimdb.com" target="_dvd_imdb_google_{"_".join(search_args)}">IMDb (via Google)</a><br />\n')
-		f.write(f'<a href="https://www.justwatch.com/us/search?q={"%20".join(strip_season_designation(search_args))}" target="_dvd_justwatch_{"_".join(search_args)}">JustWatch</a><br />\n')
-		f.write(f'<a href="https://www.metacritic.com/search/{"%20".join(strip_season_designation(search_args))}/" target="_dvd_metacritic_{"_".join(search_args)}">Metacritic</a><br />\n')
-		f.write('</td>\n')
-
-		f.write('<td valign="top" style="padding-right: 20px;">\n')
-		f.write('<h3>CD Links</h3>\n')
-		f.write(f'<a href="https://www.allmusic.com/search/all/{"%20".join(search_args)}" target="_cd_allmusic_{"_".join(search_args)}" class="primaryLink">AllMusic</a><br />\n')
-		f.write(f'<a href="https://www.google.com/search?q={"%20".join(strip_season_designation(search_args))}%20site%3Aallmusic.com" target="_cd_allmusic_google_{"_".join(search_args)}">AllMusic (via Google)</a><br />\n')
-		f.write(f'<a href="https://www.discogs.com/search?q={"%20".join(search_args)}&type=all" target="_cd_discogs_{"_".join(search_args)}">Discogs</a><br />\n')
-		f.write(f'<a href="https://www.ebay.com/sch/i.html?_fsrp=1&_from=R40&_nkw={"%20".join(search_args)}&_sacat=176984&LH_BIN=1&_sop=15&LH_PrefLoc=2&rt=nc&LH_Sold=1" target="_cd_ebaysolditems_{"_".join(search_args)}">eBay (Sold Items)</a><br />\n')
-		f.write(f'<a href="https://www.google.com/search?q={"%20".join(search_args)}%20cd%20cover&-site:ebay.com&tbs=isz:l&hl=en-US&sa=X&biw=1865&bih=970&udm=2" target="_cd_googleimage_{"_".join(search_args)}">Google Large Image Search</a><br />\n')
-		f.write('</td>\n')
+		match search_type:
+			case 'comicbook': get_comic_book_content()
+			case 'compactdisc' | 'dvd': get_dvd_content()
 
 		f.write('</tr></table>\n')
 
@@ -148,10 +160,6 @@ def strip_season_designation(args:list[str]) -> list[str]:
 	return args
 
 def process_command_line():
-	return_val = {
-		'sourceDirectory': str(),
-		'outputFile': str(),
-	} 
 
 	# get the number of parameters passed in
 	argc = len(argv)
@@ -161,11 +169,24 @@ def process_command_line():
 		for i in range(argc):
 			print(f'argv[{i}]: {argv[i]}')
 		print('\n')
-	
 
+	work_args = argv[1:]
+	configValues['searchtype'] = 'dvd'
 	if argc > 1:
-		work_args = argv[1:]
-		
+
+		# look for a search type argument
+		if len(argv[1]) <= 3:
+			match argv[1]:
+				case 'cb': # comic book
+					configValues['searchtype'] = 'comicbook'
+					work_args = argv[2:]
+				case 'cd': # compact disc
+					configValues['searchtype'] = 'compactdisc'
+					work_args = argv[2:]
+				case 'dvd':
+					configValues['searchtype'] = 'dvd'
+					work_args = argv[2:]
+
 		# if the last argument is a season number, convert it to "season X" format for better search results
 		if work_args[-1][0] == 's' and StringToInt(work_args[-1][1:]) is not None:
 			season_string = work_args.pop()
@@ -190,8 +211,8 @@ if __name__ == "__main__":
 
 	# generate output filename based on search args
 	outputFilenameArgs = []
-	for i in range(1,len(argv)):
-		outputFilenameArgs.append(sub(r'[^a-zA-Z0-9]+', '', argv[i]))
+	for i in range(0, min(len(configValues['searchargs']), 3)):
+		outputFilenameArgs.append(sub(r'[^a-zA-Z0-9]+', '', configValues['searchargs'][i]))
 	numberOfArgsForFilename = min(len(outputFilenameArgs), 3)
 	outputFileName = '_'.join(outputFilenameArgs[:numberOfArgsForFilename]) + '.html'
 	configValues['outputfilename'] = join(DEFAULT_OUTPUT_FILE_DIR, outputFileName)
@@ -209,9 +230,10 @@ if __name__ == "__main__":
 		background_image = background_image.replace('"', '')[9:]
 
 	# create page
-	create_link_page(configValues['outputfilename'], configValues['searchargs'], background_image)
+	create_link_page(configValues['outputfilename'], configValues['searchargs'], background_image, configValues['searchtype'])
 
 	msg = f"logfile: {configValues['logfile']}\noutput file: {configValues['outputfilename']}\nsearch args: {' '.join(configValues['searchargs'])}"
 	Logger2.AddInfo(msg)
 
-# input("\nCreateLinkPage setup complete. Press Enter to exit...")
+	if IS_DEBUG:
+		input("\nCreateLinkPage complete. Press Enter to exit...")

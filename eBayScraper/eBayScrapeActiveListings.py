@@ -73,11 +73,11 @@ def create_item_text(inString:str) -> str:
     return_val = sub(r'[^A-Za-z0-9 ]+', str(), return_val)
 
     # replace "season x" with "sx"
-    return_val = sub(r'(season\s)(/d)', 's\2', return_val, flags=IGNORECASE)
+    return_val = sub(r'(season\s)(\d)', r's\2', return_val, flags=IGNORECASE)
 
     # replace "volume x" with "vx"
-    return_val = sub(r'(volume )(/d)', 'v\2', return_val, flags=IGNORECASE)
-    return_val = sub(r'(vol )(/d)', 'v\2', return_val, flags=IGNORECASE)
+    return_val = sub(r'(volume )(\d)', r'v\2', return_val, flags=IGNORECASE)
+    return_val = sub(r'(vol )(\d)', r'v\2', return_val, flags=IGNORECASE)
 
     #remove region
     return_val = sub('region \n', '', return_val, flags=IGNORECASE)

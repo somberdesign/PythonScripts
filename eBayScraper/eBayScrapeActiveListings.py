@@ -21,7 +21,8 @@ THIS_FILE_PATH = dirname(realpath(__file__))
 INPUT_FILE_PATH = r'C:\temp\ebay.html'
 OUTPUT_FILE_PATH = r'C:\temp\ebayScrapeActiveListings_output.txt'
 PREVIOUS_ITEM_PATH = r'C:\temp\ebayScrapeActiveListings_previous.txt'
-STRINGS_TO_REMOVE = ['See condition descriptionBuy It Now', 'suitable for reading and handling', 'detailed condition description', 'by', 'screener', 'various']
+STRINGS_TO_REMOVE = ['See condition description', 'Buy It Now', 'suitable for reading and handling', 'detailed condition description']
+WORDS_TO_REMOVE = ['by', 'screener', 'various']
 
 countBucket = { 'BadString': 0, 'TimeRejected': 0 }
 logger = None
@@ -65,15 +66,18 @@ def create_item_text(inString:str) -> str:
         else:
             return_val = inString
 
+    # remove ebay item numbers
+    return_val = sub(r'\b\d{12}\b', '', return_val, flags=IGNORECASE)
+
     # strip non-alpanumeric chars
     return_val = sub(r'[^A-Za-z0-9 ]+', str(), return_val)
 
     # replace "season x" with "sx"
-    return_val = sub(r'(season )(/n)', 's\2', return_val, flags=IGNORECASE)
+    return_val = sub(r'(season\s)(/d)', 's\2', return_val, flags=IGNORECASE)
 
     # replace "volume x" with "vx"
-    return_val = sub(r'(volume )(/n)', 'v\2', return_val, flags=IGNORECASE)
-    return_val = sub(r'(vol )(/n)', 'v\2', return_val, flags=IGNORECASE)
+    return_val = sub(r'(volume )(/d)', 'v\2', return_val, flags=IGNORECASE)
+    return_val = sub(r'(vol )(/d)', 'v\2', return_val, flags=IGNORECASE)
 
     #remove region
     return_val = sub('region \n', '', return_val, flags=IGNORECASE)
@@ -84,6 +88,11 @@ def create_item_text(inString:str) -> str:
 
     # remove strings that are not relevant to the search
     for string in STRINGS_TO_REMOVE:
+        if return_val.lower().find(string.lower()) != -1:
+            return_val = sub(string, ' ', return_val, flags=IGNORECASE)
+
+    # words to remove
+    for string in WORDS_TO_REMOVE:
         if return_val.lower().startswith(string.lower() + ' '):
             return_val = sub(string + ' ', '', return_val, flags=IGNORECASE)
 

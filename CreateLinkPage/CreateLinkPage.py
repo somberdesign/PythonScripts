@@ -10,7 +10,7 @@ import Logger2
 from os import makedirs, listdir, path, remove, stat, walk
 from random import choice
 from rapidfuzz import process, fuzz
-from re import sub
+from re import IGNORECASE, sub
 # from random import choice
 # from yaml import safe_load, YAMLError
 
@@ -52,9 +52,10 @@ def check_paths() -> bool:
 def create_link_page(link_page_path:str, search_args:list[str], background_image:str, search_type:str='dvd') -> bool:
 
 	def get_comic_book_content():
+		comic_book_search_args = remove_months_from_list(search_args)
 		f.write('<td valign="top" style="padding-right: 20px;">\n')
 		f.write('<h3>Comic Book Links</h3>\n')
-		f.write(f'<a href="https://www.comics.org/searchNew/?q={"%20".join(search_args)}" target="_cb_grandcomicsdb_{"_".join(search_args)}">Grand Comics Database</a><br />\n')
+		f.write(f'<a href="https://www.comics.org/searchNew/?q={"%20".join(comic_book_search_args)}" target="_cb_grandcomicsdb_{"_".join(search_args)}">Grand Comics Database</a><br />\n')
 
 	def get_dvd_content():
 		f.write('<td valign="top" style="padding-right: 20px;">\n')
@@ -153,6 +154,18 @@ def fuzzy_find_files(directory, keywords, threshold=70):
 	matched_files = [match for match in results if match[1] >= threshold]
 	return matched_files
 
+def remove_month_names(text: str) -> str:
+	months = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December",
+        "Jan", "Feb", "Mar", "Apr", "Jun", "Jul", "Aug",
+        "Sep", "Sept", "Oct", "Nov", "Dec"
+    ]
+	pattern = r'\b(' + '|'.join(months) + r')\b'
+	return sub(pattern, '', text, flags=IGNORECASE).strip()
+
+def remove_months_from_list(strings: list[str]) -> list[str]:
+	return [remove_month_names(s) for s in strings]
 
 def strip_season_designation(args:list[str]) -> list[str]:
 	if (args and len(args) > 2) and (args[-2] == 'season') and StringToInt(args[-1]) is not None:
@@ -209,10 +222,11 @@ if __name__ == "__main__":
 
 	Logger2.SetLogfilePath(configValues['logfile'])
 
-	# generate output filename based on search args
+	# generate output filename based on args passed in
+	# use argv here because that's what calling script EbayDvdSearch() passes in
 	outputFilenameArgs = []
-	for i in range(0, min(len(configValues['searchargs']), 3)):
-		outputFilenameArgs.append(sub(r'[^a-zA-Z0-9]+', '', configValues['searchargs'][i]))
+	for i in range(0, min(len(argv[1:]), 3)):
+		outputFilenameArgs.append(sub(r'[^a-zA-Z0-9]+', '', argv[1:][i]))
 	numberOfArgsForFilename = min(len(outputFilenameArgs), 3)
 	outputFileName = '_'.join(outputFilenameArgs[:numberOfArgsForFilename]) + '.html'
 	configValues['outputfilename'] = join(DEFAULT_OUTPUT_FILE_DIR, outputFileName)

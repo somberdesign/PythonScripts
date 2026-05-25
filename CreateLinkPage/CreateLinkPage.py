@@ -21,6 +21,7 @@ FUZZY_SEARCH_THRESHOLD: int = 70
 IMAGE_DIR: str = r'h:\Media\Images\DvdImages'
 IS_DEBUG: bool = True
 LINK_PAGE_CSS: str = join(THIS_FILE_PATH, 'CreateLinkPage.css')
+SEARCH_TYPE_PREFIXES = ['br', 'cb', 'cd', 'cf', 'ct', 'nc', 'vg', 'tc', 'mg']
 
 configValues = {'logfile': DEFAULT_LOGFILE_PATH, 'url': str(), 'outputfilename': str(), 'searchargs': []}
 
@@ -225,7 +226,9 @@ if __name__ == "__main__":
 	# generate output filename based on args passed in
 	# use argv here because that's what calling script EbayDvdSearch() passes in
 	outputFilenameArgs = []
-	for i in range(0, min(len(argv[1:]), 3)):
+	for i in range(0, len(argv[1:])):
+		if argv[1:][i].casefold() in SEARCH_TYPE_PREFIXES: # skip search type prefix for filename
+			continue
 		outputFilenameArgs.append(sub(r'[^a-zA-Z0-9]+', '', argv[1:][i]))
 	numberOfArgsForFilename = min(len(outputFilenameArgs), 3)
 	outputFileName = '_'.join(outputFilenameArgs[:numberOfArgsForFilename]) + '.html'

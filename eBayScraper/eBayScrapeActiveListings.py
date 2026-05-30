@@ -1,4 +1,4 @@
-from sys import exit, path
+from sys import exit, path, flags
 from bs4 import BeautifulSoup
 
 # this is a test
@@ -30,10 +30,15 @@ ebayUrl:str = str()
 
 def create_item_text(inString:str) -> str:
     global countBucket
+
+    def contains_bracketed_grade(inString:str) -> bool:
+        cgc_grade_abbreviations:typing.List[str] = ['NM/M', 'NM+', 'NM', 'NM-', 'VF/NM', 'VF+', 'VF', 'VF-', 'FN/VF', 'FN', 'FN-', 'VG/FN', 'VG+', 'VG', 'VG-', 'G/VG', 'G', 'G-', 'Fa/G', 'Fa', 'Poor']
+        return any(f'[{grade}]' in inString for grade in cgc_grade_abbreviations)
+
     return_val:str = str()
-    searchData:typing.List = [('cd', 'cd'), ('cassette tape', 'ct'), ('cgc', 'cb')]
     remove_year = True # remove date from string
-    is_comic_book = search(r'\b#\d{1,3}\b', inString) is not None
+    is_comic_book = search(r'\s#\d{1,3}\s', inString) is not None or contains_bracketed_grade(inString)
+    is_cgc_comic_book = 'cgc' in inString.lower()
 
     # ignore items that contain any of these words
     for word in ['ItemSort', 'TitleSort']:
@@ -43,44 +48,52 @@ def create_item_text(inString:str) -> str:
 
     # graded comics
     # ex: "Nightmask 2 Dec 1986 CGC 94"
-    if 'cgc' in inString.lower():
+    if is_cgc_comic_book :
+        cgc_return_val = inString
         remove_year = False
-        findLocation = inString.lower().find('cgc')
-        return f'cb {inString[:findLocation]}'
+        cgc_return_val = cgc_return_val.replace('#', '') # can't figure out how to put # signs on the url
+        find_location = cgc_return_val.lower().find('cgc')
+        return f'cb {cgc_return_val[:find_location]}'
 
+    # magazines
+    if 'magazine' in inString.lower():
+        return f'mg {inString}'
 
-    # if able to identify type of item being sold, 
-    # add the appropriate prefix and delete everthing after the keyword
-    for item in searchData:
-        findLocation = inString.lower().find(' (' + item[0])
-        if findLocation == -1: continue
+    # if able to identify type of item being sold (cd or dvd),
+    # add the appropriate prefix and delete everything after the keyword
+    # comic books are taken care of above
+    search_data:typing.List = [('cd', 'cd'), ('cassette tape', 'ct')]
+    for item_type in search_data:
+        find_location = inString.lower().find(' (' + item_type[0])
+        if find_location == -1: continue
 
-        return_val = f'{item[1]} {inString[:findLocation]}'
+        return_val = f'{item_type[1]} {inString[:find_location]}'
         break
         
     # default to dvd or complete string
     if len(return_val) == 0:
-        findLocation = inString.lower().find(' (')
-        if findLocation != -1:
-            return_val = f'{inString[:findLocation]}'
+        find_location = inString.lower().find(' (')
+        if find_location != -1:
+            return_val = f'{inString[:find_location]}'
         else:
             return_val = inString
 
     # remove ebay item numbers
     return_val = sub(r'\b\d{12}\b', '', return_val, flags=IGNORECASE)
 
-    # strip non-alpanumeric chars
+    # strip non-alphanumeric chars
     return_val = sub(r'[^A-Za-z0-9 ]+', str(), return_val)
 
     # replace "season x" with "sx"
-    return_val = sub(r'(season\s)(\d)', r's\2', return_val, flags=IGNORECASE)
+    for s in ['season', 'series']:
+        return_val = sub(fr'({s})\s(\d)', r's\2', return_val, flags=IGNORECASE)
 
     # replace "volume x" with "vx"
-    return_val = sub(r'(volume )(\d)', r'v\2', return_val, flags=IGNORECASE)
-    return_val = sub(r'(vol )(\d)', r'v\2', return_val, flags=IGNORECASE)
+    for v in ['volume', 'vol']:
+        return_val = sub(fr'({v})\s(\d)', r'v\2', return_val, flags=IGNORECASE)
 
     #remove region
-    return_val = sub('region \n', '', return_val, flags=IGNORECASE)
+    return_val = sub(r'region \n', '', return_val, flags=IGNORECASE)
 
     # remove date
     if remove_year and not is_comic_book:

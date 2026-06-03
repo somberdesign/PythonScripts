@@ -28,8 +28,8 @@ OUTPUT_DIRECTORY = r'c:\temp\searchToBrowser'
 EVERYTHING_COMMAND_LINE_PATH = r'"C:\Program Files\Everything\es.exe"' # leave empty to disable
 SALES_FILE_PATH = r'h:\Cached\MovieList_Sales.txt'
 DEBUG = False
-IGNORE_FONT_NAMES:List[str] = ['Bigelow Rules', 'Bytesized', 'Comforter', 'Festive', 'Inspiration', 'Jersey 20 Charted', 'Micro 5 Charted', 'Mrs Sheppards', 'Notable', 'Sankofa Display', 'Splash', 'Vina Sans', 'Wavefont', 'WindSong']
-IGNORE_FONT_WORDS:List[str] = ['Barcode', 'Yarndings']
+IGNORE_FONT_NAMES:List[str] = ['ballet', 'bigelow rules', 'bytesized', 'comforter', 'festive', 'flow block', 'inspiration', 'jersey 20 charted', 'material icons', 'micro 5 charted', 'mrs sheppards', 'notable', 'sankofa display', 'splash', 'vina sans', 'wavefont', 'windsong']
+IGNORE_FONT_WORDS:List[str] = ['barcode', 'yarndings']
 
 
 def CleanText(line:str) -> str:
@@ -90,15 +90,15 @@ def GetGoogleFontName() -> str:
 		msgbox('Error receiving google font names')
 		return None
 	else:
-		fontnames = []
+		font_names = []
 		for item in fontdata['items']:  # type: ignore
 			if (
-				item not in IGNORE_FONT_NAMES
+				item['family'].casefold() not in IGNORE_FONT_NAMES
 				and not any(s.casefold() in item['family'].casefold() for s in IGNORE_FONT_WORDS)
 			):
-				fontnames.append(item['family'])  # type: ignore
+				font_names.append(item['family'])  # type: ignore
 
-	return choice(fontnames)
+	return choice(font_names)
 
 
 def GetSalesFileLines(searchterm:str) -> List[str]:

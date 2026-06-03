@@ -36,8 +36,15 @@ def create_item_text(inString:str) -> str:
         return any(f'[{grade}]' in inString for grade in cgc_grade_abbreviations)
 
     return_val:str = str()
-    remove_year = True # remove date from string
-    is_comic_book = search(r'\s#\d{1,3}\s', inString) is not None or contains_bracketed_grade(inString)
+    remove_year = True # remove year from string. for cds and dvds.
+
+    comic_book_specific_strings:typing.List[str] = ['suitable for reading and handling', 'detailed condition description']
+    is_comic_book = (
+            search(r'\s#\d{1,3}\s', inString) is not None
+            or contains_bracketed_grade(inString)
+            or any(s in inString.lower() for s in comic_book_specific_strings)
+    )
+
     is_cgc_comic_book = 'cgc' in inString.lower()
 
     # ignore items that contain any of these words
@@ -46,18 +53,19 @@ def create_item_text(inString:str) -> str:
             countBucket['BadString'] += 1
             return str()
 
-    # graded comics
-    # ex: "Nightmask 2 Dec 1986 CGC 94"
-    if is_cgc_comic_book :
-        cgc_return_val = inString
-        remove_year = False
-        cgc_return_val = cgc_return_val.replace('#', '') # can't figure out how to put # signs on the url
-        find_location = cgc_return_val.lower().find('cgc')
-        return f'cb {cgc_return_val[:find_location]}'
+    if is_comic_book:
+        if is_cgc_comic_book : # graded comics ex: "Nightmask 2 Dec 1986 CGC 94"
+            cgc_return_val = inString
+            cgc_return_val = cgc_return_val.replace('#', '') # can't figure out how to put # signs on the url
+            find_location = cgc_return_val.lower().find('cgc')
+            return_val = f'cb {cgc_return_val[:find_location]}'
+        else:
+            find_location = inString.lower().find('[')
+            return_val = f'cb {inString[:find_location]}' if find_location != -1 else inString
 
     # magazines
     if 'magazine' in inString.lower():
-        return f'mg {inString}'
+        return_val = f'mg {inString}'
 
     # if able to identify type of item being sold (cd or dvd),
     # add the appropriate prefix and delete everything after the keyword
@@ -196,7 +204,7 @@ def removeYesterday(inList:list) -> list:
             if item.strip() in inList:
                 inList.remove(item.strip())
     
-    # write new yeserday file
+    # write new yesterday file
     try:
         with open(PREVIOUS_ITEM_PATH, 'w') as yesterday:
             for item in inList:
@@ -257,7 +265,7 @@ if __name__ == '__main__':
     except Exception as ex:
         Logger2.AddError(f'Error writing file {OUTPUT_FILE_PATH}. {ex}')
 
-    Logger2.AddInfo(f"Read {len(tagTitles) - 1 - countBucket['BadString']} listings\n{countBucket['TimeRejected']} don't expire today\n{yesterdayCount} appeared yesterday")
+    Logger2.AddInfo(f"Read {len(tagTitles) - 1 - countBucket['BadString']} listings\n{len(outputItems)} good ones\n{countBucket['TimeRejected']} don't expire today\n{yesterdayCount} appeared yesterday")
 
     input('Pause')
 

@@ -10,6 +10,7 @@ KEY_LISTBOX_INACTIVETITLES = "__INACTIVETITLES__"
 KEY_DISPLAYTEXT = "__DISPLAYTEXT__"
 LASTVIEWEDDATE_DISPLAY_COLUMN_WIDTH = 10
 LOGFILE = os.path.join(os.path.dirname(__file__), "SeriesManage.log")
+MAX_MULTIPLIER_SLIDER_VALUE = 500
 
 
 idx_title = 0
@@ -50,7 +51,7 @@ def GetDisplayText(oData):
 
 def GetAddSeriesWindow():
 	txtDisplay = sg.Text("", key=KEY_DISPLAYTEXT, font=("Courier New", 10), size=(50,1), text_color="red")
-	sldMultiplier = sg.Slider(range=(1,100), default_value=10, orientation="horizontal")
+	sldMultiplier = sg.Slider(range=(1, MAX_MULTIPLIER_SLIDER_VALUE), default_value=10, orientation="horizontal", size=(50, 20))
 	lblMultiplier = sg.Text("\nMultiplier", font=FONT_LABEL, size=(12,2))
 	inputText = sg.InputText()
 
@@ -223,7 +224,7 @@ with data.SeriesManager_Data() as oData:
 		event, values = displayWindow.Read()
 		
 		if isinstance(activeRecordCount, int):
-			displayWindow.TKroot.title = (f'Series Manager ({activeRecordCount} active titles')
+			displayWindow.TKroot.title = (f'Series Manager ({activeRecordCount} active titles)')
 
 		if event is None or event == "Exit":
 			break

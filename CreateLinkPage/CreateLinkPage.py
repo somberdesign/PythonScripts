@@ -94,7 +94,6 @@ def create_link_page(link_page_path:str, search_args:list[str], background_image
 
 		if background_image:
 			f.write(f'<link rel="stylesheet" href="file:///{LINK_PAGE_CSS.replace("\\", "/")}" />\n')
-
 			f.write(f'<style>\n.background-container::before {{ background-image: url(http://bombcyclone:8123/{background_image}); }}\na:link, a:visited, a:hover, a:active {{ color: black; }}\n</style>\n')
 
 		f.write(f'</head>\n<body>\n')
@@ -102,7 +101,8 @@ def create_link_page(link_page_path:str, search_args:list[str], background_image
 		f.write(f'<div class="background-container">\n')
 		f.write(f'<div class="content">\n')
 		f.write(f'<h1>Link Page</h1> <h2 style="font-style: italic;">{" ".join(search_args)}</h2>\n')
-		
+		f.write(f'<a href="http://bombcyclone:746/?search={"%20".join(search_args)}" target="_everything_{"_".join(search_args)}">Bombcyclone: Everything</a>\n')
+
 		f.write('<table border="0" width="75%"<tr>\n')
 
 		match search_type:

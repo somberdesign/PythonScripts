@@ -11,24 +11,28 @@ from requests import get
 import typing
 from yaml import safe_load, YAMLError
 from re import IGNORECASE, search, sub
+from sys import float_info
 
+TAB_CLASS_CURRENT_PRICE:str = 'col-price__current'
 TAB_CLASS_TITLE:str = 'shui-dt-column__title'
 TAB_CLASS_TIMEREMAINING:str = 'shui-dt-column__timeRemaining'
 
+
 MINUTE_CUTOFF = 26*60
 
-THIS_FILE_PATH = dirname(realpath(__file__))
 INPUT_FILE_PATH = r'C:\temp\ebay.html'
 OUTPUT_FILE_PATH = r'C:\temp\ebayScrapeActiveListings_output.txt'
+POSITIONAL_NUMBERS = ['first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth', 'tenth']
 PREVIOUS_ITEM_PATH = r'C:\temp\ebayScrapeActiveListings_previous.txt'
 STRINGS_TO_REMOVE = ['See condition description', 'Buy It Now', 'suitable for reading and handling', 'detailed condition description']
+THIS_FILE_PATH = dirname(realpath(__file__))
 WORDS_TO_REMOVE = ['by', 'screener', 'various']
 
-countBucket = { 'BadString': 0, 'TimeRejected': 0 }
-logger = None
+countBucket = { 'BadString': 0, 'TimeRejected': 0 , 'CheapComic': 0}
+# logger = None
 ebayUrl:str = str()
 
-def create_item_text(inString:str) -> str:
+def create_item_text(inString:str, current_price:str) -> str:
     global countBucket
 
     def contains_bracketed_grade(inString:str) -> bool:
@@ -38,14 +42,24 @@ def create_item_text(inString:str) -> str:
     return_val:str = str()
     remove_year = True # remove year from string. for cds and dvds.
 
+    price = float_info.max
+    try:
+        price = float(sub(r'[^0-9.]', '', current_price))
+    except ValueError:
+        Logger2.AddInfo(f"Failed to parse price '{current_price}' for item '{inString}'")
+
     comic_book_specific_strings:typing.List[str] = ['suitable for reading and handling', 'detailed condition description']
     is_comic_book = (
             search(r'\s#\d{1,3}\s', inString) is not None
             or contains_bracketed_grade(inString)
-            or any(s in inString.lower() for s in comic_book_specific_strings)
+            or any(s in comic_book_specific_strings for s in inString.lower())
     )
 
     is_cgc_comic_book = 'cgc' in inString.lower()
+
+    if is_comic_book and price < 10:
+        countBucket['CheapComic'] += 1
+        return str()
 
     # ignore items that contain any of these words
     for word in ['ItemSort', 'TitleSort']:
@@ -95,6 +109,11 @@ def create_item_text(inString:str) -> str:
     # replace "season x" with "sx"
     for s in ['season', 'series']:
         return_val = sub(fr'({s})\s(\d)', r's\2', return_val, flags=IGNORECASE)
+
+    # remove positional numbers if season is present
+    if search(r's\d', return_val, flags=IGNORECASE) is not None:
+        for s in POSITIONAL_NUMBERS:
+            return_val = return_val.replace(s, '')
 
     # replace "volume x" with "vx"
     for v in ['volume', 'vol']:
@@ -242,11 +261,12 @@ if __name__ == '__main__':
         # ignore item if it doesn't expire within about a day
         timeRemainingElement = titleElement.find_next('td', class_=TAB_CLASS_TIMEREMAINING)
         minutesLeft = TimeLeftToMinutes(timeRemainingElement.text)
+        current_price_element = titleElement.find_next('div', class_=TAB_CLASS_CURRENT_PRICE)
         if minutesLeft > MINUTE_CUTOFF: 
             countBucket['TimeRejected'] += 1
             continue
 
-        cleanItem:str = create_item_text(titleElement.text)
+        cleanItem:str = create_item_text(titleElement.text, current_price_element.text)
         if cleanItem:
             outputItems.append(cleanItem)
 
@@ -261,11 +281,18 @@ if __name__ == '__main__':
         with open(OUTPUT_FILE_PATH, 'w') as f:
             for item in outputItems:
                 f.write(item + '\n')
-        
     except Exception as ex:
         Logger2.AddError(f'Error writing file {OUTPUT_FILE_PATH}. {ex}')
 
-    Logger2.AddInfo(f"Read {len(tagTitles) - 1 - countBucket['BadString']} listings\n{len(outputItems)} good ones\n{countBucket['TimeRejected']} don't expire today\n{yesterdayCount} appeared yesterday")
+    message = f"""
+        Read {len(tagTitles) - 1 - countBucket['BadString']} listings
+        {len(outputItems)} good ones
+        {countBucket['TimeRejected']} don't expire today
+        {countBucket['CheapComic']} are cheap comics
+        {yesterdayCount} appeared yesterday
+    """
+    Logger2.AddInfo(message)
+    # Logger2.AddInfo(f"Read {len(tagTitles) - 1 - countBucket['BadString']} listings\n{len(outputItems)} good ones\n{countBucket['TimeRejected']} don't expire today\n{yesterdayCount} appeared yesterday")
 
     input('Pause')
 

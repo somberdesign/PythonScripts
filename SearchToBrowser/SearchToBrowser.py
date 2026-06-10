@@ -13,7 +13,7 @@ from subprocess import call
 from easygui import msgbox
 from random import choice
 from json import load, loads, dump
-
+import logging
 
 # 2025-12-30 - run from console (in ~\PythonScripts\SearchToBrowser):
 # py SearchToBrowser.py "c:\Users\rgw3\PythonScripts\SearchToBrowser\AlbumList.txt" joel
@@ -23,14 +23,26 @@ from json import load, loads, dump
 # from GoogleFonts import GoogleFonts
 
 CACHE_FILE_PATH:str = r'h:\Cached\google_fonts_cache_file.json'
-DIR_TO_SEARCH = r'c:\Users\rgw3\PythonScripts\SearchToBrowser'
-OUTPUT_DIRECTORY = r'c:\temp\searchToBrowser'
-EVERYTHING_COMMAND_LINE_PATH = r'"C:\Program Files\Everything\es.exe"' # leave empty to disable
-SALES_FILE_PATH = r'h:\Cached\MovieList_Sales.txt'
 DEBUG = False
-IGNORE_FONT_NAMES:List[str] = ['ballet', 'bigelow rules', 'bytesized', 'comforter', 'festive', 'flow block', 'inspiration', 'jersey 20 charted', 'material icons', 'micro 5 charted', 'mrs sheppards', 'notable', 'sankofa display', 'splash', 'vina sans', 'wavefont', 'windsong']
-IGNORE_FONT_WORDS:List[str] = ['barcode', 'yarndings']
+DIR_TO_SEARCH = r'c:\Users\rgw3\PythonScripts\SearchToBrowser'
+EVERYTHING_COMMAND_LINE_PATH = r'"C:\Program Files\Everything\es.exe"' # leave empty to disable
+IGNORE_FONT_NAMES:List[str] = ['ballet', 'bigelow rules', 'bytesized', 'comforter', 'festive', 'flow block', 'inspiration', 'jersey 20 charted', 'micro 5 charted', 'mrs sheppards', 'notable', 'sankofa display', 'splash', 'vina sans', 'wavefont', 'windsong']
+IGNORE_FONT_WORDS:List[str] = ['barcode', 'yarndings', 'material']
+LOG_LEVEL = logging.INFO
+LOGFILE_PATH = r'c:\logs\SearchToBrowser.log'
+OUTPUT_DIRECTORY = r'c:\temp\searchToBrowser'
+SALES_FILE_PATH = r'h:\Cached\MovieList_Sales.txt'
 
+# init logger
+logger:logging.Logger = logging.getLogger(__name__)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logger.setLevel(LOG_LEVEL)
+file_handler = logging.FileHandler(LOGFILE_PATH)
+file_handler.setFormatter(formatter)
+stream_handler = logging.StreamHandler()
+stream_handler.setLevel(LOG_LEVEL)
+logger.addHandler(file_handler)
+logger.addHandler(stream_handler)
 
 def CleanText(line:str) -> str:
 	returnVal = re.sub(r'[^A-Za-z0-9 \n\-~()]', str(), line)
@@ -73,22 +85,18 @@ def GetArguments(configValues:dict[str, str]) -> Tuple[bool, str]:
 	return True, str()
 
 def GetGoogleFontName() -> str:
-	# fontnames:List[str] = ['Roboto', 'Lora', 'Pacifico', 'Montserrat', 'Raleway', 'Oswald', 'Open', 'Playfair', 'Merriweather', 'Caveat', 'Nunito', 'Abril', 'Comfortaa', 'Indie', 'Anton', 'Quicksand', 'Libre', 'Barlow', 'Exo', 'Arvo', 'Amatic', 'Dancing', 'Josefin', 'Fira', 'Bitter', 'Patua', 'Ubuntu', 'Satisfy', 'Zilla', 'Alegreya', 'Cinzel', 'DM', 'Spectral', 'Shadows', 'PT', 'Slabo', 'Teko', 'Yanone', 'Source', 'Archivo', 'Volkhov', 'Cormorant', 'Cardo', 'Just', 'Francois', 'Fredoka', 'Kaushan', 'Sacremento', 'Chivo', 'Bangers', 'Permanent', 'Crimson', 'Overpass', 'Orbitron', 'Manrope', 'Varela', 'Fjalla', 'Rokkitt', 'Hind', 'Rock', 'Baloo', 'Maven', 'Work', 'Architects', 'Saira', 'Righteous', 'Press', 'Megrim', 'Telex', 'Cantata', 'Staatliches', 'Titan', 'Kumar', 'Economica', 'Averia', 'Noto', 'Yeseva', 'Alice', 'Handlee', 'Mukta', 'Bevan', 'Luckiest', 'Anton', 'Koulen', 'Sen', 'Tangerine', 'Corben', 'Armata', 'Julee', 'Epilogue', 'Special', 'M', 'Lexend', 'Marcellus', 'Asap', 'Vibur', 'Ewert', 'Anonymous', 'Ultra', 'Belanosima']
-
-	# fontdata = GoogleFonts.GetGoogleFontData()
-
 	fontdata: str = str()
 
 	try:
 		with open(CACHE_FILE_PATH, 'r') as f:
 			fontdata = load(f)
 	except Exception as ex:
-		msgbox(f'Error reading cache file at {CACHE_FILE_PATH}. {ex}')
-		return None
+		logger.error(f'Error reading cache file at {CACHE_FILE_PATH}. {ex}')
+		return str()
 
 	if fontdata is None:
-		msgbox('Error receiving google font names')
-		return None
+		logger.error('Error receiving google font names')
+		return str()
 	else:
 		font_names = []
 		for item in fontdata['items']:  # type: ignore

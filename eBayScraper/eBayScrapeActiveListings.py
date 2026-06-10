@@ -24,7 +24,7 @@ INPUT_FILE_PATH = r'C:\temp\ebay.html'
 OUTPUT_FILE_PATH = r'C:\temp\ebayScrapeActiveListings_output.txt'
 POSITIONAL_NUMBERS = ['first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth', 'tenth']
 PREVIOUS_ITEM_PATH = r'C:\temp\ebayScrapeActiveListings_previous.txt'
-STRINGS_TO_REMOVE = ['See condition description', 'Buy It Now', 'suitable for reading and handling', 'detailed condition description']
+STRINGS_TO_REMOVE = ['See condition description', 'Buy It Now', 'suitable for reading and handling', 'detailed condition description', 'watched once']
 THIS_FILE_PATH = dirname(realpath(__file__))
 WORDS_TO_REMOVE = ['by', 'screener', 'various']
 
@@ -38,6 +38,11 @@ def create_item_text(inString:str, current_price:str) -> str:
     def contains_bracketed_grade(inString:str) -> bool:
         cgc_grade_abbreviations:typing.List[str] = ['NM/M', 'NM+', 'NM', 'NM-', 'VF/NM', 'VF+', 'VF', 'VF-', 'FN/VF', 'FN', 'FN-', 'VG/FN', 'VG+', 'VG', 'VG-', 'G/VG', 'G', 'G-', 'Fa/G', 'Fa', 'Poor']
         return any(f'[{grade}]' in inString for grade in cgc_grade_abbreviations)
+
+    def do_not_remove_year(inString:str) -> bool:
+        if search(r'\sbest of\s\d{4}', inString, flags=IGNORECASE) is not None:
+            return True
+        return False
 
     return_val:str = str()
     remove_year = True # remove year from string. for cds and dvds.
@@ -110,20 +115,20 @@ def create_item_text(inString:str, current_price:str) -> str:
     for s in ['season', 'series']:
         return_val = sub(fr'({s})\s(\d)', r's\2', return_val, flags=IGNORECASE)
 
-    # remove positional numbers if season is present
-    if search(r's\d', return_val, flags=IGNORECASE) is not None:
-        for s in POSITIONAL_NUMBERS:
-            return_val = return_val.replace(s, '')
-
     # replace "volume x" with "vx"
     for v in ['volume', 'vol']:
         return_val = sub(fr'({v})\s(\d)', r'v\2', return_val, flags=IGNORECASE)
 
+    # remove positional numbers if season is present
+    if search(r'[sv]\d', return_val, flags=IGNORECASE) is not None:
+        for s in POSITIONAL_NUMBERS:
+            return_val = sub(fr'({s})\s', str(), return_val, flags=IGNORECASE)
+
     #remove region
     return_val = sub(r'region \n', '', return_val, flags=IGNORECASE)
 
-    # remove date
-    if remove_year and not is_comic_book:
+    # remove year from string. primarily for cds and dvds.
+    if remove_year and not is_comic_book and not do_not_remove_year(return_val):
         return_val = sub(r'\b\d{4}\b', '', return_val, flags=IGNORECASE)
 
     # remove strings that are not relevant to the search
@@ -288,7 +293,7 @@ if __name__ == '__main__':
         Read {len(tagTitles) - 1 - countBucket['BadString']} listings
         {len(outputItems)} good ones
         {countBucket['TimeRejected']} don't expire today
-        {countBucket['CheapComic']} are cheap comics
+        {countBucket['CheapComic']} {'is a cheap comic' if countBucket['CheapComic'] == 1 else 'are cheap comics'}
         {yesterdayCount} appeared yesterday
     """
     Logger2.AddInfo(message)

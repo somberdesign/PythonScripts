@@ -39,13 +39,32 @@ def create_item_text(inString:str, current_price:str) -> str:
         cgc_grade_abbreviations:typing.List[str] = ['NM/M', 'NM+', 'NM', 'NM-', 'VF/NM', 'VF+', 'VF', 'VF-', 'FN/VF', 'FN', 'FN-', 'VG/FN', 'VG+', 'VG', 'VG-', 'G/VG', 'G', 'G-', 'Fa/G', 'Fa', 'Poor']
         return any(f'[{grade}]' in inString for grade in cgc_grade_abbreviations)
 
-    def do_not_remove_year(inString:str) -> bool:
+    def remove_year(inString:str) -> bool:
         if search(r'\sbest of\s\d{4}', inString, flags=IGNORECASE) is not None:
-            return True
-        return False
+            return False
+        return True
+
+    def replace_season_volume_strings(inString:str) -> str:
+        return_val:str = inString
+
+        # replace "season x" with "sx"
+        for s in ['season', 'series']:
+            return_val = sub(fr'({s})\s(\d)', r's\2', return_val, flags=IGNORECASE)
+
+        # replace "volume x" with "vx"
+        for v in ['volume', 'vol']:
+            return_val = sub(fr'({v})\s(\d)', r'v\2', return_val, flags=IGNORECASE)
+
+        # remove positional numbers if season or vol notation is present
+        if search(r'[sv]\d', return_val, flags=IGNORECASE) is not None:
+            for s in POSITIONAL_NUMBERS:
+                return_val = sub(fr'({s})\s', str(), return_val, flags=IGNORECASE)
+
+        return return_val
+    
+    ###########################################################################
 
     return_val:str = str()
-    remove_year = True # remove year from string. for cds and dvds.
 
     price = float_info.max
     try:
@@ -111,24 +130,14 @@ def create_item_text(inString:str, current_price:str) -> str:
     # strip non-alphanumeric chars
     return_val = sub(r'[^A-Za-z0-9 ]+', str(), return_val)
 
-    # replace "season x" with "sx"
-    for s in ['season', 'series']:
-        return_val = sub(fr'({s})\s(\d)', r's\2', return_val, flags=IGNORECASE)
-
-    # replace "volume x" with "vx"
-    for v in ['volume', 'vol']:
-        return_val = sub(fr'({v})\s(\d)', r'v\2', return_val, flags=IGNORECASE)
-
-    # remove positional numbers if season is present
-    if search(r'[sv]\d', return_val, flags=IGNORECASE) is not None:
-        for s in POSITIONAL_NUMBERS:
-            return_val = sub(fr'({s})\s', str(), return_val, flags=IGNORECASE)
+    # sx and vx
+    replace_season_volume_strings(return_val)
 
     #remove region
     return_val = sub(r'region \n', '', return_val, flags=IGNORECASE)
 
     # remove year from string. primarily for cds and dvds.
-    if remove_year and not is_comic_book and not do_not_remove_year(return_val):
+    if remove_year and not is_comic_book:
         return_val = sub(r'\b\d{4}\b', '', return_val, flags=IGNORECASE)
 
     # remove strings that are not relevant to the search

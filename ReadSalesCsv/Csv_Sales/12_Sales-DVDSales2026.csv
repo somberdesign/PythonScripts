@@ -1,11 +1,11 @@
-,,$48.00,Gold by Mira Kubasinska CD,,,$11.26,Average Sale Price,,,
-ST DEV,,-$244.35,Inventory cost (DVDs and CDs),,,$10.00,Median Sale Price,,,
-$6.48,,19,Current Day Streak,,,,,,,
+,,$55.00,Spirit in the Sky The Definitive Anthology by Norman Greenbaum,,,$11.58,Average Sale Price,,,
+ST DEV,,-$371.35,Inventory cost (DVDs and CDs),,,$10.00,Median Sale Price,,,
+$6.96,,34,Current Day Streak,,,,,,,
 ,,64,Longest streak (Jan 01 to Mar 05),,,,,,,
 ,,,,,,,,,,
-$996.78,Payment Received,Sales Fees,Postage,Other Costs,Title,"Purchase Price
+"$1,404.33",Payment Received,Sales Fees,Postage,Other Costs,Title,"Purchase Price
 Offset",Net Gain,MovieList Key,Flags,Group ID
-,"$3,334.16",-$654.58,"-$1,307.30",-$375.50,,,,,,
+,"$4,805.00",-$938.85,"-$1,836.26",-$625.56,,,,,,
 1/1/2026,,,,-$21.95,eBay Store Subscription,,,,,
 1/1/2026,$9.75,-$1.95,-$4.47,,Madonna The Immaculate Collection,-$0.24,$3.09,,,2511
 1/1/2026,$9.25,-$1.86,-$4.47,,Slightly Off the Ground by The Tom Kubis Big Band CD,$0.71,$3.63,,,2433
@@ -242,7 +242,7 @@ Offset",Net Gain,MovieList Key,Flags,Group ID
 3/28/2026,$8.00,-$1.65,-$4.47,,Sex and Lucia,-$0.26,$1.62,,,2525
 3/29/2026,$22.00,-$4.02,-$5.22,,The Twilight Zone Complete Series,-$1.08,$11.68,,,2526
 3/30/2026,$8.75,-$1.78,-$4.47,,Women in Chant Gregorian Chants by Nuns Abbey of Regina Laudis CD,$0.76,$3.26,,,2606
-4/1/2026,,,,-$21.95,,,,,,
+4/1/2026,,,,-$21.95,eBay Store Subscription,,,,,
 4/1/2026,$14.00,-$2.67,-$4.47,,Disappearance,$0.75,$7.61,,,2601
 4/1/2026,$11.00,-$2.16,-$4.47,,Switchback,$0.38,$4.75,,,2523
 4/2/2026,$8.00,-$1.65,-$4.47,,Cash Ultimate Gospel by Johnny Cash CD,$0.64,$2.52,,,2513
@@ -299,7 +299,7 @@ Offset",Net Gain,MovieList Key,Flags,Group ID
 4/19/2026,$7.50,-$1.57,-$4.47,,Sam Kinison Wild Child,-$0.26,$1.20,,,2525
 4/19/2026,,,,-$11.00,Purchased DVDs,,,,,
 4/20/2026,$18.00,-$3.34,-$4.47,,Latin Lovers,$0.87,$11.05,,,2515
-4/20/2026,$19.00,-$3.51,-$4.47,,Angels Too Soon The 1958 Fire at Lady of the Angels,$0.06,$11.08,,,2604
+4/20/2026,$19.00,-$3.51,-$4.47,,Angels Too Soon,$0.06,$11.08,,,2604
 4/20/2026,$10.25,-$2.03,-$4.47,,Princess of the Nile,$0.87,$4.61,,,2515
 4/21/2026,$16.00,-$3.00,-$4.47,,Mau Mau Sex Sex,$0.03,$8.55,,,2509
 4/21/2026,$9.00,-$1.82,-$4.47,,Athe Waldor Astoria by Lena Horne CD,$0.71,$3.42,,,2529
@@ -314,3 +314,128 @@ Offset",Net Gain,MovieList Key,Flags,Group ID
 4/25/2026,$9.00,-$1.82,-$4.47,,I Saw the Devil SCREENER,$0.43,$3.14,,,2428
 4/25/2026,$8.00,-$1.65,-$4.47,,Michael Jackson Live in Bucharest,-$0.26,$1.62,,,2525
 4/26/2026,$9.00,-$1.82,-$4.47,,The Mentalist Season 5,-$0.67,$2.04,,,2610
+4/26/2026,$13.00,-$2.50,-$4.47,,Jupiters Darling,$0.87,$6.90,,,2515
+4/27/2026,$7.50,-$1.57,-$4.47,,Six The Mark Unleashed,-$1.08,$0.38,,,2526
+4/27/2026,$8.75,-$1.78,-$4.47,,Happy Days by Andre Rieu CD,$0.76,$3.26,,,2606
+4/27/2026,$7.50,-$1.57,-$4.47,,Best of the Muppet Show Vol 2,$0.79,$2.26,,,2404
+4/28/2026,$30.00,-$5.37,-$4.47,,Samantha,-$0.21,$19.95,,,2602
+4/28/2026,$17.00,-$3.17,-$4.47,,From Russia with Love Soundtrack CD,$0.73,$10.09,,,2611
+4/29/2026,$9.75,-$1.95,-$4.47,,Dufay Missa Lhomme Army by Oxford Camerata,$0.79,$4.12,,,2411
+4/29/2026,$9.50,-$1.91,-$4.47,,Hitlers Lost Sub,$0.60,$3.72,,,2514
+4/30/2026,$9.25,-$1.86,-$4.47,,On the Track by Leon Redbone CD,$0.73,$3.65,,,2611
+4/30/2026,$8.50,-$1.74,-$4.47,,Pure 80s The DVD,-$1.08,$1.22,,,2526
+5/1/2026,,,,-$21.95,eBay Store Subscription,,,,,
+5/1/2026,$8.25,-$1.69,-$4.47,,Bustin Loose,-$0.50,$1.59,,,2520
+5/1/2026,$10.00,-$1.99,-$4.47,,Standards Too by Nossa Bossa Nova CD,$0.71,$4.25,,,2408
+5/2/2026,$8.25,-$1.69,-$4.47,,Its Alive,$0.50,$2.59,,,2516
+5/2/2026,$6.60,-$1.42,-$4.47,,Funky Genes by The Gene Harris Quartet CD,$0.71,$1.42,,,2433
+5/2/2026,$8.50,-$1.74,-$4.47,,No Name on the Bullet,$0.00,$2.29,,,2612
+5/3/2026,$11.00,-$2.16,-$4.47,,A Patch of Blue,-$1.08,$3.29,,,2526
+5/3/2026,$18.25,-$3.38,-$4.47,,Sade Life Promise Pride Love,-$0.21,$10.19,,,2602
+5/7/2026,$18.00,-$3.34,-$4.47,,Exit to Eden,-$0.67,$9.52,,,2610
+5/7/2026,$26.00,-$4.69,-$4.47,,Ashes to Ashes Season 3,-$0.67,$16.17,,,2610
+5/7/2026,$15.00,-$2.84,-$4.47,,The Gladiator,-$0.29,$7.41,,,2528
+5/8/2026,$8.00,-$1.65,-$4.47,,Eric Clapton Crossroads Disc 2 CD,$0.71,$2.59,,,2529
+5/9/2026,$8.00,-$1.65,-$4.47,,NYPD Blue Season 4,-$0.67,$1.21,,,2610
+5/9/2026,$9.00,-$1.82,-$4.47,,The Mentalist Season 6,-$0.67,$2.04,,,2610
+5/10/2026,$11.25,-$2.20,-$4.47,,From Toni with Love The Video Collection ,-$1.08,$3.50,,,2526
+5/10/2026,$55.00,-$9.60,-$4.47,,Spirit in the Sky The Definitive Anthology by Norman Greenbaum,$0.71,$41.64,,,2529
+5/10/2026,,,,-$3.00,Purchased DVDs,,,,,
+5/11/2026,$9.00,-$1.82,-$4.47,,Anatomy of a Murder,-$0.76,$1.95,,,2607
+5/11/2026,$13.00,-$2.50,-$4.47,,Put Grandma in the Freezer,-$0.38,$5.65,,,2430
+5/11/2026,$7.50,-$1.57,-$4.47,,The Towering Inferno,-$0.76,$0.70,,,2607
+5/12/2026,$10.00,-$1.99,-$4.47,,VersuS VillainS by Dreamcatcher CD,$0.71,$4.25,,,2433
+5/12/2026,$10.00,-$1.99,-$4.47,,Reiki Music for Blissful Sleep by Llewellyn,$0.64,$4.18,,,2513
+5/13/2026,$10.75,-$2.12,-$4.47,,The Girl Next Door,$0.38,$4.54,,,2523
+5/13/2026,$16.00,-$3.00,-$4.47,,To Catch a Killer,$0.75,$9.27,,,2601
+5/13/2026,$14.25,-$2.71,-$4.47,,Where Our Love Grows by Swing Out Sister CD,$0.76,$7.83,,,2606
+5/13/2026,$7.50,-$1.57,-$4.47,,Midsomer Murders The Sword of Guillaume,$0.80,$2.26,,,2312
+5/14/2026,$11.50,-$2.24,-$4.47,,Golden Memories by Billy Vaughn CD,$0.76,$5.54,,,2606
+5/14/2026,$9.00,-$1.82,-$4.47,,Theater of Blood,-$1.08,$1.63,,,2526
+5/14/2026,$12.50,-$2.41,-$4.47,,La Folia and Other works by The Purcell Quartet CD,$0.71,$6.33,,,2433
+5/14/2026,$8.25,-$1.69,-$4.47,,The House of the Devil SCREENER,$0.43,$2.52,,,2428
+5/14/2026,$15.00,-$2.84,-$4.47,,AM Gold 1979 by Various CD,$0.73,$8.42,,,2611
+5/15/2026,$18.25,-$3.38,-$4.47,,Sade Life Promise Pride Love,,$10.40,,,
+5/15/2026,-$10.00,$1.39,,,Refund: The Odd Couple Complete,,-$8.61,,doNotMatch,2607
+5/15/2026,$8.00,-$1.65,-$4.47,,Ravel piano Music Vol 1 by Thiollier CD,$0.76,$2.63,,,2606
+5/15/2026,$11.75,-$2.29,-$4.47,,The Shop Around the Corner,-$0.76,$4.23,,,2607
+5/15/2026,$8.00,-$1.65,-$4.47,,Dicks Picks Vol 9 Grateful Dead at Madison Square Garden by The Grateful Dead CD,,$1.88,,,
+5/15/2026,,,,-$35.61,Purchased CDs,,,,,
+5/16/2026,$12.00,-$2.33,-$4.47,,Locatelli Larte Del Violino by Elizabeth Wallfisch CD,$0.71,$5.91,,,2433
+5/16/2026,$9.75,-$1.95,-$4.47,,Legendary Singers Johnny Mathis Thirty Favorites by Johnny Mathis,$0.73,$4.06,,,2611
+5/16/2026,$8.75,-$1.78,-$4.47,,Original Artist Hit List by Cameo CD,$0.64,$3.14,,,2513
+5/16/2026,$8.25,-$1.69,-$4.47,,The L Word Season 3,,$2.09,,,
+5/17/2026,$7.50,-$1.57,-$4.47,,Imitation of Life,-$1.08,$0.38,,,2526
+5/17/2026,$15.00,-$2.84,-$4.47,,Classic Disaster Movies Virus / Hurricane / Deadly Harvest,-$1.20,$6.50,,,2416
+5/17/2026,$14.75,-$2.79,-$4.47,,Wendy and Lisa by Wendy and Lisa CD,$0.64,$8.12,,,2513
+5/17/2026,,,,-$124.00,Purchased DVDs,,,,,
+5/18/2026,$13.00,-$2.50,-$4.47,,AM Gold 1978 by Various CD,$0.73,$6.76,,,2611
+5/18/2026,$10.00,-$1.99,-$4.47,,AM Gold 1963 by Various CD,$0.73,$4.27,,,2611
+5/19/2026,$11.25,-$2.20,-$4.47,,Double Time by Leon Redbone CD,$0.73,$5.31,,,2611
+5/19/2026,$10.00,-$1.99,-$4.47,,AM Gold 1970 by Various CD,$0.73,$4.27,,,2611
+5/19/2026,$15.20,-$2.87,-$4.47,,Nancy Goes to Rio / Two Weeks with Love,-$0.24,$7.62,,,2511
+5/19/2026,,,,-$43.55,Purchased padded mailers,,,,,
+5/20/2026,$8.00,-$1.65,-$4.47,,Bolero Ma Mere IOye Rapsodie Espagnole by Pierre Boulez CD,$0.73,$2.61,,,2611
+5/20/2026,$7.50,-$1.57,-$4.47,,Mr Blandings Builds His Dream House,$0.75,$2.21,,,2601
+5/20/2026,$10.00,-$1.99,-$4.47,,The 7th Voyage of Sinbad ,$0.87,$4.41,,,2515
+5/20/2026,$9.00,-$1.82,-$4.47,,Across 110th Street,-$1.08,$1.63,,,2526
+5/21/2026,$14.25,-$2.71,-$4.47,,Beyond the Veil by Daryl Coley CD,$0.64,$7.71,,,2513
+5/22/2026,$23.00,-$4.19,-$5.22,,Barnie Miller Complete Series,-$1.17,$12.43,,doNotMatch,2530
+5/23/2026,$48.00,-$8.41,-$4.47,,Indigo Nights by Prince CD,$0.73,$35.85,,,2611
+5/24/2026,$7.50,-$1.57,-$4.47,,The Best Years of Our Lives,-$0.76,$0.70,,,2607
+5/24/2026,$25.00,-$4.53,-$4.47,,AM Gold 1964,$0.73,$16.73,,,2611
+5/24/2026,$9.00,-$1.82,-$4.47,,Demonlover SCREENER,$0.03,$2.74,,,2509
+5/24/2026,$7.50,-$1.57,-$4.47,,Boomtown,-$0.38,$1.08,,,2608
+5/25/2026,$11.00,-$2.16,-$4.47,,Xena Warrior Princess Season 6,-$0.38,$3.99,,,2608
+5/25/2026,$48.00,-$8.41,-$4.47,,The Lone Gunmen,-$0.38,$34.74,,,2608
+5/25/2026,$7.75,-$1.61,-$4.47,,No Regrets by Leon Redbone CD,$0.73,$2.40,,,2611
+5/25/2026,$22.00,-$4.02,-$4.47,,AM Gold 1977 by Various CD,$0.73,$14.24,,,2611
+5/25/2026,$7.50,-$1.57,-$4.47,,All That Heaven Allows,-$0.76,$0.70,,,2607
+5/26/2026,$7.00,-$1.48,-$4.47,,Portait of a Legend 1951-1964 by Same Cooke CD,$0.73,$1.78,,,2611
+5/27/2026,$8.75,-$1.78,-$4.47,,The Golden Girls Season 5,-$0.91,$1.59,,,2614
+5/28/2026,$9.00,-$1.82,-$4.47,,Creator,$0.38,$3.09,,,2523
+5/28/2026,$9.99,-$1.99,-$4.47,,Naked Weapon,-$0.29,$3.24,,,2528
+5/28/2026,$7.25,-$1.53,-$4.47,,Annie Hall,-$0.18,$1.07,,,2605
+5/29/2026,$7.50,-$1.57,-$4.47,,Whos Afraid of Virginia Woolf,-$0.67,$0.80,,,2610
+5/30/2026,$14.00,-$2.67,-$4.47,,The Prisoner 2009,-$0.67,$6.20,,,2610
+5/30/2026,$13.25,-$2.54,-$4.47,,Nero Wolfe Season 1,,$6.24,,,
+5/30/2026,$13.00,-$2.50,-$4.47,,Still Small Voices,$0.60,$6.63,,,2514
+5/31/2026,$13.00,-$2.50,-$4.47,,A Thin Line Between Love and Hate by Various CD,$0.73,$6.76,,,2611
+5/31/2026,$16.00,-$3.00,-$4.47,,The Castle,$0.00,$8.53,,,
+6/1/2026,,,,-$21.95,eBay Store Subscription,,,,,
+6/1/2026,$15.00,-$2.84,-$4.47,,Love Songs by Eddy Arnold CD,$0.76,-$13.50,,,2606
+6/2/2026,$7.75,-$1.61,-$4.47,,Robot Chicken Season 4,-$3.05,-$1.38,,,2615
+6/3/2026,$8.25,-$1.69,-$4.47,,The Aristocats,$0.00,$2.09,,,2612
+6/3/2026,$14.25,-$2.71,-$4.47,,Laura,-$0.76,$6.31,,,2607
+6/3/2026,$7.50,-$1.57,-$4.47,,The Postman Always Rings Twice,-$0.76,$0.70,,,2607
+6/4/2026,$11.75,-$2.29,-$4.47,,Lets Do It Again,-$1.08,$3.92,,,2526
+6/4/2026,$19.00,-$3.51,-$4.47,,Angels Too Soon,-$0.29,$10.73,,,2528
+6/4/2026,$11.50,-$2.24,-$4.47,,Burn Notice Season 5,-$3.05,$1.74,,,2615
+6/4/2026,$17.00,-$3.17,-$4.47,,Glazin,$0.38,$9.74,,,2523
+6/5/2026,$7.50,-$1.57,-$4.47,,Gilligans Island Season 1,-$1.39,$0.07,,,2521
+6/5/2026,$35.50,-$6.30,-$5.22,,Cab Ride Along the Sante Fe Trail COMPLETE,$0.50,$24.48,,doNotMatch,2516
+6/5/2026,$7.80,-$1.62,-$4.47,,Mojo Buried Treasures 15 Key Tracks From The Greatest Albums Youd Never Heard by Various CD ,$0.79,$2.50,,,2411
+6/5/2026,$12.25,-$2.37,-$4.47,,To Sir with Love,-$1.08,$4.33,,,2526
+6/5/2026,$7.25,-$1.53,-$4.47,,The Princess and the Frog,$0.38,$1.64,,,2523
+6/6/2026,$10.00,-$1.99,-$4.47,,Out of the Past,-$0.76,$2.78,,,2607
+6/6/2026,$11.00,-$2.16,-$4.47,,Reviving Ophelia,-$0.20,$4.17,,,2518
+6/6/2026,$11.00,-$2.16,-$4.47,,Bach Four Early Sinfonias by Dennis Russell Davies CD,$0.73,$5.10,,,2611
+6/7/2026,$7.50,-$1.57,-$4.47,,Digital Empire Studio Wars by Various CD,$0.71,$2.17,,,2408
+6/7/2026,$10.50,-$2.07,-$4.47,,Bathing Beauty,$0.87,$4.82,,,2515
+6/7/2026,$8.00,-$1.65,-$4.47,,Fortunate CD5-Cassette Single by Maxwell CD,$0.64,$2.52,,,2513
+6/8/2026,$13.75,-$2.62,-$4.47,,Starman Soundtrack by Jack Nitzsche CD,$0.73,$7.39,,,2611
+6/8/2026,$10.75,-$2.12,-$4.47,,AM Gold 1976 by Various CD,$0.73,$4.89,,,2611
+6/8/2026,$8.25,-$1.69,-$4.47,,AM Gold Early 70s Classics by Various CD,$0.73,$2.82,,,2611
+6/9/2026,$9.75,-$1.95,-$4.47,,Somethings Going on by UNV CD,$0.71,$4.04,,,2529
+6/9/2026,$13.50,-$2.58,-$4.47,,Real Genius ,-$1.08,$5.37,,,2526
+6/9/2026,$13.50,-$2.58,-$4.47,,Queen Greatest Video Hits  1,-$0.21,$6.24,,,2602
+6/9/2026,$18.00,-$3.34,-$4.47,,The Golden Girls Season 3,-$0.91,$9.28,,,2614
+6/9/2026,$9.00,-$1.82,-$4.47,,Sands of Iwo Jima / Flying Tigers,$0.87,$3.57,,doNotMatch,2515
+6/9/2026,$8.00,-$1.65,-$4.47,,Petrified Forest,-$0.76,$1.12,,,2607
+6/9/2026,$13.00,-$2.50,-$4.47,,Romona,$0.87,$6.90,,,2515
+6/10/2026,$7.25,-$1.53,-$4.47,,Beginning by The Black Eyed Peas CD,$0.73,$1.98,,,2611
+6/10/2026,$12.25,-$2.37,-$4.47,,Eurythmics Greatest Hits 1991,-$1.08,$4.33,,,2526
+6/11/2026,$8.75,-$1.78,-$4.47,,The Longest Day,$0.87,$3.37,,,2515
+6/11/2026,$11.50,-$2.24,-$4.47,,Long Way from Home by Leon Redbone CD,$0.73,$5.52,,,2611
+6/11/2026,$10.25,-$2.03,-$4.47,,Complete Greatest Hits by Foreigner CD,$0.73,$4.48,,,2611
+6/11/2026,$11.75,-$2.29,-$4.47,,The Last Seduction,$0.38,$5.38,,,2523

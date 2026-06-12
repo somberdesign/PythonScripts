@@ -12,6 +12,9 @@ import typing
 from yaml import safe_load, YAMLError
 from re import IGNORECASE, search, sub
 from sys import float_info
+import tkinter as tk
+from tkinter import messagebox
+from winsound import Beep
 
 TAB_CLASS_CURRENT_PRICE:str = 'col-price__current'
 TAB_CLASS_TITLE:str = 'shui-dt-column__title'
@@ -29,8 +32,12 @@ THIS_FILE_PATH = dirname(realpath(__file__))
 WORDS_TO_REMOVE = ['by', 'screener', 'various']
 
 countBucket = { 'BadString': 0, 'TimeRejected': 0 , 'CheapComic': 0}
-# logger = None
 ebayUrl:str = str()
+is_test_mode = False
+
+# init tkinter
+root = tk.Tk()
+root.withdraw()
 
 def create_item_text(inString:str, current_price:str) -> str:
     global countBucket
@@ -131,7 +138,7 @@ def create_item_text(inString:str, current_price:str) -> str:
     return_val = sub(r'[^A-Za-z0-9 ]+', str(), return_val)
 
     # sx and vx
-    replace_season_volume_strings(return_val)
+    return_val = replace_season_volume_strings(return_val)
 
     #remove region
     return_val = sub(r'region \n', '', return_val, flags=IGNORECASE)
@@ -191,6 +198,14 @@ def GetConfigValues() -> bool:
         logfilePath = fallbackLogfile
         returnVal = False
 
+    if 'eBayScrapeActiveListings' in yamlData and 'is_test_mode' in yamlData['eBayScrapeActiveListings']: # type: ignore
+        global is_test_mode
+        is_test_mode = yamlData['eBayScrapeActiveListings']['is_test_mode'] # type: ignore
+    else:
+        print(f'ERROR: unable to find "eBayScrapeActiveListings\\url" in config file {configFilePath}')
+        logfilePath = fallbackLogfile
+        returnVal = False
+
     print(f'Logging to file {logfilePath}')
     Logger2.SetLogfilePath(logfilePath)
     Logger2.AddInfo('Started run')
@@ -199,17 +214,17 @@ def GetConfigValues() -> bool:
 
 def make_soup_file(filename:str) -> BeautifulSoup | None:
 
-    filecontents:str = str()
+    file_contents:str = str()
     try:
         with open(filename) as f:
-            filecontents = f.read()        
+            file_contents = f.read()
     except Exception as ex:
         Logger2.AddError(f'Unable to read input file {INPUT_FILE_PATH}. {ex}')
         print('pause')
         input()
         exit(1)
 
-    return BeautifulSoup(filecontents, 'html.parser')
+    return BeautifulSoup(file_contents, 'html.parser')
 
 def make_soup_url(url:str) -> BeautifulSoup | None:
     r = get(url)
@@ -238,12 +253,16 @@ def removeYesterday(inList:list) -> list:
                 inList.remove(item.strip())
     
     # write new yesterday file
-    try:
-        with open(PREVIOUS_ITEM_PATH, 'w') as yesterday:
-            for item in inList:
-                yesterday.write(item + '\n')
-    except Exception as ex:
-        Logger2.AddError(f'Unable to write items to yesterday file {PREVIOUS_ITEM_PATH}. {ex}')
+    if is_test_mode:
+        Beep(1000, 100)
+        messagebox.showinfo('Test Mode', 'Yesterday items file not written. Test mode is on.')
+    else:
+        try:
+            with open(PREVIOUS_ITEM_PATH, 'w') as yesterday:
+                for item in inList:
+                    yesterday.write(item + '\n')
+        except Exception as ex:
+            Logger2.AddError(f'Unable to write items to yesterday file {PREVIOUS_ITEM_PATH}. {ex}')
 
     return inList
 

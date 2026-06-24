@@ -31,7 +31,7 @@ STRINGS_TO_REMOVE = ['See condition description', 'Buy It Now', 'suitable for re
 THIS_FILE_PATH = dirname(realpath(__file__))
 WORDS_TO_REMOVE = ['by', 'screener', 'various']
 
-countBucket = { 'BadString': 0, 'TimeRejected': 0 , 'CheapComic': 0}
+countBucket = { 'BadString': 0, 'TimeRejected': 0 , 'CheapComic': 0, 'GoodComic': 0}
 ebayUrl:str = str()
 is_test_mode = False
 
@@ -88,8 +88,8 @@ def create_item_text(inString:str, current_price:str) -> str:
 
     is_cgc_comic_book = 'cgc' in inString.lower()
 
-    if is_comic_book and price < 10:
-        countBucket['CheapComic'] += 1
+    if is_comic_book:
+        countBucket['CheapComic' if price < 10 else 'GoodComic'] += 1
         return str()
 
     # ignore items that contain any of these words
@@ -322,6 +322,7 @@ if __name__ == '__main__':
         {len(outputItems)} good ones
         {countBucket['TimeRejected']} don't expire today
         {countBucket['CheapComic']} {'is a cheap comic' if countBucket['CheapComic'] == 1 else 'are cheap comics'}
+        {countBucket['GoodComic']} {'is a good comic' if countBucket['GoodComic'] == 1 else 'are good comics'}
         {yesterdayCount} appeared yesterday
     """
     Logger2.AddInfo(message)

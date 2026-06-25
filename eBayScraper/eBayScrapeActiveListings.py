@@ -23,6 +23,7 @@ TAB_CLASS_TIMEREMAINING:str = 'shui-dt-column__timeRemaining'
 
 MINUTE_CUTOFF = 26*60
 
+CHEAP_COMIC_PRICE_CUTOFF = 10
 INPUT_FILE_PATH = r'C:\temp\ebay.html'
 OUTPUT_FILE_PATH = r'C:\temp\ebayScrapeActiveListings_output.txt'
 POSITIONAL_NUMBERS = ['first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth', 'tenth']
@@ -88,10 +89,6 @@ def create_item_text(inString:str, current_price:str) -> str:
 
     is_cgc_comic_book = 'cgc' in inString.lower()
 
-    if is_comic_book:
-        countBucket['CheapComic' if price < 10 else 'GoodComic'] += 1
-        return str()
-
     # ignore items that contain any of these words
     for word in ['ItemSort', 'TitleSort']:
         if word.lower() in inString.lower(): 
@@ -99,12 +96,17 @@ def create_item_text(inString:str, current_price:str) -> str:
             return str()
 
     if is_comic_book:
+        if price < CHEAP_COMIC_PRICE_CUTOFF:
+            countBucket['CheapComic'] += 1
+            return str()
+        else:
+            countBucket['GoodComic'] += 1
+
         if is_cgc_comic_book : # graded comics ex: "Nightmask 2 Dec 1986 CGC 94"
-            cgc_return_val = inString
-            cgc_return_val = cgc_return_val.replace('#', '') # can't figure out how to put # signs on the url
+            cgc_return_val = inString.replace('#', '') # can't figure out how to put # signs on the url
             find_location = cgc_return_val.lower().find('cgc')
             return_val = f'cb {cgc_return_val[:find_location]}'
-        else:
+        else: # comic books with grade in brackets ex: "Nightmask 2 Dec 1986 [NM]"
             find_location = inString.lower().find('[')
             return_val = f'cb {inString[:find_location]}' if find_location != -1 else inString
 

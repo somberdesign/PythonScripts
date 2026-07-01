@@ -55,12 +55,9 @@ def create_link_page(link_page_path:str, search_args:list[str], background_image
 	def get_comic_book_content():
 		comic_book_search_args = remove_months_from_list(search_args)
 		f.write('<td valign="top" style="padding-right: 20px;">\n')
-		f.write('<h3>Comic Book Links</h3>\n')
 		f.write(f'<a href="https://www.comics.org/searchNew/?q={"%20".join(comic_book_search_args)}" target="_cb_grandcomicsdb_{"_".join(search_args)}">Grand Comics Database</a><br />\n')
 
 	def get_dvd_content():
-		f.write('<td valign="top" style="padding-right: 20px;">\n')
-		f.write('<h3>DVD Links</h3>\n')
 		f.write(f'<a href="https://www.imdb.com/find?ref_=nv_sr_fn&q={"%20".join(strip_season_designation(search_args))}&s=all" target="_dvd_imdb_{"_".join(search_args)}" class="primaryLink">IMDb</a><br />\n')
 		f.write(f'<a href="https://www.amazon.com/s?k={"%20".join(search_args)}+dvd" target="_dvd_amazon">Amazon</a><br />\n')
 		f.write(f'<a href="https://www.ebay.com/sch/i.html?_from=R40&_nkw={"%20".join(search_args)}&+-%28blu%29=&_sacat=617&LH_TitleDesc=0&LH_PrefLoc=1&_fsrp=1&_sop=15&LH_BIN=1&LH_ItemCondition=1000%7C2750&LH_BIN=1&rt=nc&LH_Sold=1" target="_dvd_ebaysolditems_{"_".join(search_args)}">eBay (Sold Items)</a><br />\n')
@@ -68,16 +65,14 @@ def create_link_page(link_page_path:str, search_args:list[str], background_image
 		f.write(f'<a href="https://www.google.com/search?q={"%20".join(strip_season_designation(search_args))}%20site%3Aimdb.com" target="_dvd_imdb_google_{"_".join(search_args)}">IMDb (via Google)</a><br />\n')
 		f.write(f'<a href="https://www.justwatch.com/us/search?q={"%20".join(strip_season_designation(search_args))}" target="_dvd_justwatch_{"_".join(search_args)}">JustWatch</a><br />\n')
 		f.write(f'<a href="https://www.metacritic.com/search/{"%20".join(strip_season_designation(search_args))}/" target="_dvd_metacritic_{"_".join(search_args)}">Metacritic</a><br />\n')
-		f.write('</td>\n')
 
-		f.write('<td valign="top" style="padding-right: 20px;">\n')
-		f.write('<h3>CD Links</h3>\n')
+	def get_compactdisc_content():
 		f.write(f'<a href="https://www.allmusic.com/search/all/{"%20".join(search_args)}" target="_cd_allmusic_{"_".join(search_args)}" class="primaryLink">AllMusic</a><br />\n')
 		f.write(f'<a href="https://www.google.com/search?q={"%20".join(strip_season_designation(search_args))}%20site%3Aallmusic.com" target="_cd_allmusic_google_{"_".join(search_args)}">AllMusic (via Google)</a><br />\n')
 		f.write(f'<a href="https://www.discogs.com/search?q={"%20".join(search_args)}&type=all" target="_cd_discogs_{"_".join(search_args)}">Discogs</a><br />\n')
 		f.write(f'<a href="https://www.ebay.com/sch/i.html?_fsrp=1&_from=R40&_nkw={"%20".join(search_args)}&_sacat=176984&LH_BIN=1&_sop=15&LH_PrefLoc=2&rt=nc&LH_Sold=1" target="_cd_ebaysolditems_{"_".join(search_args)}">eBay (Sold Items)</a><br />\n')
 		f.write(f'<a href="https://www.google.com/search?q={"%20".join(search_args)}%20cd%20cover&-site:ebay.com&tbs=isz:l&hl=en-US&sa=X&biw=1865&bih=970&udm=2" target="_cd_googleimage_{"_".join(search_args)}">Google Large Image Search</a><br />\n')
-		f.write('</td>\n')
+
 
 
 	style_link_list = [
@@ -86,10 +81,11 @@ def create_link_page(link_page_path:str, search_args:list[str], background_image
 		'<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css">'
 	]
 	style_link = style_link_list[datetime.now().month % len(style_link_list)]
+	page_title = f'{"Comic Book" if search_type == "comicbook" else "DVD" if search_type == "dvd" else "Compact Disc"} Search Results'
 
 	with open(link_page_path, 'w') as f:
 		f.write(f'<html>\n<head>\n')
-		f.write(f'<title>Link Page</title>\n{style_link}\n')
+		f.write(f'<title>{page_title}</title>\n{style_link}\n')
 		f.write('<style>.primaryLink{font-size:20px;}</style>\n')
 
 		if background_image:
@@ -100,16 +96,17 @@ def create_link_page(link_page_path:str, search_args:list[str], background_image
 
 		f.write(f'<div class="background-container">\n')
 		f.write(f'<div class="content">\n')
-		f.write(f'<h1>Link Page</h1> <h2 style="font-style: italic;">{" ".join(search_args)}</h2>\n')
-		f.write(f'<a href="http://bombcyclone:746/?search={"%20".join(search_args)}" target="_everything_{"_".join(search_args)}">Bombcyclone: Everything</a>\n')
+		f.write(f'<h1>{page_title}</h1> <h2 style="font-style: italic;">{" ".join(search_args)}</h2>\n')
+		f.write(f'<a href="http://bombcyclone:746/?search={"%20".join(search_args)}" target="_everything_{"_".join(search_args)}" style="padding:0px 0px 15px 0px;">Bombcyclone: Everything</a>\n')
 
-		f.write('<table border="0" width="75%"<tr>\n')
+		f.write('<div>\n')
 
 		match search_type:
 			case 'comicbook': get_comic_book_content()
-			case 'compactdisc' | 'dvd': get_dvd_content()
+			case 'compactdisc': get_compactdisc_content()
+			case 'dvd': get_dvd_content()
 
-		f.write('</tr></table>\n')
+		f.write('</div>\n')
 
 		f.write('</div></div>\n')
 		f.write('</body>\n</html>\n')

@@ -31,9 +31,9 @@
     /* 6. Ensure content is positioned above the background layer */
     position: relative;
     z-index: 1;
+    padding: 20px;
     /* Add padding/styling to make content readable */
     /*
-    padding: 20px;
     color: white;
     text-shadow: 2px 2px 4px #000000;
     */

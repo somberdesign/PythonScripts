@@ -320,7 +320,7 @@ if __name__ == '__main__':
         Logger2.AddError(f'Error writing file {OUTPUT_FILE_PATH}. {ex}')
 
     message = f"""
-        Read {len(tagTitles) - 1 - countBucket['BadString']} listings
+        Read {len(tagTitles) - countBucket['BadString']} listings
         {len(outputItems)} good ones
         {countBucket['TimeRejected']} don't expire today
         {countBucket['CheapComic']} {'is a cheap comic' if countBucket['CheapComic'] == 1 else 'are cheap comics'}

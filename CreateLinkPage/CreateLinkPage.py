@@ -1,6 +1,5 @@
 from sys import argv, path
 from os.path import abspath, dirname, join, realpath, isfile
-from unittest import case
 
 path.append(abspath(join(dirname(__file__), '..'))) # add parent directory to path so we can import CommonFunctions
 from CommonFunctions import StringToInt # in PythonScripts root directory
@@ -11,8 +10,6 @@ from os import makedirs, listdir, path, remove, stat, walk
 from random import choice
 from rapidfuzz import process, fuzz
 from re import IGNORECASE, sub
-# from random import choice
-# from yaml import safe_load, YAMLError
 
 THIS_FILE_PATH: str = dirname(realpath(__file__))
 DEFAULT_LOGFILE_PATH: str = join(r"c:\logs\CreateLinkPage_log.txt")
@@ -54,8 +51,17 @@ def create_link_page(link_page_path:str, search_args:list[str], background_image
 
 	def get_comic_book_content():
 		comic_book_search_args = remove_months_from_list(search_args)
-		f.write('<td valign="top" style="padding-right: 20px;">\n')
-		f.write(f'<a href="https://www.comics.org/searchNew/?q={"%20".join(comic_book_search_args)}" target="_cb_grandcomicsdb_{"_".join(search_args)}">Grand Comics Database</a><br />\n')
+		comic_book_cached_items = [
+			['CGC Grading Scales','file:///H:/Cached/CGC_Grading_Scales_CGC.pdf'],
+			['Common Defects', 'file:///H:/Cached/What_Common_Defects_Affect_Your_CGC_Grade_CGC.pdf'],
+			['Crease Defects','file:///H:/Cached/CGC_Crease_Defect_Guide.pdf'],
+			['Google Large Image Search', f'https://www.google.com/search?q=comic%20book%20{"%20".join(comic_book_search_args)}+-site%3Aebay.com&tbm=isch'],
+			['Grading Cheat Sheet','file:///H:/Cached/The_Ultimate_Comic_Book_Grading_Cheat_Sheet_Imgur.pdf'],
+			['Grand Comics Database', f'https://www.comics.org/searchNew/?q={"%20".join(comic_book_search_args)}']
+		]
+		# f.write('<td valign="top" style="padding-right: 20px;">\n')
+		for cache_item in comic_book_cached_items:
+			f.write(f'<a href="{cache_item[1]}" target="_cb_cached_{cache_item[0].replace(" ","_")}">{cache_item[0]}</a><br />\n')
 
 	def get_dvd_content():
 		f.write(f'<a href="https://www.imdb.com/find?ref_=nv_sr_fn&q={"%20".join(strip_season_designation(search_args))}&s=all" target="_dvd_imdb_{"_".join(search_args)}" class="primaryLink">IMDb</a><br />\n')
@@ -76,17 +82,17 @@ def create_link_page(link_page_path:str, search_args:list[str], background_image
 
 
 	style_link_list = [
-		'<link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">', 
-		'<link rel="stylesheet" href="https://unpkg.com/mvp.css">', 
+		'<link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">',
+		'<link rel="stylesheet" href="https://unpkg.com/mvp.css">',
 		'<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css">'
 	]
 	style_link = style_link_list[datetime.now().month % len(style_link_list)]
-	page_title = f'{"Comic Book" if search_type == "comicbook" else "DVD" if search_type == "dvd" else "Compact Disc"} Search Results'
+	page_title = f'{"Comic Book" if search_type == "comicbook" else "DVD" if search_type == "dvd" else "Compact Disc"} Link Page'
 
 	with open(link_page_path, 'w') as f:
 		f.write(f'<html>\n<head>\n')
 		f.write(f'<title>{page_title}</title>\n{style_link}\n')
-		f.write('<style>.primaryLink{font-size:20px;}</style>\n')
+		f.write('<style>.primaryLink{font-size:20px;}\na:link, a:visited, a:hover, a:active {color: #0000FF;}</style>\n')
 
 		if background_image:
 			f.write(f'<link rel="stylesheet" href="file:///{LINK_PAGE_CSS.replace("\\", "/")}" />\n')
@@ -110,7 +116,7 @@ def create_link_page(link_page_path:str, search_args:list[str], background_image
 
 		f.write('</div></div>\n')
 		f.write('</body>\n</html>\n')
-	
+
 	return True
 
 def delete_old_files(directory_path, days_old):

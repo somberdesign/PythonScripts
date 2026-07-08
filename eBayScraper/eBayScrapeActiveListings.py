@@ -147,7 +147,7 @@ def create_item_text(inString:str, current_price:str) -> str:
 
     # remove year from string. primarily for cds and dvds.
     if remove_year and not is_comic_book:
-        return_val = sub(r'\b\d{4}\b', '', return_val, flags=IGNORECASE)
+        return_val = sub(r'\b(19|20)\d{2}\b', '', return_val, flags=IGNORECASE)
 
     # remove strings that are not relevant to the search
     for string in STRINGS_TO_REMOVE:

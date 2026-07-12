@@ -17,10 +17,11 @@ DEFAULT_OUTPUT_FILE_DIR: str = r'c:\temp\CreateLinkPage'
 FUZZY_SEARCH_THRESHOLD: int = 70
 IMAGE_DIR: str = r'h:\Media\Images\DvdImages'
 IS_DEBUG: bool = True
+LINK_COLOR: str = '#070E0'
 LINK_PAGE_CSS: str = join(THIS_FILE_PATH, 'CreateLinkPage.css')
-SEARCH_TYPE_PREFIXES = ['br', 'cb', 'cd', 'cf', 'ct', 'nc', 'vg', 'tc', 'mg']
+SEARCH_TYPE_PREFIXES: list = ['br', 'cb', 'cd', 'cf', 'ct', 'nc', 'vg', 'tc', 'mg']
 
-configValues = {'logfile': DEFAULT_LOGFILE_PATH, 'url': str(), 'outputfilename': str(), 'searchargs': []}
+configValues: dict = {'logfile': DEFAULT_LOGFILE_PATH, 'url': str(), 'outputfilename': str(), 'searchargs': []}
 
 
 def check_paths() -> bool:
@@ -51,7 +52,7 @@ def create_link_page(link_page_path:str, search_args:list[str], background_image
 
 	def get_comic_book_content():
 		comic_book_search_args = remove_months_from_list(search_args)
-		comic_book_cached_items = [
+		items = [
 			['CGC Grading Scales','file:///H:/Cached/CGC_Grading_Scales_CGC.pdf'],
 			['Common Defects', 'file:///H:/Cached/What_Common_Defects_Affect_Your_CGC_Grade_CGC.pdf'],
 			['Crease Defects','file:///H:/Cached/CGC_Crease_Defect_Guide.pdf'],
@@ -59,9 +60,8 @@ def create_link_page(link_page_path:str, search_args:list[str], background_image
 			['Grading Cheat Sheet','file:///H:/Cached/The_Ultimate_Comic_Book_Grading_Cheat_Sheet_Imgur.pdf'],
 			['Grand Comics Database', f'https://www.comics.org/searchNew/?q={"%20".join(comic_book_search_args)}']
 		]
-		# f.write('<td valign="top" style="padding-right: 20px;">\n')
-		for cache_item in comic_book_cached_items:
-			f.write(f'<a href="{cache_item[1]}" target="_cb_cached_{cache_item[0].replace(" ","_")}">{cache_item[0]}</a><br />\n')
+		for cache_item in items:
+			f.write(f'<a href="{cache_item[1]}" target="_cb_cached_{cache_item[0].lower().replace(" ","_")}">{cache_item[0]}</a><br />\n')
 
 	def get_dvd_content():
 		f.write(f'<a href="https://www.imdb.com/find?ref_=nv_sr_fn&q={"%20".join(strip_season_designation(search_args))}&s=all" target="_dvd_imdb_{"_".join(search_args)}" class="primaryLink">IMDb</a><br />\n')
@@ -92,11 +92,11 @@ def create_link_page(link_page_path:str, search_args:list[str], background_image
 	with open(link_page_path, 'w') as f:
 		f.write(f'<html>\n<head>\n')
 		f.write(f'<title>{page_title}</title>\n{style_link}\n')
-		f.write('<style>.primaryLink{font-size:20px;}\na:link, a:visited, a:hover, a:active {color: #0000FF;}</style>\n')
+		f.write(f'<style>.primaryLink{{font-size:20px;}}\na:link, a:visited, a:hover, a:active {{color: {LINK_COLOR};}}</style>\n')
 
 		if background_image:
 			f.write(f'<link rel="stylesheet" href="file:///{LINK_PAGE_CSS.replace("\\", "/")}" />\n')
-			f.write(f'<style>\n.background-container::before {{ background-image: url(http://bombcyclone:8123/{background_image}); }}\na:link, a:visited, a:hover, a:active {{ color: black; }}\n</style>\n')
+			f.write(f'<style>\n.background-container::before {{ background-image: url(http://bombcyclone:8123/{background_image}); }}\na:link, a:visited, a:hover, a:active {{ color: {LINK_COLOR}; }}\n</style>\n')
 
 		f.write(f'</head>\n<body>\n')
 

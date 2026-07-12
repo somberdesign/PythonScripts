@@ -62,7 +62,7 @@ if __name__ == '__main__':
         f.write(new_content)
 
     # 6. Success message
-    show_info(f"Success: '{new_font}' has been added to the file in alphabetical order.")
+    show_info(f"Success: '{new_font}' has been added to the file. It now contains {len(fonts)} fonts.")
 
 # Usage
 # update_font_list('FavoriteFonts.html', 'NewFontName')

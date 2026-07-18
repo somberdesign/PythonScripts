@@ -71,6 +71,7 @@ def create_link_page(link_page_path:str, search_args:list[str], background_image
 		f.write(f'<a href="https://www.google.com/search?q={"%20".join(strip_season_designation(search_args))}%20site%3Aimdb.com" target="_dvd_imdb_google_{"_".join(search_args)}">IMDb (via Google)</a><br />\n')
 		f.write(f'<a href="https://www.justwatch.com/us/search?q={"%20".join(strip_season_designation(search_args))}" target="_dvd_justwatch_{"_".join(search_args)}">JustWatch</a><br />\n')
 		f.write(f'<a href="https://www.metacritic.com/search/{"%20".join(strip_season_designation(search_args))}/" target="_dvd_metacritic_{"_".join(search_args)}">Metacritic</a><br />\n')
+		f.write(f'<a href="https://www.themoviedb.org/search?query={"%20".join(strip_season_designation(search_args))}" target="_dvd_themoviedb_{"_".join(search_args)}">The Movie Database</a><br />\n')
 
 	def get_compactdisc_content():
 		f.write(f'<a href="https://www.allmusic.com/search/all/{"%20".join(search_args)}" target="_cd_allmusic_{"_".join(search_args)}" class="primaryLink">AllMusic</a><br />\n')

@@ -6,25 +6,27 @@ from bs4 import BeautifulSoup
 path.append(r'c:\users\rgw3\PythonScripts\Logger')
 import Logger2
 
+import logging
 from os.path import dirname, isfile, join, realpath
 from requests import get
 import typing
-from yaml import safe_load, YAMLError
 from re import IGNORECASE, search, sub
 from sys import float_info
 import tkinter as tk
 from tkinter import messagebox
 from winsound import Beep
+from yaml import safe_load, YAMLError
 
 TAB_CLASS_CURRENT_PRICE:str = 'col-price__current'
 TAB_CLASS_TITLE:str = 'shui-dt-column__title'
 TAB_CLASS_TIMEREMAINING:str = 'shui-dt-column__timeRemaining'
 
 
-MINUTE_CUTOFF = 26*60
+MINUTE_CUTOFF = 25*60
 
 CHEAP_COMIC_PRICE_CUTOFF = 10
 INPUT_FILE_PATH = r'C:\temp\ebay.html'
+OUTPUT_DEBUG_ENABLED = False
 OUTPUT_FILE_PATH = r'C:\temp\ebayScrapeActiveListings_output.txt'
 POSITIONAL_NUMBERS = ['first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth', 'tenth']
 PREVIOUS_ITEM_PATH = r'C:\temp\ebayScrapeActiveListings_previous.txt'
@@ -35,6 +37,7 @@ WORDS_TO_REMOVE = ['by', 'screener', 'various']
 countBucket = { 'BadString': 0, 'TimeRejected': 0 , 'CheapComic': 0, 'GoodComic': 0}
 ebayUrl:str = str()
 is_test_mode = False
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
 # init tkinter
 root = tk.Tk()
@@ -284,7 +287,10 @@ def TimeLeftToMinutes(instr:str) -> int:
 
 
 if __name__ == '__main__':
-    
+
+    if OUTPUT_DEBUG_ENABLED:
+        Beep(1000, 100)
+
     GetConfigValues()
 
     soup:BeautifulSoup | None = make_soup_file(INPUT_FILE_PATH)
@@ -296,6 +302,9 @@ if __name__ == '__main__':
         # ignore item if it doesn't expire within about a day
         timeRemainingElement = titleElement.find_next('td', class_=TAB_CLASS_TIMEREMAINING)
         minutesLeft = TimeLeftToMinutes(timeRemainingElement.text)
+        if OUTPUT_DEBUG_ENABLED:
+            logging.debug(f'name: {titleElement.text}, Minutes left: {minutesLeft}')
+
         current_price_element = titleElement.find_next('div', class_=TAB_CLASS_CURRENT_PRICE)
         if minutesLeft > MINUTE_CUTOFF: 
             countBucket['TimeRejected'] += 1
@@ -319,14 +328,18 @@ if __name__ == '__main__':
     except Exception as ex:
         Logger2.AddError(f'Error writing file {OUTPUT_FILE_PATH}. {ex}')
 
+    # good comics are included in the outputItems list, so subtract them from the count bucket
+    good_one_count = len(outputItems) - countBucket['GoodComic']
     message = f"""
         Read {len(tagTitles) - countBucket['BadString']} listings
         {len(outputItems)} good ones
-        {countBucket['TimeRejected']} don't expire today
-        {countBucket['CheapComic']} {'is a cheap comic' if countBucket['CheapComic'] == 1 else 'are cheap comics'}
         {countBucket['GoodComic']} {'is a good comic' if countBucket['GoodComic'] == 1 else 'are good comics'}
+        
+        {countBucket['CheapComic']} {'is a cheap comic' if countBucket['CheapComic'] == 1 else 'are cheap comics'}
+        {countBucket['TimeRejected']} don't expire today
         {yesterdayCount} appeared yesterday
     """
+
     Logger2.AddInfo(message)
     # Logger2.AddInfo(f"Read {len(tagTitles) - 1 - countBucket['BadString']} listings\n{len(outputItems)} good ones\n{countBucket['TimeRejected']} don't expire today\n{yesterdayCount} appeared yesterday")
 

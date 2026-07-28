@@ -67,6 +67,7 @@ def create_link_page(link_page_path:str, search_args:list[str], background_image
 		f.write(f'<a href="https://www.imdb.com/find?ref_=nv_sr_fn&q={"%20".join(strip_season_designation(search_args))}&s=all" target="_dvd_imdb_{"_".join(search_args)}" class="primaryLink">IMDb</a><br />\n')
 		f.write(f'<a href="https://www.amazon.com/s?k={"%20".join(search_args)}+dvd" target="_dvd_amazon">Amazon</a><br />\n')
 		f.write(f'<a href="https://www.ebay.com/sch/i.html?_from=R40&_nkw={"%20".join(search_args)}&+-%28blu%29=&_sacat=617&LH_TitleDesc=0&LH_PrefLoc=1&_fsrp=1&_sop=15&LH_BIN=1&LH_ItemCondition=1000%7C2750&LH_BIN=1&rt=nc&LH_Sold=1" target="_dvd_ebaysolditems_{"_".join(search_args)}">eBay (Sold Items)</a><br />\n')
+		f.write(f'<a href="https://www.etsy.com/search?q={"%20".join(search_args)}&ref=external_search" target="_dvd_etsy_{"_".join(search_args)}">Etsy</a><br />\n')
 		f.write(f'<a href="https://www.google.com/search?q={"%20".join(search_args)}%20dvd%20cover&-site:ebay.com&tbs=isz:l&hl=en-US&sa=X&biw=1865&bih=970&udm=2" target="_dvd_googleimage_{"_".join(search_args)}">Google Large Image Search</a><br />\n')
 		f.write(f'<a href="https://www.google.com/search?q={"%20".join(strip_season_designation(search_args))}%20site%3Aimdb.com" target="_dvd_imdb_google_{"_".join(search_args)}">IMDb (via Google)</a><br />\n')
 		f.write(f'<a href="https://www.justwatch.com/us/search?q={"%20".join(strip_season_designation(search_args))}" target="_dvd_justwatch_{"_".join(search_args)}">JustWatch</a><br />\n')

@@ -1,6 +1,7 @@
 from os import listdir
 from os.path import abspath, isdir, join, dirname
 
+from colorama import Fore
 from datetime import datetime as dt
 from datetime import timedelta
 from math import floor
@@ -37,8 +38,9 @@ FILE_EXPLORER_ENABLED = True
 #     |-- 2024-02-02-Fri
 
 
-def CountDirectories(targetDir:str):
+def CountDirectories(targetDir:str) -> dict:
 	results = {}
+	last_directory = ''
 	lowItemCount = 1000
 	lowSeriesCount = 1000
 	lowItemDirs = []
@@ -53,6 +55,7 @@ def CountDirectories(targetDir:str):
 		for dir in [d for d in listdir(join(targetDir, monthdir)) if isdir(join(targetDir, monthdir, d))]:
 
 			directory_counter += 1
+			last_directory = dir
 
 			# limit number of dirs that are processed
 			if GetDirDate(dir) < dt.now() or GetDirDate(dir) > dt.now() + timedelta(days=DAYLIMIT):
@@ -125,6 +128,7 @@ def CountDirectories(targetDir:str):
 		'lowestItemDate': choice(lowItemDirs), 
 		'lowestSeriesDate': choice(lowSeriesDirs),
 		'directoryCounter': directory_counter,
+		'lastDirectory': last_directory
 	}
 
 def CountFiles(targetDir:str):
@@ -152,6 +156,11 @@ def is_blocked_date(dir_string):
 	date_string = f'{parts[0]}-{parts[1]}-{parts[2]}'
 	day_of_week = dt.strptime(date_string, '%Y-%m-%d').weekday()
 	return date_string in BLOCKDATES or day_of_week in BLOCKDAYS
+
+def is_getting_close(in_date: str, days_away: int) -> bool:
+	in_date_dt = dt.strptime(in_date, '%Y-%m-%d-%a')  # in_date is formated like this: '2026-12-31-Thu'
+	today_dt = dt.today()
+	return (in_date_dt - today_dt).days < days_away
 
 def ProcessCommandLine():
 	returnVal = [str(), []]
@@ -220,6 +229,7 @@ if __name__ == '__main__':
 	else:
 		allResults = CountDirectories(targetDir)
 		directoryData = allResults['results']
+		last_directory = allResults['lastDirectory']
 		
 		if len(directoryData) > 0:
 			dateSpaces = ' ' * (floor(len(list(directoryData.items())[0][0]) / 2) - 2)
@@ -241,12 +251,16 @@ if __name__ == '__main__':
 			if allResults['directoryCounter'] < DAYLIMIT:
 				print(f'\n{Colors.FAIL}** WARNING: Ran out of directories before DAYLIMIT reached **{Colors.ENDC}')
 
-			print(f'\nIndividual Pick: {lowestItemDate} (clipboard)')
+			last_directory_text = f'{Fore.RED}{'Last Directory: ' + last_directory}{Fore.RESET}' if is_getting_close(last_directory, 7) else 'Last Directory: ' + last_directory
+			print(f'\n{last_directory_text}')
+
+			print(f'Individual Pick: {lowestItemDate} (clipboard)')
 			print(f'Series Pick    : {allResults['lowestSeriesDate']}')
 
 			pyperclipCopy(lowestItemDate)
 
 			if FILE_EXPLORER_ENABLED:
+				print('\n')
 
 				# 2026-05-01 - this format reportedly does not create zombie processes.
 				# I previously used run([FILE_EXPLORER_LOCATION, lowestItemDate]) which may create a zombie process

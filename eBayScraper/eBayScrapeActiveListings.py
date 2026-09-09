@@ -221,7 +221,7 @@ def make_soup_file(filename:str) -> BeautifulSoup | None:
 
     file_contents:str = str()
     try:
-        with open(filename) as f:
+        with open(filename, 'r', encoding='utf-8', errors='ignore') as f:
             file_contents = f.read()
     except Exception as ex:
         Logger2.AddError(f'Unable to read input file {INPUT_FILE_PATH}. {ex}')

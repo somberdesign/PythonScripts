@@ -1,3 +1,4 @@
+import string
 from sys import path
 from unidecode import unidecode
 path.insert(1, r'../Logger')
@@ -175,7 +176,11 @@ if __name__ == '__main__':
 			continue
 
 		moveDirectoryName = unidecode(rawMoveDirectoryName) # replace unicode characters with ascii equivalents
-		
+
+		# remove select chars
+		remove_chars = ['\'']
+		moveDirectoryName = moveDirectoryName.translate(str.maketrans('', '', ''.join(remove_chars)))
+
 		targetDirectory, ruleNumber = getTargetDirectory(configFile['destinationMap'], moveDirectoryName)
 		if len(targetDirectory) == 0 and not DEBUG:
 			Logger.AddWarning(f'Can''t find target directory for {moveDirectoryName}')

@@ -1,0 +1,13 @@
+import subprocess
+
+def update_iptc_xmp_metadata(image_path, title, description):
+    # This requires ExifTool installed on your operating system
+    cmd = [
+        'exiftool', 
+        '-overwrite_original',
+        f'-Title={title}',             # XMP Title
+        f'-Description={description}', # XMP Description
+        f'-Caption-Abstract={description}', # IPTC Caption
+        image_path
+    ]
+    subprocess.run(cmd, check=True)

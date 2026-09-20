@@ -34,6 +34,8 @@ def GetDisplayText(oData):
 			for i in DisplayColumns:
 				if i == idx_lastDateViewed:
 					displayText += "{0}".format(str(row[i])[:LASTVIEWEDDATE_DISPLAY_COLUMN_WIDTH].ljust(maxColumnWidth[i] + 2))
+				elif i == idx_highTicketNumber:
+					displayText += "{0}".format(str(math.floor(float(row[i]))).ljust(8))
 				else:
 					displayText += "{0}".format(str(row[i]).ljust(maxColumnWidth[i] + 2))
 			displayText += "\n"
@@ -43,10 +45,11 @@ def GetDisplayText(oData):
 
 	allRecordRows = oData.GetDisplayTitles()
 	activeRecordCount = len(allRecordRows)
-	maxColumnWidth = [0, 0, 0, 0, 0, 0, 0]
-	PerformCalculations(allRecordRows, maxColumnWidth)
 
-	return GetOutput(allRecordRows, maxColumnWidth);
+	max_column_width = [0, 0, 0, 0, 0, 0, 0]
+	PerformCalculations(allRecordRows, max_column_width)
+
+	return GetOutput(allRecordRows, max_column_width)
 
 
 def GetAddSeriesWindow():

@@ -2,5 +2,6 @@
 
 eBayScrapeActiveListings:
   logfile: 'e:\Logs\eBayScrapeActiveListings.log'
-  url: 'https://www.ebay.com/sh/lst/active'
+#  url: 'https://www.ebay.com/sh/lst/active'
+  url: 'https://www.ebay.com/sh/lst/active?action=sort&sort=timeRemaining'
   is_test_mode: false

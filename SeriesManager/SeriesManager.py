@@ -3,13 +3,13 @@ import random, math, FreeSimpleGUI as sg, SeriesManager_Data as data, contextlib
 from tkinter import *
 import datetime
 import os
+from SeriesManager_config import LOGFILE
 
 FONT_LABEL = ("Helvetica", 10, "bold")
 KEY_LISTBOX_ACTIVETITLES = "__ACTIVETITLES__"
 KEY_LISTBOX_INACTIVETITLES = "__INACTIVETITLES__"
 KEY_DISPLAYTEXT = "__DISPLAYTEXT__"
 LASTVIEWEDDATE_DISPLAY_COLUMN_WIDTH = 10
-LOGFILE = os.path.join(os.path.dirname(__file__), "SeriesManage.log")
 MAX_MULTIPLIER_SLIDER_VALUE = 500
 
 
@@ -222,29 +222,32 @@ with data.SeriesManager_Data() as oData:
 
 	displayWindow = GetDisplayWindow()
 
-	while True:
+	try:
+		while True:
 
-		event, values = displayWindow.Read()
-		
-		if isinstance(activeRecordCount, int):
-			displayWindow.TKroot.title = (f'Series Manager ({activeRecordCount} active titles)')
+			event, values = displayWindow.Read()
+			
+			if isinstance(activeRecordCount, int):
+				displayWindow.TKroot.title = (f'Series Manager ({activeRecordCount} active titles)')
 
-		if event is None or event == "Exit":
-			break
+			if event is None or event == "Exit":
+				break
 
-		if event == "Add Series":
-			displayWindow.close()
-			PerformAddSeries(oData)
-			displayWindow = GetDisplayWindow()
+			if event == "Add Series":
+				displayWindow.close()
+				PerformAddSeries(oData)
+				displayWindow = GetDisplayWindow()
 
-		if event == "Lottery Draw":
-			PerformDraw(oData)
-			displayWindow[KEY_DISPLAYTEXT](GetDisplayText(oData))
+			if event == "Lottery Draw":
+				PerformDraw(oData)
+				displayWindow[KEY_DISPLAYTEXT](GetDisplayText(oData))
 
-		if event == "Manage Series":
-			displayWindow.close()
-			PerformManageSeries(oData)
-			displayWindow = GetDisplayWindow()
+			if event == "Manage Series":
+				displayWindow.close()
+				PerformManageSeries(oData)
+				displayWindow = GetDisplayWindow()
+	except Exception as ex:
+		Log_Message(f'Exception in main loop: {ex}')
 
 Log_Message('Terminated Series Manager')
 

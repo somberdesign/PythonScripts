@@ -56,20 +56,6 @@ def GetSmartFiles(dirName):
 
 	ENTRY_LENGTH = 25
 
-	# # 2023-06-08 - this works but will interfere with ReadSalesCsv\ModifyMovieList.py
-	# # because it uses SmartList as an input
-	# def reduceToFixedLength(inString):
-	# 	BASE_STRING_LEN = 25
-
-
-	# 	returnVal = inString
-	# 	if ENABLE_FILENAME_LIMIT and len(inString) > BASE_STRING_LEN:
-	# 		backPad = BASE_STRING_LEN - floor(BASE_STRING_LEN * 0.2)
-	# 		frontPad = BASE_STRING_LEN - floor((BASE_STRING_LEN + 6) * 0.3)
-	# 		returnVal = f'{inString[0:frontPad]}...{inString[-1 * backPad:]}'
-
-	# 	return returnVal
-
 	def reduceToFixedLength(input_string, fixed_length):
 
 		# Check if input_string is already shorter than fixed_length
@@ -105,7 +91,7 @@ def GetSmartFiles(dirName):
 	smartFileItemName = ''
 
 	# create a json dictionary, if needed
-	fullJsonFilename = os.path.join(dirName, JsonInfoFilename);
+	fullJsonFilename = os.path.join(dirName, JsonInfoFilename)
 	if os.path.isfile(fullJsonFilename):
 		jsonInfo = None
 		try:

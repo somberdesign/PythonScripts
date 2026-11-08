@@ -3,3 +3,4 @@
 # location of sqlite file
 DB_PATH = r'\\bombcyclone\AgnesNutter\Data\SeriesManager\titles.db'
 
+LOGFILE = r'C:\logs\SeriesManager.log'

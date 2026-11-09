@@ -1,7 +1,7 @@
 
 import random, math, FreeSimpleGUI as sg, SeriesManager_Data as data, contextlib
 from tkinter import *
-import datetime
+from datetime import datetime
 import os
 from SeriesManager_config import LOGFILE
 
@@ -33,9 +33,18 @@ def GetDisplayText(oData):
 		for row in allRecordRows:
 			for i in DisplayColumns:
 				if i == idx_lastDateViewed:
-					displayText += "{0}".format(str(row[i])[:LASTVIEWEDDATE_DISPLAY_COLUMN_WIDTH].ljust(maxColumnWidth[i] + 2))
+
+					date_obj = None
+					try:
+						date_obj = datetime.strptime(row[i], "%Y-%m-%d %H:%M:%S")
+					except ValueError:
+						date_obj = None
+
+					date_text = '---' if date_obj is None else date_obj.strftime("%m/%d")
+					displayText += "{0}".format(date_text.ljust(maxColumnWidth[i] + 2))
 				elif i == idx_highTicketNumber:
-					displayText += "{0}".format(str(math.floor(float(row[i]))).ljust(8))
+					pass # don't display this column
+					# displayText += "{0}".format(str(math.floor(float(row[i]))).ljust(8))
 				else:
 					displayText += "{0}".format(str(row[i]).ljust(maxColumnWidth[i] + 2))
 			displayText += "\n"
@@ -75,19 +84,22 @@ def GetAddSeriesWindow():
 	return window
 
 
+# this is the main window: "Series Picker"
 def GetDisplayWindow():
 	btnLotteryDraw = sg.Button("Lottery Draw")
 	btnManageSeries = sg.Button("Manage Series")
 	btnAddSeries = sg.Button("Add Series")
 	btnExit = sg.Button("Exit")
-	txtDisplay = sg.Text(GetDisplayText(oData), key=KEY_DISPLAYTEXT, font=("Courier New", 10))
+	text_content = GetDisplayText(oData)
+	txtDisplay = sg.Text(text_content, key=KEY_DISPLAYTEXT, font=("Courier New", 10))
+	display_count_text = sg.Text(f'Displaying {text_content.count(chr(10))} items')
 
 	layout = [
-				[btnLotteryDraw, btnAddSeries, btnManageSeries, btnExit],
-				[txtDisplay],
+				[btnLotteryDraw, btnAddSeries, btnManageSeries, btnExit, display_count_text],
+				[sg.Column([[txtDisplay]], scrollable=True, vertical_scroll_only=True, expand_x=True, expand_y=True)],
 			 ]
 
-	return sg.Window("Series Picker", layout, size=(500, 900))
+	return sg.Window("Series Picker", layout, size=(600, 900))
 
 def GetManageSeriesWindow(oData):
 	
@@ -211,7 +223,7 @@ def PerformManageSeries(oData):
 
 def Log_Message(message:str):
 	with open(LOGFILE, 'a') as file:
-		file.write(f'{datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")} - {message}\n')
+		file.write(f'{datetime.now().strftime("%Y-%m-%d %H:%M:%S")} - {message}\n')
 	print(message)
 
 ###########################################################################################

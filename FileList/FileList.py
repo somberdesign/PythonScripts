@@ -34,7 +34,7 @@ def FindValidFilename(stem):
 
 
 def GetListOfFiles(dirName):
-    # create a list of file and sub directories 
+	# create a list of file and sub directories
     # names in the given directory 
 
     listOfFile = os.listdir(dirName)
@@ -44,7 +44,7 @@ def GetListOfFiles(dirName):
         
         fullPath = os.path.join(dirName, entry) # Create full path
         
-		# If entry is a directory then get the list of files in this directory 
+        # If entry is a directory then get the list of files in this directory
         if os.path.isdir(fullPath):
             allFiles = allFiles + GetListOfFiles(fullPath)
         else:

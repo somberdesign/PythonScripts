@@ -26,8 +26,8 @@ CACHE_FILE_PATH:str = r'h:\Cached\google_fonts_cache_file.json'
 DEBUG = False
 DIR_TO_SEARCH = r'c:\Users\rgw3\PythonScripts\SearchToBrowser'
 EVERYTHING_COMMAND_LINE_PATH = r'"C:\Program Files\Everything\es.exe"' # leave empty to disable
-IGNORE_FONT_NAMES:List[str] = ['badeen display', 'ballet', 'bigelow rules', 'bytesized', 'comforter', 'festive', 'flow block', 'flow rounded', 'geostar fill', 'inspiration', 'jersey 20 charted', 'linefont', 'micro 5 charted', 'monofett', 'mrs sheppards', 'notable', 'palette mosaic', 'pinyon Script', 'redacted', 'rock 3d', 'sankofa display', 'splash', 'vina sans', 'wavefont', 'windsong']
-IGNORE_FONT_WORDS:List[str] = ['barcode', 'yarndings', 'material']
+IGNORE_FONT_NAMES:List[str] = ['badeen display', 'ballet', 'bigelow rules', 'bytesized', 'comforter', 'festive', 'geostar fill', 'inspiration', 'jersey 20 charted', 'linefont', 'micro 5 charted', 'monofett', 'mrs sheppards', 'notable', 'palette mosaic', 'pinyon Script', 'redacted', 'rock 3d', 'sankofa display', 'splash', 'vina sans', 'wavefont', 'windsong']
+IGNORE_FONT_WORDS:List[str] = ['barcode', 'yarndings', 'material', 'flow']
 LOG_LEVEL = logging.INFO
 LOGFILE_PATH = r'c:\logs\SearchToBrowser.log'
 OUTPUT_DIRECTORY = r'c:\temp\searchToBrowser'
@@ -102,7 +102,7 @@ def GetGoogleFontName() -> str:
 		for item in fontdata['items']:  # type: ignore
 			if (
 				item['family'].casefold() not in IGNORE_FONT_NAMES
-				and not any(s.casefold() in item['family'].casefold() for s in IGNORE_FONT_WORDS)
+				and not any(re.search(rf'\b{re.escape(s)}\b', item['family'], re.IGNORECASE) for s in IGNORE_FONT_WORDS) # ignore whole words only
 			):
 				font_names.append(item['family'])  # type: ignore
 

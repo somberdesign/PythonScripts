@@ -49,7 +49,7 @@ class SeriesManager_Data(object):
 			LEFT JOIN (SELECT title_id, MAX(datetime(date_used)) last_date_viewed FROM uses GROUP BY title_id) use_date ON t.id = use_date.title_id
 		WHERE t.is_active = 1
 	"""
-	SQL_INSERTTITLE = "insert into Titles (title, is_active, multiplier) VALUES(?, 1, ?)"
+	SQL_INSERTTITLE = "insert into Titles (title, is_active, multiplier, title_type_id) VALUES(?, 1, ?, ?)"
 	SQL_INSERTUSE = "INSERT INTO Uses (title_id, date_used) VALUES({0}, '{1}')"
 	SQL_TITLEEXISTS = "SELECT CASE WHEN COUNT(*) = 1 THEN 1 ELSE 0 END titleExists FROM titles WHERE LOWER(title) = ?"
 	SQL_UPDATETITLE_SETISACTIVE = "UPDATE Titles SET is_active = {1} WHERE LOWER(title) = '{0}'"
@@ -114,9 +114,10 @@ class SeriesManager_Data(object):
 		return
 
 
-	def InsertTitle(self, title, multiplier):
+	def InsertTitle(self, title, multiplier, is_movie:bool):
+		title_type_id = self.TITLE_TYPE_MOVIE if is_movie else self.TITLE_TYPE_SERIES
 		with contextlib.closing(self.conn.cursor()) as cur:
-			cur.execute(SeriesManager_Data.SQL_INSERTTITLE, [title, multiplier])
+			cur.execute(SeriesManager_Data.SQL_INSERTTITLE, [title, multiplier, title_type_id])
 		return
 
 	def SeriesExists(self, seriesTitle):

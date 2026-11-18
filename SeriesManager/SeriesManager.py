@@ -157,16 +157,17 @@ def perform_add_series(oData):
 	doneWithSeries = False
 
 	while not doneWithSeries:
-		addEvent, addValues, is_movie = addWindow.Read()
+		addEvent, addValues = addWindow.Read()
 
 		if addEvent == "Ok":
 			title = addValues[0]
 			multiplier = addValues[1] / 10
+			is_movie = addValues[2]
 			seriesExists = oData.SeriesExists(title)
 			if seriesExists == True:
 				addWindow[KEY_DISPLAYTEXT]("That series already exists")
 			else:
-				oData.InsertTitle(title, multiplier)
+				oData.InsertTitle(title, multiplier, is_movie)
 				addWindow.close()
 				return
 

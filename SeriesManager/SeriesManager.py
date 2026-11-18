@@ -29,7 +29,7 @@ activeRecordCount = None
 
 DisplayColumns = [idx_highTicketNumber, idx_titleMultiplier, idx_totalViews, idx_title, idx_lastDateViewed]
 
-def GetDisplayText(oData, include_movies:bool):
+def GetDisplayText(oData):
 	global activeRecordCount
 
 	def GetOutput(allRecordRows, maxColumnWidth):
@@ -55,7 +55,7 @@ def GetDisplayText(oData, include_movies:bool):
 		
 		return displayText
 
-	allRecordRows = oData.GetDisplayTitles(include_movies)
+	allRecordRows = oData.GetDisplayTitles(global_include_movies)
 	activeRecordCount = len(allRecordRows)
 
 	max_column_width = [0, 0, 0, 0, 0, 0, 0]
@@ -91,19 +91,15 @@ def get_add_item_window():
 # this is the main window: "Series Picker"
 def GetDisplayWindow():
 
-	# only include movies if enough time has passed since the last movie selection
-	delta = date.today() - oData.get_last_movie_selection_date().date()
-	include_movies = delta.days >= MIN_DAYS_BETWEEN_MOVIE_SELECTION
-
 	btnLotteryDraw = sg.Button("Lottery Draw")
 	btnManageSeries = sg.Button("Manage Series")
 	btnAddSeries = sg.Button("Add Item")
 	btnExit = sg.Button("Exit")
-	text_content = GetDisplayText(oData, include_movies)
+	text_content = GetDisplayText(oData)
 	txtDisplay = sg.Text(text_content, key=KEY_DISPLAYTEXT, font=("Courier New", 10))
 
 	header_display_content : str | None = None
-	if include_movies:
+	if global_include_movies:
 		header_display_content = f'Displaying {text_content.count(chr(10))} items\n(including movies)'
 	else:
 		header_display_content = f'Displaying {text_content.count(chr(10))} items\n(excluding movies)'
@@ -248,6 +244,11 @@ def Log_Message(message:str):
 Log_Message('Executing Series Manager')
 
 with data.SeriesManager_Data() as oData:
+
+	# only include movies if enough time has passed since the last movie selection
+	delta = date.today() - oData.get_last_movie_selection_date().date()
+	global_include_movies = delta.days >= MIN_DAYS_BETWEEN_MOVIE_SELECTION
+
 
 	displayWindow = GetDisplayWindow()
 

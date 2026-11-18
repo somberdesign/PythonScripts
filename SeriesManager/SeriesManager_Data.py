@@ -2,6 +2,7 @@
 from SeriesManager_config import DB_PATH as config_dbpath
 import sqlite3, easygui, contextlib, datetime, os
 from tkinter import messagebox
+from datetime import date
 
 class SeriesManager_Data(object):
 	"""Interaction with datasource"""
@@ -9,6 +10,11 @@ class SeriesManager_Data(object):
 	
 	FILENAME_DB = config_dbpath
 	LOGFILE = os.path.join(os.path.dirname(__file__), "SeriesManage.log")
+
+	# from table Title_types
+	TITLE_TYPE_SERIES = 1
+	TITLE_TYPE_MOVIE = 2
+
 	SQL_GETINACTIVETITLES = """
 		SELECT 
 			t.title
@@ -22,6 +28,14 @@ class SeriesManager_Data(object):
 			LEFT JOIN (SELECT title_id, MAX(datetime(date_used)) last_date_viewed FROM uses GROUP BY title_id) use_date ON t.id = use_date.title_id
 		WHERE t.is_active = 0
 	"""
+
+	SQL_GET_LAST_MOVIE_USE_DATE = f"""
+		SELECT MAX(u.date_used) AS most_recent_date
+		FROM Uses u
+		LEFT JOIN Titles t ON u.title_id = t.id
+		WHERE t.title_type_id = {TITLE_TYPE_MOVIE};
+	"""
+
 	SQL_GETTITLES = """
 		SELECT 
 			t.title
@@ -64,10 +78,14 @@ class SeriesManager_Data(object):
 
 		return allRecordRows
 
-	def GetDisplayTitles(self):
+	def GetDisplayTitles(self, include_movies:bool = True):
 		allRecordRows = []
 
-		for row in self.conn.execute(SeriesManager_Data.SQL_GETTITLES + " ORDER BY last_date_viewed DESC, total_views DESC"):
+		local_sql = " ORDER BY last_date_viewed DESC, total_views DESC"
+		if not include_movies:
+			local_sql = f" AND t.title_type_id <> {self.TITLE_TYPE_MOVIE} {local_sql}"
+			
+		for row in self.conn.execute(SeriesManager_Data.SQL_GETTITLES + local_sql):
 			newItem = [row[0], row[1], row[2], row[3], 1, 0, row[4]]
 			allRecordRows.append(newItem)
 
@@ -81,6 +99,13 @@ class SeriesManager_Data(object):
 			allRecordRows.append(newItem)
 
 		return allRecordRows
+
+	def get_last_movie_selection_date(self) -> datetime.datetime:
+		sql = SeriesManager_Data.SQL_GET_LAST_MOVIE_USE_DATE
+		with contextlib.closing(self.conn.cursor()) as cur:
+			resultRow = cur.execute(sql).fetchone()
+
+		return datetime.datetime.strptime(resultRow[0], "%Y-%m-%d %H:%M:%S") if resultRow and resultRow[0] else None
 
 	def InsertUse(self, titleId):
 		sql = SeriesManager_Data.SQL_INSERTUSE.format(titleId, datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))

@@ -1,7 +1,7 @@
 
 import random, math, FreeSimpleGUI as sg, SeriesManager_Data as data, contextlib
 from tkinter import *
-from datetime import datetime
+from datetime import datetime, date
 import os
 from SeriesManager_config import LOGFILE
 
@@ -11,7 +11,11 @@ KEY_LISTBOX_INACTIVETITLES = "__INACTIVETITLES__"
 KEY_DISPLAYTEXT = "__DISPLAYTEXT__"
 LASTVIEWEDDATE_DISPLAY_COLUMN_WIDTH = 10
 MAX_MULTIPLIER_SLIDER_VALUE = 500
+MIN_DAYS_BETWEEN_MOVIE_SELECTION = 5 # don't consider movies unless the last one was viewed at least this many days ago
 
+# from table Title_types
+TITLE_TYPE_SERIES = 1
+TITLE_TYPE_MOVIE = 2
 
 idx_title = 0
 idx_totalViews = 1
@@ -25,7 +29,7 @@ activeRecordCount = None
 
 DisplayColumns = [idx_highTicketNumber, idx_titleMultiplier, idx_totalViews, idx_title, idx_lastDateViewed]
 
-def GetDisplayText(oData):
+def GetDisplayText(oData, include_movies:bool):
 	global activeRecordCount
 
 	def GetOutput(allRecordRows, maxColumnWidth):
@@ -51,8 +55,7 @@ def GetDisplayText(oData):
 		
 		return displayText
 
-
-	allRecordRows = oData.GetDisplayTitles()
+	allRecordRows = oData.GetDisplayTitles(include_movies)
 	activeRecordCount = len(allRecordRows)
 
 	max_column_width = [0, 0, 0, 0, 0, 0, 0]
@@ -61,24 +64,25 @@ def GetDisplayText(oData):
 	return GetOutput(allRecordRows, max_column_width)
 
 
-def GetAddSeriesWindow():
+def get_add_item_window():
 	txtDisplay = sg.Text("", key=KEY_DISPLAYTEXT, font=("Courier New", 10), size=(50,1), text_color="red")
 	sldMultiplier = sg.Slider(range=(1, MAX_MULTIPLIER_SLIDER_VALUE), default_value=10, orientation="horizontal", size=(50, 20))
 	lblMultiplier = sg.Text("\nMultiplier", font=FONT_LABEL, size=(12,2))
 	inputText = sg.InputText()
+	cbMovie = sg.Checkbox("Movie", default=False)
 
 	lblTitle = sg.Text	 ("Series Name", font=FONT_LABEL, size=(12,1))
 	
 	
 	layout = [
 		[txtDisplay],
-		[lblTitle, inputText],
+		[lblTitle, inputText, cbMovie],
 		[lblMultiplier, sldMultiplier],
 		[],
 		[sg.Button('Ok'), sg.Button('Cancel')]
 	]
 	
-	window = sg.Window("Add Series", layout, finalize=True)
+	window = sg.Window("Add Item", layout, finalize=True)
 	inputText.SetFocus()
 
 	return window
@@ -86,16 +90,28 @@ def GetAddSeriesWindow():
 
 # this is the main window: "Series Picker"
 def GetDisplayWindow():
+
+	# only include movies if enough time has passed since the last movie selection
+	delta = date.today() - oData.get_last_movie_selection_date().date()
+	include_movies = delta.days >= MIN_DAYS_BETWEEN_MOVIE_SELECTION
+
 	btnLotteryDraw = sg.Button("Lottery Draw")
 	btnManageSeries = sg.Button("Manage Series")
-	btnAddSeries = sg.Button("Add Series")
+	btnAddSeries = sg.Button("Add Item")
 	btnExit = sg.Button("Exit")
-	text_content = GetDisplayText(oData)
+	text_content = GetDisplayText(oData, include_movies)
 	txtDisplay = sg.Text(text_content, key=KEY_DISPLAYTEXT, font=("Courier New", 10))
-	display_count_text = sg.Text(f'Displaying {text_content.count(chr(10))} items')
+
+	header_display_content : str | None = None
+	if include_movies:
+		header_display_content = f'Displaying {text_content.count(chr(10))} items\n(including movies)'
+	else:
+		header_display_content = f'Displaying {text_content.count(chr(10))} items\n(excluding movies)'
+	header_display = sg.Text(header_display_content)
+
 
 	layout = [
-				[btnLotteryDraw, btnAddSeries, btnManageSeries, btnExit, display_count_text],
+				[btnLotteryDraw, btnAddSeries, btnManageSeries, btnExit, header_display],
 				[sg.Column([[txtDisplay]], scrollable=True, vertical_scroll_only=True, expand_x=True, expand_y=True)],
 			 ]
 
@@ -136,12 +152,12 @@ def GetManageSeriesWindow(oData):
 
 	return sg.Window("Manage Series", layout)
 
-def PerformAddSeries(oData):
-	addWindow = GetAddSeriesWindow()
+def perform_add_series(oData):
+	addWindow = get_add_item_window()
 	doneWithSeries = False
 
 	while not doneWithSeries:
-		addEvent, addValues = addWindow.Read()
+		addEvent, addValues, is_movie = addWindow.Read()
 
 		if addEvent == "Ok":
 			title = addValues[0]
@@ -245,9 +261,9 @@ with data.SeriesManager_Data() as oData:
 			if event is None or event == "Exit":
 				break
 
-			if event == "Add Series":
+			if event == "Add Item":
 				displayWindow.close()
-				PerformAddSeries(oData)
+				perform_add_series(oData)
 				displayWindow = GetDisplayWindow()
 
 			if event == "Lottery Draw":

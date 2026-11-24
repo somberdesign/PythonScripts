@@ -2,14 +2,13 @@
 from SeriesManager_config import DB_PATH as config_dbpath
 import sqlite3, easygui, contextlib, datetime, os
 from tkinter import messagebox
-from datetime import date
 
 class SeriesManager_Data(object):
 	"""Interaction with datasource"""
 
 	
 	FILENAME_DB = config_dbpath
-	LOGFILE = os.path.join(os.path.dirname(__file__), "SeriesManage.log")
+	LOGFILE = r"c:\logs\SeriesManager_Data.log"
 
 	# from table Title_types
 	TITLE_TYPE_SERIES = 1
@@ -78,14 +77,14 @@ class SeriesManager_Data(object):
 
 		return allRecordRows
 
-	def GetDisplayTitles(self, include_movies:bool = True):
+	def GetDisplayTitles(self, include_movies:bool):
 		allRecordRows = []
 
 		local_sql = " ORDER BY last_date_viewed DESC, total_views DESC"
 		if not include_movies:
 			local_sql = f" AND t.title_type_id <> {self.TITLE_TYPE_MOVIE} {local_sql}"
-			
-		for row in self.conn.execute(SeriesManager_Data.SQL_GETTITLES + local_sql):
+		full_sql = SeriesManager_Data.SQL_GETTITLES + local_sql
+		for row in self.conn.execute(full_sql):
 			newItem = [row[0], row[1], row[2], row[3], 1, 0, row[4]]
 			allRecordRows.append(newItem)
 

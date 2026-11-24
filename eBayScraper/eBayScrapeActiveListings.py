@@ -331,6 +331,7 @@ if __name__ == '__main__':
     # good comics are included in the outputItems list, so subtract them from the count bucket
     good_one_count = len(outputItems) - countBucket['GoodComic']
     message = f"""
+        Yesterday's Output file: {PREVIOUS_ITEM_PATH}
         Read {len(tagTitles) - countBucket['BadString']} listings
         {len(outputItems)} good ones
         {countBucket['GoodComic']} {'is a good comic' if countBucket['GoodComic'] == 1 else 'are good comics'}

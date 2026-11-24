@@ -1,7 +1,7 @@
 
 import random, math, FreeSimpleGUI as sg, SeriesManager_Data as data, contextlib
 from tkinter import *
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
 import os
 from SeriesManager_config import LOGFILE
 
@@ -55,7 +55,7 @@ def GetDisplayText(oData):
 		
 		return displayText
 
-	allRecordRows = oData.GetDisplayTitles(global_include_movies)
+	allRecordRows = oData.GetDisplayTitles(global_include_movies['is_display_movies'])
 	activeRecordCount = len(allRecordRows)
 
 	max_column_width = [0, 0, 0, 0, 0, 0, 0]
@@ -99,10 +99,10 @@ def GetDisplayWindow():
 	txtDisplay = sg.Text(text_content, key=KEY_DISPLAYTEXT, font=("Courier New", 10))
 
 	header_display_content : str | None = None
-	if global_include_movies:
-		header_display_content = f'Displaying {text_content.count(chr(10))} items\n(including movies)'
+	if global_include_movies['is_display_movies']:
+		header_display_content = f'Displaying {text_content.count(chr(10))} items'
 	else:
-		header_display_content = f'Displaying {text_content.count(chr(10))} items\n(excluding movies)'
+		header_display_content = f'Displaying {text_content.count(chr(10))} items\nexcluding movies until {global_include_movies['next_date_todisplay']:%Y-%m-%d}'
 	header_display = sg.Text(header_display_content)
 
 
@@ -194,7 +194,7 @@ def PerformCalculations(allRecordRows, maxColumnWidth):
 
 
 def PerformDraw(oData):
-	allRecordRows = oData.GetDisplayTitles() # this must be the same function that appears in GetDisplayText
+	allRecordRows = oData.GetDisplayTitles(global_include_movies['is_display_movies']) # this must be the same function that appears in GetDisplayText
 	maxColumnWidth = [0, 0, 0, 0, 0, 0, 0]
 	PerformCalculations(allRecordRows, maxColumnWidth)
 
@@ -247,7 +247,10 @@ with data.SeriesManager_Data() as oData:
 
 	# only include movies if enough time has passed since the last movie selection
 	delta = date.today() - oData.get_last_movie_selection_date().date()
-	global_include_movies = delta.days >= MIN_DAYS_BETWEEN_MOVIE_SELECTION
+	global_include_movies =  {
+		'next_date_todisplay': oData.get_last_movie_selection_date().date() + timedelta(days=MIN_DAYS_BETWEEN_MOVIE_SELECTION),
+		'is_display_movies': delta.days >= MIN_DAYS_BETWEEN_MOVIE_SELECTION
+	}
 
 
 	displayWindow = GetDisplayWindow()
